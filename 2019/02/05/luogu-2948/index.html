@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="/blog/img/icon.jpg">
+    <link rel="icon" type="image/png" href="/blog/img/icon.jpg">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="author" content="Chtholly">
+    <meta name="keywords" content="">
+    <title>「洛谷P2948」滑雪课 题解 ~ Chtholly&#39;s blog</title>
+    <link rel="stylesheet" href="/blog/css/Material_Icons.css">
+    <!-- <link rel="stylesheet" href="/blog/css/font-awesome.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/blog/css/main.css">
+    
+        <link rel="stylesheet" href="/blog/css/post.css">
+        
+            <link rel="stylesheet" href="/blog/css/Prettify/tomorrow-night-eighties.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+        
+    
+</head>
+
+<body class=" sidebar-collapse">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/blog/">
+                Chtholly&#39;s blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" href="/blog/archives/">
+                                    archives
+                                </a>
+                            </li>
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" href="/blog/about/">
+                                    about
+                                </a>
+                            </li>
+                        
+                    
+                    
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://github.com/GeZiyue" target="_blank" data-original-title="See me here">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                            </li>
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="http://t.me/chothollynotaseniorious" target="_blank" data-original-title="See me here">
+                                    <i class="fa fa-telegram"></i>
+                                </a>
+                            </li>
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2775632269" target="_blank" data-original-title="See me here">
+                                    <i class="fa fa-qq"></i>
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            </div>
+    </div>
+</nav>
+    
+  <div class="page-header header-filter" data-parallax="false" style="background-image: url('/blog/img/post.jpg'); height: 70vh;">
+    
+      <div class="container">
+        <h1 class="title text-center post_title">「洛谷P2948」滑雪课 题解</h1>
+        <p class="text-center"><b>Tuesday, February 5th 2019, 10:47 pm</b></p>
+      </div>
+    
+  </div>
+
+  
+  
+  
+    
+
+
+<div class="main main-raised">
+  <div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col-md-7 offset-md-2">
+                <div class="post_content">
+                    <h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><a id="more"></a>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>首先将所有课程按结束时间排序</li>
+<li>将相同滑坡能力值的分为一类, 对于能力为$i$的取其中所需时间最短的$lastmin_i$</li>
+<li>$f(i, j)$表示对于第$i$个时刻, 能力值为$j$或$j$以上时最大的滑雪次数</li>
+<li>若第$j$个课程开始于$begin$结束于$i$, 若参加这个课程, 枚举开始时的能力值$k, f(i, abi_j)=max\{f(begin, k) | k&lt;=100\}$ ($abi_j$是第$j$次获得的滑雪能力), 再枚举$abi_j$以下的能力$k, f(i, k)=max\{f(i, k), f(i, j)\}$</li>
+<li>对于每一个时刻$i$, 若滑雪, 枚举滑雪时的能力值$k, f(i, k)=max\{f(i-lastmin_k, k)|k&lt;=100, i-lastmin_k&gt;=0\}$</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>注: 以下代码已省略头文件、read和write</p>
+<pre><code class="cpp">class Class {
+public:
+    int begin, end, abi;
+    friend bool operator&lt;(Class, Class);
+}c[M];
+// 课程类型, 可以视作struct
+int dp[N][M];
+int lastmin[M];
+int main () {
+    int n, m, t;
+    read(t);
+    read(n);
+    read(m);
+    for (int i=1; i&lt;=n; i++) {
+        int begin, last, abi;
+        read(begin);
+        read(last);
+        read(abi);
+        c[i].begin=begin;
+        c[i].end=begin+last;
+        c[i].abi=abi;
+    }
+    sort(c+1, c+n+1, [](Class i, Class j) {
+        return i.end&lt;j.end;
+    });// 给课程按结束时间排序, 用到了匿名(lambda)函数, 需要开C++11
+    for (int i=1; i&lt;=100; i++) {
+        lastmin[i]=inf;
+    }
+    for (int i=1; i&lt;=m; i++) {
+        int need, last;
+        read(need);
+        read(last);
+        lastmin[need]=min(lastmin[need], last);
+    }
+    memset(dp, -1, sizeof(dp));
+    for (int i=0; i&lt;=t; i++) {
+        dp[i][1]=0;
+    }
+    int ans=0;
+    for (int i=1, j=1; i&lt;=t; i++) {// j表示下一个课程的编号
+        if (c[j].end==i) {
+            for (int k=1; k&lt;=100; k++) {
+                dp[i][c[j].abi]=max(dp[i][c[j].abi], dp[c[j].begin][k]);
+            }
+            for (int k=1; k&lt;c[j].abi; k++) {
+                dp[i][k]=max(dp[i][k], dp[i][c[j].abi]);
+            }
+            j++;
+        }// 上课
+        for (int k=1; k&lt;=100; k++) {
+            if (i-lastmin[k]&gt;=0) {
+                if (dp[i-lastmin[k]][k]!=-1) {
+                    dp[i][k]=max(dp[i][k], dp[i-lastmin[k]][k]+1);
+                    ans=max(ans, dp[i][k]);
+                }
+            }
+        }// 滑雪
+    }
+    write(ans);
+    EL;
+    return 0;
+}
+</code></pre>
+
+                </div>
+                <br><br>
+                <div>
+                    <p>
+                             
+                            <span class="badge badge-default">#&nbsp;DP</span>
+                            &nbsp;
+                             
+                            <span class="badge badge-default">#&nbsp;USACO</span>
+                            &nbsp;
+                             
+                            <span class="badge badge-default">#&nbsp;luogu</span>
+                            &nbsp;
+                            
+                    </p>
+                </div>
+            </div>
+            <!-- TOC -->
+            
+  <div id="toc">
+    <p class="toc-title"><i class="material-icons" style="vertical-align:middle">toc</i>Toc:</p> 
+    <div id="tocbot"></div>
+  </div>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<br>
+<!-- Comments -->
+<div class="comments" id="comments">
+
+</div>
+  
+
+<footer class="footer footer-default">
+        <div class="container">
+          <div class="float-left" style="padding: 15px 0;">
+              <b>By Chtholly~</b>
+          </div>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>&nbsp;<a href="https://hexo.io/zh-cn/" target="_blank">HEXO</a>&nbsp;<i class="material-icons">favorite_border</i>
+            <a href="https://github.com/invom/Material-T" target="_blank">Material-T</a>
+          </div>
+        </div>
+</footer>
+      <!--   Core JS Files   -->
+      <script src="/blog/js/core/jquery.min.js?v=3.2.1"></script>
+      <script src="/blog/js/main.js"></script>
+      <script src="/blog/js/core/popper.min.js"></script>
+      <script src="/blog/js/core/bootstrap-material-design.min.js"></script>
+      <script src="/blog/js/plugins/moment.min.js"></script>
+      <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+      <script src="/blog/js/material-kit.min.js?v=2.0.5"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+        <script src="/blog/js/post.js"></script>
+        <script src="/blog/js/plugins/prettify.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('pre').addClass('prettyprint linenums');
+                prettyPrint();
+            })
+        </script>
+      
+      <!-- 根据页面mathjax变量决定是否加载MathJax数学公式js --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+      
+
+</body>
+</html>

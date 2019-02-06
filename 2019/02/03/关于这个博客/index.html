@@ -119,7 +119,12 @@
 <h1 id="博客配置"><a href="#博客配置" class="headerlink" title="博客配置"></a>博客配置</h1><ol>
 <li>Blog/_config.yml</li>
 </ol>
-<pre><code>title: Chtholly&#39;s blog
+<pre><code># Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: Chtholly&#39;s blog
 subtitle: 世界一幸せな女の子
 description:
 keywords:
@@ -127,11 +132,14 @@ author: Chtholly
 language:
 timezone:
 
+# URL
+## If your site is put in a subdirectory, set url as &#39;http://yoursite.com/child&#39; and root as &#39;/child/&#39;
 url: https://seniorious.coding.me/blog/
 root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
+# Directory
 source_dir: source
 public_dir: public
 tag_dir: tags
@@ -141,10 +149,11 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 
-new_post_name: :title.md
+# Writing
+new_post_name: :title.md # File name of new posts
 default_layout: post
-titlecase: false
-external_link: true
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -156,23 +165,40 @@ highlight:
   auto_detect: false
   tab_replace:
 
+# Home page setting
+# path: Root path for your blogs index page. (default = &#39;&#39;)
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: &#39;&#39;
   per_page: 10
   order_by: -date
 
+# Category &amp; Tag
 default_category: uncategorized
 category_map:
 tag_map:
 
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 
+# Pagination
+## Set per_page to 0 to disable pagination
 per_page: 10
 pagination_dir: page
 
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
 theme: Material-T
+plugins:
 
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo: git@git.coding.net:Seniorious/blog.git
@@ -184,43 +210,47 @@ archive_generator:
   monthly: true
   daily: false
   order_by: -date
-
-math:
-  engine: &#39;katex&#39;
-  mathjax:
-    src: &quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js&quot;
-    config:
-      tex2jax:
-        inlineMath: [ [&#39;$&#39;,&#39;$&#39;], [&quot;\\(&quot;,&quot;\\)&quot;] ]
-        skipTags: [&#39;script&#39;, &#39;noscript&#39;, &#39;style&#39;, &#39;textarea&#39;, &#39;pre&#39;, &#39;code&#39;]
-        processEscapes: true
-      TeX:
-        equationNumbers:
-          autoNumber: &quot;AMS&quot;
-  katex:
-    css: &quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css&quot;
-    js: &quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js&quot;
-    config:
-      throwOnError: false
-      errorColor: &quot;#cc0000&quot;
 </code></pre><h1 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h1><ol start="2">
 <li>Blog/theme/Material-T/_config.yml</li>
 </ol>
-<pre><code>favicon: /img/icon.jpg
+<pre><code>#---------------------------
+# Material-T
+# 一款Material Design风格的HEXO主题
+# Author: invom
+# Github: https://github.com/invom/Material-T
+#---------------------------
+
+#---------------------------
+# 全局
+# Site
+#---------------------------
+favicon: /img/icon.jpg
 apple_touch_icon: /img/icon.jpg
+
+
+#---------------------------
+# 首页
+# Index Page
+#---------------------------
 
 index:
   banner_img: /img/index.jpg
+  # available: 0 - 100
   banner_img_height: 100
   subtitle:
     enable: true
   auto_excerpt:
     enable: true
     length: 175
+  # available: _blank | _self
   post_url_target: _self
   post_info:
     enable: true
 
+#---------------------------
+# 导航栏
+# Head Navbar
+#---------------------------
 navbar:
   menu:
     enable: true
@@ -235,26 +265,46 @@ navbar:
       telegram: http://t.me/chothollynotaseniorious
       qq: tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=2775632269
 
+
+#---------------------------
+# 文章页
+# Post Page
+#---------------------------
 post:
   banner_img: /img/post.jpg
+  # available: 0 - 100
   banner_img_height: 70
+  # available: 1 | 2
   layout: 1
-  comments_type:
-  disqus:
-    shortname:
   toc:
     enable: true
+  # Code Highlight Theme available: github | tomorrow | tomorrow-night | tomorrow-night-eighties
+  highlight:
+    enable: true
+    theme: tomorrow-night-eighties
+  comments:
+    enable: false
+    type: disqus
 
-highlight:
-  enable: true
-  theme: tomorrow-night-eighties
+disqus:
+  shortname:
 
+#---------------------------
+# 归档页
+# Archive Page
+#---------------------------
 archive:
   banner_img: /img/archive.jpg
+  # available: 0 - 100
   banner_img_height: 70
 
+#---------------------------
+# 关于页
+# About Page
+#---------------------------
 about:
   banner_img: /img/about.jpg
+  # available: 0 - 100
   banner_img_height: 60
   avatar: /img/icon.jpg
   name: GeZiyue
@@ -270,6 +320,11 @@ about:
     telegram: http://t.me/chothollynotaseniorious
     qq: tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=2775632269
 
+
+#---------------------------
+# 底部信息
+# Footer
+#---------------------------
 footer: &lt;b&gt;By Chtholly~&lt;/b&gt;
 </code></pre>
                 </div>
@@ -333,44 +388,7 @@ footer: &lt;b&gt;By Chtholly~&lt;/b&gt;
             })
         </script>
       
-      <!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
-      
-      <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+      <!-- 根据页面mathjax变量决定是否加载MathJax数学公式js --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
       
 
 </body>

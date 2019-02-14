@@ -21,7 +21,6 @@
     <meta name="keywords" content="">
     <title>「洛谷P2948」滑雪课 题解 ~ Seniorious&#39; blog</title>
     <link rel="stylesheet" href="/css/Material_Icons.css">
-    <!-- <link rel="stylesheet" href="/css/font-awesome.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/main.css">
     
@@ -79,12 +78,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2775632269" target="_blank" data-original-title="See me here">
                                     <i class="fa fa-qq"></i>
-                                </a>
-                            </li>
-                        
-                            <li class="nav-item">
-                                <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="mailto:seniorious@seniorious.cc" target="_blank" data-original-title="See me here">
-                                    <i class="fa fa-envelope"></i>
                                 </a>
                             </li>
                         
@@ -221,6 +214,32 @@ int main () {
 <br>
 <!-- Comments -->
 <div class="comments" id="comments">
+
+    
+    
+<div id="vcomments" style="width: 80%;margin: 0 auto;"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '#vcomments',
+            notify: notify,
+            verify: verify,
+            app_id: "OSGdhRDBeYxaQRepmnJupuR1-gzGzoHsz",
+            app_key: "EM5qdh0pYmK2NQPAUKUi0R8o",
+            placeholder: "留下你的评论吧~",
+            avatar:"mp",
+            meta: ['nick','mail','link'],
+            pageSize: "10",
+            visitor: "false"
+        });
+    };
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://valine.js.org">comments powered by Valine.</a></noscript>
+
 
 </div>
   

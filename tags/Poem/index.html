@@ -53,7 +53,7 @@
     
     <title>
         
-            tags | 
+            标签: Poem | 
         
         Seniorious&#39; blog
     </title>
@@ -222,7 +222,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Seniorious&#39; blog">
-    <meta name="msapplication-starturl" content="https://seniorious.coding.me/tags/">
+    <meta name="msapplication-starturl" content="https://seniorious.coding.me/tags/Poem/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Seniorious&#39; blog">
@@ -237,9 +237,9 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://seniorious.coding.me/tags/">
+    <meta property="og:url" content="https://seniorious.coding.me/tags/Poem/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="tags | Seniorious&#39; blog">
+    <meta property="og:title" content="标签: Poem | Seniorious&#39; blog">
     <meta property="og:image" content="/img/favicon.jpg">
     <meta property="og:description" content="">
     
@@ -251,7 +251,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://seniorious.coding.me/tags/index.html">
+        <link rel="canonical" href="https://seniorious.coding.me/tags/Poem/index.html">
     
 
     <!-- Structured-data for SEO -->
@@ -300,63 +300,98 @@
                         </button>
                     
 
-                    <!-- Post TOC -->
+                    <!-- Index Module -->
+<div class="material-index mdl-grid">
+    
+    <div class="locate-thumbnail-symbol"></div>
 
+    <!-- Pin on top -->
+    
 
-<!-- Layouts -->
+    <!-- Normal Post -->
+    
+        
+            
+                <!-- Paradox Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post Thumbnail -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+        
+    
 
-    <!-- Tags Cloud -->
-    <style>
-    #bottom{
-        position: relative;
-    }
+        <!-- Post Title -->
+        <p class="article-headline-p"><a href="/2019/03/22/一些（中二）的诗/">一些（中二）的诗</a></p>
+    </div>
 
-    @media screen and (max-width: 480px) {
-        .material-tagscloud{
-            margin: 6em 2em 0;
-        }
-    }
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            一些很中二的诗啦QwQ
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2019/03/22/一些（中二）的诗/" target="_self">阅读全文</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="/img/avatar.jpg" width="44px" height="44px" alt="Seniorious's avatar">
+            </div>
+            <div>
+                <strong>Seniorious</strong>
+                <span>3月 22, 2019</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+          
+              <!-- Category -->
+              <span class="post_entry-category">
+                  <a class="post_category-link" href="/categories/Diary/">Diary</a>
+              </span>
+            
 
-    .material-tagscloud a{
-        text-decoration:none;
-        padding: 1px 9px;
-        margin: 9px 1px;
-        line-height: 40px;
-        white-space: nowrap;
-        transition: .6s;
-        opacity: .85;
-    }
+            
 
-    .material-tagscloud a:hover{
-        transition: .6s;
-        opacity: 1;
-        background: #FAFAFA;
-        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-    }
-</style>
+            
 
-<div class=" material-tagscloud">
-    <div class="material-post mdl-grid">
-        <a href="/tags/Codeforces/" style="font-size: 16px; color: #757575">Codeforces</a> <a href="/tags/DP/" style="font-size: 16px; color: #757575">DP</a> <a href="/tags/USACO/" style="font-size: 16px; color: #757575">USACO</a> <a href="/tags/几何/" style="font-size: 16px; color: #757575">几何</a> <a href="/tags/数学/" style="font-size: 16px; color: #757575">数学</a> <a href="/tags/洛谷/" style="font-size: 16px; color: #757575">洛谷</a>
+            <!-- Post Views -->
+            <span class="post_entry-views">
+            </span>
+        </div>
     </div>
 </div>
 
+            
+            
+        
+    
 
-<script type="text/ls-javascript" id="page-tagcloud-script">
-    var adjustFooter = function() {
-        if( ($('#bottom').offset().top + $('#bottom').outerHeight() ) < $(window).height() ) {
-            var footerBottom = $(window).height() - $('#bottom').outerHeight() - $('#bottom').offset().top;
-            $('#bottom').css('bottom', '-' + footerBottom + 'px');
-        }
-    };
+    
 
-    $(document).ready(function() {
-        adjustFooter();
-    });
+    
+        <script type="text/ls-javascript" id="thumbnail-script">
+    var randomNum;
+
+    var locatePost = $('.locate-thumbnail-symbol').next();
+    for(var i = 0; i < 10; i++) {
+        randomNum = Math.floor(Math.random() * 19 + 1);
+
+        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
+        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+
+        locatePost = locatePost.next();
+    }
 </script>
 
-
-
+    
+</div>
 
 
                     
@@ -453,6 +488,26 @@
                     <i class="material-icons sidebar-material-icons">person</i>
                 
                 关于
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/timeline" title="时间轴">
+                
+                    <i class="material-icons sidebar-material-icons">timeline</i>
+                
+                时间轴
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友链">
+                
+                    <i class="material-icons sidebar-material-icons">link</i>
+                
+                友链
             </a>
         </li>
         

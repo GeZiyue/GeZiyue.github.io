@@ -4,11 +4,36 @@
   
     
     <entry>
+      <title>记AFO——退役感想</title>
+      <link href="/2019/impression-of-AFO/"/>
+      <url>/2019/impression-of-AFO/</url>
+      
+        <content type="html"><![CDATA[<h1 id="难道，结束了吗？"><a href="#难道，结束了吗？" class="headerlink" title="难道，结束了吗？"></a>难道，结束了吗？</h1><a id="more"></a>]]></content>
+      
+      
+      <categories>
+          
+          <category> AFO </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Talk </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2019年高考全国卷I理科数学21题的推广</title>
       <link href="/2019/math-medicine/"/>
       <url>/2019/math-medicine/</url>
       
-        <content type="html"><![CDATA[<p>其实只要概率和等比数列的基础知识就能做出这道压轴题QwQ<br><a id="more"></a><br>试卷随便在哪都能找到,就不放链接了QwQ</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>$$ P(A有用)=\alpha $$<br>$$ P(A无用)=1-\alpha $$<br>$$ P(B有用)=\beta $$<br>$$ P(B无用)=1-\beta $$<br>$$ a=P(X=-1)=P(A无用\cap B有用)=(1-\alpha)\cdot\beta $$<br>$$ b=P(X=0)=P((A无用\cap B无用)\cup(A有用\cap B有用))=\alpha\cdot\beta+(1-\alpha)\cdot(1-\beta) $$<br>$$ c=P(X=1)=P(A有用\cap B无用)=\alpha\cdot(1-\beta)$$<br>$$ 进行n次试验,第i次获胜的概率p_i满足p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1} $$<br>$$ 已知p_0=0,p_{2n}=1求p_n $$</p><h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>$$ \because p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i + 1} $$<br>$$ \therefore (1-b)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1} $$<br>$$ \because a+b+c=1 $$<br>$$ \therefore 1-b=a+c $$<br>$$ \therefore (a+c)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1} $$<br>$$ 变形得c\cdot(p_{i+1}-p_i)=a\cdot(p_i-p_{i-1})$$<br>$$ 令x_i=p_i-p_{i-1} $$<br>$$ x数列等比,公比为k=\frac{a}{c} $$<br>$$\begin{align}<br>x_1+x_2+\dots+x_{2n}&amp;=p_{2n}-p_0\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{2n-1})\\<br>&amp;=x_1\cdot\frac{k^{2n}-1}{k-1}=1<br>\end{align}$$<br>$$ x_1=\frac{k-1}{k^{2n}-1} $$<br>$$\begin{align}<br>p_n&amp;=p_n-p_0\\<br>&amp;=x_1+x_2+\dots+x_n\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{n-1})\\<br>&amp;=\frac{k-1}{k^{2n}-1}\cdot\frac{k^n-1}{k-1}\\<br>&amp;=\frac{k^{2n}-1}{k^n-1}<br>\end{align}$$</p>]]></content>
+        <content type="html"><![CDATA[<p>其实只要概率和等比数列的基础知识就能做出这道压轴题QwQ<br><a id="more"></a><br>试卷随便在哪都能找到,就不放链接了QwQ</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>$$ P(A有用)=\alpha $$<br>$$ P(A无用)=1-\alpha $$<br>$$ P(B有用)=\beta $$<br>$$ P(B无用)=1-\beta $$<br>$$ a=P(X=-1)=P(A无用\cap B有用)=(1-\alpha)\cdot\beta $$<br>$$ b=P(X=0)=P((A无用\cap B无用)\cup(A有用\cap B有用))=\alpha\cdot\beta+(1-\alpha)\cdot(1-\beta) $$<br>$$ c=P(X=1)=P(A有用\cap B无用)=\alpha\cdot(1-\beta)$$<br>$$ 进行n次试验,第i次获胜的概率p_i满足p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1} $$<br>$$ 已知p_0=0,p_{2n}=1求p_n $$</p><h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>$$ \because p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i + 1} $$<br>$$ \therefore (1-b)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1} $$<br>$$ \because a+b+c=1 $$<br>$$ \therefore 1-b=a+c $$<br>$$ \therefore (a+c)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1} $$<br>$$ 变形得c\cdot(p_{i+1}-p_i)=a\cdot(p_i-p_{i-1})$$<br>$$ 令x_i=p_i-p_{i-1} $$<br>$$ x数列等比,公比为k=\frac{a}{c} $$<br>$$\begin{align}<br>x_1+x_2+\dots+x_{2n}&amp;=p_{2n}-p_0\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{2n-1})\\<br>&amp;=x_1\cdot\frac{k^{2n}-1}{k-1}=1<br>\end{align}$$<br>$$ \therefore x_1=\frac{k-1}{k^{2n}-1} $$<br>$$\begin{align}<br>p_n&amp;=p_n-p_0\\<br>&amp;=x_1+x_2+\dots+x_n\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{n-1})\\<br>&amp;=\frac{k-1}{k^{2n}-1}\cdot\frac{k^n-1}{k-1}\\<br>&amp;=\frac{k^{2n}-1}{k^n-1}<br>\end{align}$$</p>]]></content>
       
       
       <categories>
@@ -37,7 +62,7 @@
       <link href="/2019/luogu-1198/"/>
       <url>/2019/luogu-1198/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://www.luogu.org/problem/P2948" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>咕咕咕</p><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.org/problem/P2948" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>显而易见，后入队的结点如果比前面的大，那么前面的一定对答案没有贡献(如果查询的区间包括前面的，则一定包括后面的)</p><p>可以考虑维护单调性</p><h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><p>维护一个递增的单调栈，每次询问二分查找第一个在询问范围内的</p><h4 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><ol><li>每个元素只会入栈一次</li><li>每次查询的复杂度是$O(log_2n)$的</li><li>总复杂度$O(n+qlog_2n)$</li></ol><p>期望得分100分</p><h3 id="算法2"><a href="#算法2" class="headerlink" title="算法2"></a>算法2</h3><p>考虑对算法1进行优化</p><p>我们发现算法1的查询较慢，考虑是否能$O(1)$查询，考虑不将对答案无贡献的点删去，而是维护比他大的点中最新插入进序列的</p><p>发现可以用并查集维护，每次插入将和它相邻并比它小的合并</p><p>每个集合的集合代表设为最左边的，集合权值为最右边的值，这样下次维护时对于一个集合可以直接跳到它的左边，而查询末尾k个数的值就是从右往左第k个数所属集合代表的权值</p><p>期望得分100分</p><h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><p>此处只提供算法2的代码(省略预处理和快读快输)</p><pre><code class="cpp">const int N = 200005;int find(int);void uni(int, int);int fa[N], maxi[N]; // 集合代表和权值int id; // 数列的大小int main () {    int n, m;    read(n), read(m);  int lastans = 0;  for (int i = 1; i &lt;= n; ++i) {    char ch = getchar();    if (ch != &#39;A&#39; &amp;&amp; ch != &#39;Q&#39;) {      ch = getchar();    }    ll a;    read(a);    if (ch == &#39;A&#39;) {      ++id;      fa[id] = id;      maxi[id] = (a + lastans) % m;      int fi = id; // 目前集合的最左端，fi - 1就是下次考虑是否合并的集合的最右端      while (fi &gt; 1 &amp;&amp; maxi[fi] &gt; maxi[find(fi - 1)]) {        uni(fi - 1, fi);        fi = find(id);      }    } else {      lastans = maxi[find(id - a + 1)];      write(lastans), EL;    }  }  return 0;}int find(int x) {    return fa[x] == x ? x : fa[x] = find(fa[x]);}void uni(int x, int y) {    int fx = find(x), fy = find(y);    fa[fy] = fx; // 将集合代表设为左边的    maxi[fx] = maxi[fy]; // 将集合权值设为右边的值}</code></pre>]]></content>
       
       
       <categories>
@@ -169,22 +194,22 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
-        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
       
     </entry>
     

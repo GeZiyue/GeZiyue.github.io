@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Tue Aug 13 2019 12:42:23 GMT+0800">
-        <meta property="article:modified_time" content="Tue Aug 13 2019 14:08:21 GMT+0800">
+        <meta property="article:modified_time" content="Tue Aug 13 2019 14:11:53 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://seniorious.coding.me/2019/math-medicine/index.html",
     "headline": "2019年高考全国卷I理科数学21题的推广",
     "datePublished": "Tue Aug 13 2019 12:42:23 GMT+0800",
-    "dateModified": "Tue Aug 13 2019 14:08:21 GMT+0800",
+    "dateModified": "Tue Aug 13 2019 14:11:53 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -516,7 +516,7 @@
     
         <p>其实只要概率和等比数列的基础知识就能做出这道压轴题QwQ<br><a id="more"></a><br>试卷随便在哪都能找到,就不放链接了QwQ</p>
 <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>$$ P(A有用)=\alpha $$<br>$$ P(A无用)=1-\alpha $$<br>$$ P(B有用)=\beta $$<br>$$ P(B无用)=1-\beta $$<br>$$ a=P(X=-1)=P(A无用\cap B有用)=(1-\alpha)\cdot\beta $$<br>$$ b=P(X=0)=P((A无用\cap B无用)\cup(A有用\cap B有用))=\alpha\cdot\beta+(1-\alpha)\cdot(1-\beta) $$<br>$$ c=P(X=1)=P(A有用\cap B无用)=\alpha\cdot(1-\beta)$$<br>$$ 进行n次试验,第i次获胜的概率p_i满足p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1} $$<br>$$ 已知p_0=0,p_{2n}=1求p_n $$</p>
-<h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>$$ \because p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i + 1} $$<br>$$ \therefore (1-b)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1} $$<br>$$ \because a+b+c=1 $$<br>$$ \therefore 1-b=a+c $$<br>$$ \therefore (a+c)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1} $$<br>$$ 变形得c\cdot(p_{i+1}-p_i)=a\cdot(p_i-p_{i-1})$$<br>$$ 令x_i=p_i-p_{i-1} $$<br>$$ x数列等比,公比为k=\frac{a}{c} $$<br>$$\begin{align}<br>x_1+x_2+\dots+x_{2n}&amp;=p_{2n}-p_0\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{2n-1})\\<br>&amp;=x_1\cdot\frac{k^{2n}-1}{k-1}=1<br>\end{align}$$<br>$$ x_1=\frac{k-1}{k^{2n}-1} $$<br>$$\begin{align}<br>p_n&amp;=p_n-p_0\\<br>&amp;=x_1+x_2+\dots+x_n\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{n-1})\\<br>&amp;=\frac{k-1}{k^{2n}-1}\cdot\frac{k^n-1}{k-1}\\<br>&amp;=\frac{k^{2n}-1}{k^n-1}<br>\end{align}$$</p>
+<h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>$$ \because p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i + 1} $$<br>$$ \therefore (1-b)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1} $$<br>$$ \because a+b+c=1 $$<br>$$ \therefore 1-b=a+c $$<br>$$ \therefore (a+c)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1} $$<br>$$ 变形得c\cdot(p_{i+1}-p_i)=a\cdot(p_i-p_{i-1})$$<br>$$ 令x_i=p_i-p_{i-1} $$<br>$$ x数列等比,公比为k=\frac{a}{c} $$<br>$$\begin{align}<br>x_1+x_2+\dots+x_{2n}&amp;=p_{2n}-p_0\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{2n-1})\\<br>&amp;=x_1\cdot\frac{k^{2n}-1}{k-1}=1<br>\end{align}$$<br>$$ \therefore x_1=\frac{k-1}{k^{2n}-1} $$<br>$$\begin{align}<br>p_n&amp;=p_n-p_0\\<br>&amp;=x_1+x_2+\dots+x_n\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{n-1})\\<br>&amp;=\frac{k-1}{k^{2n}-1}\cdot\frac{k^n-1}{k-1}\\<br>&amp;=\frac{k^{2n}-1}{k^n-1}<br>\end{align}$$</p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -576,6 +576,14 @@
             <!-- Post Prev & Next Nav -->
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
+    
+        <a href="/2019/impression-of-AFO/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
     
 
     <!-- Section Spacer -->
@@ -675,7 +683,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a>
             </li></ul>
         </li>
         
@@ -693,7 +701,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/杂文/">杂文<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/AFO/">AFO<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/杂文/">杂文<span class="sidebar_archives-count">1</span></a>
             </li></ul>
         </li>
         

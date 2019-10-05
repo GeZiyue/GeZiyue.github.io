@@ -8,7 +8,7 @@
       <link href="/2019/luogu-5497/"/>
       <url>/2019/luogu-5497/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://www.luogu.org/problem/P5497" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>$$令s_i=a_1+a_2+\dots+a_i$$<br>$$m|(a_l+\dots+a_r)\iff s_r\equiv s_{l-1}\pmod{m}$$<br>$$根据鸽巢原理\exists x,y\in[0,n]\cap Z:s_x\equiv s_y\pmod{m}\iff n+1个数分成m类,至少有一类至少有两个\iff n+1&gt;m\iff n\ge m$$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>这么简单的代码有看的必要吗</p><pre><code class="cpp">int main () {  ll n, m;  read(n), read(m);  puts(n &gt;= m ? &quot;YES&quot; : &quot;NO&quot;);  return 0;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.org/problem/P5497" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>$$令s_i=a_1+a_2+\dots+a_i$$<br>$$m|(a_l+\dots+a_r)\iff s_r\equiv s_{l-1}\pmod{m}$$<br>$$\begin{align}<br>根据鸽巢原理&amp;\exists x,y\in[0,n]\cap Z:s_x\equiv s_y\pmod{m}<br>&amp;\iff n+1个数分成m类,至少有一类至少有两个<br>&amp;\iff n+1&gt;m<br>&amp;\iff n\ge m<br>\end{align}$$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>这么简单的代码有看的必要吗</p><pre><code class="cpp">int main () {  ll n, m;  read(n), read(m);  puts(n &gt;= m ? &quot;YES&quot; : &quot;NO&quot;);  return 0;}</code></pre>]]></content>
       
       
       <categories>
@@ -76,11 +76,11 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -151,11 +151,11 @@
       
         <tags>
             
-            <tag> 数学 </tag>
-            
             <tag> Codeforces </tag>
             
             <tag> 几何 </tag>
+            
+            <tag> 数学 </tag>
             
         </tags>
       
@@ -180,11 +180,11 @@
       
         <tags>
             
+            <tag> 洛谷 </tag>
+            
             <tag> DP </tag>
             
             <tag> USACO </tag>
-            
-            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -196,22 +196,22 @@
     
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
-        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -229,9 +229,9 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

@@ -8,7 +8,7 @@
       <link href="/2019/luogu-5497/"/>
       <url>/2019/luogu-5497/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://www.luogu.org/problem/P5497" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>$$令s_i=a_1+a_2+\dots+a_i$$<br>$$m|(a_l+\dots+a_r)\iff s_r\equiv s_{l-1}\pmod{m}$$<br>$$\begin{align}<br>根据鸽巢原理&amp;\exists x,y\in[0,n]\cap Z:s_x\equiv s_y\pmod{m}<br>&amp;\iff n+1个数分成m类,至少有一类至少有两个<br>&amp;\iff n+1&gt;m<br>&amp;\iff n\ge m<br>\end{align}$$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>这么简单的代码有看的必要吗</p><pre><code class="cpp">int main () {  ll n, m;  read(n), read(m);  puts(n &gt;= m ? &quot;YES&quot; : &quot;NO&quot;);  return 0;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.org/problem/P5497" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>$$令s_i=a_1+a_2+\dots+a_i$$<br>$$m|(a_l+\dots+a_r)\iff s_r\equiv s_{l-1}\pmod{m}$$<br>$$根据鸽巢原理可得:$$<br>$$\begin{align}<br>&amp;\exists x,y\in[0,n]\cap Z:s_x\equiv s_y\pmod{m}\\<br>\iff &amp;n+1个数分成m类,至少有一类至少有两个\\<br>\iff &amp;n+1&gt;m\\<br>\iff &amp;n\ge m<br>\end{align}$$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>这么简单的代码有看的必要吗</p><pre><code class="cpp">int main () {  ll n, m;  read(n), read(m);  puts(n &gt;= m ? &quot;YES&quot; : &quot;NO&quot;);  return 0;}</code></pre>]]></content>
       
       
       <categories>
@@ -76,11 +76,11 @@
       
         <tags>
             
+            <tag> 洛谷 </tag>
+            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
-            
-            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -180,11 +180,11 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> DP </tag>
             
             <tag> USACO </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -207,9 +207,9 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -218,9 +218,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

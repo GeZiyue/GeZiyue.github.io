@@ -54,12 +54,12 @@
     </title>
 
     <!-- Favicons -->
-    <link rel="icon shortcut" type="image/ico" href="/img/favicon.jpg">
-    <link rel="icon" href="/img/favicon.jpg">
+    <link rel="icon shortcut" type="image/ico" href="/img/avatar.jpg">
+    <link rel="icon" href="/img/avatar.jpg">
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content="题目">
-    <meta name="keywords" content=",洛谷,DP,USACO">
+    <meta name="keywords" content=",DP,USACO,洛谷">
     <meta name="theme-color" content="#7A68E8">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -230,7 +230,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Seniorious&#39; blog">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="/img/favicon.jpg">
+    <link rel="apple-touch-icon" href="/img/avatar.jpg">
 
     <!-- Site Verification -->
     
@@ -243,13 +243,13 @@
     <meta property="og:url" content="https://blog.seniorious.cc/2019/luogu-2948/">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="「洛谷P2948」滑雪课 题解 | Seniorious&#39; blog">
-    <meta property="og:image" content="/img/favicon.jpg">
+    <meta property="og:image" content="/img/avatar.jpg">
     <meta property="og:description" content="题目">
-    <meta property="og:article:tag" content="洛谷"> <meta property="og:article:tag" content="DP"> <meta property="og:article:tag" content="USACO"> 
+    <meta property="og:article:tag" content="DP"> <meta property="og:article:tag" content="USACO"> <meta property="og:article:tag" content="洛谷"> 
 
     
         <meta property="article:published_time" content="Tue Feb 05 2019 22:47:01 GMT+0800">
-        <meta property="article:modified_time" content="Sat Aug 10 2019 00:07:14 GMT+0800">
+        <meta property="article:modified_time" content="Sat Oct 05 2019 21:07:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2019/luogu-2948/index.html",
     "headline": "「洛谷P2948」滑雪课 题解",
     "datePublished": "Tue Feb 05 2019 22:47:01 GMT+0800",
-    "dateModified": "Sat Aug 10 2019 00:07:14 GMT+0800",
+    "dateModified": "Sat Oct 05 2019 21:07:55 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -287,10 +287,10 @@
         "name": "Seniorious&#39; blog",
         "logo": {
             "@type":"ImageObject",
-            "url": "/img/favicon.jpg"
+            "url": "/img/avatar.jpg"
         }
     },
-    "keywords": ",洛谷,DP,USACO",
+    "keywords": ",DP,USACO,洛谷",
     "description": "题目",
 }
 </script>
@@ -364,7 +364,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#思路"><span class="post-toc-number">1.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#代码"><span class="post-toc-number">2.</span> <span class="post-toc-text">代码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#思路"><span class="post-toc-number">1.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">2.</span> <span class="post-toc-text">代码</span></a></li></ol>
     </ul>
     
 
@@ -489,7 +489,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Seniorious&#39; blog&title=「洛谷P2948」滑雪课 题解&summary=&pics=https://blog.seniorious.cc/img/favicon.jpg&url=https://blog.seniorious.cc/2019/luogu-2948/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Seniorious&#39; blog&title=「洛谷P2948」滑雪课 题解&summary=&pics=https://blog.seniorious.cc/img/avatar.jpg&url=https://blog.seniorious.cc/2019/luogu-2948/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -515,73 +515,73 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p><a href="https://www.luogu.org/problem/P2948" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
 <li>首先将所有课程按结束时间排序</li>
 <li>将相同滑坡能力值的分为一类, 对于能力为$i$的取其中所需时间最短的$lastmin_i$</li>
 <li>$f(i, j)$表示对于第$i$个时刻, 能力值为$j$或$j$以上时最大的滑雪次数</li>
 <li>若第$j$个课程开始于$begin$结束于$i$, 若参加这个课程, 枚举开始时的能力值$k, f(i, abi_j)=max\{f(begin, k) | k&lt;=100\}$ ($abi_j$是第$j$次获得的滑雪能力), 再枚举$abi_j$以下的能力$k, f(i, k)=max\{f(i, k), f(i, j)\}$</li>
 <li>对于每一个时刻$i$, 若滑雪, 枚举滑雪时的能力值$k, f(i, k)=max\{f(i-lastmin_k, k)|k&lt;=100, i-lastmin_k&gt;=0\}$</li>
 </ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>注: 以下代码已省略头文件、read和write</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>注: 以下代码已省略头文件、read和write</p>
 <pre><code class="cpp">class Class {
 public:
-    int begin, end, abi;
+  int begin, end, abi;
 }c[M];
 // 课程类型, 可以视作struct
 int dp[N][M];
 int lastmin[M];
 int main () {
-    int n, m, t;
-    read(t);
-    read(n);
-    read(m);
-    for (int i = 1; i &lt;= n; i++) {
-        int begin, last, abi;
-        read(begin);
-        read(last);
-        read(abi);
-        c[i].begin = begin;
-        c[i].end = begin + last;
-        c[i].abi = abi;
-    }
-    std::sort(c + 1, c + n + 1, [](Class i, Class j) {
-        return i.end &lt; j.end;
-    });// 给课程按结束时间排序, 用到了匿名(lambda)函数, 需要开C++11
-    for (int i = 1; i &lt;= 100; i++) {
-        lastmin[i] = inf;
-    }
-    for (int i = 1; i &lt;= m; i++) {
-        int need, last;
-        read(need);
-        read(last);
-        lastmin[need] = std::min(lastmin[need], last);
-    }
-    memset(dp, -1, sizeof(dp));
-    for (int i = 0; i &lt;= t; i++) {
-        dp[i][1] = 0;
-    }
-    int ans = 0;
-    for (int i = 1, j = 1; i &lt;= t; i++) {// j表示下一个课程的编号
-        if (c[j].end == i) {
-            for (int k = 1; k &lt;= 100; k++) {
-                dp[i][c[j].abi] = std::max(dp[i][c[j].abi], dp[c[j].begin][k]);
-            }
-            for (int k = 1; k &lt; c[j].abi; k++) {
-                dp[i][k] = std::max(dp[i][k], dp[i][c[j].abi]);
-            }
-            j++;
-        }// 上课
-        for (int k = 1; k &lt;= 100; k++) {
-            if (i - lastmin[k] &gt;= 0) {
-                if (dp[i - lastmin[k]][k] != -1) {
-                    dp[i][k] = std::max(dp[i][k], dp[i - lastmin[k]][k] + 1);
-                    ans = std::max(ans, dp[i][k]);
-                }
-            }
-        }// 滑雪
-    }
-    write(ans), putchar(&#39;\n&#39;);
-    return 0;
+  int n, m, t;
+  read(t);
+  read(n);
+  read(m);
+  for (int i = 1; i &lt;= n; i++) {
+    int begin, last, abi;
+    read(begin);
+    read(last);
+    read(abi);
+    c[i].begin = begin;
+    c[i].end = begin + last;
+    c[i].abi = abi;
+  }
+  std::sort(c + 1, c + n + 1, [](Class i, Class j) {
+    return i.end &lt; j.end;
+  });// 给课程按结束时间排序, 用到了匿名(lambda)函数, 需要开C++11
+  for (int i = 1; i &lt;= 100; i++) {
+    lastmin[i] = inf;
+  }
+  for (int i = 1; i &lt;= m; i++) {
+    int need, last;
+    read(need);
+    read(last);
+    lastmin[need] = std::min(lastmin[need], last);
+  }
+  memset(dp, -1, sizeof(dp));
+  for (int i = 0; i &lt;= t; i++) {
+    dp[i][1] = 0;
+  }
+  int ans = 0;
+  for (int i = 1, j = 1; i &lt;= t; i++) {// j表示下一个课程的编号
+    if (c[j].end == i) {
+      for (int k = 1; k &lt;= 100; k++) {
+        dp[i][c[j].abi] = std::max(dp[i][c[j].abi], dp[c[j].begin][k]);
+      }
+      for (int k = 1; k &lt; c[j].abi; k++) {
+        dp[i][k] = std::max(dp[i][k], dp[i][c[j].abi]);
+      }
+      j++;
+    }// 上课
+    for (int k = 1; k &lt;= 100; k++) {
+      if (i - lastmin[k] &gt;= 0) {
+        if (dp[i - lastmin[k]][k] != -1) {
+          dp[i][k] = std::max(dp[i][k], dp[i - lastmin[k]][k] + 1);
+          ans = std::max(ans, dp[i][k]);
+        }
+      }
+    }// 滑雪
+  }
+  write(ans), putchar(&#39;\n&#39;);
+  return 0;
 }
 </code></pre>
 
@@ -742,7 +742,7 @@ int main () {
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2019/09/">九月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a>
             </li></ul>
         </li>
         

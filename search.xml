@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>「AtCoder Beginner Contest 139F」Engines 题解</title>
-      <link href="/2019/at-abc139-f/"/>
-      <url>/2019/at-abc139-f/</url>
+      <title>「洛谷P5497」[LnOI2019SP]龟速单项式变换(SMT) 题解</title>
+      <link href="/2019/luogu-5497/"/>
+      <url>/2019/luogu-5497/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://atcoder.jp/contests/abc139/tasks/abc139_f" target="_blank" rel="noopener">题目</a><br><a id="more"></a><br>咕咕咕</p>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.org/problem/P5497" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>$$令s_i=a_1+a_2+\dots+a_i$$<br>$$m|(a_l+\dots+a_r)\iff s_r\equiv s_{l-1}\pmod{m}$$<br>$$根据鸽巢原理\exists x,y\in[0,n]\cap Z:s_x\equiv s_y\pmod{m}\iff n+1个数分成m类,至少有一类至少有两个\iff n+1&gt;m\iff n\ge m$$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>这么简单的代码有看的必要吗</p><pre><code class="cpp">int main () {  ll n, m;  read(n), read(m);  puts(n &gt;= m ? &quot;YES&quot; : &quot;NO&quot;);  return 0;}</code></pre>]]></content>
       
       
       <categories>
@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> 几何 </tag>
-            
             <tag> 数学 </tag>
+            
+            <tag> 结论 </tag>
             
         </tags>
       
@@ -35,7 +35,7 @@
       <link href="/2019/math-medicine/"/>
       <url>/2019/math-medicine/</url>
       
-        <content type="html"><![CDATA[<p>其实只要概率和等比数列的基础知识就能做出这道压轴题QwQ<br><a id="more"></a><br>试卷随便在哪都能找到,就不放链接了QwQ</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>$$ P(A有用)=\alpha $$<br>$$ P(A无用)=1-\alpha $$<br>$$ P(B有用)=\beta $$<br>$$ P(B无用)=1-\beta $$<br>$$ a=P(X=-1)=P(A无用\cap B有用)=(1-\alpha)\cdot\beta $$<br>$$ b=P(X=0)=P((A无用\cap B无用)\cup(A有用\cap B有用))=\alpha\cdot\beta+(1-\alpha)\cdot(1-\beta) $$<br>$$ c=P(X=1)=P(A有用\cap B无用)=\alpha\cdot(1-\beta)$$<br>$$ 进行n次试验,第i次获胜的概率p_i满足p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1} $$<br>$$ 已知p_0=0,p_{2n}=1求p_n $$</p><h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>$$ \because p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i + 1} $$<br>$$ \therefore (1-b)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1} $$<br>$$ \because a+b+c=1 $$<br>$$ \therefore 1-b=a+c $$<br>$$ \therefore (a+c)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1} $$<br>$$ 变形得c\cdot(p_{i+1}-p_i)=a\cdot(p_i-p_{i-1})$$<br>$$ 令x_i=p_i-p_{i-1} $$<br>$$ x数列等比,公比为k=\frac{a}{c} $$<br>$$\begin{align}<br>x_1+x_2+\dots+x_{2n}&amp;=p_{2n}-p_0\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{2n-1})\\<br>&amp;=x_1\cdot\frac{k^{2n}-1}{k-1}=1<br>\end{align}$$<br>$$ \therefore x_1=\frac{k-1}{k^{2n}-1} $$<br>$$\begin{align}<br>p_n&amp;=p_n-p_0\\<br>&amp;=x_1+x_2+\dots+x_n\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{n-1})\\<br>&amp;=\frac{k-1}{k^{2n}-1}\cdot\frac{k^n-1}{k-1}\\<br>&amp;=\frac{k^{2n}-1}{k^n-1}<br>\end{align}$$</p>]]></content>
+        <content type="html"><![CDATA[<p>其实只要概率和等比数列的基础知识就能做出这道压轴题QwQ<br><a id="more"></a><br>试卷随便在哪都能找到,就不放链接了QwQ</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>$$P(A有用)=\alpha$$<br>$$P(A无用)=1-\alpha$$<br>$$P(B有用)=\beta$$<br>$$P(B无用)=1-\beta$$<br>$$a=P(X=-1)=P(A无用\cap B有用)=(1-\alpha)\cdot\beta$$<br>$$b=P(X=0)=P((A无用\cap B无用)\cup(A有用\cap B有用))=\alpha\cdot\beta+(1-\alpha)\cdot(1-\beta)$$<br>$$c=P(X=1)=P(A有用\cap B无用)=\alpha\cdot(1-\beta)$$<br>$$进行n次试验,第i次获胜的概率p_i满足p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1}$$<br>$$已知p_0=0,p_{2n}=1求p_n$$</p><h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>$$\because p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1}$$<br>$$\therefore (1-b)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1}$$<br>$$\because a+b+c=1$$<br>$$\therefore 1-b=a+c$$<br>$$\therefore (a+c)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1}$$<br>$$变形得c\cdot(p_{i+1}-p_i)=a\cdot(p_i-p_{i-1})$$<br>$$令x_i=p_i-p_{i-1}$$<br>$$x数列等比,公比为k=\frac{a}{c}$$<br>$$\begin{align}<br>x_1+x_2+\dots+x_{2n}&amp;=p_{2n}-p_0\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{2n-1})\\<br>&amp;=x_1\cdot\frac{k^{2n}-1}{k-1}=1<br>\end{align}$$<br>$$\therefore x_1=\frac{k-1}{k^{2n}-1}$$<br>$$\begin{align}<br>p_n&amp;=p_n-p_0\\<br>&amp;=x_1+x_2+\dots+x_n\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{n-1})\\<br>&amp;=\frac{k-1}{k^{2n}-1}\cdot\frac{k^n-1}{k-1}\\<br>&amp;=\frac{k^{2n}-1}{k^n-1}<br>\end{align}$$</p>]]></content>
       
       
       <categories>
@@ -76,11 +76,11 @@
       
         <tags>
             
+            <tag> 洛谷 </tag>
+            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
-            
-            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -151,11 +151,11 @@
       
         <tags>
             
+            <tag> 数学 </tag>
+            
             <tag> Codeforces </tag>
             
             <tag> 几何 </tag>
-            
-            <tag> 数学 </tag>
             
         </tags>
       
@@ -168,7 +168,7 @@
       <link href="/2019/luogu-2948/"/>
       <url>/2019/luogu-2948/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://www.luogu.org/problem/P2948" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><ol><li>首先将所有课程按结束时间排序</li><li>将相同滑坡能力值的分为一类, 对于能力为$i$的取其中所需时间最短的$lastmin_i$</li><li>$f(i, j)$表示对于第$i$个时刻, 能力值为$j$或$j$以上时最大的滑雪次数</li><li>若第$j$个课程开始于$begin$结束于$i$, 若参加这个课程, 枚举开始时的能力值$k, f(i, abi_j)=max\{f(begin, k) | k&lt;=100\}$ ($abi_j$是第$j$次获得的滑雪能力), 再枚举$abi_j$以下的能力$k, f(i, k)=max\{f(i, k), f(i, j)\}$</li><li>对于每一个时刻$i$, 若滑雪, 枚举滑雪时的能力值$k, f(i, k)=max\{f(i-lastmin_k, k)|k&lt;=100, i-lastmin_k&gt;=0\}$</li></ol><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>注: 以下代码已省略头文件、read和write</p><pre><code class="cpp">class Class {public:    int begin, end, abi;}c[M];// 课程类型, 可以视作structint dp[N][M];int lastmin[M];int main () {    int n, m, t;    read(t);    read(n);    read(m);    for (int i = 1; i &lt;= n; i++) {        int begin, last, abi;        read(begin);        read(last);        read(abi);        c[i].begin = begin;        c[i].end = begin + last;        c[i].abi = abi;    }    std::sort(c + 1, c + n + 1, [](Class i, Class j) {        return i.end &lt; j.end;    });// 给课程按结束时间排序, 用到了匿名(lambda)函数, 需要开C++11    for (int i = 1; i &lt;= 100; i++) {        lastmin[i] = inf;    }    for (int i = 1; i &lt;= m; i++) {        int need, last;        read(need);        read(last);        lastmin[need] = std::min(lastmin[need], last);    }    memset(dp, -1, sizeof(dp));    for (int i = 0; i &lt;= t; i++) {        dp[i][1] = 0;    }    int ans = 0;    for (int i = 1, j = 1; i &lt;= t; i++) {// j表示下一个课程的编号        if (c[j].end == i) {            for (int k = 1; k &lt;= 100; k++) {                dp[i][c[j].abi] = std::max(dp[i][c[j].abi], dp[c[j].begin][k]);            }            for (int k = 1; k &lt; c[j].abi; k++) {                dp[i][k] = std::max(dp[i][k], dp[i][c[j].abi]);            }            j++;        }// 上课        for (int k = 1; k &lt;= 100; k++) {            if (i - lastmin[k] &gt;= 0) {                if (dp[i - lastmin[k]][k] != -1) {                    dp[i][k] = std::max(dp[i][k], dp[i - lastmin[k]][k] + 1);                    ans = std::max(ans, dp[i][k]);                }            }        }// 滑雪    }    write(ans), putchar(&#39;\n&#39;);    return 0;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.org/problem/P2948" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol><li>首先将所有课程按结束时间排序</li><li>将相同滑坡能力值的分为一类, 对于能力为$i$的取其中所需时间最短的$lastmin_i$</li><li>$f(i, j)$表示对于第$i$个时刻, 能力值为$j$或$j$以上时最大的滑雪次数</li><li>若第$j$个课程开始于$begin$结束于$i$, 若参加这个课程, 枚举开始时的能力值$k, f(i, abi_j)=max\{f(begin, k) | k&lt;=100\}$ ($abi_j$是第$j$次获得的滑雪能力), 再枚举$abi_j$以下的能力$k, f(i, k)=max\{f(i, k), f(i, j)\}$</li><li>对于每一个时刻$i$, 若滑雪, 枚举滑雪时的能力值$k, f(i, k)=max\{f(i-lastmin_k, k)|k&lt;=100, i-lastmin_k&gt;=0\}$</li></ol><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>注: 以下代码已省略头文件、read和write</p><pre><code class="cpp">class Class {public:  int begin, end, abi;}c[M];// 课程类型, 可以视作structint dp[N][M];int lastmin[M];int main () {  int n, m, t;  read(t);  read(n);  read(m);  for (int i = 1; i &lt;= n; i++) {    int begin, last, abi;    read(begin);    read(last);    read(abi);    c[i].begin = begin;    c[i].end = begin + last;    c[i].abi = abi;  }  std::sort(c + 1, c + n + 1, [](Class i, Class j) {    return i.end &lt; j.end;  });// 给课程按结束时间排序, 用到了匿名(lambda)函数, 需要开C++11  for (int i = 1; i &lt;= 100; i++) {    lastmin[i] = inf;  }  for (int i = 1; i &lt;= m; i++) {    int need, last;    read(need);    read(last);    lastmin[need] = std::min(lastmin[need], last);  }  memset(dp, -1, sizeof(dp));  for (int i = 0; i &lt;= t; i++) {    dp[i][1] = 0;  }  int ans = 0;  for (int i = 1, j = 1; i &lt;= t; i++) {// j表示下一个课程的编号    if (c[j].end == i) {      for (int k = 1; k &lt;= 100; k++) {        dp[i][c[j].abi] = std::max(dp[i][c[j].abi], dp[c[j].begin][k]);      }      for (int k = 1; k &lt; c[j].abi; k++) {        dp[i][k] = std::max(dp[i][k], dp[i][c[j].abi]);      }      j++;    }// 上课    for (int k = 1; k &lt;= 100; k++) {      if (i - lastmin[k] &gt;= 0) {        if (dp[i - lastmin[k]][k] != -1) {          dp[i][k] = std::max(dp[i][k], dp[i - lastmin[k]][k] + 1);          ans = std::max(ans, dp[i][k]);        }      }    }// 滑雪  }  write(ans), putchar(&#39;\n&#39;);  return 0;}</code></pre>]]></content>
       
       
       <categories>
@@ -180,11 +180,11 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> DP </tag>
             
             <tag> USACO </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -196,22 +196,22 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
-        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
       
     </entry>
     
@@ -229,9 +229,9 @@
     
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

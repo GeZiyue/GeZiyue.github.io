@@ -76,11 +76,11 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -93,7 +93,7 @@
       <link href="/2019/get-qq-avatar/"/>
       <url>/2019/get-qq-avatar/</url>
       
-        <content type="html"><![CDATA[<p>用QQ号码找到对应的QQ头像地址(且不暴露用户的QQ号码)<br><a id="more"></a></p><h1 id="两个地址"><a href="#两个地址" class="headerlink" title="两个地址"></a>两个地址</h1><p>通过一番F12-Network的奇技淫巧，可以找到如下两种获取我的QQ头像的方法</p><p><a href="https://q.qlogo.cn/g?b=qq&amp;nk=2775632269&amp;s=100" target="_blank" rel="noopener">https://q.qlogo.cn/g?b=qq&amp;nk=2775632269&amp;s=100</a></p><p><a href="https://q.qlogo.cn/g?b=qq&amp;k=H2TQU1t17HiapSplCIBmkog&amp;s=100" target="_blank" rel="noopener">https://q.qlogo.cn/g?b=qq&amp;k=H2TQU1t17HiapSplCIBmkog&amp;s=100</a></p><p>可以发现，前者用nk会暴露QQ号码，而后者用k应该是一个加密后的值，不会暴露QQ号码</p><p>如何得到QQ号码对应的k值呢，Bing了一下，找到了一种解决方案</p><h1 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h1><p>通过以下网址，我们能得到一堆东西(貌似是jsp)</p><p><a href="https://ptlogin2.qq.com/getface?&amp;imgtype=1&amp;uin=2775632269" target="_blank" rel="noopener">https://ptlogin2.qq.com/getface?&amp;imgtype=1&amp;uin=2775632269</a></p><pre><code class="jsp">pt.setHeader({&quot;2775632269&quot;:&quot;https://thirdqq.qlogo.cn/g?b=sdk&amp;k=H2TQU1t17HiapSplCIBmkog&amp;s=40&amp;t=1555595532&quot;})</code></pre><p>我们可以惊喜的看到我们要的k就在这里，于是我们就知道肿么处理了</p><pre><code class="plain">先通过https://ptlogin2.qq.com/getface?&amp;imgtype=1&amp;uin=QQ号得到k值，然后可以访问https://q.qlogo.cn/g?b=qq&amp;k=对应的k值&amp;s=100得到QQ头像</code></pre><h1 id="头像的大小"><a href="#头像的大小" class="headerlink" title="头像的大小"></a>头像的大小</h1><p>我们会发现刚才那个网址得到的头像是100px*100px的头像，如果我们想得到更大或更小的头像，该肿么办呢？</p><p>我们会发现网址中的s值对应的就是size(大小)，一番摸索尝试后，得到了s和大小的关系，如下表:</p><table><thead><tr><th>s值</th><th>大小</th></tr></thead><tbody><tr><td>1</td><td>40*40</td></tr><tr><td>2</td><td>40*40</td></tr><tr><td>3</td><td>100*100</td></tr><tr><td>4</td><td>140*140</td></tr><tr><td>5</td><td>640*640</td></tr><tr><td>40</td><td>40*40</td></tr><tr><td>100</td><td>100*100</td></tr><tr><td>140</td><td>140*140</td></tr><tr><td>640</td><td>640*640</td></tr></tbody></table><p>不过，如果头像不到640px,就会返回初始大小(如我的头像,是579px的,s=5或640时会返回一个579px的头像)</p>]]></content>
+        <content type="html"><![CDATA[<p>用QQ号码找到对应的QQ头像地址(且不暴露用户的QQ号码)<br><a id="more"></a></p><h1 id="两个地址"><a href="#两个地址" class="headerlink" title="两个地址"></a>两个地址</h1><p>通过一番F12-Network的奇技淫巧，可以找到如下两种获取我的QQ头像的方法</p><p><a href="https://q.qlogo.cn/g?b=qq&amp;nk=2775632269&amp;s=100" target="_blank" rel="noopener">https://q.qlogo.cn/g?b=qq&amp;nk=2775632269&amp;s=100</a></p><p><a href="https://q.qlogo.cn/g?b=qq&amp;k=H2TQU1t17HiapSplCIBmkog&amp;s=100" target="_blank" rel="noopener">https://q.qlogo.cn/g?b=qq&amp;k=H2TQU1t17HiapSplCIBmkog&amp;s=100</a></p><p>可以发现，前者用nk会暴露QQ号码，而后者用k应该是一个加密后的值，不会暴露QQ号码</p><p>如何得到QQ号码对应的k值呢，Bing了一下，找到了一种解决方案</p><h1 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h1><p>通过以下网址，我们能得到一堆东西(貌似是jsp)</p><p><a href="https://ptlogin2.qq.com/getface?&amp;imgtype=1&amp;uin=2775632269" target="_blank" rel="noopener">https://ptlogin2.qq.com/getface?&amp;imgtype=1&amp;uin=2775632269</a></p><pre><code class="jsp">pt.setHeader({&quot;2775632269&quot;:&quot;https://thirdqq.qlogo.cn/g?b=sdk&amp;k=H2TQU1t17HiapSplCIBmkog&amp;s=40&amp;t=1555595532&quot;})</code></pre><p>我们可以惊喜的看到我们要的k就在这里，于是我们就知道肿么处理了</p><pre><code class="plain">先通过https://ptlogin2.qq.com/getface?&amp;imgtype=1&amp;uin=QQ号得到k值，然后可以访问https://q.qlogo.cn/g?b=qq&amp;k=对应的k值&amp;s=100得到QQ头像</code></pre><h1 id="头像的大小"><a href="#头像的大小" class="headerlink" title="头像的大小"></a>头像的大小</h1><p>我们会发现刚才那个网址得到的头像是100px*100px的头像，如果我们想得到更大或更小的头像，该肿么办呢？</p><p>我们会发现网址中的s值对应的就是size(大小)，一番摸索尝试后，得到了s和大小的关系，如下表:</p><table><thead><tr><th>s值</th><th>大小</th></tr></thead><tbody><tr><td>1</td><td>40*40</td></tr><tr><td>2</td><td>40*40</td></tr><tr><td>3</td><td>100*100</td></tr><tr><td>4</td><td>140*140</td></tr><tr><td>5</td><td>640*640</td></tr><tr><td>40</td><td>40*40</td></tr><tr><td>100</td><td>100*100</td></tr><tr><td>140</td><td>140*140</td></tr><tr><td>640</td><td>640*640</td></tr></tbody></table><p>不过，如果头像的大小比s对应值的大小还小,就会返回原始头像(如某人的头像,是579px的,s=5或640时会返回一个579px的头像)</p>]]></content>
       
       
       <categories>
@@ -139,7 +139,7 @@
       <link href="/2019/CF-1100C/"/>
       <url>/2019/CF-1100C/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://codeforces.com/contest/1100/problem/C" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><ul><li>一个半径为$r$的圆，与$n$个半径为$R$的圆相切且这$n$个圆分别和左右的两个圆相切</li><li>已知$n, r$,求$R$</li></ul><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>将外圈圆的圆心相连, 围成一个正$n$边形<br><img src="https://i.loli.net/2019/01/15/5c3d7322b988e.png" alt="不见图，请刷新"></p><ul><li>从多边形截出一个$\triangle BGA$<br><img src="https://i.loli.net/2019/01/15/5c3d7341e205d.png" alt="不见图，请刷新"></li><li>$\angle BGA=\frac{\angle BGF}{2}=\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2}$</li><li>做$\triangle BGA \space BG$边上的高$AH$</li><li>得到$Rt\triangle GHA,GH=R,GA=R+r$</li><li>$\frac{GA}{GH}=\frac{R+r}{R}=\sec\angle BGA$</li><li>$R\cdot \sec\angle BGA=R+r$</li><li>$R\cdot(\sec\angle BGA-1)=r$</li><li>$R=\frac{r}{\sec\angle BGA-1}=\frac{r}{\sec(\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2})-1}$</li></ul><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol><li>cmath里没有$\sec$，可以用$\cos$的倒数嘛</li><li>cmath里面的所有三角函数都是弧度制，要将角度$\times\pi\div180$</li></ol><h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>绘图工具:GeoGebra Geometry</p><h2 id="代码-C"><a href="#代码-C" class="headerlink" title="代码(C++)"></a>代码(C++)</h2><pre><code class="cpp">int n;double r;read(n);std::cin &gt;&gt; r;double degree = 180 - (360.0 / n);degree /= 2;degree = degree / 180 * PI;double ans=r / (1 / cos(degree) - 1);std::cout.precision(7);std::cout &lt;&lt; std::fixed &lt;&lt; ans &lt;&lt; std::endl;</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://codeforces.com/contest/1100/problem/C" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><ul><li>一个半径为$r$的圆，与$n$个半径为$R$的圆相切且这$n$个圆分别和左右的两个圆相切</li><li>已知$n, r$,求$R$</li></ul><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>将外圈圆的圆心相连, 围成一个正$n$边形<br><img src="/2019/CF-1100C/1.png" alt="不见图，请刷新"></p><ul><li>从多边形截出一个$\triangle BGA$<br><img src="/2019/CF-1100C/2.png" alt="不见图，请刷新"></li><li>$\angle BGA=\frac{\angle BGF}{2}=\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2}$</li><li>做$\triangle BGA \space BG$边上的高$AH$</li><li>得到$Rt\triangle GHA,GH=R,GA=R+r$</li><li>$\frac{GA}{GH}=\frac{R+r}{R}=\sec\angle BGA$</li><li>$R\cdot \sec\angle BGA=R+r$</li><li>$R\cdot(\sec\angle BGA-1)=r$</li><li>$R=\frac{r}{\sec\angle BGA-1}=\frac{r}{\sec(\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2})-1}$</li></ul><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol><li>cmath里没有$\sec$，可以用$\cos$的倒数嘛</li><li>cmath里面的所有三角函数都是弧度制，要将角度$\times\pi\div180$</li></ol><h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>绘图工具:GeoGebra Geometry</p><h2 id="代码-C"><a href="#代码-C" class="headerlink" title="代码(C++)"></a>代码(C++)</h2><pre><code class="cpp">int n;double r;read(n);std::cin &gt;&gt; r;double degree = 180 - (360.0 / n);degree /= 2;degree = degree / 180 * PI;double ans=r / (1 / cos(degree) - 1);std::cout.precision(7);std::cout &lt;&lt; std::fixed &lt;&lt; ans &lt;&lt; std::endl;</code></pre>]]></content>
       
       
       <categories>
@@ -180,11 +180,11 @@
       
         <tags>
             
+            <tag> 洛谷 </tag>
+            
             <tag> DP </tag>
             
             <tag> USACO </tag>
-            
-            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -196,11 +196,11 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
-        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -218,11 +218,11 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
       
     </entry>
     

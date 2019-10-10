@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>一道经典DP及其优化</title>
+      <link href="/2019/fzoj-3827/"/>
+      <url>/2019/fzoj-3827/</url>
+      
+        <content type="html"><![CDATA[<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给定一个长度为$n$和一个长度为$m$的序列$A$和$B$</p><p>求$A$和$B$有多少个非空公共子序列满足$\forall a,b$在子序列中相邻$\exists$ 有向边$&lt;a,b&gt;\in 边集E$</p><p>答案对$10^9+7取模$</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>显然是DP,设$f_{i,j}$为以$A$序列第$i$个元素$B$序列第$j$个元素结尾的方案数$(a_i=b_j)$<br>令$g_{i,j}=\sum^i_{k=1}f_{k,j}$<br>如图(上方为$B$下方为$A$)<img src="/2019/fzoj-3827/1.png" alt=""><br>很明显$g$可以用前缀和维护<br>现在开始考虑相邻元素的限制,对于$b_j$考虑其到$a_i$是否有边,如果有,其对$f_{i,k}(k&gt;j,a_i=b_k)$有$g_{i-1,j}$的贡献($\forall l\in[1,i-1]:a_l=b_j很明显f_{l,j}$可以转移到$f_{i,k}(k&gt;j,a_i=b_k$)<br>$h_{i,j}=\sum_{k\in[1,j-1],&lt;b_k,a_i&gt;\in E}g_{i,k}$<br>如图(上方为$A$下方为$B$)<img src="/2019/fzoj-3827/2.png" alt=""><br>由于枚举$j$时$i$是固定的,所以我们可以用前缀和统计<br>$h_{i,j}=<br>\begin{cases}<br>h_{i,j-1}+g_{i,j} &amp; &lt;b_j,a_i&gt;\in E \\<br>h_{i,j-1} &amp; &lt;b_j,a_i&gt;\notin E \\<br>\end{cases}$<br>$f_{i,j}=h_{i,j-1}+1$(还有不用前面的,从$a_i,b_j$开始的情况,贡献为1)</p><p>$f$不参加转移,只计入答案<br>$g$可以用滚动数组<br>$h_{i-1}$与$h_{i}$无关,用临时变量记录即可<br>维护时,先用$h$算得$f$,再用$g$更新$h$,最后用$f$更新$g$</p><p>原数组要离散化一下</p><p>时间复杂度$O(n\cdot m)$<br>空间复杂度$O(n\cdot m)$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">const int N = 3005;const int Mod = 1000000007;void add(int &amp;, int);int a[N], b[N];bool ok[N][N];std::map&lt;int, int&gt; mp;int g[2][N];int main () {  int n, m, k;  read(n), read(m), read(k);  int cnt = 0;  for (int i = 1; i &lt;= n; ++i) {    read(a[i]);    if (!mp[a[i]]) {      mp[a[i]] = ++cnt;    }    a[i] = mp[a[i]];  }  for (int i = 1; i &lt;= m; ++i) {    read(b[i]);    if (!mp[b[i]]) {      mp[b[i]] = ++cnt;    }    b[i] = mp[b[i]];  }  for (int i = 1; i &lt;= k; ++i) {    int u, v;    read(u), read(v);    u = mp[u], v = mp[v];    if (!u || !v) {      continue;    }    ok[u][v] = true;  }  int ans = 0;  for (int i = 1; i &lt;= n; ++i) {    int h = 0;    for (int j = 1; j &lt;= m; ++j) {      g[i &amp; 1][j] = g[(i &amp; 1) ^ 1][j];      int f = 0;      if (a[i] == b[j]) {        f = h + 1;        add(ans, f);      }      if (ok[b[j]][a[i]]) {        add(h, g[i &amp; 1][j]);      }      add(g[i &amp; 1][j], f);    }  }  write(ans), EL;  return 0;}inline void add(int &amp;i, int j) {  i = (i + j) % Mod;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DP </tag>
+            
+            <tag> FZOJ </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>「洛谷P5497」[LnOI2019SP]龟速单项式变换(SMT) 题解</title>
       <link href="/2019/luogu-5497/"/>
       <url>/2019/luogu-5497/</url>
@@ -139,7 +166,7 @@
       <link href="/2019/CF-1100C/"/>
       <url>/2019/CF-1100C/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://codeforces.com/contest/1100/problem/C" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><ul><li>一个半径为$r$的圆，与$n$个半径为$R$的圆相切且这$n$个圆分别和左右的两个圆相切</li><li>已知$n, r$,求$R$</li></ul><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>将外圈圆的圆心相连, 围成一个正$n$边形<br><img src="/2019/CF-1100C/1.png" alt="不见图，请刷新"></p><ul><li>从多边形截出一个$\triangle BGA$<br><img src="/2019/CF-1100C/2.png" alt="不见图，请刷新"></li><li>$\angle BGA=\frac{\angle BGF}{2}=\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2}$</li><li>做$\triangle BGA \space BG$边上的高$AH$</li><li>得到$Rt\triangle GHA,GH=R,GA=R+r$</li><li>$\frac{GA}{GH}=\frac{R+r}{R}=\sec\angle BGA$</li><li>$R\cdot \sec\angle BGA=R+r$</li><li>$R\cdot(\sec\angle BGA-1)=r$</li><li>$R=\frac{r}{\sec\angle BGA-1}=\frac{r}{\sec(\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2})-1}$</li></ul><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol><li>cmath里没有$\sec$，可以用$\cos$的倒数嘛</li><li>cmath里面的所有三角函数都是弧度制，要将角度$\times\pi\div180$</li></ol><h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>绘图工具:GeoGebra Geometry</p><h2 id="代码-C"><a href="#代码-C" class="headerlink" title="代码(C++)"></a>代码(C++)</h2><pre><code class="cpp">int n;double r;read(n);std::cin &gt;&gt; r;double degree = 180 - (360.0 / n);degree /= 2;degree = degree / 180 * PI;double ans=r / (1 / cos(degree) - 1);std::cout.precision(7);std::cout &lt;&lt; std::fixed &lt;&lt; ans &lt;&lt; std::endl;</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://codeforces.com/contest/1100/problem/C" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><ul><li>一个半径为$r$的圆，与$n$个半径为$R$的圆相切且这$n$个圆分别和左右的两个圆相切</li><li>已知$n, r$,求$R$</li></ul><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>将外圈圆的圆心相连, 围成一个正$n$边形<br><img src="/2019/CF-1100C/1.png" alt=""></p><ul><li>从多边形截出一个$\triangle BGA$<br><img src="/2019/CF-1100C/2.png" alt=""></li><li>$\angle BGA=\frac{\angle BGF}{2}=\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2}$</li><li>做$\triangle BGA \space BG$边上的高$AH$</li><li>得到$Rt\triangle GHA,GH=R,GA=R+r$</li><li>$\frac{GA}{GH}=\frac{R+r}{R}=\sec\angle BGA$</li><li>$R\cdot \sec\angle BGA=R+r$</li><li>$R\cdot(\sec\angle BGA-1)=r$</li><li>$R=\frac{r}{\sec\angle BGA-1}=\frac{r}{\sec(\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2})-1}$</li></ul><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol><li>cmath里没有$\sec$，可以用$\cos$的倒数嘛</li><li>cmath里面的所有三角函数都是弧度制，要将角度$\times\pi\div180$</li></ol><h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>绘图工具:GeoGebra Geometry</p><h2 id="代码-C"><a href="#代码-C" class="headerlink" title="代码(C++)"></a>代码(C++)</h2><pre><code class="cpp">int n;double r;read(n);std::cin &gt;&gt; r;double degree = 180 - (360.0 / n);degree /= 2;degree = degree / 180 * PI;double ans=r / (1 / cos(degree) - 1);std::cout.precision(7);std::cout &lt;&lt; std::fixed &lt;&lt; ans &lt;&lt; std::endl;</code></pre>]]></content>
       
       
       <categories>
@@ -180,9 +207,9 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> DP </tag>
+            
+            <tag> 洛谷 </tag>
             
             <tag> USACO </tag>
             
@@ -207,22 +234,22 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
-        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     

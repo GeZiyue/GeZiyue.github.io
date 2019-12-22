@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>「洛谷P3401」洛谷树 题解</title>
+      <link href="/2019/luogu-3401/"/>
+      <url>/2019/luogu-3401/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.org/problem/P3401" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>令$s_u$为$u$到根的路径上的边权异或和, $s_{u,v}$为$u$到$v$的简单路径上的边权异或和</p><p>由树上差分的知识可得$s_{u,v}=s_u\otimes s_v\otimes s_{lca}\otimes s_{lca}=s_u\otimes s_v$</p><p>原问题可化为求$\sum_{i,j\in路径\left\langle u,v\right\rangle}\space s_i\otimes s_j$</p><h2 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h2><p>考虑维护每一位,若路径$\left\langle u,v\right\rangle$经过$siz$个结点,其中$s$的第$i$位为$1$的有$cnt$个,则为$0$的有$(siz-cnt)$个第$i$位对答案的贡献为$cnt\cdot(siz-cnt)\cdot 2^i$(一个$0$一个$1$才对答案有贡献)</p><p>路径上维护$1$的个数,容易想到树链剖分加线段树</p><p>修改操作中,将边$(u,v)(dep_u&lt;dep_v)$的权值修改为$w$,原权值为$w_b$,若$w$的第$i$位与$w_b$的第$i$位不同,则将$v$所在子树的$s$的第$i$位翻转即可,具体在线段树上,对于原本有$cnt$个$1$的区间$\left[l,r\right]$,将$1$的个数改为$(r-l+1-cnt)$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">const int N = 30005;const int M = 60005;#define lc(x) (x &lt;&lt; 1)#define rc(x) (x &lt;&lt; 1 | 1)void add(int, int, int);void dfs1(int);void dfs2(int);void build(int, int, int);void update(int, int, int);ll query(int, int);int hed[N], nxt[M], to[M], val[M], id;int dep[N], fa[N], siz[N], son[N], top[N], ttl[N], ltt[N], tot;int vf[N];int xs[N];int sum[N &lt;&lt; 2][10];bool tag[N &lt;&lt; 2][10];int n, q;int main () {  read(n), read(q);  for (int i = 1; i &lt; n; ++i) {    int u, v, w;    read(u), read(v), read(w);    add(u, v, w), add(v, u, w);  }  dfs1(1);  top[1] = 1;  dfs2(1);  build(1, 1, n);  for (int i = 1; i &lt;= q; ++i) {    int type;    read(type);    int u, v;    read(u), read(v);    switch (type) {    case 1:      write(query(u, v)), EL;      break;    case 2:      int w;      read(w);      update(u, v, w);      break;    }  }  return 0;}inline void add(int u, int v, int w) {  nxt[++id] = hed[u];  hed[u] = id;  to[id] = v;  val[id] = w;}void dfs1(int u) {  siz[u] = 1;  for (int i = hed[u]; i; i = nxt[i]) {    int v = to[i];    if (v != fa[u]) {      dep[v] = dep[u] + 1;      fa[v] = u;      xs[v] = xs[u] ^ val[i];      vf[v] = val[i];      dfs1(v);      siz[u] += siz[v];      if (siz[v] &gt; siz[son[u]]) {        son[u] = v;      }    }  }}void dfs2(int u) {  ltt[ttl[u] = ++tot] = u;  if (son[u]) {    top[son[u]] = top[u];    dfs2(son[u]);  }  for (int i = hed[u]; i; i = nxt[i]) {    int v = to[i];    if (v != fa[u] &amp;&amp; v != son[u]) {      top[v] = v;      dfs2(v);    }  }}inline void pushdown(int x, int xl, int xr, int bit) {  if (tag[x][bit]) {    int xm = (xl + xr) &gt;&gt; 1;    sum[lc(x)][bit] = (xm - xl + 1) - sum[lc(x)][bit];    sum[rc(x)][bit] = (xr - xm) - sum[rc(x)][bit];    tag[lc(x)][bit] ^= 1;    tag[rc(x)][bit] ^= 1;    tag[x][bit] = false;  }}inline void pushup(int x, int bit) {  sum[x][bit] = sum[lc(x)][bit] + sum[rc(x)][bit];}void update(int x, int xl, int xr, int bit, int ul, int ur) {  if (xl &gt;= ul &amp;&amp; xr &lt;= ur) {    sum[x][bit] = (xr - xl + 1) - sum[x][bit];    tag[x][bit] ^= 1;    return;  }  pushdown(x, xl, xr, bit);  int xm = (xl + xr) &gt;&gt; 1;  if (xm &gt;= ul) {    update(lc(x), xl, xm, bit, ul, ur);  }  if (xm &lt; ur) {    update(rc(x), xm + 1, xr, bit, ul, ur);  }  pushup(x, bit);}int query(int x, int xl, int xr, int bit, int ql, int qr) {  if (xl &gt;= ql &amp;&amp; xr &lt;= qr) {    return sum[x][bit];  }  pushdown(x, xl, xr, bit);  int xm = (xl + xr) &gt;&gt; 1;  int ans = 0;  if (xm &gt;= ql) {    ans += query(lc(x), xl, xm, bit, ql, qr);  }  if (xm &lt; qr) {    ans += query(rc(x), xm + 1, xr, bit, ql, qr);  }  return ans;}void build(int x, int xl, int xr) {  if (xl == xr) {    for (int i = 0; i &lt; 10; ++i) {      sum[x][i] = (xs[ltt[xl]] &gt;&gt; i) &amp; 1;    }    return;  }  int xm = (xl + xr) &gt;&gt; 1;  build(lc(x), xl, xm);  build(rc(x), xm + 1, xr);  for (int i = 0; i &lt; 10; ++i) {    pushup(x, i);  }}void update(int u, int v, int w) {  int x = dep[u] &lt; dep[v] ? v : u;  for (int i = 0; i &lt; 10; ++i) {    if (((vf[x] ^ w) &gt;&gt; i) &amp; 1) {      update(1, 1, n, i, ttl[x], ttl[x] + siz[x] - 1);    }  }  vf[x] = w;}ll query(int u, int v) {  int cnt[10];  int siz = 0;  for (int i = 0; i &lt; 10; ++i) {    cnt[i] = 0;  }  while (top[u] ^ top[v]) {    if (dep[top[u]] &lt; dep[top[v]]) {      u ^= v ^= u ^= v;    }    siz += ttl[u] - ttl[top[u]] + 1;    for (int i = 0; i &lt; 10; ++i) {      cnt[i] += query(1, 1, n, i, ttl[top[u]], ttl[u]);    }    u = fa[top[u]];  }  if (dep[u] &lt; dep[v]) {    u ^= v ^= u ^= v;  }  siz += ttl[u] - ttl[v] + 1;  for (int i = 0; i &lt; 10; ++i) {    cnt[i] += query(1, 1, n, i, ttl[v], ttl[u]);  }  ll ans = 0;  for (int i = 0; i &lt; 10; ++i) {    ans += cnt[i] * (siz - cnt[i]) * 1ll * (1 &lt;&lt; i);  }  return ans;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 洛谷 </tag>
+            
+            <tag> 树链剖分 </tag>
+            
+            <tag> 线段树 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>「HDU1850&amp;POJ2975」题解</title>
       <link href="/2019/hdu-1850-poj-2975/"/>
       <url>/2019/hdu-1850-poj-2975/</url>
@@ -29,7 +58,7 @@
     
     
     <entry>
-      <title>一道经典DP及其优化</title>
+      <title>「FZOJ3827」题解</title>
       <link href="/2019/fzoj-3827/"/>
       <url>/2019/fzoj-3827/</url>
       
@@ -45,7 +74,7 @@
       
         <tags>
             
-            <tag> DP </tag>
+            <tag> 动态规划 </tag>
             
             <tag> FZOJ </tag>
             
@@ -128,11 +157,11 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -232,11 +261,11 @@
       
         <tags>
             
-            <tag> DP </tag>
-            
-            <tag> USACO </tag>
+            <tag> 动态规划 </tag>
             
             <tag> 洛谷 </tag>
+            
+            <tag> USACO </tag>
             
         </tags>
       
@@ -248,20 +277,20 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
-        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -281,11 +310,11 @@
     
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>AH蒟蒻 / 擅长爆零 / 可爱的女孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
       
     </entry>
     

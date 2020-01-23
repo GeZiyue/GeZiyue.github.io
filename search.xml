@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>「学习笔记」O(1)求最大公约数</title>
+      <link href="/2020/quick-gcd/"/>
+      <url>/2020/quick-gcd/</url>
+      
+        <content type="html"><![CDATA[<p>一种$O(值域)$时间预处理$O(1)$时间求最大公约数($\gcd$)的算法<br><a id="more"></a></p><h2 id="一些约定"><a href="#一些约定" class="headerlink" title="一些约定"></a>一些约定</h2><ol><li>$N$为询问的值域</li><li>$Prime$为全体素数集合</li><li>集合$\{a_1,a_2,\cdots,a_m\}$是$n$的分解，当且仅当$a_1\times a_2\times\cdots\times a_m=n$</li></ol><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="两个定理"><a href="#两个定理" class="headerlink" title="两个定理"></a>两个定理</h3><ol><li>将值域中的每个$x$分解成$\{a,b,c\}$,满足$a,b,c\leq\sqrt{x}或\in Prime$</li><li>对于询问$\gcd(x,y)$,分别考虑$a,b,c$对答案的贡献,$a$对答案的贡献为$\gcd(a,y)$,再将$y$除以$\gcd(a,y)$（这个因子已经被算过，不能重复计算），再对$b,c$干同样的事，三个贡献相乘即为$\gcd(x,y)$</li></ol><h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><ol><li>不妨设$a\leq b\leq c$若$c\notin Prime且c&gt;\sqrt{x}$,则$c$可分解为$\{d,e\}$且$d\leq e$有$d\leq\sqrt{x}$,而$a\times b=\frac{x}{c}&lt;\sqrt{x}$则有$n$的分解$\{d,a\times b,e\}$,若$e&gt;\sqrt{x}$则可按该规律一直分解直到$e\in Prime或\leq\sqrt{x}$</li><li>易得引理若$r\mid p, r\mid q$则$\gcd(p,q)=r\times\gcd(\frac{p}{r},\frac{q}{r})$<br>分别带入$p_1=a\times b\times c,q_1=y,r_1=\gcd(a,q_1);\\p_2=b\times c,q_2=\frac{q_1}{r_1},r_2=\gcd(b,q_2);\\p_3=c,q_3=\frac{q_2}{r_2},r_3=\gcd(c,q_3)$</li></ol><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我们发现实现的难点在于如何在$O(N)$时间内进行分解，询问部分较为容易</p><h3 id="分解"><a href="#分解" class="headerlink" title="分解"></a>分解</h3><p>对于$x\geq2$,找到$x$的最小质因子$p$以及$\frac{x}{p}$的分解$a_0,b_0,c_0$且$a_0\leq b_0\leq c_0)$,$x$的分解即为$\{a_0\times p,b_0,c_0\}$的升序排序</p><p>考虑证明：</p><ol><li>$x\in Prime$时显然成立,分解为$\{1,1,x\}$</li><li>易得$a_0\leq\sqrt[3]{\frac{x}{p}}$<br>解$a_0\times p\leq\sqrt{x}$得$p\leq \sqrt[4]{x}$,考虑$p&gt;\sqrt[4]{x}$的情况，由于$x$不是素数，$\frac{x}{p}$的最小质因子$q$即为$x$的第二小质因子，一定$\geq p$,而$a_0,b_0,c_0$都为$\frac{x}{p}$的因子，有$p\leq q\leq a_0\leq b_0\leq c_0$,$p\times a_0\times b_0\times c_0&gt;(\sqrt[4]{x})^2=x$与$p\times a_0\times b_0\times c_0=x$相矛盾</li></ol><p>所以只用跑一次线性筛，用最小质因子更新即可，然后预处理出$\sqrt{n}\times\sqrt{n}$的$\gcd$数组</p><p>代码如下</p><pre><code class="cpp">// fac为分解，isp表示是否非质数，pri为质数数组，tot为pri的大小，pre为预处理的gcd数组，M为值域，T为sqrt(M)void work() {  fac[1][0] = fac[1][1] = fac[1][2] = 1;  for (int i = 2; i &lt;= M; ++i) {    if (!isp[i]) {      fac[i][0] = fac[i][1] = 1;      fac[i][2] = i;      pri[++tot] = i;    }    for (int j = 1; pri[j] * i &lt;= M; ++j) {      int tmp = pri[j] * i;      isp[tmp] = true;      fac[tmp][0] = fac[i][0] * pri[j];      fac[tmp][1] = fac[i][1];      fac[tmp][2] = fac[i][2];      if (fac[tmp][0] &gt; fac[tmp][1]) {        fac[tmp][0] ^= fac[tmp][1] ^= fac[tmp][0] ^= fac[tmp][1];      }      if (fac[tmp][1] &gt; fac[tmp][2]) {        fac[tmp][1] ^= fac[tmp][2] ^= fac[tmp][1] ^= fac[tmp][2];      }      if (i % pri[j] == 0) {        break;      }    }  }  for (int i = 0; i &lt;= T; ++i) {    pre[0][i] = pre[i][0] = i;  }  for (int i = 1; i &lt;= T; ++i) {    for (int j = 1; j &lt;= i; ++j) {      pre[i][j] = pre[j][i] = pre[j][i % j];    }  }}</code></pre><h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p>若当前枚举的为$a$,只需注意$a&gt;\sqrt{N}$时分$a\mid y$和$a\nmid y$两种情况即可</p><p>以下为代码</p><pre><code class="cpp">int gcd(int a, int b) {//不想写if-else所以用三目运算符代替并缩进了一下  int ans = 1;  for (int i = 0; i &lt; 3; ++i) {    int tmp = (fac[a][i] &gt; T) ?                (b % fac[a][i] ?                   1                 : fac[a][i]                )              : pre[fac[a][i]][b % fac[a][i]];    b /= tmp;    ans *= tmp;  }  return ans;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Note </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数学 </tag>
+            
+            <tag> 数论 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CSP-2019游记</title>
       <link href="/2019/CSP-2019/"/>
       <url>/2019/CSP-2019/</url>
@@ -307,9 +334,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -318,9 +345,9 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

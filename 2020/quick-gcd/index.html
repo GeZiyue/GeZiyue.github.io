@@ -48,7 +48,7 @@
     
     <title>
         
-            CSP-2019游记 | 
+            「学习笔记」O(1)求最大公约数 | 
         
         Seniorious&#39; blog
     </title>
@@ -58,8 +58,8 @@
     <link rel="icon" href="/img/avatar.jpg">
 
     <meta name="format-detection" content="telephone=no">
-    <meta name="description" itemprop="description" content="CSP-2019退役记">
-    <meta name="keywords" content="">
+    <meta name="description" itemprop="description" content="一种$O(值域)$时间预处理$O(1)$时间求最大公约数($\gcd$)的算法">
+    <meta name="keywords" content=",数学,数论">
     <meta name="theme-color" content="#7A68E8">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -225,7 +225,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Seniorious&#39; blog">
-    <meta name="msapplication-starturl" content="https://blog.seniorious.cc/2019/CSP-2019/">
+    <meta name="msapplication-starturl" content="https://blog.seniorious.cc/2020/quick-gcd/">
     <meta name="msapplication-navbutton-color" content="#7A68E8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Seniorious&#39; blog">
@@ -240,16 +240,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://blog.seniorious.cc/2019/CSP-2019/">
+    <meta property="og:url" content="https://blog.seniorious.cc/2020/quick-gcd/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="CSP-2019游记 | Seniorious&#39; blog">
+    <meta property="og:title" content="「学习笔记」O(1)求最大公约数 | Seniorious&#39; blog">
     <meta property="og:image" content="/img/avatar.jpg">
-    <meta property="og:description" content="CSP-2019退役记">
-    
+    <meta property="og:description" content="一种$O(值域)$时间预处理$O(1)$时间求最大公约数($\gcd$)的算法">
+    <meta property="og:article:tag" content="数学"> <meta property="og:article:tag" content="数论"> 
 
     
-        <meta property="article:published_time" content="Tue Dec 24 2019 22:11:46 GMT+0800">
-        <meta property="article:modified_time" content="Tue Dec 24 2019 23:42:52 GMT+0800">
+        <meta property="article:published_time" content="Thu Jan 23 2020 18:42:00 GMT+0800">
+        <meta property="article:modified_time" content="Fri Jan 24 2020 00:32:47 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -257,7 +257,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.seniorious.cc/2019/CSP-2019/index.html">
+        <link rel="canonical" href="https://blog.seniorious.cc/2020/quick-gcd/index.html">
     
 
     <!-- Structured-data for SEO -->
@@ -269,10 +269,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://blog.seniorious.cc/2019/CSP-2019/index.html",
-    "headline": "CSP-2019游记",
-    "datePublished": "Tue Dec 24 2019 22:11:46 GMT+0800",
-    "dateModified": "Tue Dec 24 2019 23:42:52 GMT+0800",
+    "mainEntityOfPage": "https://blog.seniorious.cc/2020/quick-gcd/index.html",
+    "headline": "「学习笔记」O(1)求最大公约数",
+    "datePublished": "Thu Jan 23 2020 18:42:00 GMT+0800",
+    "dateModified": "Fri Jan 24 2020 00:32:47 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -290,8 +290,8 @@
             "url": "/img/avatar.jpg"
         }
     },
-    "keywords": "",
-    "description": "CSP-2019退役记",
+    "keywords": ",数学,数论",
+    "description": "一种$O(值域)$时间预处理$O(1)$时间求最大公约数($\gcd$)的算法",
 }
 </script>
 
@@ -364,7 +364,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CSP-2019退役记"><span class="post-toc-number">1.</span> <span class="post-toc-text">CSP-2019退役记</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Day-27"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Day -27</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Day-7"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Day -7</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Day-0"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Day 0</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Day-1"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">Day 1</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#S组"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">S组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#J组"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">J组</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Day-2"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">Day 2</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Day-16"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">Day 16</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一些约定"><span class="post-toc-number">1.</span> <span class="post-toc-text">一些约定</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#原理"><span class="post-toc-number">2.</span> <span class="post-toc-text">原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#两个定理"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">两个定理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#证明"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">证明</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现"><span class="post-toc-number">3.</span> <span class="post-toc-text">实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分解"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">分解</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查询"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">查询</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -396,7 +396,7 @@
         
     
             <p class="article-headline-p">
-                CSP-2019游记
+                「学习笔记」O(1)求最大公约数
             </p>
         </div>
 
@@ -415,7 +415,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Seniorious</strong>
-        <span>12月 24, 2019</span>
+        <span>1月 23, 2020</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -432,6 +432,15 @@
     
 
     <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/数学/">数学</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/数论/">数论</a>
+    </li></ul>
     
 
     <!-- Share -->
@@ -450,7 +459,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=CSP-2019游记&url=https://blog.seniorious.cc/2019/CSP-2019/index.html&via=Seniorious" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=「学习笔记」O(1)求最大公约数&url=https://blog.seniorious.cc/2020/quick-gcd/index.html&via=Seniorious" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -459,7 +468,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.seniorious.cc/2019/CSP-2019/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.seniorious.cc/2020/quick-gcd/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -468,7 +477,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.seniorious.cc/2019/CSP-2019/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.seniorious.cc/2020/quick-gcd/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -480,7 +489,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Seniorious&#39; blog&title=CSP-2019游记&summary=&pics=https://blog.seniorious.cc/img/avatar.jpg&url=https://blog.seniorious.cc/2019/CSP-2019/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Seniorious&#39; blog&title=「学习笔记」O(1)求最大公约数&summary=&pics=https://blog.seniorious.cc/img/avatar.jpg&url=https://blog.seniorious.cc/2020/quick-gcd/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -489,7 +498,7 @@
 
     <!-- Share Telegram -->
     
-        <a class="post_share-link" href="https://telegram.me/share/url?url=https://blog.seniorious.cc/2019/CSP-2019/index.html&text=CSP-2019游记" target="_blank">
+        <a class="post_share-link" href="https://telegram.me/share/url?url=https://blog.seniorious.cc/2020/quick-gcd/index.html&text=「学习笔记」O(1)求最大公约数" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Telegram
             </li>
@@ -505,37 +514,83 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="CSP-2019退役记"><a href="#CSP-2019退役记" class="headerlink" title="CSP-2019退役记"></a>CSP-2019退役记</h1><a id="more"></a>
-<h2 id="Day-27"><a href="#Day-27" class="headerlink" title="Day -27"></a>Day -27</h2><p>初赛，被吊着打。</p>
-<p>上午S组，全程自闭，毒瘤状压5题全靠蒙（蒙对4题）</p>
-<p>下午J组，感觉AK，改出来就$96$</p>
-<p>弱省复赛随便进，没怎么管</p>
-<h2 id="Day-7"><a href="#Day-7" class="headerlink" title="Day -7"></a>Day -7</h2><p>得知在本市一中考，不用去合肥，惊了</p>
-<h2 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h2><p>试机看了看gedit vim g++ gdb就玩贪吃蛇了</p>
-<h2 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h2><h3 id="S组"><a href="#S组" class="headerlink" title="S组"></a>S组</h3><p>三题都看了看题面，感觉T3部分分很足，暴力+链+菊花图应该能拿到（</p>
-<p>T1题面好长，仔细看了看，注意到$k\le 64$, 要开<code>unsigned long long</code>, 秒了</p>
-<p>T2看了一会，手玩一下样例，随便递推了一下</p>
-<p>开始了2.5h的T3自闭之旅，先看菊花图，综合了各种情况……不会，后来看链，又自闭了，最后打了个$O(n!)$暴力交上去（结果还打炸了）</p>
-<p>考场上估计人均$260$, 结果出考场人均$210$</p>
-<ul>
-<li>估分$100+100+10=210$</li>
-<li>实际$100+100+5=205$</li>
-</ul>
-<h3 id="J组"><a href="#J组" class="headerlink" title="J组"></a>J组</h3><p>四题水题，$1h\space$AK, $2.5h$贪吃蛇</p>
-<ul>
-<li>估分$100+100+100+100=400$</li>
-<li>实际$100+100+100+100=400$</li>
-</ul>
-<h2 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h2><p>看完题面，感觉三道神仙题，自闭了</p>
-<p>T1简单容斥都不会，写个$m\le3$的$64$分暴力就跑了</p>
-<p>T2瞎猜结论，根本不证，写了个$88$分的$O(nlog_2n)$</p>
-<p>T3写了$O(n^2)$和链，没注意到$262143=2^{18}-1$，错失$20$分</p>
-<ul>
-<li>估分$64+88+55=207$</li>
-<li>实际$64+88+55=207$</li>
-</ul>
-<h2 id="Day-16"><a href="#Day-16" class="headerlink" title="Day 16"></a>Day 16</h2><p>出分了，还是有很多不足，考乱猜结论苟了个$412$，水平还是太菜</p>
-<p>成功苟进<del>面基大会</del>WC，打铁预定</p>
+        <p>一种$O(值域)$时间预处理$O(1)$时间求最大公约数($\gcd$)的算法<br><a id="more"></a></p>
+<h2 id="一些约定"><a href="#一些约定" class="headerlink" title="一些约定"></a>一些约定</h2><ol>
+<li>$N$为询问的值域</li>
+<li>$Prime$为全体素数集合</li>
+<li>集合$\{a_1,a_2,\cdots,a_m\}$是$n$的分解，当且仅当$a_1\times a_2\times\cdots\times a_m=n$</li>
+</ol>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="两个定理"><a href="#两个定理" class="headerlink" title="两个定理"></a>两个定理</h3><ol>
+<li>将值域中的每个$x$分解成$\{a,b,c\}$,满足$a,b,c\leq\sqrt{x}或\in Prime$</li>
+<li>对于询问$\gcd(x,y)$,分别考虑$a,b,c$对答案的贡献,$a$对答案的贡献为$\gcd(a,y)$,再将$y$除以$\gcd(a,y)$（这个因子已经被算过，不能重复计算），再对$b,c$干同样的事，三个贡献相乘即为$\gcd(x,y)$</li>
+</ol>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><ol>
+<li>不妨设$a\leq b\leq c$若$c\notin Prime且c&gt;\sqrt{x}$,则$c$可分解为$\{d,e\}$且$d\leq e$有$d\leq\sqrt{x}$,而$a\times b=\frac{x}{c}&lt;\sqrt{x}$则有$n$的分解$\{d,a\times b,e\}$,若$e&gt;\sqrt{x}$则可按该规律一直分解直到$e\in Prime或\leq\sqrt{x}$</li>
+<li>易得引理若$r\mid p, r\mid q$则$\gcd(p,q)=r\times\gcd(\frac{p}{r},\frac{q}{r})$<br>分别带入$p_1=a\times b\times c,q_1=y,r_1=\gcd(a,q_1);\\p_2=b\times c,q_2=\frac{q_1}{r_1},r_2=\gcd(b,q_2);\\p_3=c,q_3=\frac{q_2}{r_2},r_3=\gcd(c,q_3)$</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我们发现实现的难点在于如何在$O(N)$时间内进行分解，询问部分较为容易</p>
+<h3 id="分解"><a href="#分解" class="headerlink" title="分解"></a>分解</h3><p>对于$x\geq2$,找到$x$的最小质因子$p$以及$\frac{x}{p}$的分解$a_0,b_0,c_0$且$a_0\leq b_0\leq c_0)$,$x$的分解即为$\{a_0\times p,b_0,c_0\}$的升序排序</p>
+<p>考虑证明：</p>
+<ol>
+<li>$x\in Prime$时显然成立,分解为$\{1,1,x\}$</li>
+<li>易得$a_0\leq\sqrt[3]{\frac{x}{p}}$<br>解$a_0\times p\leq\sqrt{x}$得$p\leq \sqrt[4]{x}$,考虑$p&gt;\sqrt[4]{x}$的情况，由于$x$不是素数，$\frac{x}{p}$的最小质因子$q$即为$x$的第二小质因子，一定$\geq p$,而$a_0,b_0,c_0$都为$\frac{x}{p}$的因子，有$p\leq q\leq a_0\leq b_0\leq c_0$,$p\times a_0\times b_0\times c_0&gt;(\sqrt[4]{x})^2=x$与$p\times a_0\times b_0\times c_0=x$相矛盾</li>
+</ol>
+<p>所以只用跑一次线性筛，用最小质因子更新即可，然后预处理出$\sqrt{n}\times\sqrt{n}$的$\gcd$数组</p>
+<p>代码如下</p>
+<pre><code class="cpp">// fac为分解，isp表示是否非质数，pri为质数数组，tot为pri的大小，pre为预处理的gcd数组，M为值域，T为sqrt(M)
+void work() {
+  fac[1][0] = fac[1][1] = fac[1][2] = 1;
+  for (int i = 2; i &lt;= M; ++i) {
+    if (!isp[i]) {
+      fac[i][0] = fac[i][1] = 1;
+      fac[i][2] = i;
+      pri[++tot] = i;
+    }
+    for (int j = 1; pri[j] * i &lt;= M; ++j) {
+      int tmp = pri[j] * i;
+      isp[tmp] = true;
+      fac[tmp][0] = fac[i][0] * pri[j];
+      fac[tmp][1] = fac[i][1];
+      fac[tmp][2] = fac[i][2];
+      if (fac[tmp][0] &gt; fac[tmp][1]) {
+        fac[tmp][0] ^= fac[tmp][1] ^= fac[tmp][0] ^= fac[tmp][1];
+      }
+      if (fac[tmp][1] &gt; fac[tmp][2]) {
+        fac[tmp][1] ^= fac[tmp][2] ^= fac[tmp][1] ^= fac[tmp][2];
+      }
+      if (i % pri[j] == 0) {
+        break;
+      }
+    }
+  }
+  for (int i = 0; i &lt;= T; ++i) {
+    pre[0][i] = pre[i][0] = i;
+  }
+  for (int i = 1; i &lt;= T; ++i) {
+    for (int j = 1; j &lt;= i; ++j) {
+      pre[i][j] = pre[j][i] = pre[j][i % j];
+    }
+  }
+}
+</code></pre>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p>若当前枚举的为$a$,只需注意$a&gt;\sqrt{N}$时分$a\mid y$和$a\nmid y$两种情况即可</p>
+<p>以下为代码</p>
+<pre><code class="cpp">int gcd(int a, int b) {
+//不想写if-else所以用三目运算符代替并缩进了一下
+  int ans = 1;
+  for (int i = 0; i &lt; 3; ++i) {
+    int tmp = (fac[a][i] &gt; T) ?
+                (b % fac[a][i] ?
+                   1
+                 : fac[a][i]
+                )
+              : pre[fac[a][i]][b % fac[a][i]];
+    b /= tmp;
+    ans *= tmp;
+  }
+  return ans;
+}
+</code></pre>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -544,7 +599,7 @@
                             本博客采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
                         </strong>
                         <br>
-                        <strong>本文链接：</strong><a href="https://blog.seniorious.cc/2019/CSP-2019/">https://blog.seniorious.cc/2019/CSP-2019/</a>
+                        <strong>本文链接：</strong><a href="https://blog.seniorious.cc/2020/quick-gcd/">https://blog.seniorious.cc/2020/quick-gcd/</a>
                     </p>
                 </blockquote>
         
@@ -596,21 +651,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2020/quick-gcd/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2019/luogu-3401/" id="post_nav-older" class="next-content">
+        <a href="/2019/CSP-2019/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

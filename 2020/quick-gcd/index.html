@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Thu Jan 23 2020 18:42:00 GMT+0800">
-        <meta property="article:modified_time" content="Fri Jan 24 2020 09:58:26 GMT+0800">
+        <meta property="article:modified_time" content="Fri Jan 24 2020 10:01:51 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2020/quick-gcd/index.html",
     "headline": "「学习笔记」O(1)求最大公约数",
     "datePublished": "Thu Jan 23 2020 18:42:00 GMT+0800",
-    "dateModified": "Fri Jan 24 2020 09:58:26 GMT+0800",
+    "dateModified": "Fri Jan 24 2020 10:01:51 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -520,7 +520,7 @@
 <li>$Prime$为全体素数集合</li>
 <li>集合$\{a_1,a_2,\cdots,a_m\}$是$n$的分解，当且仅当$a_1\times a_2\times\cdots\times a_m=n$</li>
 </ol>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="定理一"><a href="#定理一" class="headerlink" title="定理一"></a>定理一</h3><h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>将值域中的每个$x$分解成$\{a,b,c\}$,满足$a,b,c\leq\sqrt{x}$或$\in Prime$</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="定理一"><a href="#定理一" class="headerlink" title="定理一"></a>定理一</h3><h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>可以将值域中的每个$x$分解成$\{a,b,c\}$,满足$a,b,c\leq\sqrt{x}$或$\in Prime$（定义这种分解为合法分解）</p>
 <h4 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h4><p>不妨设$a\leq b\leq c$若$c\notin Prime$且$c&gt;\sqrt{x}$,则$c$可分解为$\{d,e\}$且$d\leq e$有$d\leq\sqrt{x}$,而$a\times b=\frac{x}{c}&lt;\sqrt{x}$则有$n$的分解$\{d,a\times b,e\}$,若$e&gt;\sqrt{x}$则可按该规律一直分解直到$e\in Prime$或$\leq\sqrt{x}$</p>
 <h3 id="定理二"><a href="#定理二" class="headerlink" title="定理二"></a>定理二</h3><h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><p>对于询问$\gcd(x,y)$,分别考虑$a,b,c$对答案的贡献,$a$对答案的贡献为$\gcd(a,y)$,再将$y$除以$\gcd(a,y)$（这个因子已经被算过，不能重复计算），再对$b,c$干同样的事，三个贡献相乘即为$\gcd(x,y)$</p>
 <h4 id="证明-1"><a href="#证明-1" class="headerlink" title="证明"></a>证明</h4><blockquote>
@@ -528,7 +528,7 @@
 </blockquote>
 <p>分别代入$\left\{<br>\begin{aligned}<br>&amp;p_1=a\times b\times c,q_1=y,r_1=\gcd(a,q_1) \\<br>&amp;p_2=b\times c,q_2=\frac{q_1}{r_1},r_2=\gcd(b,q_2) \\<br>&amp;p_3=c,q_3=\frac{q_2}{r_2},r_3=\gcd(c,q_3)<br>\end{aligned}<br>\right.<br>$即可</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我们发现实现的难点在于如何在$O(N)$时间内进行分解，询问部分较为容易</p>
-<h3 id="分解"><a href="#分解" class="headerlink" title="分解"></a>分解</h3><p>对于$x\geq2$,找到$x$的最小质因子$p$以及$\frac{x}{p}$的分解$\{a_0,b_0,c_0\}$且$a_0\leq b_0\leq c_0$,$x$的分解即为$\{a_0\times p,b_0,c_0\}$的升序排序</p>
+<h3 id="分解"><a href="#分解" class="headerlink" title="分解"></a>分解</h3><p>对于$x\geq2$,找到$x$的最小质因子$p$以及$\frac{x}{p}$的合法分解$\{a_0,b_0,c_0\}$且$a_0\leq b_0\leq c_0$,$x$的一种合法分解即为$\{a_0\times p,b_0,c_0\}$的升序排序</p>
 <p>考虑证明：</p>
 <ol>
 <li>$x\in Prime$时显然成立,分解为$\{1,1,x\}$</li>
@@ -536,7 +536,7 @@
 </ol>
 <p>所以只用跑一次线性筛，用最小质因子更新即可，然后预处理出$\sqrt{n}\times\sqrt{n}$的$\gcd$数组</p>
 <p>代码如下</p>
-<pre><code class="cpp">// fac为分解，isp表示是否非质数，pri为质数数组，tot为pri的大小，pre为预处理的gcd数组，M为值域，T为sqrt(M)
+<pre><code class="cpp">// fac为合法分解，isp表示是否非质数，pri为质数数组，tot为pri的大小，pre为预处理的gcd数组，M为值域，T为sqrt(M)
 void work() {
   fac[1][0] = fac[1][1] = fac[1][2] = 1;
   for (int i = 2; i &lt;= M; ++i) {

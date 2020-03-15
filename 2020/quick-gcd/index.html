@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Thu Jan 23 2020 18:42:00 GMT+0800">
-        <meta property="article:modified_time" content="Sat Feb 15 2020 20:00:31 GMT+0800">
+        <meta property="article:modified_time" content="Sat Mar 14 2020 11:09:32 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2020/quick-gcd/index.html",
     "headline": "「学习笔记」O(1)求最大公约数",
     "datePublished": "Thu Jan 23 2020 18:42:00 GMT+0800",
-    "dateModified": "Sat Feb 15 2020 20:00:31 GMT+0800",
+    "dateModified": "Sat Mar 14 2020 11:09:32 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -576,7 +576,7 @@ void work() {
 <h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p>若当前枚举的为$a$,只需注意$a&gt;\sqrt{N}$时分$a\mid y$和$a\nmid y$两种情况即可</p>
 <p>以下为代码</p>
 <pre><code class="cpp">int gcd(int a, int b) {
-//不想写if-else所以用三目运算符代替并缩进了一下
+// 不想写if-else所以用三目运算符代替并缩进了一下
   int ans = 1;
   for (int i = 0; i &lt; 3; ++i) {
     int tmp = (fac[a][i] &gt; T) ?

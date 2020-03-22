@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Mon Apr 22 2019 14:34:13 GMT+0800">
-        <meta property="article:modified_time" content="Sat Aug 10 2019 23:16:28 GMT+0800">
+        <meta property="article:modified_time" content="Sun Mar 22 2020 10:26:19 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2019/bnt-1/index.html",
     "headline": "「学习笔记」数论基础（一）：一些基础定义和定理",
     "datePublished": "Mon Apr 22 2019 14:34:13 GMT+0800",
-    "dateModified": "Sat Aug 10 2019 23:16:28 GMT+0800",
+    "dateModified": "Sun Mar 22 2020 10:26:19 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -516,7 +516,7 @@
     
         <p>笔者能力有限，如有误，请在评论区指正~<br><a id="more"></a><br>注：以下定理证明较为简单，证明过程可以略过</p>
 <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><h2 id="整除"><a href="#整除" class="headerlink" title="整除"></a>整除</h2><p>$$a,b\in Z,a\neq0$$<br>$$若\exists c\in N:a \times c=b$$<br>$$则称a整除b,记为a\mid b$$<br>$$PS:\in是属于, Z是整数集合,\exists是存在有$$</p>
-<h2 id="最大公约数"><a href="#最大公约数" class="headerlink" title="最大公约数"></a>最大公约数</h2><p>$$a,b\in Z且a,b不同时为0$$<br>$$将a,b的公约数中最大的称为最大公约数,记作(a,b)或\gcd(a,b)$$<br>$$以下是最大公约数的基本性质$$<br>$$\begin{align}<br>(a,b) &amp;=(b,a)\\<br>(a,b) &amp;=(-a,b)\\<br>(a,b) &amp;=(|a|,|b|)\\<br>(a,0) &amp;=|a|\\<br>(a,ka) &amp;=|a|(k\in Z)<br>\end{align}$$</p>
+<h2 id="最大公约数"><a href="#最大公约数" class="headerlink" title="最大公约数"></a>最大公约数</h2><p>$$a,b\in Z且a,b不同时为0$$<br>$$将a,b的公约数中最大的称为最大公约数,记作(a,b)或\gcd(a,b)$$<br>$$以下是最大公约数的基本性质$$<br>$$\begin{aligned}<br>(a,b) &amp;=(b,a)\\<br>(a,b) &amp;=(-a,b)\\<br>(a,b) &amp;=(|a|,|b|)\\<br>(a,0) &amp;=|a|\\<br>(a,ka) &amp;=|a|(k\in Z)<br>\end{aligned}$$</p>
 <h2 id="线性组合"><a href="#线性组合" class="headerlink" title="线性组合"></a>线性组合</h2><p>$$a,b,m,n\in Z$$<br>$$称形如ma+nb的整数为a,b的线性组合$$</p>
 <h2 id="带余除法"><a href="#带余除法" class="headerlink" title="带余除法"></a>带余除法</h2><p>$$a\in Z,n\in N^*$$<br>$$\exists!q,r\in Z:0\le r&lt;n且a=qn+r$$<br>$$称q=\lfloor \frac{a}{n}\rfloor为除法的商,r=a\mod{n}为除法的余数$$<br>$$PS:\exists!是存在且唯一$$</p>
 <h2 id="同余"><a href="#同余" class="headerlink" title="同余"></a>同余</h2><p>$$m\in N^*,a,b\in Z且m\mid a-b$$<br>$$则称a和b模m同余,记为a\equiv b\pmod{m}$$<br>$$PS:N^*是正整数集合$$</p>
@@ -529,7 +529,7 @@
 <h3 id="证明-2"><a href="#证明-2" class="headerlink" title="证明"></a>证明</h3><p>$$令d=ma+nb为a,b的线性组合中最小的正整数(m,n\in  Z)$$<br>$$将a表示为带余除法的形式a=dq+r(q,r\in  Z,0\le r&lt;d)$$<br>$$r=a-dq=a-(ma+nb)q=(a-mq)a-nqb$$<br>$$\therefore r是a,b的线性组合$$<br>$$又\because 0\le r&lt;d且d是a,b的线性组合中最小的正整数$$<br>$$\therefore r=0$$<br>$$\therefore a=dq$$<br>$$\therefore d\mid a$$<br>$$同理可得d\mid b$$<br>$$\forall c\in N^*:c\mid a,c\mid b$$<br>$$c\mid d(定理1)$$<br>$$若d\neq(a,b),则存在e=(a,b)&gt;d$$<br>$$\because e\mid a,e\mid b$$<br>$$\therefore e\mid d$$<br>$$而e&gt;d且e,d\in N^*$$<br>$$\therefore e\nmid d,自相矛盾$$<br>$$\therefore d=(a,b)$$</p>
 <h3 id="推论"><a href="#推论" class="headerlink" title="推论"></a>推论</h3><p>$$a,b\in  Z且a,b不全为0$$<br>$$\forall c\in N^*:c\mid a, c\mid b有c\mid (a,b)$$</p>
 <h2 id="定理4"><a href="#定理4" class="headerlink" title="定理4"></a>定理4</h2><h3 id="内容-3"><a href="#内容-3" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,e\in Z且(a,b)=d$$<br>$$那么(ae,be)=de$$</p>
-<h3 id="证明-3"><a href="#证明-3" class="headerlink" title="证明"></a>证明</h3><p>$$\begin{align}<br>(ae,be)&amp;=\min\{mae+nbe:m,n\in Z\}(定理3)\\<br>&amp;=\min\{e(ma+nb):m,n\in Z\}\\<br>&amp;=e\cdot \min\{ma+nb:m,n\in Z\}\\<br>&amp;=e\cdot (a,b)(定理3)<br>\end{align}$$</p>
+<h3 id="证明-3"><a href="#证明-3" class="headerlink" title="证明"></a>证明</h3><p>$$\begin{aligned}<br>(ae,be)&amp;=\min\{mae+nbe:m,n\in Z\}(定理3)\\<br>&amp;=\min\{e(ma+nb):m,n\in Z\}\\<br>&amp;=e\cdot \min\{ma+nb:m,n\in Z\}\\<br>&amp;=e\cdot (a,b)(定理3)<br>\end{aligned}$$</p>
 <h2 id="定理5"><a href="#定理5" class="headerlink" title="定理5"></a>定理5</h2><h3 id="内容-4"><a href="#内容-4" class="headerlink" title="内容"></a>内容</h3><p>$$a,b\in Z且(a,b)=d$$\<br>$$那么(\frac{a}{d},\frac{b}{d})=1$$</p>
 <h3 id="证明-4"><a href="#证明-4" class="headerlink" title="证明"></a>证明</h3><p>$$令(\frac{a}{d},\frac{b}{d})=e$$<br>$$(a,b)=de(定理4)$$<br>$$\because (a,b)=d$$<br>$$\therefore e=1$$<br>$$\therefore (\frac{a}{d},\frac{b}{d})=1$$</p>
 <h2 id="定理6"><a href="#定理6" class="headerlink" title="定理6"></a>定理6</h2><h3 id="内容-5"><a href="#内容-5" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,c\in N^*$$<br>$$(a,b)=1,a\mid bc$$<br>$$则a\mid c$$</p>
@@ -542,7 +542,7 @@
 <ol start="2">
 <li>$d\mid c的情况$</li>
 </ol>
-<p>$$由定理3得\exists s,t\in Z:as+bt=d$$<br>$$\frac{asc}{d}+\frac{btc}{d}=c$$<br>$$\because d|c$$<br>$$\therefore \frac{c}{d}\in Z$$<br>$$可得特解\begin{cases}x_0=\frac{sc}{d}\\y_0=\frac{tc}{d}\end{cases}$$<br>$$设x’,y’是任意一组整数解$$<br>$$\begin{cases}<br>ax’+by’&amp;=&amp;c\\<br>ax_0+by_0&amp;=&amp;c<br>\end{cases}$$<br>$$两式相减得a(x’-x_0)+b(y’-y_0)=0$$<br>$$a(x’-x_0)=b(y_0-y’)$$<br>$$\frac{a}{d}(x’-x_0)=\frac{b}{d}(y_0-y’)$$<br>$$\therefore \frac{b}{d}\mid\frac{a}{d}(x’-x_0)$$<br>$$又\because (\frac{a}{d},\frac{b}{d})=1(定理5)$$<br>$$\therefore \frac{b}{d}\mid(x’-x_0)(定理6)$$<br>$$\therefore\exists n\in Z:\frac{b}{d}\cdot n=x’-x_0$$<br>$$\begin{align}<br>\therefore x’&amp;=x_0+\frac{b}{d}\cdot n\\<br>同理y’&amp;=y_0-\frac{a}{d}\cdot n<br>\end{align}$$<br>$$\therefore原方程的解满足<br>\begin{cases}<br>x=x_0+\frac{b}{d}\cdot n\\<br>y=y_0-\frac{a}{d}\cdot n<br>\end{cases}$$</p>
+<p>$$由定理3得\exists s,t\in Z:as+bt=d$$<br>$$\frac{asc}{d}+\frac{btc}{d}=c$$<br>$$\because d|c$$<br>$$\therefore \frac{c}{d}\in Z$$<br>$$可得特解\begin{cases}x_0=\frac{sc}{d}\\y_0=\frac{tc}{d}\end{cases}$$<br>$$设x’,y’是任意一组整数解$$<br>$$\begin{cases}<br>ax’+by’&amp;=&amp;c\\<br>ax_0+by_0&amp;=&amp;c<br>\end{cases}$$<br>$$两式相减得a(x’-x_0)+b(y’-y_0)=0$$<br>$$a(x’-x_0)=b(y_0-y’)$$<br>$$\frac{a}{d}(x’-x_0)=\frac{b}{d}(y_0-y’)$$<br>$$\therefore \frac{b}{d}\mid\frac{a}{d}(x’-x_0)$$<br>$$又\because (\frac{a}{d},\frac{b}{d})=1(定理5)$$<br>$$\therefore \frac{b}{d}\mid(x’-x_0)(定理6)$$<br>$$\therefore\exists n\in Z:\frac{b}{d}\cdot n=x’-x_0$$<br>$$\begin{aligned}<br>\therefore x’&amp;=x_0+\frac{b}{d}\cdot n\\<br>同理y’&amp;=y_0-\frac{a}{d}\cdot n<br>\end{aligned}$$<br>$$\therefore原方程的解满足<br>\begin{cases}<br>x=x_0+\frac{b}{d}\cdot n\\<br>y=y_0-\frac{a}{d}\cdot n<br>\end{cases}$$</p>
 <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>原方程(即形如$ax+by=c(a,b,c\in Z)$)叫做二元线性丢番图方程</p>
 <h2 id="定理8"><a href="#定理8" class="headerlink" title="定理8"></a>定理8</h2><h3 id="内容-7"><a href="#内容-7" class="headerlink" title="内容"></a>内容</h3><p>$$a,b\in Z$$<br>$$a\equiv b\pmod{m}当且仅当\exists m\in Z:a=b+km$$</p>
 <h3 id="证明-7"><a href="#证明-7" class="headerlink" title="证明"></a>证明</h3><ol>
@@ -591,7 +591,7 @@
 <ol start="3">
 <li>$ac\equiv bd\pmod{m}$</li>
 </ol>
-<p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore\exists p\in Z:a-b=pm$$<br>$$同理\exists q\in Z:c-d=qm$$<br>$$\begin{align}<br>ac-bd&amp;=ac-bc-bd+bc\\<br>&amp;=(a-b)c-(b-d)c<br>&amp;=pmc-qmc<br>&amp;=(pc-qc)m<br>\end{align}$$<br>$$\therefore m\mid ac-bd$$<br>$$\therefore ac\equiv bd\pmod{m}$$</p>
+<p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore\exists p\in Z:a-b=pm$$<br>$$同理\exists q\in Z:c-d=qm$$<br>$$\begin{aligned}<br>ac-bd&amp;=ac-bc-bd+bc\\<br>&amp;=(a-b)c-(b-d)c\\<br>&amp;=pmc-qmc\\<br>&amp;=(pc-qc)m<br>\end{aligned}$$<br>$$\therefore m\mid ac-bd$$<br>$$\therefore ac\equiv bd\pmod{m}$$</p>
 <h2 id="定理12"><a href="#定理12" class="headerlink" title="定理12"></a>定理12</h2><h3 id="内容-11"><a href="#内容-11" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,c,d\in Z,m&gt;0,d=(c,m)$$<br>$$若ac\equiv bc\pmod{m}$$<br>$$则a\equiv b\pmod{\frac{m}{d}}$$</p>
 <h3 id="证明-11"><a href="#证明-11" class="headerlink" title="证明"></a>证明</h3><p>$$\because ac\equiv bc\pmod{m}$$<br>$$\therefore m\mid(a-b)c$$<br>$$\therefore\exists k\in Z:c(a-b)=km$$<br>$$\therefore\frac{c}{d}(a-b)=k\frac{m}{d}$$<br>$$\therefore(\frac{c}{d},\frac{m}{d})=1(定理5),\frac{m}{d}\mid\frac{c}{d}(a-b)$$<br>$$\therefore\frac{m}{d}\mid(a-b)(定理6)$$<br>$$\therefore a\equiv b\pmod{\frac{m}{d}}$$</p>
 <h3 id="推论-1"><a href="#推论-1" class="headerlink" title="推论"></a>推论</h3><p>$$a,b,c,m\in Z,(c,m)=1$$<br>$$若ac\equiv bc\pmod{m}$$<br>$$则a\equiv b\pmod{m}$$</p>

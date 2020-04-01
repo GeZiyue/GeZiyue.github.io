@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Tue Mar 31 2020 23:17:21 GMT+0800">
-        <meta property="article:modified_time" content="Wed Apr 01 2020 08:36:47 GMT+0800">
+        <meta property="article:modified_time" content="Wed Apr 01 2020 08:41:32 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2020/luogu-5395/index.html",
     "headline": "「洛谷P5395」第二类斯特林数·行 题解",
     "datePublished": "Tue Mar 31 2020 23:17:21 GMT+0800",
-    "dateModified": "Wed Apr 01 2020 08:36:47 GMT+0800",
+    "dateModified": "Wed Apr 01 2020 08:41:32 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -523,7 +523,7 @@
 <p>先将$m$个集合标号，钦定其中$i$个集合为空，$n$个元素任意安排到剩余的$m-i$个集合（可以为空）的方案数为$\binom{m}{i}\times(m-i)^n$，由于原先的集合是无标号的，所以还要除以$m!$</p>
 <p>于是就有：$m$个集合中<strong>至少</strong>有$i$个为空的方案数为$\frac{1}{m!}\times\binom{m}{i}\times(m-i)^n$</p>
 <p>考虑对其进行容斥，即可得所有集合非空的方案数：</p>
-<p>$\begin{aligned}\left\{\begin{matrix}n\\m\end{matrix}\right\}&amp;=\sum\limits^n_{i=0}(-1)^i\times\frac{1}{m!}\times\binom{m}{i}\times(m-i)^n\\&amp;=\sum\limits^n_{i=0}(-1)^i\times\frac{1}{m!}\times\frac{m!}{i!\times(m-i)!}\times(m-i)^n\\&amp;=\sum\limits^n_{i=0}\frac{(-1)^i}{i!}\times\frac{(m-i)^n}{(m-i)!}\end{aligned}$</p>
+<p>$$\begin{aligned}\left\{\begin{matrix}n\\m\end{matrix}\right\}&amp;=\sum\limits^n_{i=0}(-1)^i\times\frac{1}{m!}\times\binom{m}{i}\times(m-i)^n\\&amp;=\sum\limits^n_{i=0}(-1)^i\times\frac{1}{m!}\times\frac{m!}{i!\times(m-i)!}\times(m-i)^n\\&amp;=\sum\limits^n_{i=0}\frac{(-1)^i}{i!}\times\frac{(m-i)^n}{(m-i)!}\end{aligned}$$</p>
 <p>显然是一个卷积的形式，将$\sum\limits^n_{i=0}\frac{(-1)^i}{i!}x^i$和$\sum\limits^n_{i=0}\frac{i^n}{i!}x^i$做卷积，$i$次项的系数即为$\left\{\begin{matrix}n\\i\end{matrix}\right\}$</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>大概就是一个NTT板子</p>
 <pre><code class="cpp">class Polynomial {

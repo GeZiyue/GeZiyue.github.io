@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Thu Jan 23 2020 18:42:00 GMT+0800">
-        <meta property="article:modified_time" content="Sun Mar 22 2020 10:29:45 GMT+0800">
+        <meta property="article:modified_time" content="Sun Mar 22 2020 10:33:32 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2020/quick-gcd/index.html",
     "headline": "「学习笔记」O(1)求最大公约数",
     "datePublished": "Thu Jan 23 2020 18:42:00 GMT+0800",
-    "dateModified": "Sun Mar 22 2020 10:29:45 GMT+0800",
+    "dateModified": "Sun Mar 22 2020 10:33:32 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -526,7 +526,7 @@
 <h4 id="证明-1"><a href="#证明-1" class="headerlink" title="证明"></a>证明</h4><blockquote>
 <p>易得引理若$r\mid p, r\mid q$则$\gcd(p,q)=r\times\gcd(\frac{p}{r},\frac{q}{r})$</p>
 </blockquote>
-<p>分别代入$\left\{<br>\begin{cases}<br>&amp;p_1=a\times b\times c,q_1=y,r_1=\gcd(a,q_1) \\<br>&amp;p_2=b\times c,q_2=\frac{q_1}{r_1},r_2=\gcd(b,q_2) \\<br>&amp;p_3=c,q_3=\frac{q_2}{r_2},r_3=\gcd(c,q_3)<br>\end{cases}<br>\right.<br>$即可</p>
+<p>分别代入$<br>\begin{cases}<br>&amp;p_1=a\times b\times c,q_1=y,r_1=\gcd(a,q_1) \\<br>&amp;p_2=b\times c,q_2=\frac{q_1}{r_1},r_2=\gcd(b,q_2) \\<br>&amp;p_3=c,q_3=\frac{q_2}{r_2},r_3=\gcd(c,q_3)<br>\end{cases}<br>$即可</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我们发现实现的难点在于如何在$O(N)$时间内进行分解，询问部分较为容易</p>
 <h3 id="分解"><a href="#分解" class="headerlink" title="分解"></a>分解</h3><p>对于$x\geq2$,找到$x$的最小质因子$p$以及$\frac{x}{p}$的合法分解$\{a_0,b_0,c_0\}$且$a_0\leq b_0\leq c_0$,$x$的一种合法分解即为$\{a_0\times p,b_0,c_0\}$的升序排序</p>
 <p>考虑证明：</p>
@@ -651,6 +651,14 @@ void work() {
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
+        <a href="/2020/luogu-5408/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
@@ -749,7 +757,7 @@ void work() {
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a>
             </li></ul>
         </li>
         
@@ -767,7 +775,7 @@ void work() {
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/游记/">游记<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/categories/游记/">游记<span class="sidebar_archives-count">1</span></a>
             </li></ul>
         </li>
         

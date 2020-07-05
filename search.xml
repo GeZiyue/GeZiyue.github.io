@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>OI记忆（一）：初中的OI生涯</title>
+      <link href="/2020/OI-story-one/"/>
+      <url>/2020/OI-story-one/</url>
+      
+        <content type="html"><![CDATA[<p>初中OI学习的总结与回忆<br><a id="more"></a></p><p>省选结束，初中的OI生涯算是基本结束了吧，尝试着去写一些没人看的东西，大抵是流水账，对学弟学妹可能没什么参考价值，算是写给自己看的吧。</p><h2 id="〇、先讲讲初中以前"><a href="#〇、先讲讲初中以前" class="headerlink" title="〇、先讲讲初中以前"></a>〇、先讲讲初中以前</h2><p>机缘巧合中，小学接触了算法竞赛，六年级写打暴力拿了个普及一等(NOIP2016 310)，混进了本市最好的初中。说是混，是因为小学我大部分时间用在了打游戏上，没花多少时间练习，现在想来实在是很傻，算是浪费了一点机会吧。</p><h2 id="一、初一"><a href="#一、初一" class="headerlink" title="一、初一"></a>一、初一</h2><p>刚上初一的我甚至有些骄傲，后来才发现比我强的神仙多的去了，NOIP2017继续打暴力，320没进步多少。继续混到了我省的初中组省赛（在省选之余单独出套给初中生的题目，难度介于普及和提高之间），出考场发现我T1没开<code>long long</code> 以为自己T3能过成绩却是一分不拿，看着低得令人发指的成绩，我才意识到自己的菜逼和狂妄，那些我曾经看不起的却有些天赋异禀，早就超过了我。省选后的日子是我整个初中最认真的时间之一，每天早上5点多起来，让自己清醒后就开始学习，还记得当时学习了网络流，写了两三道网络流24题里的题，之后便要准备期末考试，便没有继续了。</p><p>初一从洛谷知道了珂朵莉，看了末日三问，从此变成二刺猿（雾），初一的暑假便又是颓废，一天能花好几个小时上b站，当时补了很多老番，事实证明：看番害人不浅（笑）。</p><h2 id="二、初二"><a href="#二、初二" class="headerlink" title="二、初二"></a>二、初二</h2><p>NOIP2018原先准备同时报普及提高后来只报了普及。在考场上胃疼，没发挥好，拿了个强差人意的分数。NOIP之后是文化课和混日子，OI啥都没学会，就写了些基础数据结构。</p><p>暑假去ASDFZ集训，NOIP模拟赛次次垫底，感觉NOIP后就要退役了，高中好好搞文化课，结果NOIP就没了，没能成功NOIP后退役，不过后来又有了CSP-J/S。</p><p>集训期间学了不少东西，做了不少题，比在家颓废效率高（笑）。</p><h2 id="三、初三"><a href="#三、初三" class="headerlink" title="三、初三"></a>三、初三</h2><p>开学后一边搞文化课一边训练。每周末的CSP模拟赛又是次次垫底。CSP前又学了不少东西。</p><p>CSP是有史以来发挥最好的一次，S组D1T1、T2打满，T3暴力出了锅不过只少5分，D2T1有些脑抽只打了64的暴力少打20分的傻逼dp，D2T2猜结论拿了88，D2T3没看到等号（是满二叉树）少打25，J组成功在初中AK了一次。打的暴力都没挂还猜中了一个结论算是挺不错了。</p><p>成功没有退役，苟在ASDFZ训练。上学期期末炸了，文科成绩像个憨憨。</p><p>报名了WC，打铁预定，过年前听了不少学长讲课。jyb新年1号文件强基计划在意料之中，但还是给竞赛生不小的意外，天知道下一步该怎么走。放假前在机房还有春节联欢，打扫卫生+吃蛋糕。lzz和wyy还有zzt来了，lzz和wyy。。。（酸了），以及名场面：lzz：（指着zzt的成绩版上的“APIO2018 银牌”，惊讶地）对zzt：“你怎么还有银牌啊？”。</p><p>新冠疫情一天一天加重，趁着电影院没封，年前去看了京紫的外传，回家路上看到了WC延迟的消息。</p><p>之后是快乐的网课生活，就是去年的讲课录屏，许多听不懂的，以及家中的环境让人发困。</p><p>之后复课了，但由于疫情防控的原因，直到省选前一周才会ASDFZ训练。延迟的一模成绩还不错。</p><p>省选成功垫底，AH用的A卷，D2T1想写60结果数组开大了全mle一分没拿，D1T3的暴力也没拿到分。（rp守恒的有力证据）。</p><p>省选垫底被训了嘤嘤嘤，还没考过初二学弟，枯了。在弱市中考没啥压力，考前OI为主，NOI模拟赛一场比一场懵逼，有一套之前出的模拟赛竟然考到了保序回归（省选D1T3），不过就算赛前考了我估计也做不出来2333。</p><h2 id="四、后记"><a href="#四、后记" class="headerlink" title="四、后记"></a>四、后记</h2><p>马上要中考了，升学没什么压力，但是对于高中的路十分迷茫，ASDFZ是被卡1/3最严重的学校之一，如果不放开可能会学两年OI然后碌碌无为地去搞高考吧。</p><p>竞赛这条路越来越扑朔迷离，很喜欢Z新豪的《布衣》中的一句歌词：“路在脚下何必问路在何方”，OIer是个很温馨的群体，对于热爱着的OI也难以舍弃，既然路在脚下，就大胆地向前走吧，热爱让我们相遇，热爱让我们前行。</p><p>谨以此文献给我珍重的OI记忆。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Diary </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Diary </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>「洛谷P5395」第二类斯特林数·行 题解</title>
       <link href="/2020/luogu-5395/"/>
       <url>/2020/luogu-5395/</url>
@@ -383,17 +408,6 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>友链</title>
       <link href="/links/index.html"/>
       <url>/links/index.html</url>
@@ -405,9 +419,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -416,9 +430,20 @@
     
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

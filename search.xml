@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>Blustein-FFT-Algorithm</title>
+      <title>「学习笔记」Blustein&#39;s FFT Algorithm 任意长度卷积算法</title>
       <link href="/2020/Blustein-FFT-Algorithm/"/>
       <url>/2020/Blustein-FFT-Algorithm/</url>
       
@@ -421,9 +421,9 @@
       
         <tags>
             
-            <tag> 动态规划 </tag>
-            
             <tag> 洛谷 </tag>
+            
+            <tag> 动态规划 </tag>
             
             <tag> USACO </tag>
             
@@ -459,9 +459,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -470,9 +470,9 @@
     
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

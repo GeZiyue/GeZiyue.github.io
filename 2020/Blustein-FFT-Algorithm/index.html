@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Tue Jul 21 2020 22:37:39 GMT+0800">
-        <meta property="article:modified_time" content="Tue Jul 21 2020 00:29:43 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jul 21 2020 00:32:32 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2020/Blustein-FFT-Algorithm/index.html",
     "headline": "「学习笔记」Blustein's FFT Algorithm 任意长度卷积算法",
     "datePublished": "Tue Jul 21 2020 22:37:39 GMT+0800",
-    "dateModified": "Tue Jul 21 2020 00:29:43 GMT+0800",
+    "dateModified": "Tue Jul 21 2020 00:32:32 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -516,9 +516,9 @@
     
         <p>简略介绍Bluestein’s FFT Algorithm，一种用于计算任意长度卷积的算法。</p>
 <a id="more"></a>
-<h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><p>当且仅当存在<strong>单位根</strong></p>
+<h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><p>简而言之，仅适用于存在<strong>单位根</strong>的情况</p>
 <ol>
-<li>显然任意长度FFT可以，$\omega_n=e^{\frac{2\pi i}{n}}$</li>
+<li>显然FFT可以，$\omega_n=e^{\frac{2\pi i}{n}}$</li>
 <li>NTT需满足$n\mid (Mod - 1),\omega_n=g^\frac{Mod-1}{n}$</li>
 </ol>
 <h2 id="推式子"><a href="#推式子" class="headerlink" title="推式子"></a>推式子</h2><p>考虑DFT的实质：求单位根处的点值。</p>

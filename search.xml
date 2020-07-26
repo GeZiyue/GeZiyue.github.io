@@ -5,8 +5,8 @@
     
     <entry>
       <title>「学习笔记」Bluestein&#39;s FFT Algorithm 任意长度卷积算法</title>
-      <link href="/2020/Bluestein-Algorithm/"/>
-      <url>/2020/Bluestein-Algorithm/</url>
+      <link href="/2020/Bluestein/"/>
+      <url>/2020/Bluestein/</url>
       
         <content type="html"><![CDATA[<p>简略介绍Bluestein’s FFT Algorithm，一种用于计算任意长度卷积的算法。</p><a id="more"></a><h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><p>简而言之，仅适用于存在<strong>单位根</strong>的情况</p><ol><li>显然FFT可以，$\omega_n=e^{\frac{2\pi i}{n}}$</li><li>NTT需满足$n\mid (Mod - 1),\omega_n=g^\frac{Mod-1}{n}$</li></ol><h2 id="推式子"><a href="#推式子" class="headerlink" title="推式子"></a>推式子</h2><p>考虑DFT的实质：求单位根处的点值。</p><p>设$f(x)=\sum\limits^n_{i=0}a_ix^i$</p><p>$f(\omega_n^k)=\sum\limits^n_{i=0}a_i\omega_n^{ik}$</p><p>考虑$ik=\binom{i+k}{2}-\binom{i}{2}-\binom{k}{2}$（用组合意义或暴力拆开都易证明）</p><p>$\begin{aligned}f(\omega_n^k)&amp;=\sum\limits^n_{i=0}a_i\omega_n^{\binom{i+k}{2}-\binom{i}{2}-\binom{k}{2}}\\&amp;=\omega_n^{-\binom{k}{2}}\sum\limits^n_{i=0}a_i\omega_n^{-\binom{i}{2}}\omega_n^\binom{i+k}{2}\end{aligned}$</p><p>考虑转为卷积的形式，不难发现$(n-i)+(i+k)=n+k$</p><p>设$g(x)=\sum\limits^n_{i=0}a_i\omega_n^{-\binom{i}{2}}x^{n-i}$和$h(x)=\sum\limits^{2n}_{i=0}\omega^{\binom{i}{2}}x^i$</p><p>$f(\omega_n^k)=\omega^{-\binom{k}{2}}\times([x^{n+k}]g(x)\times h(x))$</p><p>考虑IDFT即为对所有单位根取到数后跑DFT，将上文中所有二项式系数取相反数即可。</p><p><del>代码较为简单，不放了</del></p><h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>一般算卷积直接拓展到$2$的次幂即可，需要用到的场景主要为任意长度循环卷积，即$a_i\times b_j\rightarrow c_{(i+j)\operatorname{mod}n}$</p>]]></content>
       
@@ -448,9 +448,9 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -459,9 +459,9 @@
     
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

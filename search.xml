@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>「Codeforces 1284E」New Year and Castle Construction 题解</title>
+      <link href="/2020/CF-1284E/"/>
+      <url>/2020/CF-1284E/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/1284/E" target="_blank" rel="noopener">题目</a></p><a id="more"></a><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Codeforces </tag>
+            
+            <tag> 几何 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>「Codeforces 568B」Symmetric and Transitive 题解</title>
+      <link href="/2020/CF-568B/"/>
+      <url>/2020/CF-568B/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/568/B" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>计数$n$个元素的满足对称性、传递性，但不满足自反性的二元关系种数，$n\le4000$</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>发现若$a\sim b$则有$b\sim a,a\sim a,b\sim b$，所以一定存在不和其他所以元素相连的，不妨设有$n-k$个单独点，剩下的$k$个点可以分为几个集合（注意大小为$1$的集合不等于单独点，大小为$1$的集合有自身连自身），此时对答案的贡献为$\binom{n}{k}B_{k}$，其中$B_i$为第$i$个贝尔数，等于$\sum_{j=1}^i\left\{\begin{matrix}i\\j\end{matrix}\right\}$，于是答案就为$\sum_{i=0}^{n-1}\binom{n}{k}B_k$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">int fac[N], ifac[N];int S[N][N];int Bell[N];int n;int main () {  read(n);  fac[0] = 1;  for (int i = 1; i &lt;= n; ++i) {    fac[i] = fac[i - 1] * 1ll * i % Mod;  }  ifac[n] = pow(fac[n], Mod - 2, Mod);  for (int i = n - 1; i &gt;= 0; --i) {    ifac[i] = ifac[i + 1] * 1ll * (i + 1) % Mod;  }  S[0][0] = 1;  Bell[0] = 1;  for (int i = 1; i &lt;= n; ++i) {    for (int j = 1; j &lt;= i; ++j) {      S[i][j] = (S[i - 1][j - 1] + S[i - 1][j] * 1ll * j % Mod) % Mod;      Bell[i] = (Bell[i] + S[i][j]) % Mod;    }  }  int ans = 0;  for (int i = 0; i &lt; n; ++i) {    ans = (ans + C(n, i) * 1ll * Bell[i] % Mod) % Mod;  }  write(ans), EL;  return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Codeforces </tag>
+            
+            <tag> 计数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>「学习笔记」Bluestein&#39;s FFT Algorithm 任意长度卷积算法</title>
       <link href="/2020/Bluestein/"/>
       <url>/2020/Bluestein/</url>
@@ -317,11 +371,11 @@
       
         <tags>
             
+            <tag> 洛谷 </tag>
+            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
-            
-            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -353,7 +407,7 @@
       <link href="/2019/bnt-1/"/>
       <url>/2019/bnt-1/</url>
       
-        <content type="html"><![CDATA[<p>笔者能力有限，如有误，请在评论区指正~<br><a id="more"></a><br>注：以下定理证明较为简单，证明过程可以略过</p><h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><h2 id="整除"><a href="#整除" class="headerlink" title="整除"></a>整除</h2><p>$$a,b\in Z,a\neq0$$<br>$$若\exists c\in N:a \times c=b$$<br>$$则称a整除b,记为a\mid b$$<br>$$PS:\in是属于, Z是整数集合,\exists是存在有$$</p><h2 id="最大公约数"><a href="#最大公约数" class="headerlink" title="最大公约数"></a>最大公约数</h2><p>$$a,b\in Z且a,b不同时为0$$<br>$$将a,b的公约数中最大的称为最大公约数,记作(a,b)或\gcd(a,b)$$<br>$$以下是最大公约数的基本性质$$<br>$$\begin{aligned}<br>(a,b) &amp;=(b,a)\\<br>(a,b) &amp;=(-a,b)\\<br>(a,b) &amp;=(|a|,|b|)\\<br>(a,0) &amp;=|a|\\<br>(a,ka) &amp;=|a|(k\in Z)<br>\end{aligned}$$</p><h2 id="线性组合"><a href="#线性组合" class="headerlink" title="线性组合"></a>线性组合</h2><p>$$a,b,m,n\in Z$$<br>$$称形如ma+nb的整数为a,b的线性组合$$</p><h2 id="带余除法"><a href="#带余除法" class="headerlink" title="带余除法"></a>带余除法</h2><p>$$a\in Z,n\in N^*$$<br>$$\exists!q,r\in Z:0\le r&lt;n且a=qn+r$$<br>$$称q=\lfloor \frac{a}{n}\rfloor为除法的商,r=a\mod{n}为除法的余数$$<br>$$PS:\exists!是存在且唯一$$</p><h2 id="同余"><a href="#同余" class="headerlink" title="同余"></a>同余</h2><p>$$m\in N^*,a,b\in Z且m\mid a-b$$<br>$$则称a和b模m同余,记为a\equiv b\pmod{m}$$<br>$$PS:N^*是正整数集合$$</p><h2 id="完全剩余系"><a href="#完全剩余系" class="headerlink" title="完全剩余系"></a>完全剩余系</h2><p>$$若一个整数集合A使得\forall a\in Z,\exists! b\in A:b\equiv a\pmod{m}\space(m\in N*)$$<br>$$则称A是一个模m的完全剩余系$$<br>$$PS:\forall是任意$$</p><h1 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h1><h2 id="定理1"><a href="#定理1" class="headerlink" title="定理1"></a>定理1</h2><h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><p>$$若a,b,m,n\in Z, 且c\mid a, c\mid b$$<br>$$则c\mid ma+nb$$</p><h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>$$令cp=a, cq=b$$<br>$$ma+nb=cmp+cnq=c(mp+nq)$$<br>$$\therefore c\mid ma+nb$$</p><h2 id="定理2"><a href="#定理2" class="headerlink" title="定理2"></a>定理2</h2><h3 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h3><p>$$若a,b,c\in  Z$$<br>$$则(a,b)=(a+cb,b)$$</p><h3 id="证明-1"><a href="#证明-1" class="headerlink" title="证明"></a>证明</h3><p>$$令集合A为a与b的所有公因子,集合B为a+cb与b的所有公因子$$<br>$$\forall m\in A$$<br>$$\because m\mid a,m\mid b$$<br>$$\therefore m|1\times a+c\times b(定理1)$$<br>$$\therefore m\in B$$<br>$$\therefore A\subseteq B$$<br>$$\forall n\in B$$<br>$$\because n\mid a+cb,m\mid b$$<br>$$\therefore n|1\times(a+cb)+(-c)\times b(定理1)$$<br>$$\therefore n\in A$$<br>$$\therefore B\subseteq A$$<br>$$\therefore A=B$$<br>$$\therefore (a,b)=(a+cb,b)$$</p><h2 id="定理3"><a href="#定理3" class="headerlink" title="定理3"></a>定理3</h2><h3 id="内容-2"><a href="#内容-2" class="headerlink" title="内容"></a>内容</h3><p>$$a,b\in  Z且a,b不全为0$$<br>$$(a,b)是a,b的线性组合中最小的正整数$$</p><h3 id="证明-2"><a href="#证明-2" class="headerlink" title="证明"></a>证明</h3><p>$$令d=ma+nb为a,b的线性组合中最小的正整数(m,n\in  Z)$$<br>$$将a表示为带余除法的形式a=dq+r(q,r\in  Z,0\le r&lt;d)$$<br>$$r=a-dq=a-(ma+nb)q=(a-mq)a-nqb$$<br>$$\therefore r是a,b的线性组合$$<br>$$又\because 0\le r&lt;d且d是a,b的线性组合中最小的正整数$$<br>$$\therefore r=0$$<br>$$\therefore a=dq$$<br>$$\therefore d\mid a$$<br>$$同理可得d\mid b$$<br>$$\forall c\in N^*:c\mid a,c\mid b$$<br>$$c\mid d(定理1)$$<br>$$若d\neq(a,b),则存在e=(a,b)&gt;d$$<br>$$\because e\mid a,e\mid b$$<br>$$\therefore e\mid d$$<br>$$而e&gt;d且e,d\in N^*$$<br>$$\therefore e\nmid d,自相矛盾$$<br>$$\therefore d=(a,b)$$</p><h3 id="推论"><a href="#推论" class="headerlink" title="推论"></a>推论</h3><p>$$a,b\in  Z且a,b不全为0$$<br>$$\forall c\in N^*:c\mid a, c\mid b有c\mid (a,b)$$</p><h2 id="定理4"><a href="#定理4" class="headerlink" title="定理4"></a>定理4</h2><h3 id="内容-3"><a href="#内容-3" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,e\in Z且(a,b)=d$$<br>$$那么(ae,be)=de$$</p><h3 id="证明-3"><a href="#证明-3" class="headerlink" title="证明"></a>证明</h3><p>$$\begin{aligned}<br>(ae,be)&amp;=\min\{mae+nbe:m,n\in Z\}(定理3)\\<br>&amp;=\min\{e(ma+nb):m,n\in Z\}\\<br>&amp;=e\cdot \min\{ma+nb:m,n\in Z\}\\<br>&amp;=e\cdot (a,b)(定理3)<br>\end{aligned}$$</p><h2 id="定理5"><a href="#定理5" class="headerlink" title="定理5"></a>定理5</h2><h3 id="内容-4"><a href="#内容-4" class="headerlink" title="内容"></a>内容</h3><p>$$a,b\in Z且(a,b)=d$$\<br>$$那么(\frac{a}{d},\frac{b}{d})=1$$</p><h3 id="证明-4"><a href="#证明-4" class="headerlink" title="证明"></a>证明</h3><p>$$令(\frac{a}{d},\frac{b}{d})=e$$<br>$$(a,b)=de(定理4)$$<br>$$\because (a,b)=d$$<br>$$\therefore e=1$$<br>$$\therefore (\frac{a}{d},\frac{b}{d})=1$$</p><h2 id="定理6"><a href="#定理6" class="headerlink" title="定理6"></a>定理6</h2><h3 id="内容-5"><a href="#内容-5" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,c\in N^*$$<br>$$(a,b)=1,a\mid bc$$<br>$$则a\mid c$$</p><h3 id="证明-5"><a href="#证明-5" class="headerlink" title="证明"></a>证明</h3><p>$$\because (a,b)=1$$<br>$$\therefore \exists d,e\in Z:da+eb=1$$<br>$$\therefore dac+eac=c$$<br>$$\because a\mid a,a\mid bc$$<br>$$\therefore a\mid ec\times a+f\times bc$$<br>$$\therefore a\mid c$$</p><h2 id="定理7-裴蜀定理"><a href="#定理7-裴蜀定理" class="headerlink" title="定理7(裴蜀定理)"></a>定理7(裴蜀定理)</h2><h3 id="内容-6"><a href="#内容-6" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,c\in Z,(a,b)=d$$<br>$$\begin{cases}<br>若d\nmid c,那么方程ax+by=c无整数解\\<br>若d\mid c,那么方程ax+by=c有无穷个整数解\\<br>若方程有解,所有的解可以表示为<br>\begin{cases}<br>x=x_0+\frac{b}{d}\cdot n\\<br>y=y_0-\frac{a}{d}\cdot n<br>\end{cases}<br>(n\in Z,x_0,y_0是方程的一组特解)<br>\end{cases}$$</p><h3 id="证明-6"><a href="#证明-6" class="headerlink" title="证明"></a>证明</h3><ol><li>$d\nmid c$的情况</li></ol><p>$$\because d\mid a,d\mid b$$<br>$$\therefore d\mid ax+by$$<br>$$而d\nmid c$$<br>$$\therefore 原方程无解$$</p><ol start="2"><li>$d\mid c的情况$</li></ol><p>$$由定理3得\exists s,t\in Z:as+bt=d$$<br>$$\frac{asc}{d}+\frac{btc}{d}=c$$<br>$$\because d|c$$<br>$$\therefore \frac{c}{d}\in Z$$<br>$$可得特解\begin{cases}x_0=\frac{sc}{d}\\y_0=\frac{tc}{d}\end{cases}$$<br>$$设x’,y’是任意一组整数解$$<br>$$\begin{cases}<br>ax’+by’&amp;=&amp;c\\<br>ax_0+by_0&amp;=&amp;c<br>\end{cases}$$<br>$$两式相减得a(x’-x_0)+b(y’-y_0)=0$$<br>$$a(x’-x_0)=b(y_0-y’)$$<br>$$\frac{a}{d}(x’-x_0)=\frac{b}{d}(y_0-y’)$$<br>$$\therefore \frac{b}{d}\mid\frac{a}{d}(x’-x_0)$$<br>$$又\because (\frac{a}{d},\frac{b}{d})=1(定理5)$$<br>$$\therefore \frac{b}{d}\mid(x’-x_0)(定理6)$$<br>$$\therefore\exists n\in Z:\frac{b}{d}\cdot n=x’-x_0$$<br>$$\begin{aligned}<br>\therefore x’&amp;=x_0+\frac{b}{d}\cdot n\\<br>同理y’&amp;=y_0-\frac{a}{d}\cdot n<br>\end{aligned}$$<br>$$\therefore原方程的解满足<br>\begin{cases}<br>x=x_0+\frac{b}{d}\cdot n\\<br>y=y_0-\frac{a}{d}\cdot n<br>\end{cases}$$</p><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>原方程(即形如$ax+by=c(a,b,c\in Z)$)叫做二元线性丢番图方程</p><h2 id="定理8"><a href="#定理8" class="headerlink" title="定理8"></a>定理8</h2><h3 id="内容-7"><a href="#内容-7" class="headerlink" title="内容"></a>内容</h3><p>$$a,b\in Z$$<br>$$a\equiv b\pmod{m}当且仅当\exists m\in Z:a=b+km$$</p><h3 id="证明-7"><a href="#证明-7" class="headerlink" title="证明"></a>证明</h3><ol><li>充分性</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore m\mid a-b$$<br>$$\therefore\exists k\in Z:a-b=km$$<br>$$\therefore a=b+km$$</p><ol start="2"><li>必要性</li></ol><p>$$\because a=b+km(k\in Z)$$<br>$$\therefore a-b=km$$<br>$$\therefore m\mid a-b$$<br>$$\therefore a\equiv b\pmod{m}$$</p><h2 id="定理9"><a href="#定理9" class="headerlink" title="定理9"></a>定理9</h2><h3 id="内容-8"><a href="#内容-8" class="headerlink" title="内容"></a>内容</h3><p>$$m\in N^*,模m的同余满足以下性质:$$<br>$$1.自反性:若a\in Z,则a\equiv a\pmod{m}$$<br>$$2.对称性:若a,b\in Z且a\equiv b\pmod{m},则b\equiv a\pmod{m}$$<br>$$3.传递性:若a,b,c\in Z且a\equiv b\pmod{m}, b\equiv c\pmod{m},则a\equiv c\pmod{m}$$</p><h3 id="证明-8"><a href="#证明-8" class="headerlink" title="证明"></a>证明</h3><ol><li>自反性</li></ol><p>$$\because m\mid0$$<br>$$\therefore m\mid a-a$$<br>$$\therefore a\equiv a\pmod{m}$$</p><ol start="2"><li>对称性</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore \exists k\in Z:a=b+km$$<br>$$\therefore a-b=km$$<br>$$\therefore b-a=-km$$<br>$$\therefore m\mid b-a$$<br>$$b\equiv a\pmod{m}$$</p><ol start="3"><li>传递性</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore m\mid a-b$$<br>$$\therefore \exists p\in Z:a-b=pm$$<br>$$同理\exists q\in Z:b-c=qm$$<br>$$两式相加得a-c=(p+q)m$$<br>$$\therefore m|a-c$$<br>$$\therefore a\equiv c\pmod{m}$$</p><h2 id="定理10"><a href="#定理10" class="headerlink" title="定理10"></a>定理10</h2><h3 id="内容-9"><a href="#内容-9" class="headerlink" title="内容"></a>内容</h3><p>$$若a,b,c\in Z,m&gt;0,a\equiv b\pmod{m}$$<br>$$则\begin{cases}<br>a+c\equiv b+c\pmod{m}\\<br>a-c\equiv b-c\pmod{m}\\<br>ac\equiv bc\pmod{m}<br>\end{cases}$$</p><h3 id="证明-9"><a href="#证明-9" class="headerlink" title="证明"></a>证明</h3><ol><li>$a+c\equiv b+c\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore m\mid a-b$$<br>$$\therefore m\mid (a+c)-(b+c)$$<br>$$\therefore a+c\equiv b+c\pmod{m}$$</p><ol start="2"><li>$a-c\equiv b-c\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore m\mid a-b$$<br>$$\therefore m\mid (a-c)-(b-c)$$<br>$$\therefore a-c\equiv b-c\pmod{m}$$</p><ol start="3"><li>$ac\equiv bc\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore m\mid a-b$$<br>$$\therefore m\mid c(a-b)$$<br>$$\therefore m\mid ac-bc$$<br>$$\therefore ac\equiv bc\pmod{m}$$</p><h2 id="定理11"><a href="#定理11" class="headerlink" title="定理11"></a>定理11</h2><h3 id="内容-10"><a href="#内容-10" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,c,d,m\in Z,m&gt;0$$<br>$$若a\equiv b\pmod{m},c\equiv d\pmod{m}$$<br>$$则\begin{cases}<br>a+c\equiv b+d\pmod{m}\\<br>a-c\equiv b-d\pmod{m}\\<br>ac\equiv bd\pmod{m}<br>\end{cases}$$</p><h3 id="证明-10"><a href="#证明-10" class="headerlink" title="证明"></a>证明</h3><ol><li>$a+c\equiv b+d\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore\exists p\in Z:a-b=pm$$<br>$$同理\exists q\in Z:c-d=qm$$<br>$$两式相加得(a+c)-(b+d)=(p+q)m$$<br>$$\therefore a+c\equiv b+d\pmod{m}$$</p><ol start="2"><li>$a-c\equiv b-d\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore\exists p\in Z:a-b=pm$$<br>$$同理\exists q\in Z:c-d=qm$$<br>$$两式相减得(a-c)-(b-d)=(p-q)m$$<br>$$\therefore a-c\equiv b-d\pmod{m}$$</p><ol start="3"><li>$ac\equiv bd\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore\exists p\in Z:a-b=pm$$<br>$$同理\exists q\in Z:c-d=qm$$<br>$$\begin{aligned}<br>ac-bd&amp;=ac-bc-bd+bc\\<br>&amp;=(a-b)c-(b-d)c\\<br>&amp;=pmc-qmc\\<br>&amp;=(pc-qc)m<br>\end{aligned}$$<br>$$\therefore m\mid ac-bd$$<br>$$\therefore ac\equiv bd\pmod{m}$$</p><h2 id="定理12"><a href="#定理12" class="headerlink" title="定理12"></a>定理12</h2><h3 id="内容-11"><a href="#内容-11" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,c,d\in Z,m&gt;0,d=(c,m)$$<br>$$若ac\equiv bc\pmod{m}$$<br>$$则a\equiv b\pmod{\frac{m}{d}}$$</p><h3 id="证明-11"><a href="#证明-11" class="headerlink" title="证明"></a>证明</h3><p>$$\because ac\equiv bc\pmod{m}$$<br>$$\therefore m\mid(a-b)c$$<br>$$\therefore\exists k\in Z:c(a-b)=km$$<br>$$\therefore\frac{c}{d}(a-b)=k\frac{m}{d}$$<br>$$\therefore(\frac{c}{d},\frac{m}{d})=1(定理5),\frac{m}{d}\mid\frac{c}{d}(a-b)$$<br>$$\therefore\frac{m}{d}\mid(a-b)(定理6)$$<br>$$\therefore a\equiv b\pmod{\frac{m}{d}}$$</p><h3 id="推论-1"><a href="#推论-1" class="headerlink" title="推论"></a>推论</h3><p>$$a,b,c,m\in Z,(c,m)=1$$<br>$$若ac\equiv bc\pmod{m}$$<br>$$则a\equiv b\pmod{m}$$</p><h2 id="定理13"><a href="#定理13" class="headerlink" title="定理13"></a>定理13</h2><h3 id="内容-12"><a href="#内容-12" class="headerlink" title="内容"></a>内容</h3><p>$$若\{r_1,r_2,\dots,r_m\}是一个模m的完全剩余系,且正整数a使得(a,m)=1$$<br>$$则\forall b\in Z有\{a\cdot r_1+b,a\cdot r_2+b\dots,a\cdot r_m+b\}是一个模m完全剩余系$$</p><h3 id="证明-12"><a href="#证明-12" class="headerlink" title="证明"></a>证明</h3><p>$$设i,j\in([1,m]\cup N)且a\cdot r_i+b\equiv a\cdot r_j+b\pmod{m}$$<br>$$\therefore a\cdot r_i\equiv a\cdot r_j\pmod{m}\space(定理10.2)$$<br>$$\because (a,m)=1$$<br>$$\therefore r_i\equiv r_j\pmod{m}\space(定理12.推论)$$<br>$$又\because一个完全剩余系中的数两两不同余(完全剩余系的定义)$$<br>$$\therefore i=j$$<br>$$\therefore\{a\cdot r_1+b,a\cdot r_2+b\dots,a\cdot r_m+b\}中的数模m两两不同余$$<br>$$\therefore\{a\cdot r_1+b,a\cdot r_2+b\dots,a\cdot r_m+b\}是一个模m完全剩余系$$</p>]]></content>
+        <content type="html"><![CDATA[<p>笔者能力有限，如有误，请在评论区指正~<br><a id="more"></a><br>注：以下定理证明较为简单，证明过程可以略过</p><h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><h2 id="整除"><a href="#整除" class="headerlink" title="整除"></a>整除</h2><p>$$a,b\in\mathbb{Z},a\neq0$$<br>$$若\exists c\in\mathbb{Z}:a \times c=b$$<br>$$则称a整除b,记为a\mid b$$</p><h2 id="最大公约数"><a href="#最大公约数" class="headerlink" title="最大公约数"></a>最大公约数</h2><p>$$a,b\in\mathbb{Z}且a,b不同时为0$$<br>$$将a,b的公约数中最大的称为最大公约数,记作(a,b)或\gcd(a,b)$$<br>$$以下是最大公约数的基本性质$$<br>$$\begin{aligned}<br>(a,b) &amp;=(b,a)\\<br>(a,b) &amp;=(-a,b)\\<br>(a,b) &amp;=(|a|,|b|)\\<br>(a,0) &amp;=|a|\\<br>(a,ka) &amp;=|a|(k\in \mathbb{Z})<br>\end{aligned}$$</p><h2 id="线性组合"><a href="#线性组合" class="headerlink" title="线性组合"></a>线性组合</h2><p>$$a,b,m,n\in\mathbb{Z}$$<br>$$称形如ma+nb的整数为a,b的线性组合$$</p><h2 id="带余除法"><a href="#带余除法" class="headerlink" title="带余除法"></a>带余除法</h2><p>$$a\in\mathbb{Z},n\in\mathbb{N^+}$$<br>$$\exists!q,r\in\mathbb{Z}:0\le r&lt;n且a=qn+r$$<br>$$称q=\lfloor \frac{a}{n}\rfloor为除法的商,r=a\mod{n}为除法的余数$$</p><h2 id="同余"><a href="#同余" class="headerlink" title="同余"></a>同余</h2><p>$$m\in\mathbb{N^+},a,b\in\mathbb{Z}且m\mid a-b$$<br>$$则称a和b模m同余,记为a\equiv b\pmod{m}$$</p><h2 id="完全剩余系"><a href="#完全剩余系" class="headerlink" title="完全剩余系"></a>完全剩余系</h2><p>$$若一个整数集合A使得\forall a\in\mathbb{Z},\exists! b\in A:b\equiv a\pmod{m}\space(m\in\mathbb{N^+})$$<br>$$则称A是一个模m的完全剩余系$$</p><h1 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h1><h2 id="定理1"><a href="#定理1" class="headerlink" title="定理1"></a>定理1</h2><h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><p>$$若a,b,m,n\in\mathbb{Z}, 且c\mid a, c\mid b$$<br>$$则c\mid ma+nb$$</p><h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>$$令cp=a, cq=b$$<br>$$ma+nb=cmp+cnq=c(mp+nq)$$<br>$$\therefore c\mid ma+nb$$</p><h2 id="定理2"><a href="#定理2" class="headerlink" title="定理2"></a>定理2</h2><h3 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h3><p>$$若a,b,c\in  \\mathbb{Z}$$<br>$$则(a,b)=(a+cb,b)$$</p><h3 id="证明-1"><a href="#证明-1" class="headerlink" title="证明"></a>证明</h3><p>$$令集合A为a与b的所有公因子,集合B为a+cb与b的所有公因子$$<br>$$\forall m\in A$$<br>$$\because m\mid a,m\mid b$$<br>$$\therefore m|1\times a+c\times b(定理1)$$<br>$$\therefore m\in B$$<br>$$\therefore A\subseteq B$$<br>$$\forall n\in B$$<br>$$\because n\mid a+cb,m\mid b$$<br>$$\therefore n|1\times(a+cb)+(-c)\times b(定理1)$$<br>$$\therefore n\in A$$<br>$$\therefore B\subseteq A$$<br>$$\therefore A=B$$<br>$$\therefore (a,b)=(a+cb,b)$$</p><h2 id="定理3"><a href="#定理3" class="headerlink" title="定理3"></a>定理3</h2><h3 id="内容-2"><a href="#内容-2" class="headerlink" title="内容"></a>内容</h3><p>$$a,b\in  \mathbb{Z}且a\mathbb{Z}不全为0$$<br>$$(a,b)是a,b的线性组合中最小的正整数$$</p><h3 id="证明-2"><a href="#证明-2" class="headerlink" title="证明"></a>证明</h3><p>$$令d=ma+nb为a,b的线性组合中最小的正整数(m,n\in  \mathbb{Z})$$<br>$$将a表示为带余除法的形式a=dq+r(q,r\in  \mathbb{Z},0\le r&lt;d)$$<br>$$r=a-dq=a-(ma+nb)q=(a-mq)a-nqb$$<br>$$\therefore r是a,b的线性组合$$<br>$$又\because 0\le r&lt;d且d是a,b的线性组合中最小的正整数$$<br>$$\therefore r=0$$<br>$$\therefore a=dq$$<br>$$\therefore d\mid a$$<br>$$同理可得d\mid b$$<br>$$\forall c\in\mathbb{N^+}:c\mid a,c\mid b$$<br>$$c\mid d(定理1)$$<br>$$若d\neq(a,b),则存在e=(a,b)&gt;d$$<br>$$\because e\mid a,e\mid b$$<br>$$\therefore e\mid d$$<br>$$而e&gt;d且e,d\in\mathbb{N^+}$$<br>$$\therefore e\nmid d,自相矛盾$$<br>$$\therefore d=(a,b)$$</p><h3 id="推论"><a href="#推论" class="headerlink" title="推论"></a>推论</h3><p>$$a,b\in  \mathbb{Z}且a,b不全为0$$<br>$$\forall c\in\mathbb{N^+}:c\mid a, c\mid b有c\mid (a,b)$$</p><h2 id="定理4"><a href="#定理4" class="headerlink" title="定理4"></a>定理4</h2><h3 id="内容-3"><a href="#内容-3" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,e\in \mathbb{Z}且(a,b)=d$$<br>$$那么(ae,be)=de$$</p><h3 id="证明-3"><a href="#证明-3" class="headerlink" title="证明"></a>证明</h3><p>$$\begin{aligned}<br>(ae,be)&amp;=\min\{mae+nbe:m,n\in \mathbb{Z}\}(定理3)\\<br>&amp;=\min\{e(ma+nb):m,n\in \mathbb{Z}\}\\<br>&amp;=e\cdot \min\{ma+nb:m,n\in \mathbb{Z}\}\\<br>&amp;=e\cdot (a,b)(定理3)<br>\end{aligned}$$</p><h2 id="定理5"><a href="#定理5" class="headerlink" title="定理5"></a>定理5</h2><h3 id="内容-4"><a href="#内容-4" class="headerlink" title="内容"></a>内容</h3><p>$$a,b\in \mathbb{Z}且(a,b)=d$$<br>$$那么(\frac{a}{d},\frac{b}{d})=1$$</p><h3 id="证明-4"><a href="#证明-4" class="headerlink" title="证明"></a>证明</h3><p>$$令(\frac{a}{d},\frac{b}{d})=e$$<br>$$(a,b)=de(定理4)$$<br>$$\because (a,b)=d$$<br>$$\therefore e=1$$<br>$$\therefore (\frac{a}{d},\frac{b}{d})=1$$</p><h2 id="定理6"><a href="#定理6" class="headerlink" title="定理6"></a>定理6</h2><h3 id="内容-5"><a href="#内容-5" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,c\in\mathbb{N^+}$$<br>$$(a,b)=1,a\mid bc$$<br>$$则a\mid c$$</p><h3 id="证明-5"><a href="#证明-5" class="headerlink" title="证明"></a>证明</h3><p>$$\because (a,b)=1$$<br>$$\therefore \exists d,e\in \mathbb{Z}:da+eb=1$$<br>$$\therefore dac+eac=c$$<br>$$\because a\mid a,a\mid bc$$<br>$$\therefore a\mid ec\times a+f\times bc$$<br>$$\therefore a\mid c$$</p><h2 id="定理7-裴蜀定理"><a href="#定理7-裴蜀定理" class="headerlink" title="定理7(裴蜀定理)"></a>定理7(裴蜀定理)</h2><h3 id="内容-6"><a href="#内容-6" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,c\in \mathbb{Z},(a,b)=d$$<br>$$\begin{cases}<br>若d\nmid c,那么方程ax+by=c无整数解\\<br>若d\mid c,那么方程ax+by=c有无穷个整数解\\<br>若方程有解,所有的解可以表示为<br>\begin{cases}<br>x=x_0+\frac{b}{d}\cdot n\\<br>y=y_0-\frac{a}{d}\cdot n<br>\end{cases}<br>(n\in \mathbb{Z},x_0,y_0是方程的一组特解)<br>\end{cases}$$</p><h3 id="证明-6"><a href="#证明-6" class="headerlink" title="证明"></a>证明</h3><ol><li>$d\nmid c$的情况</li></ol><p>$$\because d\mid a,d\mid b$$<br>$$\therefore d\mid ax+by$$<br>$$而d\nmid c$$<br>$$\therefore 原方程无解$$</p><ol start="2"><li>$d\mid c的情况$</li></ol><p>$$由定理3得\exists s,t\in \mathbb{Z}:as+bt=d$$<br>$$\frac{asc}{d}+\frac{btc}{d}=c$$<br>$$\because d|c$$<br>$$\therefore \frac{c}{d}\in \mathbb{Z}$$<br>$$可得特解\begin{cases}x_0=\frac{sc}{d}\\y_0=\frac{tc}{d}\end{cases}$$<br>$$设x’,y’是任意一组整数解$$<br>$$\begin{cases}<br>ax’+by’&amp;=&amp;c\\<br>ax_0+by_0&amp;=&amp;c<br>\end{cases}$$<br>$$两式相减得a(x’-x_0)+b(y’-y_0)=0$$<br>$$a(x’-x_0)=b(y_0-y’)$$<br>$$\frac{a}{d}(x’-x_0)=\frac{b}{d}(y_0-y’)$$<br>$$\therefore \frac{b}{d}\mid\frac{a}{d}(x’-x_0)$$<br>$$又\because (\frac{a}{d},\frac{b}{d})=1(定理5)$$<br>$$\therefore \frac{b}{d}\mid(x’-x_0)(定理6)$$<br>$$\therefore\exists n\in \mathbb{Z}:\frac{b}{d}\cdot n=x’-x_0$$<br>$$\begin{aligned}<br>\therefore x’&amp;=x_0+\frac{b}{d}\cdot n\\<br>同理y’&amp;=y_0-\frac{a}{d}\cdot n<br>\end{aligned}$$<br>$$\therefore原方程的解满足<br>\begin{cases}<br>x=x_0+\frac{b}{d}\cdot n\\<br>y=y_0-\frac{a}{d}\cdot n<br>\end{cases}$$</p><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>原方程(即形如$ax+by=c(a,b,c\in \mathbb{Z})$)叫做二元线性丢番图方程</p><h2 id="定理8"><a href="#定理8" class="headerlink" title="定理8"></a>定理8</h2><h3 id="内容-7"><a href="#内容-7" class="headerlink" title="内容"></a>内容</h3><p>$$a,b\in \mathbb{Z}$$<br>$$a\equiv b\pmod{m}当且仅当\exists m\in \mathbb{Z}:a=b+km$$</p><h3 id="证明-7"><a href="#证明-7" class="headerlink" title="证明"></a>证明</h3><ol><li>充分性</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore m\mid a-b$$<br>$$\therefore\exists k\in \mathbb{Z}:a-b=km$$<br>$$\therefore a=b+km$$</p><ol start="2"><li>必要性</li></ol><p>$$\because a=b+km(k\in \mathbb{Z})$$<br>$$\therefore a-b=km$$<br>$$\therefore m\mid a-b$$<br>$$\therefore a\equiv b\pmod{m}$$</p><h2 id="定理9"><a href="#定理9" class="headerlink" title="定理9"></a>定理9</h2><h3 id="内容-8"><a href="#内容-8" class="headerlink" title="内容"></a>内容</h3><p>$$m\in\mathbb{N^+},模m的同余满足以下性质:$$<br>$$1.自反性:若a\in \mathbb{Z},则a\equiv a\pmod{m}$$<br>$$2.对称性:若a,b\in \mathbb{Z}且a\equiv b\pmod{m},则b\equiv a\pmod{m}$$<br>$$3.传递性:若a,b,c\in \mathbb{Z}且a\equiv b\pmod{m}, b\equiv c\pmod{m},则a\equiv c\pmod{m}$$</p><h3 id="证明-8"><a href="#证明-8" class="headerlink" title="证明"></a>证明</h3><ol><li>自反性</li></ol><p>$$\because m\mid0$$<br>$$\therefore m\mid a-a$$<br>$$\therefore a\equiv a\pmod{m}$$</p><ol start="2"><li>对称性</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore \exists k\in \mathbb{Z}:a=b+km$$<br>$$\therefore a-b=km$$<br>$$\therefore b-a=-km$$<br>$$\therefore m\mid b-a$$<br>$$b\equiv a\pmod{m}$$</p><ol start="3"><li>传递性</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore m\mid a-b$$<br>$$\therefore \exists p\in \mathbb{Z}:a-b=pm$$<br>$$同理\exists q\in \mathbb{Z}:b-c=qm$$<br>$$两式相加得a-c=(p+q)m$$<br>$$\therefore m|a-c$$<br>$$\therefore a\equiv c\pmod{m}$$</p><h2 id="定理10"><a href="#定理10" class="headerlink" title="定理10"></a>定理10</h2><h3 id="内容-9"><a href="#内容-9" class="headerlink" title="内容"></a>内容</h3><p>$$若a,b,c\in \mathbb{Z},m&gt;0,a\equiv b\pmod{m}$$<br>$$则\begin{cases}<br>a+c\equiv b+c\pmod{m}\\<br>a-c\equiv b-c\pmod{m}\\<br>ac\equiv bc\pmod{m}<br>\end{cases}$$</p><h3 id="证明-9"><a href="#证明-9" class="headerlink" title="证明"></a>证明</h3><ol><li>$a+c\equiv b+c\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore m\mid a-b$$<br>$$\therefore m\mid (a+c)-(b+c)$$<br>$$\therefore a+c\equiv b+c\pmod{m}$$</p><ol start="2"><li>$a-c\equiv b-c\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore m\mid a-b$$<br>$$\therefore m\mid (a-c)-(b-c)$$<br>$$\therefore a-c\equiv b-c\pmod{m}$$</p><ol start="3"><li>$ac\equiv bc\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore m\mid a-b$$<br>$$\therefore m\mid c(a-b)$$<br>$$\therefore m\mid ac-bc$$<br>$$\therefore ac\equiv bc\pmod{m}$$</p><h2 id="定理11"><a href="#定理11" class="headerlink" title="定理11"></a>定理11</h2><h3 id="内容-10"><a href="#内容-10" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,c,d,m\in \mathbb{Z},m&gt;0$$<br>$$若a\equiv b\pmod{m},c\equiv d\pmod{m}$$<br>$$则\begin{cases}<br>a+c\equiv b+d\pmod{m}\\<br>a-c\equiv b-d\pmod{m}\\<br>ac\equiv bd\pmod{m}<br>\end{cases}$$</p><h3 id="证明-10"><a href="#证明-10" class="headerlink" title="证明"></a>证明</h3><ol><li>$a+c\equiv b+d\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore\exists p\in \mathbb{Z}:a-b=pm$$<br>$$同理\exists q\in \mathbb{Z}:c-d=qm$$<br>$$两式相加得(a+c)-(b+d)=(p+q)m$$<br>$$\therefore a+c\equiv b+d\pmod{m}$$</p><ol start="2"><li>$a-c\equiv b-d\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore\exists p\in \mathbb{Z}:a-b=pm$$<br>$$同理\exists q\in \mathbb{Z}:c-d=qm$$<br>$$两式相减得(a-c)-(b-d)=(p-q)m$$<br>$$\therefore a-c\equiv b-d\pmod{m}$$</p><ol start="3"><li>$ac\equiv bd\pmod{m}$</li></ol><p>$$\because a\equiv b\pmod{m}$$<br>$$\therefore\exists p\in \mathbb{Z}:a-b=pm$$<br>$$同理\exists q\in \mathbb{Z}:c-d=qm$$<br>$$\begin{aligned}<br>ac-bd&amp;=ac-bc-bd+bc\\<br>&amp;=(a-b)c-(b-d)c\\<br>&amp;=pmc-qmc\\<br>&amp;=(pc-qc)m<br>\end{aligned}$$<br>$$\therefore m\mid ac-bd$$<br>$$\therefore ac\equiv bd\pmod{m}$$</p><h2 id="定理12"><a href="#定理12" class="headerlink" title="定理12"></a>定理12</h2><h3 id="内容-11"><a href="#内容-11" class="headerlink" title="内容"></a>内容</h3><p>$$a,b,c,d\in \mathbb{Z},m&gt;0,d=(c,m)$$<br>$$若ac\equiv bc\pmod{m}$$<br>$$则a\equiv b\pmod{\frac{m}{d}}$$</p><h3 id="证明-11"><a href="#证明-11" class="headerlink" title="证明"></a>证明</h3><p>$$\because ac\equiv bc\pmod{m}$$<br>$$\therefore m\mid(a-b)c$$<br>$$\therefore\exists k\in \mathbb{Z}:c(a-b)=km$$<br>$$\therefore\frac{c}{d}(a-b)=k\frac{m}{d}$$<br>$$\therefore(\frac{c}{d},\frac{m}{d})=1(定理5),\frac{m}{d}\mid\frac{c}{d}(a-b)$$<br>$$\therefore\frac{m}{d}\mid(a-b)(定理6)$$<br>$$\therefore a\equiv b\pmod{\frac{m}{d}}$$</p><h3 id="推论-1"><a href="#推论-1" class="headerlink" title="推论"></a>推论</h3><p>$$a,b,c,m\in \mathbb{Z},(c,m)=1$$<br>$$若ac\equiv bc\pmod{m}$$<br>$$则a\equiv b\pmod{m}$$</p><h2 id="定理13"><a href="#定理13" class="headerlink" title="定理13"></a>定理13</h2><h3 id="内容-12"><a href="#内容-12" class="headerlink" title="内容"></a>内容</h3><p>$$若\{r_1,r_2,\dots,r_m\}是一个模m的完全剩余系,且正整数a使得(a,m)=1$$<br>$$则\forall b\in \mathbb{Z}有\{a\cdot r_1+b,a\cdot r_2+b\dots,a\cdot r_m+b\}是一个模m完全剩余系$$</p><h3 id="证明-12"><a href="#证明-12" class="headerlink" title="证明"></a>证明</h3><p>$$设i,j\in([1,m]\cup\N)且a\cdot r_i+b\equiv a\cdot r_j+b\pmod{m}$$<br>$$\therefore a\cdot r_i\equiv a\cdot r_j\pmod{m}\space(定理10.2)$$<br>$$\because (a,m)=1$$<br>$$\therefore r_i\equiv r_j\pmod{m}\space(定理12.推论)$$<br>$$又\because一个完全剩余系中的数两两不同余(完全剩余系的定义)$$<br>$$\therefore i=j$$<br>$$\therefore\{a\cdot r_1+b,a\cdot r_2+b\dots,a\cdot r_m+b\}中的数模m两两不同余$$<br>$$\therefore\{a\cdot r_1+b,a\cdot r_2+b\dots,a\cdot r_m+b\}是一个模m完全剩余系$$</p>]]></content>
       
       
       <categories>
@@ -392,8 +446,6 @@
       
         <tags>
             
-            <tag> 数学 </tag>
-            
             <tag> Codeforces </tag>
             
             <tag> 几何 </tag>
@@ -423,9 +475,9 @@
             
             <tag> 动态规划 </tag>
             
-            <tag> 洛谷 </tag>
-            
             <tag> USACO </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -434,6 +486,28 @@
     
   
   
+    
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
     
     
     <entry>
@@ -448,31 +522,9 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>友链</title>
       <link href="/links/index.html"/>
       <url>/links/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

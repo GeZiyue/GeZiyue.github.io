@@ -4,38 +4,11 @@
   
     
     <entry>
-      <title>「Codeforces 1284E」New Year and Castle Construction 题解</title>
-      <link href="/2020/CF-1284E/"/>
-      <url>/2020/CF-1284E/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/1284/E" target="_blank" rel="noopener">题目</a></p><a id="more"></a><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> Solution </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Codeforces </tag>
-            
-            <tag> 几何 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>「Codeforces 568B」Symmetric and Transitive 题解</title>
       <link href="/2020/CF-568B/"/>
       <url>/2020/CF-568B/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/568/B" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>计数$n$个元素的满足对称性、传递性，但不满足自反性的二元关系种数，$n\le4000$</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>发现若$a\sim b$则有$b\sim a,a\sim a,b\sim b$，所以一定存在不和其他所以元素相连的，不妨设有$n-k$个单独点，剩下的$k$个点可以分为几个集合（注意大小为$1$的集合不等于单独点，大小为$1$的集合有自身连自身），此时对答案的贡献为$\binom{n}{k}B_{k}$，其中$B_i$为第$i$个贝尔数，等于$\sum_{j=1}^i\left\{\begin{matrix}i\\j\end{matrix}\right\}$，于是答案就为$\sum_{i=0}^{n-1}\binom{n}{k}B_k$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">int fac[N], ifac[N];int S[N][N];int Bell[N];int n;int main () {  read(n);  fac[0] = 1;  for (int i = 1; i &lt;= n; ++i) {    fac[i] = fac[i - 1] * 1ll * i % Mod;  }  ifac[n] = pow(fac[n], Mod - 2, Mod);  for (int i = n - 1; i &gt;= 0; --i) {    ifac[i] = ifac[i + 1] * 1ll * (i + 1) % Mod;  }  S[0][0] = 1;  Bell[0] = 1;  for (int i = 1; i &lt;= n; ++i) {    for (int j = 1; j &lt;= i; ++j) {      S[i][j] = (S[i - 1][j - 1] + S[i - 1][j] * 1ll * j % Mod) % Mod;      Bell[i] = (Bell[i] + S[i][j]) % Mod;    }  }  int ans = 0;  for (int i = 0; i &lt; n; ++i) {    ans = (ans + C(n, i) * 1ll * Bell[i] % Mod) % Mod;  }  write(ans), EL;  return 0;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/568/B" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>计数$n$个元素的满足对称性、传递性，但不满足自反性的二元关系种数，$n\le4000$</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>发现若$a\sim b$则有$b\sim a,a\sim a,b\sim b$，所以一定存在不和其他所有元素相连的，不妨设有$n-k$个单独点，剩下的$k$个点可以分为几个集合（注意大小为$1$的集合不等于单独点，大小为$1$的集合有自身连自身），此时对答案的贡献为$\binom{n}{k}B_{k}$（$n$个里选$k$个分成若干集合，其他都是单独的），其中$B_i$为第$i$个贝尔数，等于$\sum_{j=1}^i\left\{\begin{matrix}i\\j\end{matrix}\right\}$，于是答案就为$\sum_{k=0}^{n-1}\binom{n}{k}B_k$</p><p>由于$n$很小，$\operatorname{O}(n^2)$搞出第二类 Stirling 数即可</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">int fac[N], ifac[N];int S[N][N];int Bell[N];int n;int main () {  read(n);  fac[0] = 1;  for (int i = 1; i &lt;= n; ++i) {    fac[i] = fac[i - 1] * 1ll * i % Mod;  }  ifac[n] = pow(fac[n], Mod - 2, Mod);  for (int i = n - 1; i &gt;= 0; --i) {    ifac[i] = ifac[i + 1] * 1ll * (i + 1) % Mod;  }  S[0][0] = 1;  Bell[0] = 1;  for (int i = 1; i &lt;= n; ++i) {    for (int j = 1; j &lt;= i; ++j) {      S[i][j] = (S[i - 1][j - 1] + S[i - 1][j] * 1ll * j % Mod) % Mod;      Bell[i] = (Bell[i] + S[i][j]) % Mod;    }  }  int ans = 0;  for (int i = 0; i &lt; n; ++i) {    ans = (ans + C(n, i) * 1ll * Bell[i] % Mod) % Mod;  }  write(ans), EL;  return 0;}</code></pre>]]></content>
       
       
       <categories>
@@ -371,11 +344,11 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -475,9 +448,9 @@
             
             <tag> 动态规划 </tag>
             
-            <tag> USACO </tag>
-            
             <tag> 洛谷 </tag>
+            
+            <tag> USACO </tag>
             
         </tags>
       
@@ -500,9 +473,9 @@
     
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -511,9 +484,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

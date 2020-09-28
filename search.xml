@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>「学习笔记」浅谈离散微积分 (Discrete Calculus)</title>
+      <link href="/2020/Discrete-Calculus/"/>
+      <url>/2020/Discrete-Calculus/</url>
+      
+        <content type="html"><![CDATA[<p>微积分是数学分析中的有力工具，其核心是微分和积分，类比微积分中的一整套系统，《具体数学》中引入了一套研究差分和求和的工具——离散微积分 (discrete calculus)</p><a id="more"></a><h2 id="回顾微积分"><a href="#回顾微积分" class="headerlink" title="回顾微积分"></a>回顾微积分</h2><p>在微积分中，我们有微分算子 (differential operator) $Df(x)=\lim\limits_{\Delta x\rightarrow0}\frac{f(x+\Delta x)-f(x)}{\Delta x}$</p><p>若有 $DF(x)=f(x)$ 则称 $F(x)$ 是 $f(x)$ 的原函数</p><p>微积分的核心：牛顿 - 莱布尼茨公式 (Newton - Leibniz formula) $\int_a^bf(x)dx=F(b)-F(a)$</p><h2 id="定义与记号"><a href="#定义与记号" class="headerlink" title="定义与记号"></a>定义与记号</h2><p>类比微分算子，定义差分算子 $\Delta f(x)=f(x+1)-f(x)$</p><p>类似地，若 $\Delta F(x)=f(x)$ 则称 $F(x)$ 是 $f(x)$ 的原函数，不难发现 $\sum\limits_{x=a}^{b-1}f(x)=F(b)-F(a)$</p><p>于是类比定积分，定义和式 $\sum\limits_a^bf(x)\delta x=\sum\limits_{x=a}^{b-1}f(x)=F(b)-F(a)$</p><p>类比不定积分，有不定和式 $\sum f(x)\delta x=F(x)+C$ 其中 $C$ 为常数</p><p>至此，我们类比定义了离散情况下的微分、积分和牛顿 - 莱布尼茨公式</p><h2 id="从定义开始完善系统"><a href="#从定义开始完善系统" class="headerlink" title="从定义开始完善系统"></a>从定义开始完善系统</h2><p>仅靠定义和牛顿 - 莱布尼茨公式构建不起微积分的大厦，同样的，刚才定义的记号也无法帮助我们快速计算和式，我们需要进一步探究它的性质</p><p>首先，根据定义显然有差分算子对于加法、减法的分配率成立</p><h3 id="幂法则"><a href="#幂法则" class="headerlink" title="幂法则"></a>幂法则</h3><p>先从微积分中最简单的幂法则说起，寻找它的替代品</p><p>在微积分中，有 $Dx^n=nx^{n-1}$ 但显然 $\Delta x^n\neq nx^{n-1}$，但是我们有一种类似幂的数学工具：下降幂</p><p>定义下降幂 $x^\underline{n}=\frac{x!}{(x-n)!}$</p><p>发现 $\Delta x^\underline{n}=\frac{(x+1)!}{(x-n+1)!}-\frac{x!}{(x-n)!}=nx^\underline{n-1}$</p><p>同样的，在 $n\neq-1$ 时，有不定和式 $\sum x^\underline{n}\delta x=\frac{x^\underline{n+1}}{n+1}+C$</p><p>类似 $\int\frac{1}{x}dx=\ln x+C$，$n=1$ 时，有 $\sum x^{\underline{-1}}\delta x=H_x+C$，其中 $H_x$ 为调和级数前 $x$ 项和，不难发现 $x\rightarrow\infty$ 时 $H_x=\ln x+\gamma$ 其中 $\gamma$ 为 欧拉 - 马歇罗尼常数，这一点也印证了离散微积分和微积分密不可分的联系</p><p>例题：</p><p>求和 $\sum\limits_{x=1}^nx^2$</p><p>首先有 $x^2=x^\underline{2}+x^\underline{1}$</p><p>考虑求出原函数<br>$$\begin{aligned}\sum x^2\delta x=&amp;\sum(x^\underline{2}+x^\underline{1})\delta x\\<br>=&amp;\frac{x^{\underline{3}}}{3}+\frac{x^{\underline{2}}}{2}+C\\<br>=&amp;\frac{x(x-1)(2x-1)}{6}+C<br>\end{aligned}$$</p><p>于是有<br>$$\begin{aligned}\sum\limits_{x=1}^nx^2<br>&amp;=\sum\limits_{x=1}^{n+1}x^2\delta x\\<br>&amp;=\frac{n(n+1)(2n+1)}{6}+C-(0+C)\\<br>&amp;=\frac{n(n+1)(2n+1)}{6}<br>\end{aligned}$$</p><p>在 OI 中，我们可以将多项式转换为下降幂多项式，从而在 $\operatorname{O}(n\log^2n)$ 时间内求出 $n$ 次多项式的值的前缀和</p><p>至此，我们探究出了多项式的差分、求和并探寻了离散微积分在处理求和上的初步应用</p><h3 id="指数函数"><a href="#指数函数" class="headerlink" title="指数函数"></a>指数函数</h3><p>在微积分中，以 $e$ 为底的指数函数 $e^x$ 拥有良好的性质：$De^x=e^x$ 和 $\int e^x=e^x+C$ 那么在离散微积分中是否也有具备这种性质的函数呢？</p><p>答案是有的：$2^x$</p><p>不难发现 $D2^x=2^{x+1}-2^x=2^x$ 和 $\sum2^x\delta x=2^x+C$</p><p>在微积分中，对于任意底数的指数函数 $a^x$ 有 $Da^x=a^x\ln a$ 和 $\int a^x=\frac{a^x}{\ln a}+C$</p><p>首先 $a^x$ 的差分显然是 $a^x(a-1)$</p><p>考虑 $a^x$ 的不定和式，不妨设 $\sum a^x\delta x=ka^x+C$，两边求差分得 $k=\frac{1}{a-1}$，于是 $\sum a^x\delta x=\frac{a^x}{a-1}+C$</p><h3 id="积法则"><a href="#积法则" class="headerlink" title="积法则"></a>积法则</h3><p>定义平移算子 $Ef(x)=f(x+1)$</p><p>不难发现 $\begin{aligned}\Delta(u(x)v(x))&amp;=u(x+1)v(x+1)-u(x)v(x)\\<br>&amp;=u(x+1)v(x+1)-u(x+1)v(x)+u(x+1)v(x)-u(x)v(x)\\<br>&amp;=u(x+1)\Delta v(x)+v(x)\Delta u(x)\\<br>&amp;=u(x)\Delta v(x)+v(x+1)\Delta u(x)<br>\end{aligned}$</p><p>更为简单的表示为：$\Delta(uv)=u\Delta v+Ev\Delta u=Eu\Delta v+v\Delta u$</p><h3 id="分部求和"><a href="#分部求和" class="headerlink" title="分部求和"></a>分部求和</h3><p>在微积分中有分部积分公式：$\int udv=uv-\int vdu$</p><p>这一公式是对微分的积法则移项后左右积分得到的</p><p>同理也可以得到分部求和的公式：</p><p>$$\begin{aligned}<br>\Delta(uv)&amp;=u\Delta v+Ev\Delta u \\<br>\Rightarrow u\Delta v&amp;=\Delta(uv)-Ev\Delta u \\<br>\Rightarrow\sum u\Delta v&amp;=uv-\sum Ev\Delta u<br>\end{aligned}$$</p><h2 id="例题与应用"><a href="#例题与应用" class="headerlink" title="例题与应用"></a>例题与应用</h2><p>求和 $\sum\limits_{x=0}^nx2^x$</p><p>先求原函数，考虑带入 $u=x,\Delta v=2^x,\Delta u=1,v=2^x$:<br>$$\begin{aligned}&amp;\sum x2^x\delta x\\<br>=&amp;x2^x-\sum2^{x+1}\delta x\\<br>=&amp;x2^x-2^{x+1}+C<br>\end{aligned}$$</p><p>于是有：<br>$$\begin{aligned}\sum\limits_{x=0}^nx2^x&amp;=\sum_0^{n+1}x2^x\delta x\\<br>&amp;=(n+1)2^{n+1}-2^{n+2}+C-(0-2+C)\\<br>&amp;=(n-1)2^{n+1}+2\end{aligned}$$</p><p>求和 $\sum\limits_{x=1}^n(-1)^xx^2$</p><p>先求原函数，考虑带入 $u=x^2,\Delta v=(-1)^x,\Delta u=2x+1,v=-\frac{(-1)^x}{2}$:<br>$$\begin{aligned}&amp;\sum x^2(-1)^x\delta x\\<br>=&amp;-\frac{x^2(-1)^x}{2}-\sum-\frac{(-1)^{x+1}(2x+1)}{2}\delta x\\<br>=&amp;-\frac{x^2(-1)^x}{2}-\sum\frac{2x+1}{2}(-1)^x\delta x<br>\end{aligned}$$</p><p>对于后一项继续分部求和，带入 $u=\frac{2x+1}{2},\Delta v=(-1)^x,\Delta u=1,v=-\frac{(-1)^x}{2}$:</p><p>$$\begin{aligned}&amp;\sum\frac{2x+1}{2}(-1)^x\delta x\\<br>=&amp;-\frac{(2x+1)(-1)^x}{4}-\sum-\frac{(-1)^{x+1}}{2}\delta x\\<br>=&amp;-\frac{(2x+1)(-1)^x}{4}-\frac{1}{2}\sum(-1)^x\delta x\\<br>=&amp;-\frac{(2x+1)(-1)^x}{4}+\frac{1}{4}(-1)^x+C\\<br>=&amp;-\frac{(-1)^xx}{2}+C<br>\end{aligned}$$</p><p>带回上式：<br>$$\begin{aligned}&amp;\sum(-1)^xx^2\delta x\\<br>=&amp;-\frac{x^2(-1)^x}{2}+\frac{(-1)^xx}{2}+C\\<br>=&amp;-\frac{(-1)^xx(x-1)}{2}+C<br>\end{aligned}$$</p><p>求和：<br>$$\begin{aligned}&amp;\sum\limits_{i=1}^n(-1)^xx^2\\<br>=&amp;-\frac{(-1)^{n+1}n(n+1)}{2}-\left(-\frac{-1\times1\times0}{2}\right)\\<br>=&amp;\frac{(-1)^nn(n+1)}{2}<br>\end{aligned}$$</p><p>HEOI 2016/TJOI 2016 求和</p><p>求和 $\sum\limits_{i=0}^n\sum\limits_{j=0}^i\left\{\begin{matrix}i\\j\end{matrix}\right\}\times2^j\times(j!)$</p><p>首先进行变形：<br>$$\begin{aligned}&amp;\sum\limits_{i=0}^n\sum\limits_{j=0}^i\left\{\begin{matrix}i\\j\end{matrix}\right\}\times2^j\times(j!)\\<br>=&amp;\sum\limits_{i=0}^n\sum\limits_{j=0}^n\left\{\begin{matrix}i\\j\end{matrix}\right\}\times2^j\times(j!)\\<br>=&amp;\sum\limits_{i=0}^n\sum\limits_{j=0}^n2^j\sum\limits_{k=0}^j(-1)^{j-k}\binom{j}{k}k^i\\<br>=&amp;\sum\limits_{k=0}^nf(k)(-1)^k\sum\limits_{j=0}^n(-2)^j\binom{j}{k}<br>\end{aligned}$$</p><p>其中 $f(k)=\sum_{i=0}^nk^i$，特别地 $0^0=1$</p><p>考虑用离散微积分简化后一个和式，于是求原函数，考虑带入$u=\binom{j}{k},\Delta v=(-2)^j,\Delta u=\binom{j}{k-1},v=\frac{(-2)^j}{-3}$：<br>$$\sum(-2)^j\binom{j}{k}\delta j=\frac{(-2)^j}{-3}\binom{j}{k}-\frac{-2}{-3}\sum(-2)^j\binom{j}{k-1}\delta j$$</p><p>另外有：<br>$$\sum(-2)^j\binom{j}{0}\delta j=\sum\frac{(-2)^j}{-3}$$</p><p>于是对于每一个 $k$ 递推出它的原函数在 $n+1$ 和 $0$ 处的值，相减即可</p><p>用线性筛筛出 $f(k)$ 即可在 $\operatorname{O}(n)$ 时间内得到答案</p><p>完。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Note </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>「Codeforces 568B」Symmetric and Transitive 题解</title>
       <link href="/2020/CF-568B/"/>
       <url>/2020/CF-568B/</url>
@@ -101,9 +126,9 @@
       
         <tags>
             
-            <tag> 多项式 </tag>
-            
             <tag> 洛谷 </tag>
+            
+            <tag> 多项式 </tag>
             
             <tag> 第二类斯特林数 </tag>
             
@@ -130,9 +155,9 @@
       
         <tags>
             
-            <tag> 多项式 </tag>
-            
             <tag> 洛谷 </tag>
+            
+            <tag> 多项式 </tag>
             
             <tag> 第一类斯特林数 </tag>
             
@@ -344,11 +369,11 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -448,9 +473,9 @@
             
             <tag> 动态规划 </tag>
             
-            <tag> USACO </tag>
-            
             <tag> 洛谷 </tag>
+            
+            <tag> USACO </tag>
             
         </tags>
       
@@ -462,20 +487,9 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -495,11 +509,22 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
       
     </entry>
     

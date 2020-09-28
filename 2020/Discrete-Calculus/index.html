@@ -48,7 +48,7 @@
     
     <title>
         
-            「HDU1850&amp;POJ2975」题解 | 
+            「学习笔记」浅谈离散微积分 (Discrete Calculus) | 
         
         Seniorious&#39; blog
     </title>
@@ -58,9 +58,8 @@
     <link rel="icon" href="/img/avatar.jpg">
 
     <meta name="format-detection" content="telephone=no">
-    <meta name="description" itemprop="description" content="题目1
-题目2">
-    <meta name="keywords" content=",博弈">
+    <meta name="description" itemprop="description" content="微积分是数学分析中的有力工具，其核心是微分和积分，类比微积分中的一整套系统，《具体数学》中引入了一套研究差分和求和的工具——离散微积分 (discrete calculus)">
+    <meta name="keywords" content=",数学">
     <meta name="theme-color" content="#7A68E8">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -226,7 +225,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Seniorious&#39; blog">
-    <meta name="msapplication-starturl" content="https://blog.seniorious.cc/2019/hdu-1850-poj-2975/">
+    <meta name="msapplication-starturl" content="https://blog.seniorious.cc/2020/Discrete-Calculus/">
     <meta name="msapplication-navbutton-color" content="#7A68E8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Seniorious&#39; blog">
@@ -241,17 +240,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://blog.seniorious.cc/2019/hdu-1850-poj-2975/">
+    <meta property="og:url" content="https://blog.seniorious.cc/2020/Discrete-Calculus/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="「HDU1850&amp;POJ2975」题解 | Seniorious&#39; blog">
+    <meta property="og:title" content="「学习笔记」浅谈离散微积分 (Discrete Calculus) | Seniorious&#39; blog">
     <meta property="og:image" content="/img/avatar.jpg">
-    <meta property="og:description" content="题目1
-题目2">
-    <meta property="og:article:tag" content="博弈"> 
+    <meta property="og:description" content="微积分是数学分析中的有力工具，其核心是微分和积分，类比微积分中的一整套系统，《具体数学》中引入了一套研究差分和求和的工具——离散微积分 (discrete calculus)">
+    <meta property="og:article:tag" content="数学"> 
 
     
-        <meta property="article:published_time" content="Mon Oct 21 2019 23:03:35 GMT+0800">
-        <meta property="article:modified_time" content="Wed Jan 15 2020 19:46:22 GMT+0800">
+        <meta property="article:published_time" content="Tue Sep 22 2020 23:26:57 GMT+0800">
+        <meta property="article:modified_time" content="Tue Sep 29 2020 00:19:26 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -259,7 +257,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.seniorious.cc/2019/hdu-1850-poj-2975/index.html">
+        <link rel="canonical" href="https://blog.seniorious.cc/2020/Discrete-Calculus/index.html">
     
 
     <!-- Structured-data for SEO -->
@@ -271,10 +269,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://blog.seniorious.cc/2019/hdu-1850-poj-2975/index.html",
-    "headline": "「HDU1850&POJ2975」题解",
-    "datePublished": "Mon Oct 21 2019 23:03:35 GMT+0800",
-    "dateModified": "Wed Jan 15 2020 19:46:22 GMT+0800",
+    "mainEntityOfPage": "https://blog.seniorious.cc/2020/Discrete-Calculus/index.html",
+    "headline": "「学习笔记」浅谈离散微积分 (Discrete Calculus)",
+    "datePublished": "Tue Sep 22 2020 23:26:57 GMT+0800",
+    "dateModified": "Tue Sep 29 2020 00:19:26 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -292,9 +290,8 @@
             "url": "/img/avatar.jpg"
         }
     },
-    "keywords": ",博弈",
-    "description": "题目1
-题目2",
+    "keywords": ",数学",
+    "description": "微积分是数学分析中的有力工具，其核心是微分和积分，类比微积分中的一整套系统，《具体数学》中引入了一套研究差分和求和的工具——离散微积分 (discrete calculus)",
 }
 </script>
 
@@ -367,7 +364,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题意"><span class="post-toc-number">1.</span> <span class="post-toc-text">题意</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#思路"><span class="post-toc-number">2.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#回顾微积分"><span class="post-toc-number">1.</span> <span class="post-toc-text">回顾微积分</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#定义与记号"><span class="post-toc-number">2.</span> <span class="post-toc-text">定义与记号</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#从定义开始完善系统"><span class="post-toc-number">3.</span> <span class="post-toc-text">从定义开始完善系统</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#幂法则"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">幂法则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#指数函数"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">指数函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#积法则"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">积法则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分部求和"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">分部求和</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例题与应用"><span class="post-toc-number">4.</span> <span class="post-toc-text">例题与应用</span></a></li></ol>
     </ul>
     
 
@@ -399,7 +396,7 @@
         
     
             <p class="article-headline-p">
-                「HDU1850&POJ2975」题解
+                「学习笔记」浅谈离散微积分 (Discrete Calculus)
             </p>
         </div>
 
@@ -418,7 +415,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Seniorious</strong>
-        <span>10月 21, 2019</span>
+        <span>9月 22, 2020</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -442,7 +439,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/博弈/">博弈</a>
+        <a class="post_tag-link" href="/tags/数学/">数学</a>
     </li></ul>
     
 
@@ -462,7 +459,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=「HDU1850&amp;POJ2975」题解&url=https://blog.seniorious.cc/2019/hdu-1850-poj-2975/index.html&via=Seniorious" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=「学习笔记」浅谈离散微积分 (Discrete Calculus)&url=https://blog.seniorious.cc/2020/Discrete-Calculus/index.html&via=Seniorious" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -471,7 +468,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.seniorious.cc/2019/hdu-1850-poj-2975/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.seniorious.cc/2020/Discrete-Calculus/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -480,7 +477,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.seniorious.cc/2019/hdu-1850-poj-2975/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://blog.seniorious.cc/2020/Discrete-Calculus/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -492,7 +489,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Seniorious&#39; blog&title=「HDU1850&amp;POJ2975」题解&summary=&pics=https://blog.seniorious.cc/img/avatar.jpg&url=https://blog.seniorious.cc/2019/hdu-1850-poj-2975/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Seniorious&#39; blog&title=「学习笔记」浅谈离散微积分 (Discrete Calculus)&summary=&pics=https://blog.seniorious.cc/img/avatar.jpg&url=https://blog.seniorious.cc/2020/Discrete-Calculus/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -501,7 +498,7 @@
 
     <!-- Share Telegram -->
     
-        <a class="post_share-link" href="https://telegram.me/share/url?url=https://blog.seniorious.cc/2019/hdu-1850-poj-2975/index.html&text=「HDU1850&amp;POJ2975」题解" target="_blank">
+        <a class="post_share-link" href="https://telegram.me/share/url?url=https://blog.seniorious.cc/2020/Discrete-Calculus/index.html&text=「学习笔记」浅谈离散微积分 (Discrete Calculus)" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Telegram
             </li>
@@ -517,43 +514,62 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1850" target="_blank" rel="noopener">题目1</a></p>
-<p><a href="http://poj.org/problem?id=2975" target="_blank" rel="noopener">题目2</a><br><a id="more"></a></p>
-<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>Nim游戏的第一步有几种必胜走法</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>考虑Nim游戏的模型</p>
-<ol>
-<li>结束状态是全为$0$, 此时$a_1\otimes a_2\otimes\dots\otimes a_n=0$</li>
-<li>$a_1\otimes a_2\otimes\dots\otimes a_n=k$时, 考虑$k$最高的二进制为$1$的一位, 一定有奇数个$a_i$满足该位为$1$, 取其中的任意一个$a_i\otimes k$, 该位会变成$0$, 由于$k$的更高位为$0$, 所以$k$的更高位不会改变, 因此$a_i\otimes k&lt;a_i$, 所以必定存在$a_i$使得$a_1\otimes a_2\otimes\dots\otimes (a_i\otimes k)\otimes\dots\otimes a_n=0$转移到必负状态</li>
-<li>$a_1\otimes a_2\otimes\dots\otimes a_n=0$时, 对于任意$a_i$和$k\in N^*$都有$a_1\otimes a_2\otimes\dots\otimes (a_i\otimes k)\otimes\dots\otimes a_n=k\neq0$转移到必胜状态</li>
-</ol>
-<p>所以在初始状态, 只要把$a_i$变为$a_i\otimes k(k=\bigotimes_{i=1}^n a_i)$即可, 而初始状态可行方案的总数就是$\sum_{i=1}^n[(a_i\otimes k) &lt; a_i]$</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">const int N = 1005;
-
-int a[N];
-
-int main () {
-  while (true) {
-    int n;
-    read(n);
-    if (!n) {
-      break;
-    }
-    int num = 0;
-    for (int i = 1; i &lt;= n; ++i) {
-      read(a[i]);
-      num ^= a[i];
-    }
-    int ans = 0;
-    for (int i = 1; i &lt;= n; ++i) {
-      if ((num ^ a[i]) &lt; a[i]) {
-        ++ans;
-      }
-    }
-    write(ans), EL;
-  }
-  return 0;
-}
-</code></pre>
+        <p>微积分是数学分析中的有力工具，其核心是微分和积分，类比微积分中的一整套系统，《具体数学》中引入了一套研究差分和求和的工具——离散微积分 (discrete calculus)</p>
+<a id="more"></a>
+<h2 id="回顾微积分"><a href="#回顾微积分" class="headerlink" title="回顾微积分"></a>回顾微积分</h2><p>在微积分中，我们有微分算子 (differential operator) $Df(x)=\lim\limits_{\Delta x\rightarrow0}\frac{f(x+\Delta x)-f(x)}{\Delta x}$</p>
+<p>若有 $DF(x)=f(x)$ 则称 $F(x)$ 是 $f(x)$ 的原函数</p>
+<p>微积分的核心：牛顿 - 莱布尼茨公式 (Newton - Leibniz formula) $\int_a^bf(x)dx=F(b)-F(a)$</p>
+<h2 id="定义与记号"><a href="#定义与记号" class="headerlink" title="定义与记号"></a>定义与记号</h2><p>类比微分算子，定义差分算子 $\Delta f(x)=f(x+1)-f(x)$</p>
+<p>类似地，若 $\Delta F(x)=f(x)$ 则称 $F(x)$ 是 $f(x)$ 的原函数，不难发现 $\sum\limits_{x=a}^{b-1}f(x)=F(b)-F(a)$</p>
+<p>于是类比定积分，定义和式 $\sum\limits_a^bf(x)\delta x=\sum\limits_{x=a}^{b-1}f(x)=F(b)-F(a)$</p>
+<p>类比不定积分，有不定和式 $\sum f(x)\delta x=F(x)+C$ 其中 $C$ 为常数</p>
+<p>至此，我们类比定义了离散情况下的微分、积分和牛顿 - 莱布尼茨公式</p>
+<h2 id="从定义开始完善系统"><a href="#从定义开始完善系统" class="headerlink" title="从定义开始完善系统"></a>从定义开始完善系统</h2><p>仅靠定义和牛顿 - 莱布尼茨公式构建不起微积分的大厦，同样的，刚才定义的记号也无法帮助我们快速计算和式，我们需要进一步探究它的性质</p>
+<p>首先，根据定义显然有差分算子对于加法、减法的分配率成立</p>
+<h3 id="幂法则"><a href="#幂法则" class="headerlink" title="幂法则"></a>幂法则</h3><p>先从微积分中最简单的幂法则说起，寻找它的替代品</p>
+<p>在微积分中，有 $Dx^n=nx^{n-1}$ 但显然 $\Delta x^n\neq nx^{n-1}$，但是我们有一种类似幂的数学工具：下降幂</p>
+<p>定义下降幂 $x^\underline{n}=\frac{x!}{(x-n)!}$</p>
+<p>发现 $\Delta x^\underline{n}=\frac{(x+1)!}{(x-n+1)!}-\frac{x!}{(x-n)!}=nx^\underline{n-1}$</p>
+<p>同样的，在 $n\neq-1$ 时，有不定和式 $\sum x^\underline{n}\delta x=\frac{x^\underline{n+1}}{n+1}+C$</p>
+<p>类似 $\int\frac{1}{x}dx=\ln x+C$，$n=1$ 时，有 $\sum x^{\underline{-1}}\delta x=H_x+C$，其中 $H_x$ 为调和级数前 $x$ 项和，不难发现 $x\rightarrow\infty$ 时 $H_x=\ln x+\gamma$ 其中 $\gamma$ 为 欧拉 - 马歇罗尼常数，这一点也印证了离散微积分和微积分密不可分的联系</p>
+<p>例题：</p>
+<p>求和 $\sum\limits_{x=1}^nx^2$</p>
+<p>首先有 $x^2=x^\underline{2}+x^\underline{1}$</p>
+<p>考虑求出原函数<br>$$\begin{aligned}\sum x^2\delta x=&amp;\sum(x^\underline{2}+x^\underline{1})\delta x\\<br>=&amp;\frac{x^{\underline{3}}}{3}+\frac{x^{\underline{2}}}{2}+C\\<br>=&amp;\frac{x(x-1)(2x-1)}{6}+C<br>\end{aligned}$$</p>
+<p>于是有<br>$$\begin{aligned}\sum\limits_{x=1}^nx^2<br>&amp;=\sum\limits_{x=1}^{n+1}x^2\delta x\\<br>&amp;=\frac{n(n+1)(2n+1)}{6}+C-(0+C)\\<br>&amp;=\frac{n(n+1)(2n+1)}{6}<br>\end{aligned}$$</p>
+<p>在 OI 中，我们可以将多项式转换为下降幂多项式，从而在 $\operatorname{O}(n\log^2n)$ 时间内求出 $n$ 次多项式的值的前缀和</p>
+<p>至此，我们探究出了多项式的差分、求和并探寻了离散微积分在处理求和上的初步应用</p>
+<h3 id="指数函数"><a href="#指数函数" class="headerlink" title="指数函数"></a>指数函数</h3><p>在微积分中，以 $e$ 为底的指数函数 $e^x$ 拥有良好的性质：$De^x=e^x$ 和 $\int e^x=e^x+C$ 那么在离散微积分中是否也有具备这种性质的函数呢？</p>
+<p>答案是有的：$2^x$</p>
+<p>不难发现 $D2^x=2^{x+1}-2^x=2^x$ 和 $\sum2^x\delta x=2^x+C$</p>
+<p>在微积分中，对于任意底数的指数函数 $a^x$ 有 $Da^x=a^x\ln a$ 和 $\int a^x=\frac{a^x}{\ln a}+C$</p>
+<p>首先 $a^x$ 的差分显然是 $a^x(a-1)$</p>
+<p>考虑 $a^x$ 的不定和式，不妨设 $\sum a^x\delta x=ka^x+C$，两边求差分得 $k=\frac{1}{a-1}$，于是 $\sum a^x\delta x=\frac{a^x}{a-1}+C$</p>
+<h3 id="积法则"><a href="#积法则" class="headerlink" title="积法则"></a>积法则</h3><p>定义平移算子 $Ef(x)=f(x+1)$</p>
+<p>不难发现 $\begin{aligned}\Delta(u(x)v(x))&amp;=u(x+1)v(x+1)-u(x)v(x)\\<br>&amp;=u(x+1)v(x+1)-u(x+1)v(x)+u(x+1)v(x)-u(x)v(x)\\<br>&amp;=u(x+1)\Delta v(x)+v(x)\Delta u(x)\\<br>&amp;=u(x)\Delta v(x)+v(x+1)\Delta u(x)<br>\end{aligned}$</p>
+<p>更为简单的表示为：$\Delta(uv)=u\Delta v+Ev\Delta u=Eu\Delta v+v\Delta u$</p>
+<h3 id="分部求和"><a href="#分部求和" class="headerlink" title="分部求和"></a>分部求和</h3><p>在微积分中有分部积分公式：$\int udv=uv-\int vdu$</p>
+<p>这一公式是对微分的积法则移项后左右积分得到的</p>
+<p>同理也可以得到分部求和的公式：</p>
+<p>$$\begin{aligned}<br>\Delta(uv)&amp;=u\Delta v+Ev\Delta u \\<br>\Rightarrow u\Delta v&amp;=\Delta(uv)-Ev\Delta u \\<br>\Rightarrow\sum u\Delta v&amp;=uv-\sum Ev\Delta u<br>\end{aligned}$$</p>
+<h2 id="例题与应用"><a href="#例题与应用" class="headerlink" title="例题与应用"></a>例题与应用</h2><p>求和 $\sum\limits_{x=0}^nx2^x$</p>
+<p>先求原函数，考虑带入 $u=x,\Delta v=2^x,\Delta u=1,v=2^x$:<br>$$\begin{aligned}&amp;\sum x2^x\delta x\\<br>=&amp;x2^x-\sum2^{x+1}\delta x\\<br>=&amp;x2^x-2^{x+1}+C<br>\end{aligned}$$</p>
+<p>于是有：<br>$$\begin{aligned}\sum\limits_{x=0}^nx2^x&amp;=\sum_0^{n+1}x2^x\delta x\\<br>&amp;=(n+1)2^{n+1}-2^{n+2}+C-(0-2+C)\\<br>&amp;=(n-1)2^{n+1}+2\end{aligned}$$</p>
+<p>求和 $\sum\limits_{x=1}^n(-1)^xx^2$</p>
+<p>先求原函数，考虑带入 $u=x^2,\Delta v=(-1)^x,\Delta u=2x+1,v=-\frac{(-1)^x}{2}$:<br>$$\begin{aligned}&amp;\sum x^2(-1)^x\delta x\\<br>=&amp;-\frac{x^2(-1)^x}{2}-\sum-\frac{(-1)^{x+1}(2x+1)}{2}\delta x\\<br>=&amp;-\frac{x^2(-1)^x}{2}-\sum\frac{2x+1}{2}(-1)^x\delta x<br>\end{aligned}$$</p>
+<p>对于后一项继续分部求和，带入 $u=\frac{2x+1}{2},\Delta v=(-1)^x,\Delta u=1,v=-\frac{(-1)^x}{2}$:</p>
+<p>$$\begin{aligned}&amp;\sum\frac{2x+1}{2}(-1)^x\delta x\\<br>=&amp;-\frac{(2x+1)(-1)^x}{4}-\sum-\frac{(-1)^{x+1}}{2}\delta x\\<br>=&amp;-\frac{(2x+1)(-1)^x}{4}-\frac{1}{2}\sum(-1)^x\delta x\\<br>=&amp;-\frac{(2x+1)(-1)^x}{4}+\frac{1}{4}(-1)^x+C\\<br>=&amp;-\frac{(-1)^xx}{2}+C<br>\end{aligned}$$</p>
+<p>带回上式：<br>$$\begin{aligned}&amp;\sum(-1)^xx^2\delta x\\<br>=&amp;-\frac{x^2(-1)^x}{2}+\frac{(-1)^xx}{2}+C\\<br>=&amp;-\frac{(-1)^xx(x-1)}{2}+C<br>\end{aligned}$$</p>
+<p>求和：<br>$$\begin{aligned}&amp;\sum\limits_{i=1}^n(-1)^xx^2\\<br>=&amp;-\frac{(-1)^{n+1}n(n+1)}{2}-\left(-\frac{-1\times1\times0}{2}\right)\\<br>=&amp;\frac{(-1)^nn(n+1)}{2}<br>\end{aligned}$$</p>
+<p>HEOI 2016/TJOI 2016 求和</p>
+<p>求和 $\sum\limits_{i=0}^n\sum\limits_{j=0}^i\left\{\begin{matrix}i\\j\end{matrix}\right\}\times2^j\times(j!)$</p>
+<p>首先进行变形：<br>$$\begin{aligned}&amp;\sum\limits_{i=0}^n\sum\limits_{j=0}^i\left\{\begin{matrix}i\\j\end{matrix}\right\}\times2^j\times(j!)\\<br>=&amp;\sum\limits_{i=0}^n\sum\limits_{j=0}^n\left\{\begin{matrix}i\\j\end{matrix}\right\}\times2^j\times(j!)\\<br>=&amp;\sum\limits_{i=0}^n\sum\limits_{j=0}^n2^j\sum\limits_{k=0}^j(-1)^{j-k}\binom{j}{k}k^i\\<br>=&amp;\sum\limits_{k=0}^nf(k)(-1)^k\sum\limits_{j=0}^n(-2)^j\binom{j}{k}<br>\end{aligned}$$</p>
+<p>其中 $f(k)=\sum_{i=0}^nk^i$，特别地 $0^0=1$</p>
+<p>考虑用离散微积分简化后一个和式，于是求原函数，考虑带入$u=\binom{j}{k},\Delta v=(-2)^j,\Delta u=\binom{j}{k-1},v=\frac{(-2)^j}{-3}$：<br>$$\sum(-2)^j\binom{j}{k}\delta j=\frac{(-2)^j}{-3}\binom{j}{k}-\frac{-2}{-3}\sum(-2)^j\binom{j}{k-1}\delta j$$</p>
+<p>另外有：<br>$$\sum(-2)^j\binom{j}{0}\delta j=\sum\frac{(-2)^j}{-3}$$</p>
+<p>于是对于每一个 $k$ 递推出它的原函数在 $n+1$ 和 $0$ 处的值，相减即可</p>
+<p>用线性筛筛出 $f(k)$ 即可在 $\operatorname{O}(n)$ 时间内得到答案</p>
+<p>完。</p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -562,7 +578,7 @@ int main () {
                             本博客采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
                         </strong>
                         <br>
-                        <strong>本文链接：</strong><a href="https://blog.seniorious.cc/2019/hdu-1850-poj-2975/">https://blog.seniorious.cc/2019/hdu-1850-poj-2975/</a>
+                        <strong>本文链接：</strong><a href="https://blog.seniorious.cc/2020/Discrete-Calculus/">https://blog.seniorious.cc/2020/Discrete-Calculus/</a>
                     </p>
                 </blockquote>
         
@@ -615,21 +631,13 @@ int main () {
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2019/luogu-3401/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2019/fzoj-3827/" id="post_nav-older" class="next-content">
+        <a href="/2020/CF-568B/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

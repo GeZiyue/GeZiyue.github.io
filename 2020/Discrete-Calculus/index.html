@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Tue Sep 22 2020 23:26:57 GMT+0800">
-        <meta property="article:modified_time" content="Tue Sep 29 2020 00:25:52 GMT+0800">
+        <meta property="article:modified_time" content="Tue Sep 29 2020 22:22:14 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2020/Discrete-Calculus/index.html",
     "headline": "「学习笔记」浅谈离散微积分",
     "datePublished": "Tue Sep 22 2020 23:26:57 GMT+0800",
-    "dateModified": "Tue Sep 29 2020 00:25:52 GMT+0800",
+    "dateModified": "Tue Sep 29 2020 22:22:14 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -536,13 +536,13 @@
 <p>求和 $\sum\limits_{x=1}^nx^2$</p>
 <p>首先有 $x^2=x^\underline{2}+x^\underline{1}$</p>
 <p>考虑求出原函数<br>$$\begin{aligned}\sum x^2\delta x=&amp;\sum(x^\underline{2}+x^\underline{1})\delta x\\<br>=&amp;\frac{x^{\underline{3}}}{3}+\frac{x^{\underline{2}}}{2}+C\\<br>=&amp;\frac{x(x-1)(2x-1)}{6}+C<br>\end{aligned}$$</p>
-<p>于是有<br>$$\begin{aligned}\sum\limits_{x=1}^nx^2<br>&amp;=\sum\limits_{x=1}^{n+1}x^2\delta x\\<br>&amp;=\frac{n(n+1)(2n+1)}{6}+C-(0+C)\\<br>&amp;=\frac{n(n+1)(2n+1)}{6}<br>\end{aligned}$$</p>
+<p>于是有<br>$$\begin{aligned}\sum\limits_{x=1}^nx^2<br>&amp;=\sum\limits_1^{n+1}x^2\delta x\\<br>&amp;=\frac{n(n+1)(2n+1)}{6}+C-(0+C)\\<br>&amp;=\frac{n(n+1)(2n+1)}{6}<br>\end{aligned}$$</p>
 <p>在 OI 中，我们可以将多项式转换为下降幂多项式，从而在 $\operatorname{O}(n\log^2n)$ 时间内求出 $n$ 次多项式的值的前缀和</p>
 <p>至此，我们探究出了多项式的差分、求和并探寻了离散微积分在处理求和上的初步应用</p>
-<h3 id="指数函数"><a href="#指数函数" class="headerlink" title="指数函数"></a>指数函数</h3><p>在微积分中，以 $e$ 为底的指数函数 $e^x$ 拥有良好的性质：$De^x=e^x$ 和 $\int e^x=e^x+C$ 那么在离散微积分中是否也有具备这种性质的函数呢？</p>
+<h3 id="指数函数"><a href="#指数函数" class="headerlink" title="指数函数"></a>指数函数</h3><p>在微积分中，以 $e$ 为底的指数函数 $e^x$ 拥有良好的性质：$De^x=e^x$ 和 $\int e^xdx=e^x+C$ 那么在离散微积分中是否也有具备这种性质的函数呢？</p>
 <p>答案是有的：$2^x$</p>
 <p>不难发现 $D2^x=2^{x+1}-2^x=2^x$ 和 $\sum2^x\delta x=2^x+C$</p>
-<p>在微积分中，对于任意底数的指数函数 $a^x$ 有 $Da^x=a^x\ln a$ 和 $\int a^x=\frac{a^x}{\ln a}+C$</p>
+<p>在微积分中，对于任意底数的指数函数 $a^x$ 有 $Da^x=a^x\ln a$ 和 $\int a^xdx=\frac{a^x}{\ln a}+C$</p>
 <p>首先 $a^x$ 的差分显然是 $a^x(a-1)$</p>
 <p>考虑 $a^x$ 的不定和式，不妨设 $\sum a^x\delta x=ka^x+C$，两边求差分得 $k=\frac{1}{a-1}$，于是 $\sum a^x\delta x=\frac{a^x}{a-1}+C$</p>
 <h3 id="积法则"><a href="#积法则" class="headerlink" title="积法则"></a>积法则</h3><p>定义平移算子 $Ef(x)=f(x+1)$</p>
@@ -561,7 +561,7 @@
 <p>$$\begin{aligned}&amp;\sum\frac{2x+1}{2}(-1)^x\delta x\\<br>=&amp;-\frac{(2x+1)(-1)^x}{4}-\sum-\frac{(-1)^{x+1}}{2}\delta x\\<br>=&amp;-\frac{(2x+1)(-1)^x}{4}-\frac{1}{2}\sum(-1)^x\delta x\\<br>=&amp;-\frac{(2x+1)(-1)^x}{4}+\frac{1}{4}(-1)^x+C\\<br>=&amp;-\frac{(-1)^xx}{2}+C<br>\end{aligned}$$</p>
 <p>带回上式：<br>$$\begin{aligned}&amp;\sum(-1)^xx^2\delta x\\<br>=&amp;-\frac{x^2(-1)^x}{2}+\frac{(-1)^xx}{2}+C\\<br>=&amp;-\frac{(-1)^xx(x-1)}{2}+C<br>\end{aligned}$$</p>
 <p>求和：<br>$$\begin{aligned}&amp;\sum\limits_{i=1}^n(-1)^xx^2\\<br>=&amp;-\frac{(-1)^{n+1}n(n+1)}{2}-\left(-\frac{-1\times1\times0}{2}\right)\\<br>=&amp;\frac{(-1)^nn(n+1)}{2}<br>\end{aligned}$$</p>
-<p>HEOI 2016/TJOI 2016 求和</p>
+<p>HEOI/TJOI 2016 求和：<a href="https://www.luogu.com.cn/problem/P4091" target="_blank" rel="noopener">洛谷</a> <a href="https://loj.ac/problem/2058" target="_blank" rel="noopener">LOJ</a></p>
 <p>求和 $\sum\limits_{i=0}^n\sum\limits_{j=0}^i\left\{\begin{matrix}i\\j\end{matrix}\right\}\times2^j\times(j!)$</p>
 <p>首先进行变形：<br>$$\begin{aligned}&amp;\sum\limits_{i=0}^n\sum\limits_{j=0}^i\left\{\begin{matrix}i\\j\end{matrix}\right\}\times2^j\times(j!)\\<br>=&amp;\sum\limits_{i=0}^n\sum\limits_{j=0}^n\left\{\begin{matrix}i\\j\end{matrix}\right\}\times2^j\times(j!)\\<br>=&amp;\sum\limits_{i=0}^n\sum\limits_{j=0}^n2^j\sum\limits_{k=0}^j(-1)^{j-k}\binom{j}{k}k^i\\<br>=&amp;\sum\limits_{k=0}^nf(k)(-1)^k\sum\limits_{j=0}^n(-2)^j\binom{j}{k}<br>\end{aligned}$$</p>
 <p>其中 $f(k)=\sum_{i=0}^nk^i$，特别地 $0^0=1$</p>

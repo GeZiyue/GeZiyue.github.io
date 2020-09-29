@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Tue Sep 22 2020 23:26:57 GMT+0800">
-        <meta property="article:modified_time" content="Tue Sep 29 2020 22:22:14 GMT+0800">
+        <meta property="article:modified_time" content="Tue Sep 29 2020 22:29:46 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2020/Discrete-Calculus/index.html",
     "headline": "「学习笔记」浅谈离散微积分",
     "datePublished": "Tue Sep 22 2020 23:26:57 GMT+0800",
-    "dateModified": "Tue Sep 29 2020 22:22:14 GMT+0800",
+    "dateModified": "Tue Sep 29 2020 22:29:46 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -546,7 +546,8 @@
 <p>首先 $a^x$ 的差分显然是 $a^x(a-1)$</p>
 <p>考虑 $a^x$ 的不定和式，不妨设 $\sum a^x\delta x=ka^x+C$，两边求差分得 $k=\frac{1}{a-1}$，于是 $\sum a^x\delta x=\frac{a^x}{a-1}+C$</p>
 <h3 id="积法则"><a href="#积法则" class="headerlink" title="积法则"></a>积法则</h3><p>定义平移算子 $Ef(x)=f(x+1)$</p>
-<p>不难发现 $\begin{aligned}\Delta(u(x)v(x))&amp;=u(x+1)v(x+1)-u(x)v(x)\\<br>&amp;=u(x+1)v(x+1)-u(x+1)v(x)+u(x+1)v(x)-u(x)v(x)\\<br>&amp;=u(x+1)\Delta v(x)+v(x)\Delta u(x)\\<br>&amp;=u(x)\Delta v(x)+v(x+1)\Delta u(x)<br>\end{aligned}$</p>
+<p>不难发现</p>
+<p> $$\begin{aligned}\Delta(u(x)v(x))&amp;=u(x+1)v(x+1)-u(x)v(x)\\<br>&amp;=u(x+1)v(x+1)-u(x+1)v(x)+u(x+1)v(x)-u(x)v(x)\\<br>&amp;=u(x+1)\Delta v(x)+v(x)\Delta u(x)\\<br>&amp;=u(x)\Delta v(x)+v(x+1)\Delta u(x)<br>\end{aligned}$$</p>
 <p>更为简单的表示为：$\Delta(uv)=u\Delta v+Ev\Delta u=Eu\Delta v+v\Delta u$</p>
 <h3 id="分部求和"><a href="#分部求和" class="headerlink" title="分部求和"></a>分部求和</h3><p>在微积分中有分部积分公式：$\int udv=uv-\int vdu$</p>
 <p>这一公式是对微分的积法则移项后左右积分得到的</p>

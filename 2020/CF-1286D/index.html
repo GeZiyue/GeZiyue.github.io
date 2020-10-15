@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Wed Oct 14 2020 00:13:22 GMT+0800">
-        <meta property="article:modified_time" content="Thu Oct 15 2020 22:48:56 GMT+0800">
+        <meta property="article:modified_time" content="Thu Oct 15 2020 23:10:13 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2020/CF-1286D/index.html",
     "headline": "「Codeforces 1286D」LCC 题解",
     "datePublished": "Wed Oct 14 2020 00:13:22 GMT+0800",
-    "dateModified": "Thu Oct 15 2020 22:48:56 GMT+0800",
+    "dateModified": "Thu Oct 15 2020 23:10:13 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -515,7 +515,13 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p><a href="https://codeforces.com/problemset/problem/1286/D" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>容易证明，第一次碰撞的粒子初始位置是相邻的，考虑钦定一对粒子的运动方向，计算在它们相撞前，其他粒子都不相撞的概率<br>设 $f_{i,j,0/1,0/1}$ 为第 $i$ 到 $j$ 个粒子，第 $i-1$ 个向左/右，第 $j$ 个向左/右，满足在钦定粒子相撞前不相撞的概率（可以人为添加一个速度无穷大，向左运动的粒子 $0$），于是答案为 $f_{1,n,0,0}+f_{1,n,0,1}$<br>发现转移是这样的：$f_{i,j,s_1,s_2}=\sum_{s_3}f_{i,k,s_1,s_3}f_{k,j,s_3,s_2}$，其中 $k$ 可以任取，显然是个矩阵乘法的形式<br>设第 $i$ 个粒子的矩阵为 $M_i$，若 $i-1$ 向左，$i$ 向左会在钦定前相撞，则 $M_{i,0,0}=0$，否则 $M_{i,0,0}=1-p_i$，其他情况类似<br>考虑将所有可能相撞的情形按相撞时间升序排序，处理时将 $M_i$ 只保留钦定的一种情况，其他的置为 $0$，将所有矩阵相乘统计答案，再还原 $M_i$ 并将钦定的情况置为 $0$（之后的情形中这种运动方向会先碰撞是不满足条件的）<br>单点修改，全局查询矩阵乘法用线段树维护即可<br>时间复杂度 $\operatorname{O}(n\log n)$</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>容易证明，第一次碰撞的粒子初始位置是相邻的，考虑钦定一对粒子的运动方向，计算在它们相撞前，其他粒子都不相撞的概率</p>
+<p>设 $f_{i,j,0/1,0/1}$ 为第 $i$ 到 $j$ 个粒子，第 $i-1$ 个向左/右，第 $j$ 个向左/右，满足在钦定粒子相撞前不相撞的概率（可以人为添加一个速度无穷大，向左运动的粒子 $0$），于是答案为 $f_{1,n,0,0}+f_{1,n,0,1}$</p>
+<p>发现转移是这样的：$f_{i,j,s_1,s_2}=\sum_{s_3}f_{i,k,s_1,s_3}f_{k,j,s_3,s_2}$，其中 $k$ 可以任取，显然是个矩阵乘法的形式</p>
+<p>设第 $i$ 个粒子的矩阵为 $M_i$，若 $i-1$ 向左，$i$ 向左会在钦定前相撞，则 $M_{i,0,0}=0$，否则 $M_{i,0,0}=1-p_i$，其他情况类似</p>
+<p>考虑将所有可能相撞的情形按相撞时间升序排序，处理时将 $M_i$ 只保留钦定的一种情况，其他的置为 $0$，将所有矩阵相乘统计答案，再还原 $M_i$ 并将钦定的情况置为 $0$（之后的情形中这种运动方向会先碰撞是不满足条件的）</p>
+<p>单点修改，全局查询矩阵乘法用线段树维护即可</p>
+<p>时间复杂度 $\operatorname{O}(n\log n)$</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">const int N = 100005;
 const int Mod = 998244353;
 

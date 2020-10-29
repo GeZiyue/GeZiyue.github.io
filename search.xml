@@ -4,11 +4,30 @@
   
     
     <entry>
+      <title>每天一个爆零小技巧</title>
+      <link href="/2020/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E7%88%86%E9%9B%B6%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
+      <url>/2020/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E7%88%86%E9%9B%B6%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
+      
+        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <div class="hbe-input-container">  <input type="password" id="hbePass" placeholder="" />    <label for="hbePass">这篇文章被加密了 QwQ</label>    <div class="bottom-line"></div>  </div>  <script id="hbeData" type="hbeData" data-hmacdigest="861a7ffdcc4c92d2f058b0120c59f1cfd02db872b5a6142ec4ab87de1926adfa">31d6ca60819b885003d80f03d3e9cbe2ba3225ee1cbec771ebcc1aafc3a163c3097d8ae631cd6936b494a4dfc93a6e8cf960e490bffd7b527c1ba6baaa4d12ae0d0b08b7f4fee940658042d5484663cadeba0f0c46d35eba757ac65f632c064ab43199048466209857c46b2eb1594217fa31f05531b208643ecf3301a98b589b9a13db30e3858316c08d242051cd054766f8f25196a98e6aa13433da1a90876ad6332b24b93802092e4e957cfacd1da54d30450e7986dc7cfc959b9cb0251356ab46f8d25164a5b846859ee3215a87373e7b085da7e88014988e03735745d8f55f17f418dee2ccd09db769d0475a8e050709c0e8d7c1a0d72d4fdca92db682edd2d31a20228e0bbb7c0a3b51fd297eaa8b9160b181bbb9940fcee31ebda52ab726f092a5026572e42acc5998d949d564</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> Note </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>「洛谷P6667」[清华集训2016]如何优雅地求和 题解</title>
       <link href="/2020/luogu-6667/"/>
       <url>/2020/luogu-6667/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P6667" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><p>提供一种概率生成函数的做法</p><p>首先简单介绍一下概率生成函数：</p><p>概率生成函数是一类用于解决、分析在自然数域上的离散随机变量相关问题的普通生成函数，其形式为 $F(x)=\sum\limits_{i=0}^\infty\operatorname{P}(X=i)x^i$</p><p>有如下公式：</p><p>$\operatorname{E}(X)=F^\prime(1)$</p><p>$\operatorname{E}(X^{\underline{n}})=F^{(n)}(1)$</p><p>对于成功概率为 $p$，重复试验 $n$ 次的二项分布，概率生成函数为 $(1-p+px)^n$</p><p>下面是这题的做法</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>发现这个式子很像二项分布，事实上，这道题就是对于成功概率 $p$，重复试验 $n$ 次的二项分布成功次数 $X$，求 $\operatorname{E}[f(X)]$</p><p>根据期望的线性性，可以拆开，又有 $\operatorname{E}(X^\underline{k})=F^{(k)}(1)=p^kn^\underline{k}$（手动求导可得），其中 $F(x)$ 是该二项分布的概率生成函数</p><p>考虑将 $f(x)$ 转为下降幂多项式 $g(x)=\sum_{i=0}^mg_ix^\underline{i}$，答案即为 $\sum_{i=0}^mg_ip^in^\underline{i}$</p><p>由于已经给出了 $0\sim m$ 处的点值，直接将 $\sum\frac{f(i)}{i!}$ 和 $\sum\frac{(-1)^i}{i!}$ 卷积的 $i$ 次项即为 $g_i$（不会的可以先看<a href="https://www.luogu.com.cn/problem/P5383" target="_blank" rel="noopener">这道模板题</a>）</p><p>时间复杂度 $\operatorname{O}(m\log m)$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">const int N = 20005;const int M = 100005;const int Mod = 998244353, g = 3;class Poly {public:  int *a;  Poly() {    a = new int[M];    memset(a, 0, sizeof(int) * M);  }  void NTT(int lim, bool opt);};int r[M];int pow(int a, int b, int m);int pw[N], dw[N], fac[N], ifac[N];int f[N];int n, m, p;int main () {  read(n), read(m), read(p);  int lim = 1;  while (lim &lt;= (m &lt;&lt; 1)) {    lim &lt;&lt;= 1;  }  for (int i = 1; i &lt; lim; ++i) {    r[i] = (r[i &gt;&gt; 1] &gt;&gt; 1) | ((i &amp; 1) * (lim &gt;&gt; 1));  }  pw[0] = 1;  dw[0] = 1;  fac[0] = 1;  for (int i = 1; i &lt;= m; ++i) {    pw[i] = pw[i - 1] * 1ll * p % Mod;    dw[i] = dw[i - 1] * 1ll * (n - i + 1) % Mod;    fac[i] = fac[i - 1] * 1ll * i % Mod;  }  ifac[m] = pow(fac[m], Mod - 2, Mod);  for (int i = m - 1; i &gt;= 0; --i) {    ifac[i] = ifac[i + 1] * 1ll * (i + 1) % Mod;  }  for (int i = 0; i &lt;= m; ++i) {    read(f[i]);  }  Poly F, G;  for (int i = 0; i &lt;= m; ++i) {    F.a[i] = f[i] * 1ll * ifac[i] % Mod;    G.a[i] = ((i &amp; 1) ? (Mod - ifac[i]) : ifac[i]);  }  F.NTT(lim, false), G.NTT(lim, false);  for (int i = 0; i &lt; lim; ++i) {    F.a[i] = F.a[i] * 1ll * G.a[i] % Mod;  }  F.NTT(lim, true);  int ans = 0;  for (int i = 0; i &lt;= m; ++i) {    ans = (ans + F.a[i] * 1ll * pw[i] % Mod * dw[i] % Mod) % Mod;  }  write(ans), EL;  return 0;}int pow(int a, int b, int m) {  int ans = 1, now = a;  while (b) {    if (b &amp; 1) {      ans = ans * 1ll * now % m;    }    now = now * 1ll * now % m;    b &gt;&gt;= 1;  }  return ans;}void Poly::NTT(int lim, bool opt) {  for (int i = 0; i &lt; lim; ++i) {    if (i &lt; r[i]) {      std::swap(a[i], a[r[i]]);    }  }  for (int l = 1; l &lt; lim; l &lt;&lt;= 1) {    int gn = pow(g, (Mod - 1) / (l &lt;&lt; 1), Mod);    for (int i = 0; i &lt; lim; i += (l &lt;&lt; 1)) {      for (int j = 0, gw = 1; j &lt; l; ++j, gw = gw * 1ll * gn % Mod) {        int x = a[i + j], y = a[i + j + l] * 1ll * gw % Mod;        a[i + j] = (x + y) % Mod;        a[i + j + l] = (x - y + Mod) % Mod;      }    }  }  if (opt) {    std::reverse(a + 1, a + lim);    int iv = pow(lim, Mod - 2, Mod);    for (int i = 0; i &lt; lim; ++i) {      a[i] = a[i] * 1ll * iv % Mod;    }  }}</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P6667" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><p>提供一种概率生成函数的做法</p><p>首先简单介绍一下概率生成函数：</p><p>概率生成函数是一类用于解决、分析在自然数域上的离散随机变量相关问题的普通生成函数，其形式为 $F(x)=\sum\limits_{i=0}^\infty\operatorname{P}(X=i)x^i$</p><p>有如下公式：</p><p>$\operatorname{E}(X)=F^\prime(1)$</p><p>$\operatorname{E}(X^{\underline{n}})=F^{(n)}(1)$</p><p>对于成功概率为 $p$，重复试验 $n$ 次的二项分布，概率生成函数为 $(1-p+px)^n$</p><p>下面是这题的做法</p><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>发现这个式子很像二项分布，事实上，这道题就是对于成功概率 $p$，重复试验 $n$ 次的二项分布成功次数 $X$，求 $\operatorname{E}[f(X)]$</p><p>根据期望的线性性，可以拆开，又有 $\operatorname{E}(X^{\underline{k}})=F^{(k)}(1)=p^kn^{\underline{k}}$（手动求导可得），其中 $F(x)$ 是该二项分布的概率生成函数</p><p>考虑将 $f(x)$ 转为下降幂多项式 $g(x)=\sum_{i=0}^mg_ix^{\underline{i}}$，答案即为 $\sum_{i=0}^mg_ip^in^{\underline{i}}$</p><p>由于已经给出了 $0\sim m$ 处的点值，直接将 $\sum\frac{f(i)}{i!}$ 和 $\sum\frac{(-1)^i}{i!}$ 卷积的 $i$ 次项即为 $g_i$（不会的可以先看<a href="https://www.luogu.com.cn/problem/P5383" target="_blank" rel="noopener">这道模板题</a>）</p><p>时间复杂度 $\operatorname{O}(m\log m)$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">const int N = 20005;const int M = 100005;const int Mod = 998244353, g = 3;class Poly {public:  int *a;  Poly() {    a = new int[M];    memset(a, 0, sizeof(int) * M);  }  void NTT(int lim, bool opt);};int r[M];int pow(int a, int b, int m);int pw[N], dw[N], fac[N], ifac[N];int f[N];int n, m, p;int main () {  read(n), read(m), read(p);  int lim = 1;  while (lim &lt;= (m &lt;&lt; 1)) {    lim &lt;&lt;= 1;  }  for (int i = 1; i &lt; lim; ++i) {    r[i] = (r[i &gt;&gt; 1] &gt;&gt; 1) | ((i &amp; 1) * (lim &gt;&gt; 1));  }  pw[0] = 1;  dw[0] = 1;  fac[0] = 1;  for (int i = 1; i &lt;= m; ++i) {    pw[i] = pw[i - 1] * 1ll * p % Mod;    dw[i] = dw[i - 1] * 1ll * (n - i + 1) % Mod;    fac[i] = fac[i - 1] * 1ll * i % Mod;  }  ifac[m] = pow(fac[m], Mod - 2, Mod);  for (int i = m - 1; i &gt;= 0; --i) {    ifac[i] = ifac[i + 1] * 1ll * (i + 1) % Mod;  }  for (int i = 0; i &lt;= m; ++i) {    read(f[i]);  }  Poly F, G;  for (int i = 0; i &lt;= m; ++i) {    F.a[i] = f[i] * 1ll * ifac[i] % Mod;    G.a[i] = ((i &amp; 1) ? (Mod - ifac[i]) : ifac[i]);  }  F.NTT(lim, false), G.NTT(lim, false);  for (int i = 0; i &lt; lim; ++i) {    F.a[i] = F.a[i] * 1ll * G.a[i] % Mod;  }  F.NTT(lim, true);  int ans = 0;  for (int i = 0; i &lt;= m; ++i) {    ans = (ans + F.a[i] * 1ll * pw[i] % Mod * dw[i] % Mod) % Mod;  }  write(ans), EL;  return 0;}int pow(int a, int b, int m) {  int ans = 1, now = a;  while (b) {    if (b &amp; 1) {      ans = ans * 1ll * now % m;    }    now = now * 1ll * now % m;    b &gt;&gt;= 1;  }  return ans;}void Poly::NTT(int lim, bool opt) {  for (int i = 0; i &lt; lim; ++i) {    if (i &lt; r[i]) {      std::swap(a[i], a[r[i]]);    }  }  for (int l = 1; l &lt; lim; l &lt;&lt;= 1) {    int gn = pow(g, (Mod - 1) / (l &lt;&lt; 1), Mod);    for (int i = 0; i &lt; lim; i += (l &lt;&lt; 1)) {      for (int j = 0, gw = 1; j &lt; l; ++j, gw = gw * 1ll * gn % Mod) {        int x = a[i + j], y = a[i + j + l] * 1ll * gw % Mod;        a[i + j] = (x + y) % Mod;        a[i + j + l] = (x - y + Mod) % Mod;      }    }  }  if (opt) {    std::reverse(a + 1, a + lim);    int iv = pow(lim, Mod - 2, Mod);    for (int i = 0; i &lt; lim; ++i) {      a[i] = a[i] * 1ll * iv % Mod;    }  }}</code></pre>]]></content>
       
       
       <categories>
@@ -587,17 +606,6 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>友链</title>
       <link href="/links/index.html"/>
       <url>/links/index.html</url>
@@ -612,6 +620,17 @@
       <title>时间轴</title>
       <link href="/timeline/index.html"/>
       <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

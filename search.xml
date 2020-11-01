@@ -4,6 +4,66 @@
   
     
     <entry>
+      <title>「AGC 032F」One Third</title>
+      <link href="/2020/AGC-032F/"/>
+      <url>/2020/AGC-032F/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://atcoder.jp/contests/agc032/tasks/agc032_f" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>考虑转化，可以转化为在 $\left[0,\frac{1}{3}\right]$ 上等概率随机分成 $n$ 份，并从 $1,2,3$ 中等概率随机赋上一种颜色，$0$ 初始颜色已为 $1$，$\frac{1}{3}$ 初始颜色已为 $2$，求最短的两端点颜色不同的线段的期望长度</p><p>先从没有限制的长度为 $1$ 的线段开始考虑，不妨设其互补累积分布函数 $F_{L_1}(x)=P(L&gt;x)=(1-nx)^{n-1}$ 可得其期望：</p><p>$$\begin{aligned}\operatorname{E}[L_1] &amp; =\int_0^\frac{1}{n}x\times\left[-(F_{L_1}(x))^\prime\right]dx\\<br>&amp; =\int_0^\frac{1}{n}F_{L_1}(x)dx \text{ (分部积分) }     \\<br>&amp; =\int_0^\frac{1}{n}(1-nx)^{n-1}dx                       \\<br>&amp; =\frac{1}{n}\int_0^1\left(\frac{n-nx}{n}\right)^{n-1}dx \\<br>&amp; =\frac{1}{n}\int_0^1\left(1-x\right)^{n-1}dx            \\<br>&amp; =\frac{1}{n}\int_0^1x^{n-1}dx \text{ (换元) }           \\<br>&amp; =\frac{1}{n^2}\end{aligned}$$</p><p>考虑次小值，削除 $n$ 段最小值后的最小值再加上最小值：$\operatorname{E}[L_2]=\frac{1-n\operatorname{E}[L_1]}{(n-1)^2}+\operatorname{E}[L_1]$<br>变形得 $\operatorname{E}[L_2]-\operatorname{E}[L_1]=\frac{1}{n(n-1)}$，归纳得 $\operatorname{E}[L_{k+1}]-\operatorname{E}[L_k]=\frac{1}{n(n-k)}$<br>考虑乘上至少前 $i$ 条线段都不满足条件的概率 $\frac{1}{3^i}$ 答案即为 $\frac{1}{n}\sum\limits_{i=1}^n\frac{1}{3^i(n-i+1)}$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">constexpr int N = 1000005;constexpr int Mod = 1000000007;int pow(int a, int b, int m);int inv[N];int n;int main() {  read(n);  inv[1] = 1;  for (int i = 2; i &lt;= n; ++i) {    inv[i] = (Mod - Mod / i) * 1ll * inv[Mod % i] % Mod;  }  int ans = 0;  int iv3 = pow(3, Mod - 2, Mod);  for (int i = 1, p3 = inv[n]; i &lt;= n; ++i) {    p3 = p3 * 1ll * iv3 % Mod;    ans = (ans + p3 * 1ll * inv[n - i + 1] % Mod) % Mod;  }  write(ans), EL;  return 0;}int pow(int a, int b, int m) {  int ans = 1, now = a;  while (b) {    if (b &amp; 1) {      ans = ans * 1ll * now % m;    }    now = now * 1ll * now % m;    b &gt;&gt;= 1;  }  return ans;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数学 </tag>
+            
+            <tag> 概率与期望 </tag>
+            
+            <tag> 微积分 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>「洛谷P3727」曼哈顿计划E 题解</title>
+      <link href="/2020/luogu-3727/"/>
+      <url>/2020/luogu-3727/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3727" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>发现实质上是把树上一段链拉下来玩 Nim 游戏，若链上 $sg$ 函数的异或和为 $0$ 则先手必败，于是可以考虑点分治找出树上异或和为 $0$ 的链，用自己喜欢的 Hash 方式即可</p><h2 id="SG-函数"><a href="#SG-函数" class="headerlink" title="SG 函数"></a>SG 函数</h2><ol><li>$k=1$：原始的 Nim 游戏 $sg(x)=x$</li><li>$k=2$：分两种情况，(1) $s$ 为奇数，显然 $s^k$ 均为奇数，故简单归纳可得 $sg(x)=x\bmod 2$；(2) $s$ 为偶数，找规律得有长为 $(s+1)$ 的循环节，大概长这样 $\overbrace{0101\cdots01}^{s}2$，有 $1=(s+1)\times0+1,s=(s+1)\times1-1,s^2=(s+1)\times(s-1)+1,s^3=(s+1)\times(s^2-s+1)-1\cdots$ 于是对循环节施加归纳，每个点可看做前后两个点的 $\operatorname{mex}$ 即可得证</li><li>$k=3$：$sg(x)=\lfloor\frac{x}{s}\rfloor$ 证明大概是对循环节施加归纳，每个循环节可以到达所有之前的循环节，即可得证</li><li>$k=4$：$sg(x)=\begin{cases}0&amp;(x=0)\\x&amp;(x\equiv1,2\pmod4)\\x+1&amp;(x\equiv3\pmod4)\\x-1&amp;(x\equiv4\pmod4)\end{cases}$ 证明大概是先 $4$ 个分一块并对块施加归纳，再对每一种单独证明<br>首先对于一个完整的块 $x=4k+1\sim 4k+4$ 它的 $sg(x)$ 取遍了 $4k+1\sim4k+4$，所以直接取的 $sg$ 值可以取遍 $0\sim 4k$<br>以下 $1,2,3,4$ 均为 $\bmod 4$ 意义下的<br>考虑 $1$ 分成 $1+0$ 时异或值为 $1\oplus3=2\neq1$，$2+3$ 时异或值为 $2\oplus0=2\neq1$ 故无法将 $1$ 分解得到自身，又因为能直接取到 $0\sim4k$ 故 $sg(4k+1)=4k+1$<br>$2$ 也无法分解，证明是类似的，又因为能直接取到 $0\sim4k+1$ 故 $sg(4k+2)=4k+2$<br>$3$ 可以直接取到 $0\sim4k+2$，又可以分解为 $4k+2$ 和 $1$，即 $(4k+2)\oplus1=4k+3$，故 $sg(4k+3)=4k+4$<br>$4$ 可以直接取到 $0\sim4k+2$ 和 $4k+4$，类似 $1,2$ 的情况 $4$ 无法分解为 $4k+3$ 故 $sg(4k+4)=4k+3$</li></ol><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">constexpr int N = 30005;constexpr int M = 60005;void add(int u, int v);void getsiz(int u, int fa);void getrot(int u, int fa);void getp(int u, int fa, int len);void solve(int u);void dfs(int u);int hed[N], nxt[M], to[M], id;int siz[N];int asz, nsz, rot;int dis[N], tot;bool vis[N];int val[N], sg[N];bool ans;int n;int main() {  int T;  read(T);  while (T--) {    memset(hed, 0, sizeof(hed));    id = 0;    ans = false;    memset(vis, false, sizeof(vis));    read(n);    for (int i = 1; i &lt; n; ++i) {      int u, v;      read(u), read(v);      add(u, v), add(v, u);    }    for (int i = 1; i &lt;= n; ++i) {      read(val[i]);    }    int k;    read(k);    if (k == 1) {      for (int i = 1; i &lt;= n; ++i) {        sg[i] = val[i];      }    }    if (k == 2) {      int s;      read(s);      for (int i = 1; i &lt;= n; ++i) {        if (val[i] % (s + 1) == s) {          sg[i] = 2;        } else {          sg[i] = val[i] % (s + 1) % 2;        }      }    }    if (k == 3) {      int s;      read(s);      for (int i = 1; i &lt;= n; ++i) {        sg[i] = val[i] / s;      }    }    if (k == 4) {      for (int i = 1; i &lt;= n; ++i) {        if (!val[i]) {          sg[i] = 0;        } else {          if (val[i] % 4 == 0) {            sg[i] = val[i] - 1;          } else {            if (val[i] % 4 == 3) {              sg[i] = val[i] + 1;            } else {              sg[i] = val[i];            }          }        }      }    }    getsiz(1, 0);    asz = siz[1];    nsz = iinf;    rot = 0;    getrot(1, 0);    dfs(rot);    if (ans) {      puts(&quot;Mutalisk ride face how to lose?&quot;);    } else {      puts(&quot;The commentary cannot go on!&quot;);    }  }  return 0;}void add(int u, int v) {  nxt[++id] = hed[u];  hed[u] = id;  to[id] = v;}void getsiz(int u, int fa) {  siz[u] = 1;  for (int i = hed[u]; i; i = nxt[i]) {    int v = to[i];    if (v != fa &amp;&amp; !vis[v]) {      getsiz(v, u);      siz[u] += siz[v];    }  }}void getrot(int u, int fa) {  int maxi = 0;  for (int i = hed[u]; i; i = nxt[i]) {    int v = to[i];    if (v != fa &amp;&amp; !vis[v]) {      getrot(v, u);      maxi = max(maxi, siz[v]);    }  }  maxi = max(maxi, asz - siz[u]);  if (maxi &lt; nsz) {    nsz = maxi;    rot = u;  }}void getp(int u, int fa, int len) {  len ^= sg[u];  dis[++tot] = len;  for (int i = hed[u]; i; i = nxt[i]) {    int v = to[i];    if (v != fa &amp;&amp; !vis[v]) {      getp(v, u, len);    }  }}void solve(int u) {  if (!sg[u]) {    ans = true;  }  if (ans) {    return;  }  std::unordered_set&lt;int&gt; S;  S.insert(sg[u]);  for (int i = hed[u]; i; i = nxt[i]) {    int v = to[i];    if (!vis[v]) {      tot = 0;      getp(v, u, 0);      for (int j = 1; j &lt;= tot; ++j) {        if (S.count(dis[j])) {          ans = true;          return;        }      }      for (int j = 1; j &lt;= tot; ++j) {        S.insert(dis[j] ^ sg[u]);      }    }  }}void dfs(int u) {  vis[u] = true;  solve(u);  for (int i = hed[u]; i; i = nxt[i]) {    int v = to[i];    if (!vis[v]) {      getsiz(v, u);      asz = siz[v];      nsz = iinf;      rot = 0;      getrot(v, u);      dfs(rot);    }  }}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 洛谷 </tag>
+            
+            <tag> 博弈论 </tag>
+            
+            <tag> sg函数与Nim游戏 </tag>
+            
+            <tag> 点分治 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>每天一个爆零小技巧</title>
       <link href="/2020/Common-Error/"/>
       <url>/2020/Common-Error/</url>
@@ -68,9 +128,9 @@
       
         <tags>
             
-            <tag> Codeforces </tag>
-            
             <tag> 概率与期望 </tag>
+            
+            <tag> Codeforces </tag>
             
             <tag> 矩阵乘法 </tag>
             
@@ -99,9 +159,9 @@
       
         <tags>
             
-            <tag> Codeforces </tag>
-            
             <tag> 概率与期望 </tag>
+            
+            <tag> Codeforces </tag>
             
             <tag> 高斯消元 </tag>
             
@@ -342,9 +402,9 @@
             
             <tag> 线段树 </tag>
             
-            <tag> 树链剖分 </tag>
-            
             <tag> 洛谷 </tag>
+            
+            <tag> 树链剖分 </tag>
             
         </tags>
       
@@ -581,9 +641,9 @@
             
             <tag> 动态规划 </tag>
             
-            <tag> 洛谷 </tag>
-            
             <tag> USACO </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -595,22 +655,22 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
-        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     

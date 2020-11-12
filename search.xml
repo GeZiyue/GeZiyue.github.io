@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>CSP-2020 游记</title>
+      <link href="/2020/CSP-2020/"/>
+      <url>/2020/CSP-2020/</url>
+      
+        <content type="html"><![CDATA[<h1 id="CSP-2020退役记"><a href="#CSP-2020退役记" class="headerlink" title="CSP-2020退役记"></a>CSP-2020退役记</h1><a id="more"></a><h2 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h2><p>就在本市考，但是在郊区的职高，比较远，所以学校组织了大巴</p><p>大巴车上和妹子坐一起，好耶！</p><p>考场环境不是很好，位子后面没有靠背，难受 $\times1$，显示屏太矮，难受 $\times2$，显示屏比例不对劲，难受 $\times3$</p><h2 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h2><p>早上看了眼 PJ 的题，没有 C++11 &amp; O2 真的差评</p><p>大巴车上和妹子坐一起，好耶！</p><p>考前大力奶，要 AC 自动机，nim 积（？），超现实数（？），模数 $998244353$（唯一对的）</p><p>开场监考老师漏了密码前后的括号，差评，“它山之石可以攻玉？”</p><p>先看一眼题目名字，儒略历？？？一看就是大模拟，差评，于是没往下看题面直接开始写板子</p><p>10 min 写完板子，开题，T1 日历题？？？弃了弃了，开 T2 第一眼：内存不够，第二眼：可以对 $q$ 离散化，20 min 敲完，为了防止 ub 写了个快速幂算 $2^k$ 后来发现 $n=m=0,k=64$ 是超过 <code>unsigned long long</code> 范围的，果断特判，Linux 的计算器为啥是科学记数法啊/jk，于是果断 python <code>2**64</code></p><p>看 T3，第一眼：线段树合并？？？，后来发现是线段树2，可以将后面的乘法乘到前面的加法，但感觉不怎么会，先看 T4，博弈？？？</p><p>回去肝 T1 写了对年份二分，写了 1.5h，祝出题人身体健康，此时只剩 2h 时间了，我 T3 T4 都没动</p><p>发现 T3 可以先维护每个操作的乘法具体是多少，然后 topsort 后可以直接倒着做下传标记，和线段树2非常像，好题啊！写的时候手都在抖，幸好 30min 就过了大样例，顺便吐槽考场的 gedit 打不开样例三，最后用 vim 看了下强度</p><p>T4 发现可以从后往前看，果断写了个 $\operatorname{O}(Tn^2)$ 赶紧跑路对拍 T1</p><p>拍 T1 没啥问题，感觉海星，想了下 T4 好像可以 set 没时间了</p><p>出来发现 T4 好像还有单调性/kk，被大家吊着打</p><p>大巴车上和妹子坐一起，好耶！</p><p>回来发现 T4 写得好像有点假，不管了</p><h2 id="Day-3"><a href="#Day-3" class="headerlink" title="Day 3"></a>Day 3</h2><p>发程序了/kk</p><p>T4 竟然有 55</p><p>T1 二分的右边界应该是 $10^9+4713$，然而我就写了个 $10^9$，$100\rightarrow 90$/kk</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 游记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>「Codeforces 736D」Symmetric and Transitive 题解</title>
+      <link href="/2020/CF-736D/"/>
+      <url>/2020/CF-736D/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/736/D" target="_blank" rel="noopener">题目</a></p><a id="more"></a><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>左右各 $n$ 个点，$m$ 条边的二分图，满足完美匹配数为奇数个，问分别去掉每一条边后，完美匹配数是否仍为奇数个</p><p>$n\le2000$，$m\le5\times10^5$</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先发现完美匹配数为 $\sum\limits_{\sigma\in S_n}\prod\limits_{i=1}^n\left[M_{i,\sigma(i)}=1\right]$，其中 $M$ 为邻接矩阵，$S_n$ 为所有 $1\sim n$ 的置换构成的集合</p><p>由于是 $\bmod2$ 意义下的，且 $-1\equiv1\pmod2$ 故有 $Ans\equiv\sum\limits_{\sigma\in S_n}\operatorname{sgn}(\sigma)\prod\limits_{i=1}^n\left[M_{i,\sigma(i)}=1\right]=\det(M)\pmod2$</p><p>考虑容斥，去掉一条边的完美匹配数为奇数等价于包含一条边的完美匹配数为偶数，必须包含一条边即为删掉一行一列，于是等价于它的余子式为偶数，同样的，由于 $(-1)^{i+j}$ 不影响答案直接求代数余子式即可，又有矩阵 $M$ 在 $i$ 行 $j$ 列的代数余子式等于伴随矩阵 $M^<em>$ 的 $j$ 行 $i$ 列，于是可以求伴随矩阵 $M^{</em>}=\det(M)M^{-1}$ 直接高斯消元就好了，$\det(M)$ 一定为奇数</p><p>注意到运算在 $\bmod2$ 意义下进行，加减和异或运算等价，直接使用 bitset 进行优化即可，复杂度 $\operatorname{O}(\frac{n^3}{\omega})$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Codeforces </tag>
+            
+            <tag> 线性代数 </tag>
+            
+            <tag> 计数 </tag>
+            
+            <tag> 高斯消元 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>「AGC 032F」One Third</title>
       <link href="/2020/AGC-032F/"/>
       <url>/2020/AGC-032F/</url>
@@ -68,7 +118,7 @@
       <link href="/2020/Common-Error/"/>
       <url>/2020/Common-Error/</url>
       
-        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <div class="hbe-input-container">  <input type="password" id="hbePass" placeholder="" />    <label for="hbePass">这篇文章被加密了 QwQ</label>    <div class="bottom-line"></div>  </div>  <script id="hbeData" type="hbeData" data-hmacdigest="d6f5752e41a89d051957df801667e4b61973f0786e135ebf7e905bf7c2c6e3af">31d6ca60819b885003d80f03d3e9cbe2ba3225ee1cbec771ebcc1aafc3a163c3097d8ae631cd6936b494a4dfc93a6e8cf960e490bffd7b527c1ba6baaa4d12ae0d0b08b7f4fee940658042d5484663cadeba0f0c46d35eba757ac65f632c064ab43199048466209857c46b2eb1594217cbc9a4a13484a44ed94e537e844e544bd0b11b215f595b46d148c9cd7d8087d9e4b819ee55b6b2bf4cbf4700a0eb845c3a5932cf636ab61830587179ed353815742d5396f5cf747d4c111d9a33d5515d561d39ef3f433ec9cef9d16a9cabcdd4c08f9393aea5961c5870f795d64f48c3cc5bf799cfd6dedce8a061eed6c563b932879784f3d09f125a1d6fe3386f51e4fff7db919fdf4f094a78a1febd6043351ba8bc61c1e28a8e3b81a9bb921d896fd9b3fc92d34fce4c8de15a83f5434a0f</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+        <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <div class="hbe-input-container">  <input type="password" id="hbePass" placeholder="" />    <label for="hbePass">这篇文章被加密了 QwQ</label>    <div class="bottom-line"></div>  </div>  <script id="hbeData" type="hbeData" data-hmacdigest="1ebc2087a4e5cc152a2095cf17ba18bbe098bfa922b31ab71ede0abb6dc87556">31d6ca60819b885003d80f03d3e9cbe2ba3225ee1cbec771ebcc1aafc3a163c3097d8ae631cd6936b494a4dfc93a6e8cf960e490bffd7b527c1ba6baaa4d12ae0d0b08b7f4fee940658042d5484663cadeba0f0c46d35eba757ac65f632c064ab43199048466209857c46b2eb1594217cbc9a4a13484a44ed94e537e844e544bd0b11b215f595b46d148c9cd7d8087d9e4b819ee55b6b2bf4cbf4700a0eb845c3a5932cf636ab61830587179ed35381583b2f0d3ef8b1c6135d81af78974cc857b9ad8e9ecaf547af0884b65f1f73c7106975c88061f84d49d085f4f4c8db6b8ad98c1cf468204be4747e12c6f265200fe083886726969037b5788ae8bf9102ad9368b20a826797635341d5a734a13becb9e75f58c5c4a12b43e8bf14802eb3021059224abd2365c693f54f3363eed1450723f43430b48d4075a23fa2cbc24ec05b3ae5b9525471a4dfc19092ebb174fade810880315a36900d637b1029887510c16dd3d9694ea27b011aa90579b49098ea59d06e4208a36f849c4affaf71399</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       
       
       <categories>
@@ -365,7 +415,7 @@
     
     
     <entry>
-      <title>CSP-2019游记</title>
+      <title>CSP-2019 游记</title>
       <link href="/2019/CSP-2019/"/>
       <url>/2019/CSP-2019/</url>
       
@@ -537,11 +587,11 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -641,9 +691,9 @@
             
             <tag> 动态规划 </tag>
             
-            <tag> USACO </tag>
-            
             <tag> 洛谷 </tag>
+            
+            <tag> USACO </tag>
             
         </tags>
       

@@ -27,7 +27,7 @@
       <link href="/2020/CF-736D/"/>
       <url>/2020/CF-736D/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/736/D" target="_blank" rel="noopener">题目</a></p><a id="more"></a><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>左右各 $n$ 个点，$m$ 条边的二分图，满足完美匹配数为奇数个，问分别去掉每一条边后，完美匹配数是否仍为奇数个</p><p>$n\le2000$，$m\le5\times10^5$</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先发现完美匹配数为 $\sum\limits_{\sigma\in S_n}\prod\limits_{i=1}^n\left[M_{i,\sigma(i)}=1\right]$，其中 $M$ 为邻接矩阵，$S_n$ 为所有 $1\sim n$ 的置换构成的集合</p><p>由于是 $\bmod2$ 意义下的，且 $-1\equiv1\pmod2$ 故有 $Ans\equiv\sum\limits_{\sigma\in S_n}\operatorname{sgn}(\sigma)\prod\limits_{i=1}^n\left[M_{i,\sigma(i)}=1\right]=\det(M)\pmod2$</p><p>考虑容斥，去掉一条边的完美匹配数为奇数等价于包含一条边的完美匹配数为偶数，必须包含一条边即为删掉一行一列，于是等价于它的余子式为偶数，同样的，由于 $(-1)^{i+j}$ 不影响答案直接求代数余子式即可，又有矩阵 $M$ 在 $i$ 行 $j$ 列的代数余子式等于伴随矩阵 $M^{*}$ 的 $j$ 行 $i$ 列，于是可以求伴随矩阵 $M^{*}=\det(M)M^{-1}$ 直接高斯消元就好了，$\det(M)$ 一定为奇数</p><p>注意到运算在 $\bmod2$ 意义下进行，加减和异或运算等价，直接使用 bitset 进行优化即可，复杂度 $\operatorname{O}(\frac{n^3}{\omega})$</p>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://codeforces.com/problemset/problem/736/D" target="_blank" rel="noopener">题目</a></p><a id="more"></a><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>左右各 $n$ 个点，$m$ 条边的二分图，满足完美匹配数为奇数个，问分别去掉每一条边后，完美匹配数是否仍为奇数个</p><p>$n\le2000$，$m\le5\times10^5$</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先发现完美匹配数为 $\sum\limits_{\sigma\in S_n}\prod\limits_{i=1}^n\left[M_{i,\sigma(i)}=1\right]$，其中 $M$ 为邻接矩阵，$S_n$ 为所有 $1\sim n$ 的置换构成的集合</p><p>由于是 $\bmod2$ 意义下的，且 $-1\equiv1\pmod2$ 故有 $Ans\equiv\sum\limits_{\sigma\in S_n}\operatorname{sgn}(\sigma)\prod\limits_{i=1}^n\left[M_{i,\sigma(i)}=1\right]=\det(M)\pmod2$</p><p>考虑容斥，去掉一条边的完美匹配数为奇数等价于包含一条边的完美匹配数为偶数，必须包含一条边即为删掉一行一列，于是等价于它的余子式为偶数，同样的，由于 $(-1)^{i+j}$ 不影响答案直接求代数余子式即可，又有矩阵 $M$ 在 $i$ 行 $j$ 列的代数余子式等于伴随矩阵 $M^{*}$ 的 $j$ 行 $i$ 列，于是可以求伴随矩阵 $M^{*}=\det(M)M^{-1}$ 直接高斯消元就好了，$\det(M)$ 一定为奇数</p><p>注意到运算在 $\bmod2$ 意义下进行，加减和异或运算等价，直接使用 bitset 进行优化即可，复杂度 $\operatorname{O}(\frac{n^3}{\omega})$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">constexpr int N = 2001;constexpr int S = 4001;constexpr int M = 500001;void Gauss(int n);std::bitset&lt;S&gt; a[N];int u[M], v[M];int n, m;int main() {  read(n), read(m);  for (int i = 1; i &lt;= m; ++i) {    read(u[i]), read(v[i]);    a[u[i]][v[i]] = true;  }  for (int i = 1; i &lt;= n; ++i) {    a[i][i + n] = true;  }  Gauss(n);  for (int i = 1; i &lt;= m; ++i) {    if (a[v[i]][u[i] + n]) {      puts(&quot;NO&quot;);    } else {      puts(&quot;YES&quot;);    }  }  return 0;}void Gauss(int n) {  for (int i = 1; i &lt;= n; ++i) {    int now = 0;    for (int j = i; j &lt;= n; ++j) {      if (a[j][i]) {        now = j;      }    }    if (now != i) {      std::swap(a[i], a[now]);    }    for (int j = 1; j &lt;= n; ++j) {      if (i != j &amp;&amp; a[j][i]) {        a[j] ^= a[i];      }    }  }}</code></pre>]]></content>
       
       
       <categories>
@@ -43,9 +43,9 @@
             
             <tag> 计数 </tag>
             
-            <tag> 线性代数 </tag>
-            
             <tag> 高斯消元 </tag>
+            
+            <tag> 线性代数 </tag>
             
         </tags>
       
@@ -178,9 +178,9 @@
       
         <tags>
             
-            <tag> 概率与期望 </tag>
-            
             <tag> Codeforces </tag>
+            
+            <tag> 概率与期望 </tag>
             
             <tag> 矩阵乘法 </tag>
             
@@ -209,9 +209,9 @@
       
         <tags>
             
-            <tag> 概率与期望 </tag>
-            
             <tag> Codeforces </tag>
+            
+            <tag> 概率与期望 </tag>
             
             <tag> 高斯消元 </tag>
             
@@ -716,17 +716,6 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>标签</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
@@ -741,6 +730,17 @@
       <title>时间轴</title>
       <link href="/timeline/index.html"/>
       <url>/timeline/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

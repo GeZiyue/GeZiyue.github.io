@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>「洛谷P4547」[THUWC 2017] 随机二分图 题解</title>
+      <link href="/2020/luogu-4547/"/>
+      <url>/2020/luogu-4547/</url>
+      
+        <content type="html"><![CDATA[<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先考虑只有第 1 类边的情况，根据期望的线性性，不难得到一个朴素的搜索：搜索每一种完美匹配，并将这个匹配的所有边的概率之积累加到答案，考虑优化，可以将每个点是否被匹配了压缩进一个二进制数，每次只考虑最高的 1 连的边，结合上记忆化搜索，不难发现这是一种 $O(2^nm)$ 的算法</p><p>问题变成了如何将 2 和 3 类边转换为 1 类边或类似 1 类边的情况，发现如果一个 2 类组或 3 类中只选了一条边，概率是 $50\%$ 和 1 类相同，考虑这种情况下 2 类边两边全选了，那么概率为 $50\%\times50\%=25\%$ 但实际为 $50\%$ 于是可以增加一个两边的复合（即选这条边相当于选了两条边），概率为 $25\%$，特别地，若这两条边有相同端点，则不加</p><p>同理处理 3 类边，由于同时选两条边的概率为 $0\%$ 故增加一条 $-25\%$ 的复合边</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">constexpr int N = 500;constexpr int Mod = 1000000007, iv2 = (Mod + 1) / 2, iv4 = (Mod + 1) / 4;class Edge { public:  uint v;  int p;  Edge(uint v = 0, int p = 0) : v(v), p(p) {}} E[N];int dp(uint sta);std::unordered_map&lt;uint, int&gt; mp;int eid;int n, m;int main() {  read(n), read(m);  for (int i = 1; i &lt;= m; ++i) {    int op, a, b;    read(op), read(a), read(b);    --a, --b;    int id1 = (1u &lt;&lt; a) | (1u &lt;&lt; (b + n));    E[++eid] = Edge(id1, iv2);    if (op == 0) {      continue;    }    read(a), read(b);    --a, --b;    int id2 = (1u &lt;&lt; a) | (1u &lt;&lt; (b + n));    E[++eid] = Edge(id2, iv2);    if (id1 &amp; id2) {      continue;    }    E[++eid] = Edge(id1 | id2, op == 1 ? iv4 : (Mod - iv4));  }  write(dp((1u &lt;&lt; (n &lt;&lt; 1)) - 1) * 1ll * (1 &lt;&lt; n) % Mod), EL;  return 0;}int dp(uint sta) {  if (!sta) {    return 1;  }  auto it = mp.find(sta);  if (it != mp.end()) {    return it-&gt;second;  }  int res = 0;  for (int i = 1; i &lt;= eid; ++i) {    uint id = E[i].v;    if ((id &amp; sta) == id &amp;&amp; (id &lt;&lt; 1) &gt; sta) {      res = (res + E[i].p * 1ll * dp(sta ^ id)) % Mod;    }  }  return mp[sta] = res;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CSP-2020 游记</title>
       <link href="/2020/CSP-2020/"/>
       <url>/2020/CSP-2020/</url>
@@ -43,9 +68,9 @@
             
             <tag> 计数 </tag>
             
-            <tag> 高斯消元 </tag>
-            
             <tag> 线性代数 </tag>
+            
+            <tag> 高斯消元 </tag>
             
         </tags>
       
@@ -70,9 +95,9 @@
       
         <tags>
             
-            <tag> 数学 </tag>
-            
             <tag> 概率与期望 </tag>
+            
+            <tag> 数学 </tag>
             
             <tag> 微积分 </tag>
             
@@ -689,9 +714,9 @@
       
         <tags>
             
-            <tag> 动态规划 </tag>
-            
             <tag> 洛谷 </tag>
+            
+            <tag> 动态规划 </tag>
             
             <tag> USACO </tag>
             
@@ -702,17 +727,6 @@
     
   
   
-    
-    
-    <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
-      
-    </entry>
-    
     
     
     <entry>
@@ -743,6 +757,17 @@
       <url>/links/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
       
     </entry>
     

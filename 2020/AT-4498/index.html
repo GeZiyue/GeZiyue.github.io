@@ -58,7 +58,7 @@
     <link rel="icon" href="/img/avatar.jpg">
 
     <meta name="format-detection" content="telephone=no">
-    <meta name="description" itemprop="description" content="">
+    <meta name="description" itemprop="description" content="题面">
     <meta name="keywords" content=",生成函数,结论">
     <meta name="theme-color" content="#7A68E8">
 
@@ -244,12 +244,12 @@
     <meta property="og:type" content="blog">
     <meta property="og:title" content="「Dwango Programming Contest V E」Cyclic GCDs | Seniorious&#39; blog">
     <meta property="og:image" content="/img/avatar.jpg">
-    <meta property="og:description" content="">
+    <meta property="og:description" content="题面">
     <meta property="og:article:tag" content="生成函数"> <meta property="og:article:tag" content="结论"> 
 
     
         <meta property="article:published_time" content="Wed Dec 02 2020 22:42:55 GMT+0800">
-        <meta property="article:modified_time" content="Wed Dec 02 2020 23:37:12 GMT+0800">
+        <meta property="article:modified_time" content="Wed Dec 02 2020 23:40:32 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2020/AT-4498/index.html",
     "headline": "「Dwango Programming Contest V E」Cyclic GCDs",
     "datePublished": "Wed Dec 02 2020 22:42:55 GMT+0800",
-    "dateModified": "Wed Dec 02 2020 23:37:12 GMT+0800",
+    "dateModified": "Wed Dec 02 2020 23:40:32 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -291,7 +291,7 @@
         }
     },
     "keywords": ",生成函数,结论",
-    "description": "",
+    "description": "题面",
 }
 </script>
 
@@ -514,7 +514,9 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先看到分成圆排列不难联想到第一类斯特林数，观察其递推式：$\left[\begin{matrix}i\\j\end{matrix}\right]=\left[\begin{matrix}i-1\\j-1\end{matrix}\right]+(i-1)\times\left[\begin{matrix}i-1\\j\end{matrix}\right]$</p>
+        <p><a href="https://atcoder.jp/contests/dwacon5th-prelims/tasks/dwacon5th_prelims_e" target="_blank" rel="noopener">题面</a></p>
+<a id="more"></a>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先看到分成圆排列不难联想到第一类斯特林数，观察其递推式：$\left[\begin{matrix}i\\j\end{matrix}\right]=\left[\begin{matrix}i-1\\j-1\end{matrix}\right]+(i-1)\times\left[\begin{matrix}i-1\\j\end{matrix}\right]$</p>
 <p>发现若我们将新建一个圆排列的系数 $1$ 改为此圆排列的最小值即为本题所求，不难发现可以将 $a$ 数组升序排序，于是它的系数就是 $a_i$，即 $f_{i,j}=a_if_{i-1,j-1}+(i-1)f_{i-1,j}$</p>
 <p>于是不难写出 $f_{n,i}$ 的生成函数即为 $\prod\limits_{i=1}^n(a_ix+i-1)$</p>
 <p>先给个结论：若有多项式 $P,Q$ 和函数 $c(F)=\gcd\limits_{i}([x^i]F)$ 则 $c(PQ)=c(P)c(Q)$ 于是答案即为 $\prod\limits_{i=1}^n\gcd(a_i,i-1)$</p>

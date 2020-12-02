@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>「Dwango Programming Contest V E」Cyclic GCDs</title>
+      <link href="/2020/AT-4498/"/>
+      <url>/2020/AT-4498/</url>
+      
+        <content type="html"><![CDATA[<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先看到分成圆排列不难联想到第一类斯特林数，观察其递推式：$\left[\begin{matrix}i\\j\end{matrix}\right]=\left[\begin{matrix}i-1\\j-1\end{matrix}\right]+(i-1)\times\left[\begin{matrix}i-1\\j\end{matrix}\right]$</p><p>发现若我们将新建一个圆排列的系数 $1$ 改为此圆排列的最小值即为本题所求，不难发现可以将 $a$ 数组升序排序，于是它的系数就是 $a_i$，即 $f_{i,j}=a_if_{i-1,j-1}+(i-1)f_{i-1,j}$</p><p>于是不难写出 $f_{n,i}$ 的生成函数即为 $\prod\limits_{i=1}^n(a_ix+i-1)$</p><p>先给个结论：若有多项式 $P,Q$ 和函数 $c(F)=\gcd\limits_{i}([x^i]F)$ 则 $c(PQ)=c(P)c(Q)$ 于是答案即为 $\prod\limits_{i=1}^n\gcd(a_i,i-1)$</p><p>下面考虑证明这个结论：</p><p>不失一般性地，我们只需证明 $c(P)=c(Q)=1$ 时 $c(PQ)=1$，我们采用归谬法证明，设 $c(PQ)$ 为某质数 $p$ 的倍数，则 $PQ$ 的最高项为 $p$ 的倍数，那么 $P,Q$ 中至少有一个最高项为 $p$ 的倍数，考虑到 $p$ 乘任何数都是 $p$ 的倍数，故 $P$ 的最高位不改变 $PQ$ 中任何一项是否整除 $p$ 设 $P^\prime$ 为 $P$ 去掉最高项的多项式，于是有 $p\mid c(P^\prime Q)$ …… 以此类推，不断规约，总能规约到 $P,Q$ 都只剩常数项，此时 $P,Q$ 的非常数项均为 $p$ 的倍数，而 $c(P)=c(Q)=1$ 故二者常数项均不整除 $p$ ，但这与 $PQ$ 的常数项为 $p$ 的倍数矛盾，故得证</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">constexpr int Mod = 998244353;constexpr int N = 100005;int a[N];int n;int main() {  read(n);  int ans = 1;  for (int i = 1; i &lt;= n; ++i) {    read(a[i]);  }  std::sort(a + 1, a + n + 1);  for (int i = 1; i &lt;= n; ++i) {    ans = ans * 1ll * std::gcd(a[i], i - 1) % Mod;  }  write(ans), EL;  return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 生成函数 </tag>
+            
+            <tag> 结论 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>「Dwango Programming Contest V D」Square Rotation</title>
+      <link href="/2020/AT-4497/"/>
+      <url>/2020/AT-4497/</url>
+      
+        <content type="html"><![CDATA[<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先不难发现，按横纵坐标 $\bmod D$ 的值可分为 $D^2$ 个同余类，同余类中的数两两可达，设 $A_{i,j}$ 为 $x\bmod D=i,y\bmod D=j$ 的黑点个数</p><p>不难发现最终会把所有黑点放在一起然后用一个正方形包括所有的黑点，并尽量使正方形边长最小</p><p>不妨设正方形边长为 $aD+b$ 其中 $1\le b\le D$，不难发现 $a=\left(\max\limits_{0\le i,j\lt D}\lceil\sqrt{A_{i,j}}\rceil\right)-1$ （考虑一个边长为 $aD$ 的正方形能包括每个同余类恰好 $a^2$ 次）</p><p>不难发现若正方形左下角在 $(0,0)$ 处，则 $(0\sim b,0\sim b)$ 被覆盖 $(a+1)^2$ 次；$(0\sim b,b+1\sim D-1)$ 和 $(b+1\sim D-1,0\sim b)$ 被覆盖 $a(a+1)$ 次；$(b+1\sim D-1,b+1\sim D-1)$ 被覆盖 $a^2$ 次</p><p>可以一开始就将 $b$ 设为 $D$ 然后枚举每一个点作为左下角，若此时 $b$ 合法，则计入答案并令 $b\leftarrow b-1$，否则就枚举下一个左下角，于是问题转变为判断对于一个左下角 $b$ 是否合法</p><p>这个问题可以用二维前缀和解决：分别记录 $a^2\lt A_{i,j}\le a(a+1)$ 的个数和 $a(a+1)\lt A_{i,j}$ 的个数，每次询问即查询 $a^2$ 的区域是否有 $\gt a^2$ 的和 $a(a+1)$ 的区域是否有 $\gt a(a+1)$ 的，并注意处理 $+b$ 后超过 $D-1$ 的情况，具体见代码</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">constexpr int N = 1005;int sum2(int x1, int y1, int x2, int y2);int sum3(int x1, int y1, int x2, int y2);bool check2(int x, int y, int b);bool check3(int x, int y, int b);int cnt2[N][N], cnt3[N][N];int cnt[N][N];int n, d;int main() {  read(n), read(d);  for (int i = 1; i &lt;= n; ++i) {    int x, y;    read(x), read(y);    ++cnt[x % d][y % d];  }  int a = 0;  for (int i = 0; i &lt; d; ++i) {    for (int j = 0; j &lt; d; ++j) {      if (cnt[i][j]) {        int tmp = std::sqrt(cnt[i][j]);        if (tmp * tmp &lt; cnt[i][j]) {          ++tmp;        }        a = max(a, tmp - 1);      }    }  }  for (int i = 0; i &lt; d; ++i) {    for (int j = 0; j &lt; d; ++j) {      if (cnt[i][j] &gt; a * a) {        if (cnt[i][j] &gt; a * (a + 1)) {          ++cnt3[i + 1][j + 1];        } else {          ++cnt2[i + 1][j + 1];        }      }    }  }  for (int i = 1; i &lt;= d; ++i) {    for (int j = 1; j &lt;= d; ++j) {      cnt2[i][j] += cnt2[i - 1][j] + cnt2[i][j - 1] - cnt2[i - 1][j - 1];      cnt3[i][j] += cnt3[i - 1][j] + cnt3[i][j - 1] - cnt3[i - 1][j - 1];    }  }  int b = 0;  for (; b &lt; d; ++b) {    if (check2(0, 0, b) &amp;&amp; check3(0, 0, b)) {      break;    }  }  for (int i = 0; i &lt; d; ++i) {    for (int j = 0; j &lt; d; ++j) {      if (!(i + j)) {        continue;      }      while (b) {        if (check2(i, j, b - 1) &amp;&amp; check3(i, j, b - 1)) {          --b;        } else {          break;        }      }    }  }  write(a * d + b), EL;  return 0;}int sum2(int x1, int y1, int x2, int y2) {  if (x1 &gt; x2 || y1 &gt; y2) {    return 0;  }  ++x1, ++y1, ++x2, ++y2;  return cnt2[x2][y2] - cnt2[x2][y1 - 1] - cnt2[x1 - 1][y2] + cnt2[x1 - 1][y1 - 1];}int sum3(int x1, int y1, int x2, int y2) {  if (x1 &gt; x2 || y1 &gt; y2) {    return 0;  }  ++x1, ++y1, ++x2, ++y2;  return cnt3[x2][y2] - cnt3[x2][y1 - 1] - cnt3[x1 - 1][y2] + cnt3[x1 - 1][y1 - 1];}bool check2(int x, int y, int b) {  int t1 = sum2(x + b + 1, y + b + 1, d - 1, d - 1);  int t2 = sum2(max(0, x + b + 1 - d), max(0, y + b + 1 - d), x - 1, y - 1);  int t3 = sum2(x + b + 1, max(0, y + b + 1 - d), d - 1, y - 1);  int t4 = sum2(max(0, x + b + 1 - d), y + b + 1, x - 1, d - 1);  return !t1 &amp;&amp; !t2 &amp;&amp; !t3 &amp;&amp; !t4;}bool check3(int x, int y, int b) {  int t1 = sum3(x + b + 1, 0, d - 1, d - 1);  int t2 = sum3(0, y + b + 1, d - 1, d - 1);  int t3 = sum3(max(0, x + b + 1 - d), 0, x - 1, d - 1);  int t4 = sum3(0, max(0, y + b + 1 - d), d - 1, y - 1);  return !t1 &amp;&amp; !t2 &amp;&amp; !t3 &amp;&amp; !t4;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 二维前缀和 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>「洛谷P4547」[THUWC 2017] 随机二分图 题解</title>
       <link href="/2020/luogu-4547/"/>
       <url>/2020/luogu-4547/</url>
@@ -68,9 +120,9 @@
             
             <tag> 计数 </tag>
             
-            <tag> 线性代数 </tag>
-            
             <tag> 高斯消元 </tag>
+            
+            <tag> 线性代数 </tag>
             
         </tags>
       
@@ -95,9 +147,9 @@
       
         <tags>
             
-            <tag> 概率与期望 </tag>
-            
             <tag> 数学 </tag>
+            
+            <tag> 概率与期望 </tag>
             
             <tag> 微积分 </tag>
             
@@ -176,9 +228,9 @@
             
             <tag> 概率与期望 </tag>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 生成函数 </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -203,9 +255,9 @@
       
         <tags>
             
-            <tag> Codeforces </tag>
-            
             <tag> 概率与期望 </tag>
+            
+            <tag> Codeforces </tag>
             
             <tag> 矩阵乘法 </tag>
             
@@ -234,9 +286,9 @@
       
         <tags>
             
-            <tag> Codeforces </tag>
-            
             <tag> 概率与期望 </tag>
+            
+            <tag> Codeforces </tag>
             
             <tag> 高斯消元 </tag>
             
@@ -386,7 +438,7 @@
       <link href="/2020/luogu-5408/"/>
       <url>/2020/luogu-5408/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P5408" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>求$\left[\begin{matrix}n\\i\end{matrix}\right],i=0,1,\dots,n$</p><p>其中$\left[\begin{matrix}n\\i\end{matrix}\right]$为第一类斯特林数，组合意义为将$n$个不同元素放入$i$个相同圆排列（非空）的方案数，有递推式$\left[\begin{matrix}n\\m\end{matrix}\right]=\left[\begin{matrix}n-1\\m-1\end{matrix}\right]+\left[\begin{matrix}n-1\\m\end{matrix}\right]\times(n-1)$</p><h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>一个结论：</p><p>$$\boxed{\sum\limits^n_{i=0}\left[\begin{matrix}n\\i\end{matrix}\right]x^i=x^{\overline{n}}}$$</p><p>$x^{\overline{n}}$为$x$的$n$次上升幂，等于$\prod\limits^{n-1}_{i=0}(x+i)$</p><p>考虑用数学归纳法证明：</p><ol><li><p>$n=1$时该结论显然成立</p></li><li><p>证明为$n$时成立则为$n+1$时也成立：</p><p>$$\begin{aligned}x^{\overline{n+1}}&amp;=x^{\overline{n}}\times(x+n)\\&amp;=(x+n)\times\sum\limits^n_{i=0}\left[\begin{matrix}n\\i\end{matrix}\right]x^i\\&amp;=\sum\limits^{n+1}_{i=1}\left[\begin{matrix}n\\i-1\end{matrix}\right]x^i+\sum\limits^n_{i=0}\left(n\times\left[\begin{matrix}n\\i\end{matrix}\right]x^i\right)\\&amp;=\sum\limits^{n+1}_{i=0}\left(\left[\begin{matrix}n\\i-1\end{matrix}\right]+n\times\left[\begin{matrix}n\\i\end{matrix}\right]\right)x^i\\&amp;=\sum\limits^{n+1}_{i=0}\left[\begin{matrix}n+1\\i\end{matrix}\right]x^i\end{aligned}$$</p></li></ol><p>于是原命题成立</p><p>直接求上升幂是$O(n^2)$，考虑如何优化：</p><p>假设$n$是偶数：</p><p>$$x^{\overline{n}}=x^{\overline{\frac{n}{2}}}\times(x+\frac{n}{2})^{\overline{\frac{n}{2}}}$$</p><p>如果我们已经得到了前半部分对应的多项式$f(x)=x^{\overline{\frac{n}{2}}}=\sum\limits^{\frac{n}{2}}_{i=0}a_ix^i$</p><p>考虑如何通过前半部分的结果求出后半部分：</p><p>$$\begin{aligned}(x+\frac{n}{2})^{\overline{\frac{n}{2}}}&amp;=f(x+\frac{n}{2})\\&amp;=\sum\limits^{\frac{n}{2}}_{i=0}a_i(x+\frac{n}{2})^i\\&amp;=\sum\limits^{\frac{n}{2}}_{i=0}\left(a_i\times\sum\limits^{i}_{j=0}\left(\binom{i}{j}\times x^j\times\left(\frac{n}{2}\right)^{i-j}\right)\right)\\&amp;=\sum\limits^{\frac{n}{2}}_{j=0}\frac{1}{j!}\times\left(\sum\limits^{\frac{n}{2}}_{i=j}\left(i!\cdot a_i\right)\left(\frac{\left(\frac{n}{2}\right)^{i-j}}{\left(i-j\right)!}\right)\right)\times x^j\end{aligned}$$</p><p>到这里可能还不能发现它是卷积的形式，但是注意到$i-(i-j)=j$所以将后面一部分的$i$次项改为$-i$次项即可，但是负次数多项式不好实现，可以先将后半部分对应的多项式反过来（即将负次数多项式乘上$x^{\frac{n}{2}}$），即将$\sum\limits^{\frac{n}{2}}_{i=0}a_ii!x^i$和$\sum\limits^{\frac{n}{2}}_{i=0}\frac{\left(\frac{n}{2}\right)^i}{i!}x^{\frac{n}{2}-i}$乘起来的多项式第$i$项的系数为要求的多项式的第$i-\frac{n}{2}$项的系数</p><p>于是就可以由$x^{\overline{\frac{n}{2}}}$在$O(n\log_2n)$时间内求出$(x+\frac{n}{2})^{\overline{\frac{n}{2}}}$</p><p>而$x^{\overline{\frac{n}{2}}}$可以递归求解</p><p>若$n$是奇数，则$x^{\overline{n}}=x^{\overline{n-1}}\times(x+n-1)$</p><p>时间复杂度$T(n)=T(\frac{n}{2})+\Theta(nlog_2n)=\Theta(nlog_2n)$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>本题卡常，NTT的常数需要写得较小</p><pre><code class="cpp">const int N = 530000;const int Mod = 167772161, g = 3;class Polynomial {public:  int deg, *a;  Polynomial() {    a = new int[N];    memset(a, 0, sizeof(int) * N);  }  void NTT(int, bool);};int r[N];Polynomial solve(int);int fac[N], ifac[N];int omega[26];int siz;int main () {  int n;  read(n);  int lim = 1;  while (lim &lt;= (n &lt;&lt; 1)) {    lim &lt;&lt;= 1;  }  siz = __builtin_ctz(lim);  omega[25] = pow(g, (Mod - 1) &gt;&gt; 25, Mod);  for (int i = 24; i &gt;= 0; --i) {    omega[i] = omega[i + 1] * 1ll * omega[i + 1] % Mod;  }  for (int i = 0; i &lt; lim; ++i) {    r[i] = (r[i &gt;&gt; 1] &gt;&gt; 1) | ((i &amp; 1) * (lim &gt;&gt; 1));  }  fac[0] = 1;  for (int i = 1; i &lt;= lim; ++i) {    fac[i] = fac[i - 1] * 1ll * i % Mod;  }  ifac[lim] = pow(fac[lim], Mod - 2, Mod);  for (int i = lim - 1; i &gt;= 0; --i) {    ifac[i] = ifac[i + 1] * 1ll * (i + 1) % Mod;  }  Polynomial ans = solve(n);  for (int i = 0; i &lt;= n; ++i) {    write(ans.a[i]), SP;  }  EL;  return 0;}void Polynomial::NTT(int lim, bool opt) {  if (opt) {    std::reverse(a + 1, a + lim);  }  int tp = siz - __builtin_ctz(lim);  for (int i = 0; i &lt; lim; ++i) {    if (i &lt; (r[i] &gt;&gt; tp)) {      std::swap(a[i], a[r[i] &gt;&gt; tp]);    }  }  for (int l = 1, t = 1; l &lt; lim; l &lt;&lt;= 1, ++t) {    int gw = omega[t];    for (int i = 0; i &lt; lim; i += (l &lt;&lt; 1)) {      for (int j = 0, gn = 1; j &lt; l; ++j, gn = gn * 1ll * gw % Mod) {        int x = a[i + j], y = a[i + j + l] * 1ll * gn % Mod;        a[i + j] = (x + y) % Mod;        a[i + j + l] = (x - y + Mod) % Mod;      }    }  }  if (opt) {    int iv = pow(lim, Mod - 2, Mod);    for (int i = 0; i &lt; lim; ++i) {      a[i] = a[i] * 1ll * iv % Mod;    }  }}void calc(const Polynomial &amp;f, int n, int lim, Polynomial &amp;g) {  Polynomial h;  memset(g.a + n + 1, 0, sizeof(int) * (lim - n));  g.a[0] = 1, h.a[0] = f.a[0];  for (int i = 1; i &lt;= n; ++i) {    g.a[i] = g.a[i - 1] * 1ll * n % Mod;    h.a[i] = f.a[i] * 1ll * fac[i] % Mod;  }  for (int i = 1; i &lt;= n; ++i) {    g.a[i] = g.a[i] * 1ll * ifac[i] % Mod;  }  std::reverse(g.a, g.a + n + 1);  g.NTT(lim, false), h.NTT(lim, false);  for (int i = 0; i &lt; lim; ++i) {    g.a[i] = g.a[i] * 1ll * h.a[i] % Mod;  }  g.NTT(lim, true);  for (int i = 0; i &lt;= n; ++i) {    g.a[i] = g.a[i + n] * 1ll * ifac[i] % Mod;  }  memset(g.a + n + 1, 0, sizeof(int) * (lim - n));}Polynomial solve(int n) {  std::stack&lt;bool&gt; S;  while (n) {    S.push(n &amp; 1);    n &gt;&gt;= 1;  }  int lim = 1;  Polynomial A, B;  n = A.a[1] = S.top();  S.pop();  while (!S.empty()) {    while (lim &lt;= (n &lt;&lt; 1)) {      lim &lt;&lt;= 1;    }    calc(A, n, lim, B);    A.NTT(lim, false), B.NTT(lim, false);    for (int i = 0; i &lt; lim; ++i) {      A.a[i] = A.a[i] * 1ll * B.a[i] % Mod;    }    A.NTT(lim, true);    n &lt;&lt;= 1;    if (!S.top()) {      S.pop();      continue;    }    S.pop();    A.a[n + 1] = A.a[n];    for (int i = n; i &gt; 0; --i) {      A.a[i] = (A.a[i - 1] + A.a[i] * 1ll * n % Mod) % Mod;    }    A.a[0] = A.a[0] * 1ll * n % Mod;    ++n;  }  A.deg = n;  return A;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P5408" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>求 $\left[\begin{matrix}n\\i\end{matrix}\right],i=0,1,\dots,n$</p><p>其中 $\left[\begin{matrix}n\\i\end{matrix}\right]$ 为第一类斯特林数，组合意义为将 $n$ 个不同元素放入$i$个相同圆排列（非空）的方案数，有递推式 $\left[\begin{matrix}n\\m\end{matrix}\right]=\left[\begin{matrix}n-1\\m-1\end{matrix}\right]+\left[\begin{matrix}n-1\\m\end{matrix}\right]\times(n-1)$</p><h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>一个结论：</p><p>$$\boxed{\sum\limits^n_{i=0}\left[\begin{matrix}n\\i\end{matrix}\right]x^i=x^{\overline{n}}}$$</p><p>$x^{\overline{n}}$ 为 $x$ 的 $n$ 次上升幂，等于$\prod\limits^{n-1}_{i=0}(x+i)$</p><p>考虑用数学归纳法证明：</p><ol><li><p>$n=1$ 时该结论显然成立</p></li><li><p>证明为 $n$ 时成立则为 $n+1$ 时也成立：</p><p>$$\begin{aligned}x^{\overline{n+1}}&amp;=x^{\overline{n}}\times(x+n)\\&amp;=(x+n)\times\sum\limits^n_{i=0}\left[\begin{matrix}n\\i\end{matrix}\right]x^i\\&amp;=\sum\limits^{n+1}_{i=1}\left[\begin{matrix}n\\i-1\end{matrix}\right]x^i+\sum\limits^n_{i=0}\left(n\times\left[\begin{matrix}n\\i\end{matrix}\right]x^i\right)\\&amp;=\sum\limits^{n+1}_{i=0}\left(\left[\begin{matrix}n\\i-1\end{matrix}\right]+n\times\left[\begin{matrix}n\\i\end{matrix}\right]\right)x^i\\&amp;=\sum\limits^{n+1}_{i=0}\left[\begin{matrix}n+1\\i\end{matrix}\right]x^i\end{aligned}$$</p></li></ol><p>于是原命题成立</p><p>直接求上升幂是 $O(n^2)$，考虑如何优化：</p><p>假设 $n$ 是偶数：</p><p>$$x^{\overline{n}}=x^{\overline{\frac{n}{2}}}\times(x+\frac{n}{2})^{\overline{\frac{n}{2}}}$$</p><p>如果我们已经得到了前半部分对应的多项式 $f(x)=x^{\overline{\frac{n}{2}}}=\sum\limits^{\frac{n}{2}}_{i=0}a_ix^i$</p><p>考虑如何通过前半部分的结果求出后半部分：</p><p>$$\begin{aligned}(x+\frac{n}{2})^{\overline{\frac{n}{2}}}&amp;=f(x+\frac{n}{2})\\&amp;=\sum\limits^{\frac{n}{2}}_{i=0}a_i(x+\frac{n}{2})^i\\&amp;=\sum\limits^{\frac{n}{2}}_{i=0}\left(a_i\times\sum\limits^{i}_{j=0}\left(\binom{i}{j}\times x^j\times\left(\frac{n}{2}\right)^{i-j}\right)\right)\\&amp;=\sum\limits^{\frac{n}{2}}_{j=0}\frac{1}{j!}\times\left(\sum\limits^{\frac{n}{2}}_{i=j}\left(i!\cdot a_i\right)\left(\frac{\left(\frac{n}{2}\right)^{i-j}}{\left(i-j\right)!}\right)\right)\times x^j\end{aligned}$$</p><p>到这里可能还不能发现它是卷积的形式，但是注意到 $i-(i-j)=j$ 所以将后面一部分的 $i$ 次项改为 $-i$ 次项即可，但是负次数多项式不好实现，可以先将后半部分对应的多项式反过来（即将负次数多项式乘上 $x^{\frac{n}{2}}$），即将$\sum\limits^{\frac{n}{2}}_{i=0}a_ii!x^i$ 和 $\sum\limits^{\frac{n}{2}}_{i=0}\frac{\left(\frac{n}{2}\right)^i}{i!}x^{\frac{n}{2}-i}$ 乘起来的多项式第 $i$ 项的系数为要求的多项式的第 $i-\frac{n}{2}$ 项的系数</p><p>于是就可以由 $x^{\overline{\frac{n}{2}}}$ 在 $O(n\log_2n)$ 时间内求出 $(x+\frac{n}{2})^{\overline{\frac{n}{2}}}$</p><p>而 $x^{\overline{\frac{n}{2}}}$ 可以递归求解</p><p>若 $n$ 是奇数，则 $x^{\overline{n}}=x^{\overline{n-1}}\times(x+n-1)$</p><p>时间复杂度 $T(n)=T(\frac{n}{2})+\Theta(nlog_2n)=\Theta(nlog_2n)$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>本题卡常，NTT的常数需要写得较小</p><pre><code class="cpp">const int N = 530000;const int Mod = 167772161, g = 3;class Polynomial {public:  int deg, *a;  Polynomial() {    a = new int[N];    memset(a, 0, sizeof(int) * N);  }  void NTT(int, bool);};int r[N];Polynomial solve(int);int fac[N], ifac[N];int omega[26];int siz;int main () {  int n;  read(n);  int lim = 1;  while (lim &lt;= (n &lt;&lt; 1)) {    lim &lt;&lt;= 1;  }  siz = __builtin_ctz(lim);  omega[25] = pow(g, (Mod - 1) &gt;&gt; 25, Mod);  for (int i = 24; i &gt;= 0; --i) {    omega[i] = omega[i + 1] * 1ll * omega[i + 1] % Mod;  }  for (int i = 0; i &lt; lim; ++i) {    r[i] = (r[i &gt;&gt; 1] &gt;&gt; 1) | ((i &amp; 1) * (lim &gt;&gt; 1));  }  fac[0] = 1;  for (int i = 1; i &lt;= lim; ++i) {    fac[i] = fac[i - 1] * 1ll * i % Mod;  }  ifac[lim] = pow(fac[lim], Mod - 2, Mod);  for (int i = lim - 1; i &gt;= 0; --i) {    ifac[i] = ifac[i + 1] * 1ll * (i + 1) % Mod;  }  Polynomial ans = solve(n);  for (int i = 0; i &lt;= n; ++i) {    write(ans.a[i]), SP;  }  EL;  return 0;}void Polynomial::NTT(int lim, bool opt) {  if (opt) {    std::reverse(a + 1, a + lim);  }  int tp = siz - __builtin_ctz(lim);  for (int i = 0; i &lt; lim; ++i) {    if (i &lt; (r[i] &gt;&gt; tp)) {      std::swap(a[i], a[r[i] &gt;&gt; tp]);    }  }  for (int l = 1, t = 1; l &lt; lim; l &lt;&lt;= 1, ++t) {    int gw = omega[t];    for (int i = 0; i &lt; lim; i += (l &lt;&lt; 1)) {      for (int j = 0, gn = 1; j &lt; l; ++j, gn = gn * 1ll * gw % Mod) {        int x = a[i + j], y = a[i + j + l] * 1ll * gn % Mod;        a[i + j] = (x + y) % Mod;        a[i + j + l] = (x - y + Mod) % Mod;      }    }  }  if (opt) {    int iv = pow(lim, Mod - 2, Mod);    for (int i = 0; i &lt; lim; ++i) {      a[i] = a[i] * 1ll * iv % Mod;    }  }}void calc(const Polynomial &amp;f, int n, int lim, Polynomial &amp;g) {  Polynomial h;  memset(g.a + n + 1, 0, sizeof(int) * (lim - n));  g.a[0] = 1, h.a[0] = f.a[0];  for (int i = 1; i &lt;= n; ++i) {    g.a[i] = g.a[i - 1] * 1ll * n % Mod;    h.a[i] = f.a[i] * 1ll * fac[i] % Mod;  }  for (int i = 1; i &lt;= n; ++i) {    g.a[i] = g.a[i] * 1ll * ifac[i] % Mod;  }  std::reverse(g.a, g.a + n + 1);  g.NTT(lim, false), h.NTT(lim, false);  for (int i = 0; i &lt; lim; ++i) {    g.a[i] = g.a[i] * 1ll * h.a[i] % Mod;  }  g.NTT(lim, true);  for (int i = 0; i &lt;= n; ++i) {    g.a[i] = g.a[i + n] * 1ll * ifac[i] % Mod;  }  memset(g.a + n + 1, 0, sizeof(int) * (lim - n));}Polynomial solve(int n) {  std::stack&lt;bool&gt; S;  while (n) {    S.push(n &amp; 1);    n &gt;&gt;= 1;  }  int lim = 1;  Polynomial A, B;  n = A.a[1] = S.top();  S.pop();  while (!S.empty()) {    while (lim &lt;= (n &lt;&lt; 1)) {      lim &lt;&lt;= 1;    }    calc(A, n, lim, B);    A.NTT(lim, false), B.NTT(lim, false);    for (int i = 0; i &lt; lim; ++i) {      A.a[i] = A.a[i] * 1ll * B.a[i] % Mod;    }    A.NTT(lim, true);    n &lt;&lt;= 1;    if (!S.top()) {      S.pop();      continue;    }    S.pop();    A.a[n + 1] = A.a[n];    for (int i = n; i &gt; 0; --i) {      A.a[i] = (A.a[i - 1] + A.a[i] * 1ll * n % Mod) % Mod;    }    A.a[0] = A.a[0] * 1ll * n % Mod;    ++n;  }  A.deg = n;  return A;}</code></pre>]]></content>
       
       
       <categories>
@@ -714,9 +766,9 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 动态规划 </tag>
+            
+            <tag> 洛谷 </tag>
             
             <tag> USACO </tag>
             
@@ -727,6 +779,17 @@
     
   
   
+    
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
+      
+    </entry>
+    
     
     
     <entry>
@@ -757,17 +820,6 @@
       <url>/links/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
-      
-        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
       
     </entry>
     

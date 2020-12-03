@@ -8,7 +8,7 @@
       <link href="/2020/AT-4498/"/>
       <url>/2020/AT-4498/</url>
       
-        <content type="html"><![CDATA[<p><a href="https://atcoder.jp/contests/dwacon5th-prelims/tasks/dwacon5th_prelims_e" target="_blank" rel="noopener">题面</a></p><a id="more"></a><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先看到分成圆排列不难联想到第一类斯特林数，观察其递推式：$\left[\begin{matrix}i\\j\end{matrix}\right]=\left[\begin{matrix}i-1\\j-1\end{matrix}\right]+(i-1)\times\left[\begin{matrix}i-1\\j\end{matrix}\right]$</p><p>发现若我们将新建一个圆排列的系数 $1$ 改为此圆排列的最小值即为本题所求，不难发现可以将 $a$ 数组升序排序，于是它的系数就是 $a_i$，即 $f_{i,j}=a_if_{i-1,j-1}+(i-1)f_{i-1,j}$</p><p>于是不难写出 $f_{n,i}$ 的生成函数即为 $\prod\limits_{i=1}^n(a_ix+i-1)$</p><p>先给个结论：若有多项式 $P,Q$ 和函数 $c(F)=\gcd\limits_{i}([x^i]F)$ 则 $c(PQ)=c(P)c(Q)$ 于是答案即为 $\prod\limits_{i=1}^n\gcd(a_i,i-1)$</p><p>下面考虑证明这个结论：</p><p>不失一般性地，我们只需证明 $c(P)=c(Q)=1$ 时 $c(PQ)=1$，我们采用归谬法证明，设 $c(PQ)$ 为某质数 $p$ 的倍数，则 $PQ$ 的最高项为 $p$ 的倍数，那么 $P,Q$ 中至少有一个最高项为 $p$ 的倍数，考虑到 $p$ 乘任何数都是 $p$ 的倍数，故 $P$ 的最高位不改变 $PQ$ 中任何一项是否整除 $p$ 设 $P^\prime$ 为 $P$ 去掉最高项的多项式，于是有 $p\mid c(P^\prime Q)$ …… 以此类推，不断规约，总能规约到 $P,Q$ 都只剩常数项，此时 $P,Q$ 的非常数项均为 $p$ 的倍数，而 $c(P)=c(Q)=1$ 故二者常数项均不整除 $p$ ，但这与 $PQ$ 的常数项为 $p$ 的倍数矛盾，故得证</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">constexpr int Mod = 998244353;constexpr int N = 100005;int a[N];int n;int main() {  read(n);  int ans = 1;  for (int i = 1; i &lt;= n; ++i) {    read(a[i]);  }  std::sort(a + 1, a + n + 1);  for (int i = 1; i &lt;= n; ++i) {    ans = ans * 1ll * std::gcd(a[i], i - 1) % Mod;  }  write(ans), EL;  return 0;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://atcoder.jp/contests/dwacon5th-prelims/tasks/dwacon5th_prelims_e" target="_blank" rel="noopener">题面</a></p><a id="more"></a><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先看到分成圆排列不难联想到第一类斯特林数，观察其递推式：$\left[\begin{matrix}i\\j\end{matrix}\right]=\left[\begin{matrix}i-1\\j-1\end{matrix}\right]+(i-1)\times\left[\begin{matrix}i-1\\j\end{matrix}\right]$</p><p>发现若我们将新建一个圆排列的系数 $1$ 改为此圆排列的最小值即为本题所求，不难发现可以将 $a$ 数组升序排序，于是它的系数就是 $a_i$，即 $f_{i,j}=a_if_{i-1,j-1}+(i-1)f_{i-1,j}$</p><p>于是不难写出 $f_{n,i}$ 的生成函数即为 $\prod\limits_{i=1}^n(a_ix+i-1)$</p><p>先给个结论：若有多项式 $P,Q$ 和函数 $c(F)=\gcd\limits_{i}([x^i]F)$ 则 $c(PQ)=c(P)c(Q)$ 于是答案即为 $\prod\limits_{i=1}^n\gcd(a_i,i-1)$</p><p>下面考虑证明这个结论：</p><p>不失一般性的，我们只需证明 $c(P)=c(Q)=1$ 时 $c(PQ)=1$，我们采用归谬法证明，设 $c(PQ)$ 为某质数 $p$ 的倍数，则 $PQ$ 的最高项为 $p$ 的倍数，那么 $P,Q$ 中至少有一个最高项为 $p$ 的倍数，考虑到 $p$ 乘任何数都是 $p$ 的倍数，故 $P$ 的最高位不改变 $PQ$ 中任何一项是否整除 $p$ 设 $P^\prime$ 为 $P$ 去掉最高项的多项式，于是有 $p\mid c(P^\prime Q)$ …… 以此类推，不断规约，总能规约到 $P,Q$ 都只剩常数项，此时 $P,Q$ 的非常数项均为 $p$ 的倍数，而 $c(P)=c(Q)=1$ 故二者常数项均不整除 $p$ ，但这与 $PQ$ 的常数项为 $p$ 的倍数矛盾，故得证</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">constexpr int Mod = 998244353;constexpr int N = 100005;int a[N];int n;int main() {  read(n);  int ans = 1;  for (int i = 1; i &lt;= n; ++i) {    read(a[i]);  }  std::sort(a + 1, a + n + 1);  for (int i = 1; i &lt;= n; ++i) {    ans = ans * 1ll * std::gcd(a[i], i - 1) % Mod;  }  write(ans), EL;  return 0;}</code></pre>]]></content>
       
       
       <categories>
@@ -120,9 +120,9 @@
             
             <tag> 计数 </tag>
             
-            <tag> 高斯消元 </tag>
-            
             <tag> 线性代数 </tag>
+            
+            <tag> 高斯消元 </tag>
             
         </tags>
       
@@ -226,9 +226,9 @@
       
         <tags>
             
-            <tag> 概率与期望 </tag>
-            
             <tag> 生成函数 </tag>
+            
+            <tag> 概率与期望 </tag>
             
             <tag> 洛谷 </tag>
             
@@ -608,9 +608,9 @@
       
         <tags>
             
-            <tag> 数学 </tag>
-            
             <tag> 结论 </tag>
+            
+            <tag> 数学 </tag>
             
         </tags>
       
@@ -782,11 +782,11 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
-        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -804,9 +804,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -815,11 +815,11 @@
     
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.org/space/show?uid=25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/user/5183" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
       
     </entry>
     

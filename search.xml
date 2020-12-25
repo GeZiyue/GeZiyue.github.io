@@ -4,11 +4,40 @@
   
     
     <entry>
+      <title>IOI2021 集训队自选题 Gem Island 2</title>
+      <link href="/2020/gem-island-2/"/>
+      <url>/2020/gem-island-2/</url>
+      
+        <content type="html"><![CDATA[<p>神题</p><p>默认读者已经会了 ICPC2018 WorldFinal Gem Island</p><p>下文的 $a_i$ 均表示分裂次数而非宝石个数</p><p>考虑期望的线性性，不难发现恰好有 $k$ 个人的分裂次数大于 $i$ 时，对答案有 $\min(k,r)$ 的贡献，即答案为</p><p>$$\sum\limits_{i\ge0}\sum\limits_{k\ge0}\binom{n}{k}\left([x^d]\left(\frac{1-x^{i+1}}{1-x}\right)^{n-k}\left(\frac{x^{i+1}}{1-x}\right)^k\right)\min(k,r)$$</p><p>首先可以把 $\frac{1}{1-x}$ 都提出来并拆开 $\min$ 分为两种情况</p><p>考虑求出了 $i=0$ 时的多项式 $F(x)$ 答案即为 $[x^d]\frac{\sum_{i\ge0}F(x^{i+1})}{(1-x)^n}$ 求出了 $F(x)$ 就可以用高位前缀和（狄利克雷前缀和）把每一次的系数贡献到它所有倍数的答案，就求出了分子，由于 $<a href="1+x+x^2+\cdots">x^i</a>^n=\binom{n+i-1}{n-1}$ 不难直接求出答案，于是只考虑 $F(x)$</p><p>$$\begin{aligned}<br>F(x)=&amp;r\sum\limits_{k\ge r}\binom{n}{k}(1-x)^{n-k}x^k+\sum\limits_{k\le r}k\binom{n}{k}(1-x)^{n-k}x^k\\<br>=&amp;r\left(\sum\limits_{k\ge 0}\binom{n}{k}(1-x)^{n-k}x^k-\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k\right)+nt\sum\limits_{k\le r}\binom{n-1}{k-1}(1-x)^{(n-1)-(k-1)}x^{k-1}\\<br>=&amp;r-r\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k+nx\sum\limits_{k\le r-1}\binom{n-1}{k}(1-x)^{n-1-k}x^k<br>\end{aligned}$$</p><p>不难发现化为了同一种问题，另外，其中常数项 $r$ 可以直接去掉，因为常数项都是不贡献到答案的，于是答案为</p><p>$$r\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k+nx\sum\limits_{k\le r-1}\binom{n-1}{k}(1-x)^{n-1-k}x^k\tag{1}\label{1}$$</p><p>考虑重新定义 $F(x)=\sum_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k$，并定义 $f(x)=\sum_{k\le r}\binom{n}{k}x^k$</p><p>发现</p><p>$$\begin{aligned}<br>f^\prime(x)=&amp;\sum\limits_{k\le r}k\binom{n}{k}x^{k-1}\\<br>=&amp;n\sum\limits_{k\le r}\binom{n-1}{k-1}x^{k-1}<br>\end{aligned}$$</p><p>这个形式看起来很能裂项相消，于是有：</p><p>$$\begin{aligned}<br>nf(x)-xf^\prime(x)=&amp;n\sum_{k\le r}\binom{n}{k}x^k-n\sum_{k\le r}\binom{n-1}{k-1}x^k\\<br>=&amp;n\sum_{k\le r}\binom{n-1}{k}x^k\\<br>=&amp;f^\prime(x)+n\binom{n-1}{r}x^r<br>\end{aligned}$$</p><p>得到：</p><p>$$(1+x)f^\prime(x)=n\left(f(x)-\binom{n-1}{r}x^r\right)\tag{2}\label{2}$$</p><p>将 $f(x)$ 带回 $F(x)$：$F(x)=(1-x)^nf\left(\frac{x}{1-x}\right)$</p><p>对 $F(x)$ 求导得：</p><p>$$F^\prime(x)=-n(1-x)^{n-1}f\left(\frac{x}{1-x}\right)+(1-x)^{n-2}f^\prime\left(\frac{x}{1-x}\right)$$</p><p>考虑到 $1+\frac{x}{1-x}=\frac{1}{1-x}$ 带入 $\eqref{2}$ 式：</p><p>$$\frac{1}{1-x}f^\prime\left(\frac{x}{1-x}\right)=n\left(f\left(\frac{x}{1-x}\right)-\binom{n-1}{r}\left(\frac{x}{1-x}\right)^r\right)$$</p><p>乘上 $(1-x)^{n-1}$ 得到：</p><p>$$(1-x)^{n-2}f^\prime\left(\frac{x}{1-x}\right)=n(1-x)^{n-1}\left(f\left(\frac{x}{1-x}\right)-\binom{n-1}{r}\left(\frac{x}{1-x}\right)^r\right)$$</p><p>再带回原式我们得到了 $F^\prime(x)=-n\binom{n-1}{r}x^r(1-x)^{n-r-1}$</p><p>最后再求导即可，注意这么做之后常数项会丢失，观察 $\eqref{1}$ 式发现，对于前面一部分，常数项不会贡献到答案，但后一部分因为乘上了 $nx$ 会导致一次项丢失，通过手算发现一次项系数为 $n$，直接手动加上即可</p><p>时间复杂度 $\Theta(n\log\log n)$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 生成函数 </tag>
+            
+            <tag> 组合计数 </tag>
+            
+            <tag> 高维前缀和 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>NOIP2020 总结</title>
       <link href="/2020/noip-2020/"/>
       <url>/2020/noip-2020/</url>
       
-        <content type="html"><![CDATA[<p>总之就是非常爆炸<br><a id="more"></a></p><p>本次 $\texttt{NOIP}$ 我考的并不理想，也暴露出了许多问题，在此进行总结与反思</p><p>首先我没有摆好心态，导致考前过度紧张，在考场上拉肚子，并且初步看题发觉题目很难，导致我写 $\texttt{T1}$ 的时候过于慌乱，没有初始化图的度数并且没有检查，幸亏官方数据中大部分数据都满足拓扑序 $1\sim n$ 于是我只挂了 $20$ 分</p><p>看完 $\texttt{T2}$ 后我先写了一个 $\texttt{Hash}$ 的做法，后来测极限数据发现过不了才写了 $\texttt{KMP}$ 虽然浪费了一定的时间，但正好我并不确定我 $\texttt{KMP}$ 的正确性，于是用两份代码进行的对拍，总体来说对考试影响不大</p><p>看完 $\texttt{T3}$ 后我很快想到了分治，之后我一直在思考 $n=2$ 的情况，但只想到了把一种颜色并在一块，没有想到另一种颜色可以一同并在另一堆，导致我只想到了一种极其复杂且复杂度没有保证的做法，此时我已发觉时间不够，于是丝毫没有思考 T4 直接打了 $40$ 分，事实上 $60$ 分的做法应该是不难想到的，剩下的时间我全部在打 $\texttt{T3}$ 的假做法，一直到考试结束前 2 分钟我还没有过第一个样例，于是我只好作罢，去检查文件</p><p>考后和 yg 简单交流后发现我做法已基本正确，稍微改几个移动即可，考后我将考场代码 $n=2$ 部分的后半段改掉后也的确过掉了 $\texttt{T3}$<br><!-- yg -> 杨珖 --></p><p>我认为我在本次 $\texttt{NOIP}$ 中的考场策略有一定问题，在 $\texttt{T3}$ 做了非常久的情况下，我应当先思考 $\texttt{T3}$ 的部分分，并转做 $\texttt{T4}$，这次考试我在 $\texttt{T3}$ 耗费了过多的时间但没有任何得分，是这次考试没有取得可观分数的主要原因，在今后的考试中，我要尽量以得分为主，不能死磕一题，毕竟只有少部分选手能在最后 rush 一个正确做法，大部分人都只能抱憾离场</p>]]></content>
+        <content type="html"><![CDATA[<p>总之就是非常爆炸<br><a id="more"></a></p><p>本次 $\texttt{NOIP}$ 我考的并不理想，也暴露出了许多问题，在此进行总结与反思</p><p>首先我没有摆好心态，导致考前过度紧张，在考场上拉肚子，并且初步看题发觉题目很难，导致我写 $\texttt{T1}$ 的时候过于慌乱，没有初始化图的度数并且没有检查，幸亏官方数据中大部分数据都满足拓扑序 $1\sim n$ 于是我只挂了 $20$ 分</p><p>看完 $\texttt{T2}$ 后我先写了一个 $\texttt{Hash}$ 的做法，后来测极限数据发现过不了才写了 $\texttt{KMP}$ 虽然浪费了一定的时间，但正好我并不确定我 $\texttt{KMP}$ 的正确性，于是用两份代码进行的对拍，总体来说对考试影响不大</p><p>看完 $\texttt{T3}$ 后我很快想到了分治，之后我一直在思考 $n=2$ 的情况，但只想到了把一种颜色并在一块，没有想到另一种颜色可以一同并在另一堆，导致我只想到了一种极其复杂且复杂度没有保证的做法，此时我已发觉时间不够，于是丝毫没有思考 T4 直接打了 $40$ 分，事实上 $60$ 分的做法应该是不难想到的，剩下的时间我全部在打 $\texttt{T3}$ 的假做法，一直到考试结束前 2 分钟我还没有过第一个样例，于是我只好作罢，去检查文件</p><p>考后和 yg 简单交流后发现我做法已基本正确，稍微改几个移动即可，考后我将考场代码 $n=2$ 部分的后半段改掉后也的确过掉了 $\texttt{T3}$</p><p>我认为我在本次 $\texttt{NOIP}$ 中的考场策略有一定问题，在 $\texttt{T3}$ 做了非常久的情况下，我应当先思考 $\texttt{T3}$ 的部分分，并转做 $\texttt{T4}$，这次考试我在 $\texttt{T3}$ 耗费了过多的时间但没有任何得分，是这次考试没有取得可观分数的主要原因，在今后的考试中，我要尽量以得分为主，不能死磕一题，毕竟只有少部分选手能在最后 rush 一个正确做法，大部分人都只能抱憾离场</p>]]></content>
       
       
       <categories>

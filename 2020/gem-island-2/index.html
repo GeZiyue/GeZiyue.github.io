@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Fri Dec 25 2020 21:47:27 GMT+0800">
-        <meta property="article:modified_time" content="Fri Dec 25 2020 21:56:30 GMT+0800">
+        <meta property="article:modified_time" content="Wed Jan 06 2021 23:11:48 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2020/gem-island-2/index.html",
     "headline": "IOI2021 集训队自选题 Gem Island 2",
     "datePublished": "Fri Dec 25 2020 21:47:27 GMT+0800",
-    "dateModified": "Fri Dec 25 2020 21:56:30 GMT+0800",
+    "dateModified": "Wed Jan 06 2021 23:11:48 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -507,16 +507,15 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <p><a href="https://loj.ac/p/3405" target="_blank" rel="noopener">题目链接</a><br><a id="more"></a></p>
-<p>神题</p>
-<p>默认读者已经会了 ICPC2018 WorldFinal Gem Island</p>
+<p>默认读者已经会了 ICPC2018 World Final Gem Island</p>
 <p>下文的 $a_i$ 均表示分裂次数而非宝石个数</p>
 <p>考虑期望的线性性，不难发现恰好有 $k$ 个人的分裂次数大于 $i$ 时，对答案有 $\min(k,r)$ 的贡献，即答案为</p>
 <p>$$\sum\limits_{i\ge0}\sum\limits_{k\ge0}\binom{n}{k}\left([x^d]\left(\frac{1-x^{i+1}}{1-x}\right)^{n-k}\left(\frac{x^{i+1}}{1-x}\right)^k\right)\min(k,r)$$</p>
 <p>首先可以把 $\frac{1}{1-x}$ 都提出来并拆开 $\min$ 分为两种情况</p>
-<p>考虑求出了 $i=0$ 时的多项式 $F(x)$ 答案即为 $[x^d]\frac{\sum_{i\ge0}F(x^{i+1})}{(1-x)^n}$ 求出了 $F(x)$ 就可以用高位前缀和（狄利克雷前缀和）把每一次的系数贡献到它所有倍数的答案，就求出了分子，由于 $[x^i] (1+x+x^2+\cdots)^n=\binom{n+i-1}{n-1}$ 不难直接求出答案，于是只考虑 $F(x)$</p>
-<p>$$\begin{aligned}<br>F(x)=&amp;r\sum\limits_{k\ge r}\binom{n}{k}(1-x)^{n-k}x^k+\sum\limits_{k\le r}k\binom{n}{k}(1-x)^{n-k}x^k\\<br>=&amp;r\left(\sum\limits_{k\ge 0}\binom{n}{k}(1-x)^{n-k}x^k-\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k\right)+nt\sum\limits_{k\le r}\binom{n-1}{k-1}(1-x)^{(n-1)-(k-1)}x^{k-1}\\<br>=&amp;r-r\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k+nx\sum\limits_{k\le r-1}\binom{n-1}{k}(1-x)^{n-1-k}x^k<br>\end{aligned}$$</p>
+<p>考虑求出了 $i=0$ 时的多项式 $F(x)$ 答案即为 $[x^d]\frac{\sum_{i\ge0}F(x^{i+1})}{(1-x)^n}$ 求出了 $F(x)$ 就可以用高位前缀和（狄利克雷前缀和）把每一次的系数贡献到它所有倍数的答案，就求出了分子，由于 $<a href="1+x+x^2+\cdots">x^i</a>^n=\binom{n+i-1}{n-1}$ 不难直接求出答案，于是只考虑 $F(x)$</p>
+<p>$$\begin{aligned}<br>F(x)=&amp;r\sum\limits_{k\ge r}\binom{n}{k}(1-x)^{n-k}x^k+\sum\limits_{k\le r}k\binom{n}{k}(1-x)^{n-k}x^k\\<br>=&amp;r\left(\sum\limits_{k\ge 0}\binom{n}{k}(1-x)^{n-k}x^k-\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k\right)+nx\sum\limits_{k\le r}\binom{n-1}{k-1}(1-x)^{(n-1)-(k-1)}x^{k-1}\\<br>=&amp;r-r\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k+nx\sum\limits_{k\le r-1}\binom{n-1}{k}(1-x)^{n-1-k}x^k<br>\end{aligned}$$</p>
 <p>不难发现化为了同一种问题，另外，其中常数项 $r$ 可以直接去掉，因为常数项都是不贡献到答案的，于是答案为</p>
-<p>$$r\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k+nx\sum\limits_{k\le r-1}\binom{n-1}{k}(1-x)^{n-1-k}x^k\tag{1}\label{1}$$</p>
+<p>$$-r\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k+nx\sum\limits_{k\le r-1}\binom{n-1}{k}(1-x)^{n-1-k}x^k\tag{1}\label{1}$$</p>
 <p>考虑重新定义 $F(x)=\sum_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k$，并定义 $f(x)=\sum_{k\le r}\binom{n}{k}x^k$</p>
 <p>发现</p>
 <p>$$\begin{aligned}<br>f^\prime(x)=&amp;\sum\limits_{k\le r}k\binom{n}{k}x^{k-1}\\<br>=&amp;n\sum\limits_{k\le r}\binom{n-1}{k-1}x^{k-1}<br>\end{aligned}$$</p>

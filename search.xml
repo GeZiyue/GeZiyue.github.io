@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>JOI-Final-2021</title>
+      <link href="/2021/JOI-Final-2021/"/>
+      <url>/2021/JOI-Final-2021/</url>
+      
+        <content type="html"><![CDATA[<p>JOI Final 2021 C-E 题的题解</p><a id="more"></a><h2 id="集合写真-Group-Photo"><a href="#集合写真-Group-Photo" class="headerlink" title="集合写真 / Group Photo"></a>集合写真 / Group Photo</h2><p>考察符合条件的序列的性质，一定可以被分割成为 $m$ 个降序连续段：$(r_1\sim l_1);(r_2\sim l_2);(r_3\sim l_3);\cdots;(r_m\sim l_m)$ 其中 $l_1=1,l_2=r_1+1,r_3=l_2+1,\cdots,r_m=l_{m-1}+1$ 不难证明不满足以上结构的排列都是非法的。</p><p>考虑调整次数即前后相对顺序改变的无序对个数，于是就可以 dp 了。</p><p>设 $f_i$ 表示 $1\sim i$ 调整成若干连续段的最小代价，考虑若最后一段是 $(i\sim j),j\le i$ 那么对于一个 $j\le k\le i$ 和它产生贡献的有：(1) $1\sim j-1$ 中位置在它后面的数，(2) $j\sim k-1$ 中位置在它前面的数，(3) $k+1\sim i$ 中位置在它后面的数。</p><p>(1) 和 (3) 都可以用树状数组简单处理，考虑将 (2) 转化为找在 $j$ 后面的 $k$，于是用一个树状数组维护 $1\sim i$ 的位置，对每个 $k$ 加上位置在它后面的数的个数，这样会算多 $j\sim k-1$ 中位置在它后面的数，可以在 $j$ 向左移动时减掉，于是再用一个树状数组维护即可。</p><p>时间复杂度 $\operatorname{O}(n^2\log n)$。</p><p><a href="https://loj.ac/s/1079250" target="_blank" rel="noopener">code</a></p><h2 id="ロボット-Robot"><a href="#ロボット-Robot" class="headerlink" title="ロボット / Robot"></a>ロボット / Robot</h2><p>考虑从 $u$ 到 $v$ 的一条颜色为 $c$ 长度为 $w$ 的边，设 $S_{u,c}$ 为以 $u$ 为端点所有颜色为 $c$ 的边的长度之和，要经过该边有两种策略：</p><ol><li>将该边改为一种不冲突的颜色，费用 $w$。</li><li>将所有相同颜色的其他边改掉，费用 $S_{u,c}-w$。</li></ol><p>发现 $u$ 是菊花的中心且每条边的颜色两两不同的情况下 1 策略是不合法的，但是此时 2 策略费用为 $0$ 故可以不考虑。</p><p>发现若有 $u\to v$，$v\to x$ 两条边颜色都为 $c$ 在 $u\to v$ 选择 1 策略，$v\to x$ 选择 2 策略那么改变 $u\to v$ 边的颜色的代价会计算两边，考虑减去。</p><p>考虑建立虚点 $v_c$ 由 $u$ 向 $v_c$ 连边权为 $0$ 的边，$v_c$ 向 $x$ 连边权为 $S_{v,c}-w$ 的边，发现这样 $u\to v_c\to x$ 就是先 $1$ 策略再 $2$ 策略的代价。</p><p>于是跑 Dijkstra 即可。</p><p>最多每条边都建一个虚点，故点数是 $\operatorname{O}(n+m)$ 的，边数还是 $\operatorname{O}(m)$ 的，时间复杂度 $\operatorname{O}((n+m)\log m)$。</p><p>注意：以下参考代码大量使用 STL 和 C++17 特性，常数巨大且需要注意编译选项。</p><p><a href="https://loj.ac/s/1079854" target="_blank" rel="noopener">code</a></p><h2 id="ダンジョン-3-Dungeon-3"><a href="#ダンジョン-3-Dungeon-3" class="headerlink" title="ダンジョン 3 / Dungeon 3"></a>ダンジョン 3 / Dungeon 3</h2><p>JOI 总是有很多考思维的数据结构题</p><p>首先有显然的贪心：对于一个位置 $i$ 找到他后面第一个价格小于它的位置 $j$，二者距离为 $L$，如果 $L\le U$，那就将能量填到 $L$，否则填满。</p><p>考虑 Subtask3 ($T=N+1$) 每次找后面小于它的位置可以联想到离线询问然后倒着扫用单调栈维护价格，每次退栈（当前的价格优于之前的价格）就考虑是否能在当前位置买能量，替代后面的，当前要购买的能量是已知的，考虑要删去多少：</p><p>设当前位置到栈顶的距离为 $L$，到栈顶下一个元素的距离为 $L^\prime$，如果 $L^\prime\le U$ 删去全部 $L^\prime-L$，否则 $L^\prime-U$ 是必须的，只能删去 $L^\prime-L-(L^\prime-U)=U-L$ 于是即为 $\min(L^\prime,U)-L$。</p><p>最后栈顶还要加上 $\min(L,U)$。</p><p>考虑用数据结构维护所有 $U$ 的值，我们发现我们要加的都是一条折线（一条斜线段在加上一条平行与 $x$ 轴的线段），我们发现这是可以用树状数组简单维护的，具体来说，设 $l$ 到 $r$ 是斜线段，斜率为 $k$，截距为 $b$，平行段的 $y$ 为 $c$，我们用一个树状数组维护斜率，另一个树状数组维护截距，用差分的思想给 $l$ 斜率加上 $k$，$r+1$ 斜率减去 $k$，$l$ 截距加上 $b$，$r+1$ 截距加上 $(r+1-l)\times k$。</p><p>然后考虑满分做法：设 $f(S,T)$ 为 $S$ 到 $T$ 的答案，我们找到距离 $T$ 小于等于 $U$ 的最小价格处 $m$ 发现只要经过 $m$ 就一定会在 $m$ 处买能量的，于是 $f(S,T)=f(S,N+1)-f(m,N+1)+dis(m,T)\times b_m$ 不用担心在 $m$ 之前买的能量没有用完的问题，这笔钱在 $f(m,N+1)$ 被减去又在后面被加上，但 $f(S,N+1)$ 中在 $m$ 前买的能量是一直有贡献的，用 ST 表找一下 $m$ 即可。</p><p>时间复杂度 $\operatorname{O}(n\log n)$。</p><p><a href="https://loj.ac/s/1080357" target="_blank" rel="noopener">code</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 动态规划 </tag>
+            
+            <tag> 最短路 </tag>
+            
+            <tag> 树状数组 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>IOI2021 集训队自选题 Gem Island 2</title>
       <link href="/2020/gem-island-2/"/>
       <url>/2020/gem-island-2/</url>
@@ -195,9 +224,9 @@
             
             <tag> 计数 </tag>
             
-            <tag> 高斯消元 </tag>
-            
             <tag> 线性代数 </tag>
+            
+            <tag> 高斯消元 </tag>
             
         </tags>
       
@@ -301,9 +330,9 @@
       
         <tags>
             
-            <tag> 概率与期望 </tag>
-            
             <tag> 生成函数 </tag>
+            
+            <tag> 概率与期望 </tag>
             
             <tag> 洛谷 </tag>
             
@@ -683,9 +712,9 @@
       
         <tags>
             
-            <tag> 数学 </tag>
-            
             <tag> 结论 </tag>
+            
+            <tag> 数学 </tag>
             
         </tags>
       
@@ -698,7 +727,7 @@
       <link href="/2019/math-medicine/"/>
       <url>/2019/math-medicine/</url>
       
-        <content type="html"><![CDATA[<p>其实只要概率和等比数列的基础知识就能做出这道压轴题QwQ<br><a id="more"></a><br>试卷随便在哪都能找到,就不放链接了QwQ</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>$$P(A有用)=\alpha$$<br>$$P(A无用)=1-\alpha$$<br>$$P(B有用)=\beta$$<br>$$P(B无用)=1-\beta$$<br>$$a=P(X=-1)=P(A无用\cap B有用)=(1-\alpha)\cdot\beta$$<br>$$b=P(X=0)=P((A无用\cap B无用)\cup(A有用\cap B有用))=\alpha\cdot\beta+(1-\alpha)\cdot(1-\beta)$$<br>$$c=P(X=1)=P(A有用\cap B无用)=\alpha\cdot(1-\beta)$$<br>$$进行n次试验,第i次获胜的概率p_i满足p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1}$$<br>$$已知p_0=0,p_{2n}=1求p_n$$</p><h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>$$\because p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1}$$<br>$$\therefore (1-b)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1}$$<br>$$\because a+b+c=1$$<br>$$\therefore 1-b=a+c$$<br>$$\therefore (a+c)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1}$$<br>$$变形得c\cdot(p_{i+1}-p_i)=a\cdot(p_i-p_{i-1})$$<br>$$令x_i=p_i-p_{i-1}$$<br>$$x数列等比,公比为k=\frac{a}{c}$$<br>$$\begin{aligned}<br>x_1+x_2+\dots+x_{2n}&amp;=p_{2n}-p_0\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{2n-1})\\<br>&amp;=x_1\cdot\frac{k^{2n}-1}{k-1}=1<br>\end{aligned}$$<br>$$\therefore x_1=\frac{k-1}{k^{2n}-1}$$<br>$$\begin{aligned}<br>p_n&amp;=p_n-p_0\\<br>&amp;=x_1+x_2+\dots+x_n\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{n-1})\\<br>&amp;=\frac{k-1}{k^{2n}-1}\cdot\frac{k^n-1}{k-1}\\<br>&amp;=\frac{k^{2n}-1}{k^n-1}<br>\end{aligned}$$</p>]]></content>
+        <content type="html"><![CDATA[<p>其实只要概率和等比数列的基础知识就能做出这道压轴题QwQ<br><a id="more"></a><br>试卷随便在哪都能找到,就不放链接了QwQ</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>$$P(A有用)=\alpha$$<br>$$P(A无用)=1-\alpha$$<br>$$P(B有用)=\beta$$<br>$$P(B无用)=1-\beta$$<br>$$a=P(X=-1)=P(A无用\cap B有用)=(1-\alpha)\cdot\beta$$<br>$$b=P(X=0)=P((A无用\cap B无用)\cup(A有用\cap B有用))=\alpha\cdot\beta+(1-\alpha)\cdot(1-\beta)$$<br>$$c=P(X=1)=P(A有用\cap B无用)=\alpha\cdot(1-\beta)$$<br>$$进行n次试验,第i次获胜的概率p_i满足p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1}$$<br>$$已知p_0=0,p_{2n}=1求p_n$$</p><h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>$$\because p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1}$$<br>$$\therefore (1-b)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1}$$<br>$$\because a+b+c=1$$<br>$$\therefore 1-b=a+c$$<br>$$\therefore (a+c)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1}$$<br>$$变形得c\cdot(p_{i+1}-p_i)=a\cdot(p_i-p_{i-1})$$<br>$$令x_i=p_i-p_{i-1}$$<br>$$x数列等比,公比为k=\frac{a}{c}$$<br>$$\begin{aligned}<br>x_1+x_2+\dots+x_{2n}&amp;=p_{2n}-p_0\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{2n-1})\\<br>&amp;=x_1\cdot\frac{k^{2n}-1}{k-1}=1<br>\end{aligned}$$<br>$$\therefore x_1=\frac{k-1}{k^{2n}-1}$$<br>$$\begin{aligned}<br>p_n&amp;=p_n-p_0\\<br>&amp;=x_1+x_2+\dots+x_n\\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{n-1})\\<br>&amp;=\frac{k-1}{k^{2n}-1}\cdot\frac{k^n-1}{k-1}\\<br>&amp;=\frac{k^n-1}{k^{2n}-1}<br>\end{aligned}$$</p>]]></content>
       
       
       <categories>
@@ -868,9 +897,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -879,9 +908,9 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

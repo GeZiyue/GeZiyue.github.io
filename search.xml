@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>JOI-Final-2021</title>
+      <title>JOI Final 2021 题解</title>
       <link href="/2021/JOI-Final-2021/"/>
       <url>/2021/JOI-Final-2021/</url>
       
@@ -224,9 +224,9 @@
             
             <tag> 计数 </tag>
             
-            <tag> 线性代数 </tag>
-            
             <tag> 高斯消元 </tag>
+            
+            <tag> 线性代数 </tag>
             
         </tags>
       

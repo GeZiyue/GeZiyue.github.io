@@ -222,9 +222,9 @@
             
             <tag> Codeforces </tag>
             
-            <tag> 计数 </tag>
-            
             <tag> 线性代数 </tag>
+            
+            <tag> 计数 </tag>
             
             <tag> 高斯消元 </tag>
             
@@ -768,11 +768,11 @@
       
         <tags>
             
+            <tag> 洛谷 </tag>
+            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
-            
-            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -872,9 +872,9 @@
             
             <tag> 动态规划 </tag>
             
-            <tag> 洛谷 </tag>
-            
             <tag> USACO </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -908,9 +908,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -919,9 +919,9 @@
     
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

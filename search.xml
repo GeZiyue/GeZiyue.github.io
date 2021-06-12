@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>gdoi2021-pj-d2t2</title>
+      <title>GDOI 2021 普及组 Day2 T2 序列 题解</title>
       <link href="/2021/gdoi2021-pj-d2t2/"/>
       <url>/2021/gdoi2021-pj-d2t2/</url>
       
@@ -29,7 +29,7 @@
     
     
     <entry>
-      <title>pkusc-2021</title>
+      <title>PKUSC 2021 游记</title>
       <link href="/2021/pkusc-2021/"/>
       <url>/2021/pkusc-2021/</url>
       
@@ -48,7 +48,7 @@
     
     
     <entry>
-      <title>yhx-12243-NTT</title>
+      <title>yhx-12243 的 NTT 到底写了些什么（详细揭秘）</title>
       <link href="/2021/yhx-12243-NTT/"/>
       <url>/2021/yhx-12243-NTT/</url>
       
@@ -293,11 +293,11 @@
             
             <tag> Codeforces </tag>
             
-            <tag> 计数 </tag>
+            <tag> 高斯消元 </tag>
             
             <tag> 线性代数 </tag>
             
-            <tag> 高斯消元 </tag>
+            <tag> 计数 </tag>
             
         </tags>
       
@@ -839,11 +839,11 @@
       
         <tags>
             
+            <tag> 洛谷 </tag>
+            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
-            
-            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -943,9 +943,9 @@
             
             <tag> 动态规划 </tag>
             
-            <tag> 洛谷 </tag>
-            
             <tag> USACO </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -979,9 +979,9 @@
     
     
     <entry>
-      <title>时间轴</title>
-      <link href="/timeline/index.html"/>
-      <url>/timeline/index.html</url>
+      <title>标签</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -990,9 +990,9 @@
     
     
     <entry>
-      <title>标签</title>
-      <link href="/tags/index.html"/>
-      <url>/tags/index.html</url>
+      <title>时间轴</title>
+      <link href="/timeline/index.html"/>
+      <url>/timeline/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       

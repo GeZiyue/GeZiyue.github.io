@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Fri Apr 02 2021 16:36:52 GMT+0800">
-        <meta property="article:modified_time" content="Sat Jun 12 2021 22:50:04 GMT+0800">
+        <meta property="article:modified_time" content="Sat Jun 12 2021 23:32:23 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2021/yhx-12243-NTT/index.html",
     "headline": "yhx-12243 的 NTT 到底写了些什么（详细揭秘）",
     "datePublished": "Fri Apr 02 2021 16:36:52 GMT+0800",
-    "dateModified": "Sat Jun 12 2021 22:50:04 GMT+0800",
+    "dateModified": "Sat Jun 12 2021 23:32:23 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -606,7 +606,7 @@ void DIF(int *A, int lim, bool flag) {
 <p>这里的原根是最朴素的处理方式，而在进行 DIT/DIF 的时候，我们需要移动 $\operatorname{O}(n\log n)$ 次原根，而 yhx-12243 的 DIT/DIF 只需要移动 $\operatorname{O}(n)$ 次。</p>
 <p>我们还发现一件神奇的事：yhx-12243 的 DIT 除了最外层 $len$ 的枚举顺序，似乎都在做 DIF，而 DIF 除了最外层 $len$ 的枚举顺序，似乎都在做 DIT！</p>
 <p>这是一张 DIT-FFT 和 DIF-FFT 的示意图：</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/bxyzprz3.png" alt="DIT-FFT 和 DIF-FFT 的示意图"></p>
+<p><img src="/2021/yhx-12243-NTT/1.png" alt="DIT-FFT 和 DIF-FFT 的示意图"></p>
 <p>我们观察到 DIT-FFT 时如果对系数向量进行了蝴蝶变换，对 $(0,4)$ 操作变为了对 $(0,1)$ 操作，对 $(4,6)$ 操作变为了对 $(1,3)$ 操作，如果不对系数向量做蝴蝶变换并保持原先的操作呢（即仍然是对 $(0,4)$ 操作，对 $(4,6)$ 操作）？好像这样仍然会得到一个点值数组，这个点值数组正是蝴蝶变换后的点值数组！</p>
 <p>原因是简单的：观察到蝴蝶变换的置换 $A$ 有：$A^{-1}=A$ 对于输入的系数数组做这一置换，运算过程不变，那么答案也应当也被做了该置换，于是 $A\circ A=I$（输入），$I\circ A=A$（答案）。</p>
 <p>而原先要找的原根，也要对应的蝴蝶变换一下，这时候预处理蝴蝶变换后的原根的作用就体现出来了！</p>

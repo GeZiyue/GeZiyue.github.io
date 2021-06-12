@@ -4,6 +4,77 @@
   
     
     <entry>
+      <title>gdoi2021-pj-d2t2</title>
+      <link href="/2021/gdoi2021-pj-d2t2/"/>
+      <url>/2021/gdoi2021-pj-d2t2/</url>
+      
+        <content type="html"><![CDATA[<p>你管这叫普及？</p><a id="more"></a><p>设 $f(n,i,j)$ 为值取 $0\sim n$，最小的两个数最高的不相同的位是 $i$，最大的两个数最高的不相同的位是 $j$ 的方案数。</p><p>主要转移是考虑最大的 $w:2^w&lt;n$ 将其分为 $f(2^w-1,i,k)\times f(n-2^w,l,j)$ 容易证明 $k\neq l$ 时这样不可能异或出 $0$，考虑 $k=l$ 时，可以证明对于一个状态，前两个数/后两个数的取值是等概率的，故这四个数异或为 $0$ 的概率是 $\frac{1}{2^l}$ 将其减掉即可</p><p>考虑一些特殊情况：只有两个数一个最高位 $0$ 另一个 $1$；最高位第一个是 $0$ 后面全是 $1$；最高位最后一个是 $1$ 前面全是 $0$；最高位全是 $0$；最高位全是 $1$，简单讨论即可</p><p>考虑可能没有逆元，一种简单的方式是 $g(n,i,j)=\frac{f(n,i,j)}{2^j}$，于是减掉的就是 $g(2^w-1,i,j)$。$g$ 的转移和 $f$ 类似，注意到所有有用的 $g$ 的状态 $n$ 都是 $2^w-1$ 的形式，观察转移发现现在除以 $2$ 的幂时都在对一个更大的幂除上小的幂，可以直接做</p><p>时间复杂度 $\operatorname{O}(\log^4n)$</p><p>参考实现：</p><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;typedef long long ll;const int N = 125;int lg2(ll n) { return 63 - __builtin_clzll(n); }int f(ll n, int l, int r);int g(ll n, int l, int r);void inc(int &amp;a, int b);void dec(int &amp;a, int b);int _f[N][60][60], _g[N][60][60];std::map&lt;ll, int&gt; mp;int tot;int pw2[120];ll n;int Mod;int main() {  scanf(&quot;%lld %d&quot;, &amp;n, &amp;Mod);  pw2[0] = 1;  for (int i = 1; i &lt; 120; ++i)    pw2[i] = (pw2[i - 1] &lt;&lt; 1) % Mod;  for (int i = 1; i &lt;= 120; ++i) {    for (int j = 0; j &lt; 60; ++j) {      for (int k = 0; k &lt; 60; ++k) {        _f[i][j][k] = _g[i][j][k] = -1;      }    }  }  int ans = (n + 1) % Mod;  for (int i = 0; i &lt; 60; ++i) {    for (int j = 0; j &lt; 60; ++j) {      ans = (ans + f(n, i, j)) % Mod;    }  }  printf(&quot;%d\n&quot;, ans);  return 0;}void inc(int &amp;a, int b) { (a += b) &gt;= Mod ? a -= Mod : a; }void dec(int &amp;a, int b) { (a -= b) &lt; 0 ? a += Mod : a; }int f(ll n, int l, int r) {  if (n == 0) return 0;  if ((1ll &lt;&lt; std::max(l, r)) &gt; n) return 0;  if (!mp.count(n)) mp[n] = ++tot;  int now = mp[n];  if (_f[now][l][r] != -1) return _f[now][l][r];  int w = lg2(n);  ll L = (1ll &lt;&lt; w) - 1, R = n - (1ll &lt;&lt; w);  int ans = (f(L, l, r) + f(R, l, r)) % Mod;  if (l == w &amp;&amp; r == w) inc(ans, 1ll * pw2[w] * ((R + 1) % Mod) % Mod);  if (l == w) {    for (int d = 0; d &lt; w; ++d)      inc(ans, 1ll * pw2[w] * f(R, d, r) % Mod);  }  if (r == w) {    for (int d = 0; d &lt; w; ++d)      inc(ans, 1ll * f(L, l, d) * ((R + 1) % Mod) % Mod);  }  int s1 = 0;  for (int d1 = 0; d1 &lt; w; ++d1)    inc(s1, f(L, l, d1));  int s2 = 0;  for (int d2 = 0; d2 &lt; w; ++d2)    inc(s2, f(R, d2, r));  inc(ans, 1ll * s1 * s2 % Mod);  for (int d = 0; d &lt; w; ++d) {    dec(ans, 1ll * f(L, l, d) * f(R, d, r) % Mod);    inc(ans, 1ll * g(L, l, d) * f(R, d, r) % Mod * (pw2[d] - 1) % Mod);  }  return _f[now][l][r] = ans;}int g(ll n, int l, int r) {  if (n == 0) return 0;  if ((1ll &lt;&lt; std::max(l, r)) &gt; n) return 0;  if (!mp.count(n)) mp[n] = ++tot;  int now = mp[n];  if (_g[now][l][r] != -1) return _g[now][l][r];  int w = lg2(n);  ll L = (1ll &lt;&lt; w) - 1, R = n - (1ll &lt;&lt; w);  int ans = (g(L, l, r) + g(R, l, r)) % Mod;  if (l == w &amp;&amp; r == w) inc(ans, pw2[w]);  if (l == w) {    for (int d = 0; d &lt; w; ++d)      inc(ans, 1ll * pw2[w] * g(R, d, r) % Mod);  }  if (r == w) {    for (int d = 0; d &lt; w; ++d)      inc(ans, 1ll * f(L, l, d) * (((R + 1) &gt;&gt; w) % Mod) % Mod);  }  int s1 = 0;  for (int d1 = 0; d1 &lt; w; ++d1)    inc(s1, f(L, l, d1));  int s2 = 0;  for (int d2 = 0; d2 &lt; w; ++d2)    inc(s2, g(R, d2, r));  inc(ans, 1ll * s1 * s2 % Mod);  for (int d = 0; d &lt; w; ++d) {    dec(ans, 1ll * f(L, l, d) * g(R, d, r) % Mod);    inc(ans, 1ll * g(L, l, d) * g(R, d, r) % Mod * (pw2[d] - 1) % Mod);  }  return _g[now][l][r] = ans;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Solution </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数位DP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>pkusc-2021</title>
+      <link href="/2021/pkusc-2021/"/>
+      <url>/2021/pkusc-2021/</url>
+      
+        <content type="html"><![CDATA[<p>我这种模拟赛日常垫底的傻逼竟然能去 PKUSC！!1</p><a id="more"></a><h1 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h1><p>9:21 的火车，11:21 到余姚，由于余姚的同学正好从 asdfz 回余姚，余姚中学的教练安排了一辆车接我们，好评。</p><p>听说卷怪在宾馆卷疯了，只有我在摸鱼<img src="https://啧.tk/kk" alt="/kk"></p><p>感觉一趟下来要胖三斤！</p><h1 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h1><p>报到不写了，试机一题不会，感觉要凉</p><p>下午开题，想了一下发现 T1 傻逼矩乘，T2 感觉是 nb 数据结构，T3 看完了题感觉是爆搜+大模拟。</p><p>13:00 左右过了 T1（题意有个地方不清楚卡了好久）</p><p>想了一下感觉 T2 不太可做，去想 sub2，完全没有想到楼房重建，感觉找到前面的第一个比它大的，后面第一个比它大的和目前全局修改次数就可以三维数点，然后对一维离线就是二维数点，空间是 $\operatorname{O}(n\log^2n)$ 的，但数据水动态开点线段树数组开小也过了。</p><p>然后是码码码，最后 17:20 过了 T3 的 sub1，sub2 来不及了，弃了。</p><p>$100+46+38=184$，出来感觉是大众分，很慌。</p><p>发现 yxy 切了 T2，wd T3 sub12，真的膜拜。</p><p>wc 和 mwr 好像是 146，zjf 切了 T2 但到最后都没调出来，只有 107，真的惨。</p><p>赛后发现坐我右边的老哥好像就是 Fee_cle6418，Orz</p><p>晚上听说大众分 146，感觉还行。</p><h1 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h1><p>上午参观了 NOI 考场，但这和根本进不了 NOI 的我有啥关系！<img src="https://啧.tk/kk" alt="/kk"></p><p>下午开题，发现 T1 好像是简单化式子。</p><p>然后我就整了个枚举断边，统计 $siz(n-siz)$ 的所有变化的诡异东西。</p><p>要维护一车信息，包括子树 $siz$ 的和，平方和，立方和之类的毒瘤玩意，统计答案有一车细节，必须在草稿纸上搞清楚。</p><p>貌似 14:00 才过 T1 心态爆炸。</p><p>发现左边的老哥文件夹名是 <code>dblark</code>，感觉这名字水群时见过（</p><p>T2 感觉有 nb 贪心，先写了个假的 $n^2$ 贪心，发现前三个包数据水的怕人，直接过了，sub4 WA 了，想了一下感觉不会就溜了。貌似有 23 分？</p><p>T3 先手推积分算出了 $n=3$，后面的时间一直在手推 $n=4$ 但是一直 WA 样例，非常自闭。最后只有 15（有一个测试点答案为 0）</p><p>感觉垫底了。</p><p>出来一问 zjf 和 wd 都秒了 T2，非常自闭。</p><p>后来发现 yxy wc mwr 都没过，感觉还行。</p><p>$100+23+15=138$，可能只是大众分滚粗了。</p><p>听说 wd 虐场了，听说我和 zjf 总分一个分。</p><p>后来发现填 $a_i\bmod c$ 是对的，但我根本没有想到最后一定是用完一个后缀，sb 型选手石锤了。</p><p>晚上听说真的是大众分滚粗。</p><p>晚上还在和 wd 打 Google Code Jam，发现 ABC 三个傻逼题，然后就 T-shirt 了，wd 竟然没切 C，痛失 T-shirt？</p><h1 id="Day-3"><a href="#Day-3" class="headerlink" title="Day 3"></a>Day 3</h1><p>一大早发现 wd 免面试，只有我没准备面试还在 Google Code Jam，小丑竟是我自己。</p><p>听说 wc 没进面试，惨。</p><p>听说有人两天都严格低于 wc 也进面试了，惨。</p><p>听教练说我和 zjf 都是没有免面试中比较高的，感觉还行。</p><p>发现我和 zjf 面试时间非常迟，是每一轮的倒数第二个。</p><p>我第一个面试是蒋婷婷教授，她好像前几天才来过我们学校。</p><p>先自我介绍，然后问了些正常问题，比如这次考的怎么样，文化课怎么样，为什么来 pku（还问了我前几天她来 asdfz 时我在不在）。</p><p>听 zjf 说我第二个面的问了些比较奇怪的问题。</p><p>等了非常久，中间面了 @yijan 神仙。</p><p>最后问了我的优缺点，喜欢什么理工类的书，还问什么如何看待钻研一个问题不一定能获得和精力成正比的回报，将来如果高端 IT 人才饱和了你会怎么选择之类的问题。</p><p>感觉很凉。</p><p>下午 zyy 讲题。(题不全是我出的.jpg)</p><p>发约了，发现我校除了 wc 都一等约了。</p><p>签了张写着不平等条约的废纸.jpg</p><p>要么没学上要么去 pku 了/mgx</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 游记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>yhx-12243-NTT</title>
+      <link href="/2021/yhx-12243-NTT/"/>
+      <url>/2021/yhx-12243-NTT/</url>
+      
+        <content type="html"><![CDATA[<p>这是 yhx-12243 的 NTT</p><a id="more"></a><pre><code class="cpp">inline int &amp; reduce(int &amp;x) {return x += x &gt;&gt; 31 &amp; mod;}inline int &amp; neg(int &amp;x) {return x = (!x - 1) &amp; (mod - x);}u64 PowerMod(u64 a, int n, u64 c = 1) {for (; n; n &gt;&gt;= 1, a = a * a % mod) if (n &amp; 1) c = c * a % mod; return c;}namespace poly_base {    int l, n; u64 iv; vec w2;    void init(int n = N, bool dont_calc_factorials = true) {        int i, t;        for (inv[1] = 1, i = 2; i &lt; n; ++i) inv[i] = u64(mod - mod / i) * inv[mod % i] % mod;        if (!dont_calc_factorials) for (*finv = *fact = i = 1; i &lt; n; ++i) fact[i] = (u64)fact[i - 1] * i % mod, finv[i] = (u64)finv[i - 1] * inv[i] % mod;        t = min(n &gt; 1 ? lg2(n - 1) : 0, 21),        *w2 = 1, w2[1 &lt;&lt; t] = PowerMod(31, 1 &lt;&lt; (21 - t));        for (i = t; i; --i) w2[1 &lt;&lt; (i - 1)] = (u64)w2[1 &lt;&lt; i] * w2[1 &lt;&lt; i] % mod;        for (i = 1; i &lt; n; ++i) w2[i] = (u64)w2[i &amp; (i - 1)] * w2[i &amp; -i] % mod;    }    inline void NTT_init(int len) {n = 1 &lt;&lt; (l = len), iv = mod - (mod - 1) / n;}    void DIF(int *a) {        int i, *j, *k, len = n &gt;&gt; 1, R, *o;        for (i = 0; i &lt; l; ++i, len &gt;&gt;= 1)            for (j = a, o = w2; j != a + n; j += len &lt;&lt; 1, ++o)                for (k = j; k != j + len; ++k)                    R = (u64)*o * k[len] % mod, reduce(k[len] = *k - R), reduce(*k += R - mod);    }    void DIT(int *a) {        int i, *j, *k, len = 1, R, *o;        for (i = 0; i &lt; l; ++i, len &lt;&lt;= 1)            for (j = a, o = w2; j != a + n; j += len &lt;&lt; 1, ++o)                for (k = j; k != j + len; ++k)                    reduce(R = *k + k[len] - mod), k[len] = u64(*k - k[len] + mod) * *o % mod, *k = R;    }    inline void DNTT(int *a) {DIF(a);}    inline void IDNTT(int *a) {        DIT(a), std::reverse(a + 1, a + n);        for (int i = 0; i &lt; n; ++i) a[i] = a[i] * iv % mod;    }}</code></pre><p>它为什么跑这么快？DIT 和 DIF 在干啥？预处理的原根为何和大多数人的不一样？这篇文章将为你解开这一奥秘（</p><p>先来看 init 函数 <code>w2[1 &lt;&lt; t] = PowerMod(31, 1 &lt;&lt; (21 - t));</code> 为什么是 $31$？</p><p>我们发现 $31^{2^{23}}=1$ 同时它模 $998244353$ 的阶是 $2^{23}$ 的倍数，也就是说它在进行 NTT 时和 $3^{119}$ 具有相似的性质，事实上，这里的确可以换为 $3^{119}$。</p><p>平时我的写法都要预处理 $21$ 种原根的次幂，为什么这里只用处理一种原根呢？我们将 $31$ 改为 $3^{119}$ 输出一下这段代码预处理的原根前 $8$ 项，发现结果如下：</p><pre><code>1 911660635 372528824 488723995 929031873 373294451 628914303 661054123</code></pre><p>再来看平常写法预处理的原根：</p><pre><code>1: 12: 1 9116606354: 1 372528824 911660635 4887239958: 1 929031873 372528824 628914303 911660635 373294451 488723995 661054123</code></pre><p>我们发现对这一结果蝴蝶变换（二进制翻转）可以得到如下结果：</p><pre><code>1: 12: 1 9116606354: 1 911660635 372528824 4887239958: 1 911660635 372528824 488723995 929031873 373294451 628914303 661054123</code></pre><p>我们发现 $1$ 是 $2$ 的前缀，$2$ 是 $4$ 的前缀……</p><p>经过冷静思考，我们发现这是显然的，蝴蝶变换是 $0$ 不动，偶数放左边，奇数放右边，分别进行少一位的蝴蝶变换，而根据 $\omega_{2n}^{2i}=\omega_n^i$ 所以它前一半就是对 $\frac{n}{2}$ 范围的原根做蝴蝶变换的结果。</p><p>代码在做什么也很好懂了，预处理出 $g^{2^k}$ 放在 $2^{21-k}$ 处（即蝴蝶变换后的结果），再递推得到其他结果（$g^{2^j+2^k}=g^{2^j}\times g^{2^k}$，二进制翻转后也可以这样找每个为 $1$ 的位乘上）。</p><p>这样预处理原根有什么用？等下就知道了。</p><p>我们还要知道它的基本原理：DIT/DIF。在 rushcheyo 学长《转置原理及其应用》中我们了解到 DIT（decimation in time，按时域抽取）-FFT 可以将蝴蝶变换后的系数向量转化为点值向量； DIF（decimation in frequency，按频域抽取）-FFT 可以将系数向量转化为蝴蝶变换后的点值向量，二者互为置换。</p><p>我们发现可以用 DIF 实现 DFT，用 DIT 实现 IDFT 于是我们就不用进行蝴蝶变换了。</p><p>这是我写的一份朴素的 DIT/DIF-NTT：</p><pre><code class="cpp">void init_Poly() {  for (int l = 1; l &lt; (1 &lt;&lt; 21); l &lt;&lt;= 1) {    gw[l] = 1;    int gn = pow(g, (Mod - 1) / (l &lt;&lt; 1), Mod);    for (int j = 1; j &lt; l; ++j) {      gw[l | j] = 1ll * gw[l | (j - 1)] * gn % Mod;    }  }}void DIT(int *A, int lim, bool flag) {  for (int l = 1; l &lt; lim; l &lt;&lt;= 1) {    int *k = A;    for (int i = 0; i &lt; lim; i += (l &lt;&lt; 1), k += (l &lt;&lt; 1)) {      int *x = k;      for (int j = 0, *g = gw + l; j &lt; l; ++j, ++x, ++g) {        int o = 1ll * x[l] * *g % Mod;        x[l] = (*x + Mod - o) % Mod, *x = (*x + o) % Mod;      }    }  }  int iv = pow(lim, Mod - 2, Mod);  for (int i = 0; i &lt; lim; ++i) A[i] = 1ll * A[i] * iv % Mod;  std::reverse(A + 1, A + lim);}void DIF(int *A, int lim, bool flag) {  for (int l = lim / 2; l &gt;= 1; l &gt;&gt;= 1) {    int *k = A;    for (int i = 0; i &lt; lim; i += (l &lt;&lt; 1), k += (l &lt;&lt; 1)) {      int *x = k;      for (int j = 0, *g = gw + l; j &lt; l; ++j, ++x, ++g) {        int o = x[l];        x[l] = 1ll * (*x + Mod - o) * *g % Mod, *x = (*x + o) % Mod;      }    }  }}</code></pre><p>这里的原根是最朴素的处理方式，而在进行 DIT/DIF 的时候，我们需要移动 $\operatorname{O}(n\log n)$ 次原根，而 yhx-12243 的 DIT/DIF 只需要移动 $\operatorname{O}(n)$ 次。</p><p>我们还发现一件神奇的事：yhx-12243 的 DIT 除了最外层 $len$ 的枚举顺序，似乎都在做 DIF，而 DIF 除了最外层 $len$ 的枚举顺序，似乎都在做 DIT！</p><p>这是一张 DIT-FFT 和 DIF-FFT 的示意图：</p><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/bxyzprz3.png" alt="DIT-FFT 和 DIF-FFT 的示意图"></p><p>我们观察到 DIT-FFT 时如果对系数向量进行了蝴蝶变换，对 $(0,4)$ 操作变为了对 $(0,1)$ 操作，对 $(4,6)$ 操作变为了对 $(1,3)$ 操作，如果不对系数向量做蝴蝶变换并保持原先的操作呢（即仍然是对 $(0,4)$ 操作，对 $(4,6)$ 操作）？好像这样仍然会得到一个点值数组，这个点值数组正是蝴蝶变换后的点值数组！</p><p>原因是简单的：观察到蝴蝶变换的置换 $A$ 有：$A^{-1}=A$ 对于输入的系数数组做这一置换，运算过程不变，那么答案也应当也被做了该置换，于是 $A\circ A=I$（输入），$I\circ A=A$（答案）。</p><p>而原先要找的原根，也要对应的蝴蝶变换一下，这时候预处理蝴蝶变换后的原根的作用就体现出来了！</p><p>更为重要的是，对于一个 $len$ 覆盖到的范围，所用的原根次幂是相同的（例如第一层变换中的 $(0,4),(1,5),(2,6),(3,7)$，第二层变换中的 $(0,2),(1,3)$ 和 $(4,6),(5,7)$）</p><p>以上内容可以手画一下长为 $16$ 的 DIT-FFT 来加深理解。</p><p>于是按从大到小枚举 $len$ 的顺序做 DIT，干的就是 DIF 的事，同理我们也可以得到按从小到大枚举 $len$ 的顺序做 DIF，干的就是 DIT 的事，而这种做法因为只需要移动 $T(n+\frac{n}{2}+\frac{n}{4}+\cdots)=\operatorname{O}(n)$ 次原根所以会比原先快一些。</p><p>下面进行一些<del>可能并不靠谱的</del>效率差异比较（以下三份代码都使用 <code>unsigned long long</code> 优化，即用 ull 存储中间结果减少取模）：</p><ol><li><a href="https://www.luogu.com.cn/record/48841739" target="_blank" rel="noopener">朴素 FFT</a> 总共 1.13s，最慢 414ms，代码 3.31KB</li><li><a href="https://www.luogu.com.cn/record/48841766" target="_blank" rel="noopener">DIT-DIF FFT</a> 总共 887ms，最慢 303ms，代码 3.50KB</li><li><a href="https://www.luogu.com.cn/record/48841783" target="_blank" rel="noopener">优化 DIT-DIF FFT</a> 总共 789ms，最慢 287ms，代码 3.62KB</li></ol><p>可见 DIT-DIF FFT 相较于朴素 FFT 相比，有较大优化，而优化 DIT-DIF FFT 相较于 DIT-DIF FFT 有小幅度优化，且代码不长，实现难度不大，不失为一种较好的简单 NTT 实现方式。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Note </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数学 </tag>
+            
+            <tag> 多项式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JOI Final 2021 题解</title>
       <link href="/2021/JOI-Final-2021/"/>
       <url>/2021/JOI-Final-2021/</url>
@@ -222,9 +293,9 @@
             
             <tag> Codeforces </tag>
             
-            <tag> 线性代数 </tag>
-            
             <tag> 计数 </tag>
+            
+            <tag> 线性代数 </tag>
             
             <tag> 高斯消元 </tag>
             
@@ -768,11 +839,11 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -872,9 +943,9 @@
             
             <tag> 动态规划 </tag>
             
-            <tag> USACO </tag>
-            
             <tag> 洛谷 </tag>
+            
+            <tag> USACO </tag>
             
         </tags>
       
@@ -886,22 +957,22 @@
     
     
     <entry>
-      <title>友链</title>
-      <link href="/links/index.html"/>
-      <url>/links/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.com.cn/user/25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/u/Seniorious" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>友链</title>
+      <link href="/links/index.html"/>
+      <url>/links/index.html</url>
       
-        <content type="html"><![CDATA[<p>来自AH的菜鸡OIer / 擅长爆零 / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious" target="_blank" rel="noopener">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious" target="_blank" rel="noopener">Atcoder</a> / <a href="https://www.luogu.com.cn/user/25251" target="_blank" rel="noopener">洛谷</a> / <a href="https://loj.ac/u/Seniorious" target="_blank" rel="noopener">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious" target="_blank" rel="noopener">UOJ</a></p><p>QQ:&nbsp;2775632269</p><p>现就读于安徽师范大学附属中学</p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     

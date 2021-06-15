@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -29,11 +29,11 @@
 
 
 
-    <link rel="dns-prefetch" href="https://hm.baidu.com">
+    <link rel="dns-prefetch" href="https://hm.baidu.com"/>
 
 
 
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
 
 
@@ -57,14 +57,14 @@
     <link rel="icon shortcut" type="image/ico" href="/img/avatar.jpg">
     <link rel="icon" href="/img/avatar.jpg">
 
-    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="题目">
     <meta name="keywords" content=",洛谷,并查集,单调性">
     <meta name="theme-color" content="#7A68E8">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -257,7 +257,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.seniorious.cc/2019/luogu-1198/index.html">
+        <link rel="canonical" href="https://blog.seniorious.cc/2019/luogu-1198/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -312,10 +312,10 @@
     
     
 
-    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- Custom Head -->
     
 
-</head>
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
     
@@ -359,12 +359,13 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#思路"><span class="post-toc-number">1.</span> <span class="post-toc-text">思路</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#算法1"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">算法1</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#复杂度分析"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">复杂度分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#算法2"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">算法2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#复杂度分析-1"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">复杂度分析</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考代码"><span class="post-toc-number">2.</span> <span class="post-toc-text">参考代码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="post-toc-number">1.</span> <span class="post-toc-text">思路</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%AE%97%E6%B3%951"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">算法1</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">复杂度分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%AE%97%E6%B3%952"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">算法2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90-1"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">复杂度分析</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81"><span class="post-toc-number">2.</span> <span class="post-toc-text">参考代码</span></a></li></ol>
     </ul>
     
 
@@ -410,7 +411,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/avatar.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/avatar.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -439,8 +440,8 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/单调性/">单调性</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/并查集/">并查集</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/洛谷/">洛谷</a>
-    </li></ul>
+        <a class="post_tag-none-link" href="/tags/%E5%8D%95%E8%B0%83%E6%80%A7/" rel="tag">单调性</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="tag">并查集</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/%E6%B4%9B%E8%B0%B7/" rel="tag">洛谷</a>
+    </ul>
     
 
     <!-- Share -->
@@ -514,7 +515,8 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><a href="https://www.luogu.com.cn/problem/P2948" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p>
+        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2948">题目</a></p>
+<span id="more"></span>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>显而易见，后入队的结点如果比前面的大，那么前面的一定对答案没有贡献(如果查询的区间包括前面的，则一定包括后面的)</p>
 <p>可以考虑维护单调性</p>
 <h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><p>维护一个递增的单调栈，每次询问二分查找第一个在询问范围内的</p>
@@ -543,49 +545,49 @@ void uni(int, int);
 int fa[N], maxi[N]; // 集合代表和权值
 int id; // 数列的大小
 
-int main () {
+int main () &#123;
     int n, m;
     read(n), read(m);
   int lastans = 0;
-  for (int i = 1; i &lt;= n; ++i) {
+  for (int i = 1; i &lt;= n; ++i) &#123;
     char ch = getchar();
-    if (ch != &#39;A&#39; &amp;&amp; ch != &#39;Q&#39;) {
+    if (ch != &#39;A&#39; &amp;&amp; ch != &#39;Q&#39;) &#123;
       ch = getchar();
-    }
+    &#125;
     ll a;
     read(a);
-    if (ch == &#39;A&#39;) {
+    if (ch == &#39;A&#39;) &#123;
       ++id;
       fa[id] = id;
       maxi[id] = (a + lastans) % m;
       int fi = id; // 目前集合的最左端，fi - 1就是下次考虑是否合并的集合的最右端
-      while (fi &gt; 1 &amp;&amp; maxi[fi] &gt; maxi[find(fi - 1)]) {
+      while (fi &gt; 1 &amp;&amp; maxi[fi] &gt; maxi[find(fi - 1)]) &#123;
         uni(fi - 1, fi);
         fi = find(id);
-      }
-    } else {
+      &#125;
+    &#125; else &#123;
       lastans = maxi[find(id - a + 1)];
       write(lastans), EL;
-    }
-  }
+    &#125;
+  &#125;
   return 0;
-}
+&#125;
 
-int find(int x) {
+int find(int x) &#123;
     return fa[x] == x ? x : fa[x] = find(fa[x]);
-}
-void uni(int x, int y) {
+&#125;
+void uni(int x, int y) &#123;
     int fx = find(x), fy = find(y);
     fa[fy] = fx; // 将集合代表设为左边的
     maxi[fx] = maxi[fy]; // 将集合权值设为右边的值
-}
+&#125;
 </code></pre>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
                     <p><strong>
                          
-                            本博客采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
+                            本博客采用<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
                         </strong>
                         <br>
                         <strong>本文链接：</strong><a href="https://blog.seniorious.cc/2019/luogu-1198/">https://blog.seniorious.cc/2019/luogu-1198/</a>
@@ -749,7 +751,7 @@ void uni(int x, int y) {
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2021/06/">六月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/05/">五月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/03/">三月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/12/">十二月 2020<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/11/">十一月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/10/">十月 2020<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/09/">九月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/07/">七月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/06/">六月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -766,8 +768,8 @@ void uni(int x, int y) {
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">23</span></a></li><li><a class="sidebar_archives-link" href="/categories/总结/">总结<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/游记/">游记<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">23</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%80%BB%E7%BB%93/">总结<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%B8%B8%E8%AE%B0/">游记<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -838,7 +840,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -958,7 +960,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;Seniorious' blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Seniorious' blog
             
         </div>
 
@@ -1034,7 +1036,9 @@ It will not impact the appearance and can give developers a lot of support :)
 <script>
 	var agent = navigator.userAgent.toLowerCase();
 	if(agent.indexOf('ucbrowser')>0) {
-		document.write('<link rel="stylesheet" href="/css/uc.css">');
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
 	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
 	}
 </script>

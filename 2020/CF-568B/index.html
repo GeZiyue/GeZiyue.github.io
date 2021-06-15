@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -29,11 +29,11 @@
 
 
 
-    <link rel="dns-prefetch" href="https://hm.baidu.com">
+    <link rel="dns-prefetch" href="https://hm.baidu.com"/>
 
 
 
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
 
 
@@ -57,14 +57,14 @@
     <link rel="icon shortcut" type="image/ico" href="/img/avatar.jpg">
     <link rel="icon" href="/img/avatar.jpg">
 
-    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="题目">
     <meta name="keywords" content=",Codeforces,计数">
     <meta name="theme-color" content="#7A68E8">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -257,7 +257,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.seniorious.cc/2020/CF-568B/index.html">
+        <link rel="canonical" href="https://blog.seniorious.cc/2020/CF-568B/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -312,10 +312,10 @@
     
     
 
-    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- Custom Head -->
     
 
-</head>
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
     
@@ -359,12 +359,13 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题意"><span class="post-toc-number">1.</span> <span class="post-toc-text">题意</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#思路"><span class="post-toc-number">2.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%A2%98%E6%84%8F"><span class="post-toc-number">1.</span> <span class="post-toc-text">题意</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="post-toc-number">2.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码</span></a></li></ol>
     </ul>
     
 
@@ -410,7 +411,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/avatar.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/avatar.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -439,8 +440,8 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Codeforces/">Codeforces</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/计数/">计数</a>
-    </li></ul>
+        <a class="post_tag-none-link" href="/tags/Codeforces/" rel="tag">Codeforces</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/%E8%AE%A1%E6%95%B0/" rel="tag">计数</a>
+    </ul>
     
 
     <!-- Share -->
@@ -514,47 +515,49 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><a href="https://codeforces.com/problemset/problem/568/B" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p>
+        <p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/568/B">题目</a></p>
+<span id="more"></span>
+
 <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>计数$n$个元素的满足对称性、传递性，但不满足自反性的二元关系种数，$n\le4000$</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>发现若$a\sim b$则有$b\sim a,a\sim a,b\sim b$，所以一定存在不和其他所有元素相连的，不妨设有$n-k$个单独点，剩下的$k$个点可以分为几个集合（注意大小为$1$的集合不等于单独点，大小为$1$的集合有自身连自身），此时对答案的贡献为$\binom{n}{k}B_{k}$（$n$个里选$k$个分成若干集合，其他都是单独的），其中$B_i$为第$i$个贝尔数，等于$\sum_{j=1}^i\left\{\begin{matrix}i\\j\end{matrix}\right\}$，于是答案就为$\sum_{k=0}^{n-1}\binom{n}{k}B_k$</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>发现若$a\sim b$则有$b\sim a,a\sim a,b\sim b$，所以一定存在不和其他所有元素相连的，不妨设有$n-k$个单独点，剩下的$k$个点可以分为几个集合（注意大小为$1$的集合不等于单独点，大小为$1$的集合有自身连自身），此时对答案的贡献为$\binom{n}{k}B_{k}$（$n$个里选$k$个分成若干集合，其他都是单独的），其中$B_i$为第$i$个贝尔数，等于$\sum_{j=1}^i\left{\begin{matrix}i\j\end{matrix}\right}$，于是答案就为$\sum_{k=0}^{n-1}\binom{n}{k}B_k$</p>
 <p>由于$n$很小，$\operatorname{O}(n^2)$搞出第二类 Stirling 数即可</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">int fac[N], ifac[N];
 int S[N][N];
 int Bell[N];
 int n;
 
-int main () {
+int main () &#123;
   read(n);
   fac[0] = 1;
-  for (int i = 1; i &lt;= n; ++i) {
+  for (int i = 1; i &lt;= n; ++i) &#123;
     fac[i] = fac[i - 1] * 1ll * i % Mod;
-  }
+  &#125;
   ifac[n] = pow(fac[n], Mod - 2, Mod);
-  for (int i = n - 1; i &gt;= 0; --i) {
+  for (int i = n - 1; i &gt;= 0; --i) &#123;
     ifac[i] = ifac[i + 1] * 1ll * (i + 1) % Mod;
-  }
+  &#125;
   S[0][0] = 1;
   Bell[0] = 1;
-  for (int i = 1; i &lt;= n; ++i) {
-    for (int j = 1; j &lt;= i; ++j) {
+  for (int i = 1; i &lt;= n; ++i) &#123;
+    for (int j = 1; j &lt;= i; ++j) &#123;
       S[i][j] = (S[i - 1][j - 1] + S[i - 1][j] * 1ll * j % Mod) % Mod;
       Bell[i] = (Bell[i] + S[i][j]) % Mod;
-    }
-  }
+    &#125;
+  &#125;
   int ans = 0;
-  for (int i = 0; i &lt; n; ++i) {
+  for (int i = 0; i &lt; n; ++i) &#123;
     ans = (ans + C(n, i) * 1ll * Bell[i] % Mod) % Mod;
-  }
+  &#125;
   write(ans), EL;
   return 0;
-}
+&#125;
 </code></pre>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
                     <p><strong>
                          
-                            本博客采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
+                            本博客采用<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
                         </strong>
                         <br>
                         <strong>本文链接：</strong><a href="https://blog.seniorious.cc/2020/CF-568B/">https://blog.seniorious.cc/2020/CF-568B/</a>
@@ -718,7 +721,7 @@ int main () {
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2021/06/">六月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/05/">五月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/03/">三月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/12/">十二月 2020<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/11/">十一月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/10/">十月 2020<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/09/">九月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/07/">七月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/06/">六月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -735,8 +738,8 @@ int main () {
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">23</span></a></li><li><a class="sidebar_archives-link" href="/categories/总结/">总结<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/游记/">游记<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">23</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%80%BB%E7%BB%93/">总结<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%B8%B8%E8%AE%B0/">游记<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -807,7 +810,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -927,7 +930,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;Seniorious' blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Seniorious' blog
             
         </div>
 
@@ -1003,7 +1006,9 @@ It will not impact the appearance and can give developers a lot of support :)
 <script>
 	var agent = navigator.userAgent.toLowerCase();
 	if(agent.indexOf('ucbrowser')>0) {
-		document.write('<link rel="stylesheet" href="/css/uc.css">');
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
 	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
 	}
 </script>

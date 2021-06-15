@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -29,11 +29,11 @@
 
 
 
-    <link rel="dns-prefetch" href="https://hm.baidu.com">
+    <link rel="dns-prefetch" href="https://hm.baidu.com"/>
 
 
 
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
 
 
@@ -57,14 +57,14 @@
     <link rel="icon shortcut" type="image/ico" href="/img/avatar.jpg">
     <link rel="icon" href="/img/avatar.jpg">
 
-    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="">
     <meta name="keywords" content=",动态规划,FZOJ">
     <meta name="theme-color" content="#7A68E8">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -257,7 +257,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.seniorious.cc/2019/fzoj-3827/index.html">
+        <link rel="canonical" href="https://blog.seniorious.cc/2019/fzoj-3827/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -312,10 +312,10 @@
     
     
 
-    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- Custom Head -->
     
 
-</head>
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
     
@@ -359,12 +359,13 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#题意"><span class="post-toc-number">1.</span> <span class="post-toc-text">题意</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分析"><span class="post-toc-number">2.</span> <span class="post-toc-text">分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%A2%98%E6%84%8F"><span class="post-toc-number">1.</span> <span class="post-toc-text">题意</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%88%86%E6%9E%90"><span class="post-toc-number">2.</span> <span class="post-toc-text">分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码</span></a></li></ol>
     </ul>
     
 
@@ -410,7 +411,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/avatar.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/avatar.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -439,8 +440,8 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/FZOJ/">FZOJ</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/动态规划/">动态规划</a>
-    </li></ul>
+        <a class="post_tag-none-link" href="/tags/FZOJ/" rel="tag">FZOJ</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a>
+    </ul>
     
 
     <!-- Share -->
@@ -517,7 +518,7 @@
         <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给定一个长度为$n$和一个长度为$m$的序列$A$和$B$</p>
 <p>求$A$和$B$有多少个非空公共子序列满足$\forall a,b$在子序列中相邻,有向边$&lt;a,b&gt;\in 边集E$</p>
 <p>答案对$10^9+7取模$</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>显然是DP,设$f_{i,j}$为以$A$序列第$i$个元素$B$序列第$j$个元素结尾的方案数($a_i\neq b_j$时$f_{i,j}=0$)<br>令$g_{i,j}=\sum^i_{k=1}f_{k,j}$<br>如图(上方为$B$下方为$A$)<img src="/2019/fzoj-3827/1.png" alt=""><br>很明显$g$可以用前缀和维护<br>现在开始考虑相邻元素的限制,对于$b_j$考虑其到$a_i$是否有边,如果有,其对$f_{i,k}(k&gt;j,a_i=b_k)$有$g_{i-1,j}$的贡献($\forall l\in[1,i-1]:a_l=b_j很明显f_{l,j}$可以转移到$f_{i,k}(k&gt;j,a_i=b_k$)<br>$h_{i,j}=\sum_{k\in[1,j-1],&lt;b_k,a_i&gt;\in E}g_{i,k}$<br>如图(上方为$A$下方为$B$)<img src="/2019/fzoj-3827/2.png" alt=""><br>由于枚举$j$时$i$是固定的,所以我们可以用前缀和统计<br>$h_{i,j}=<br>\begin{cases}<br>h_{i,j-1}+g_{i,j} &amp; &lt;b_j,a_i&gt;\in E \\<br>h_{i,j-1} &amp; &lt;b_j,a_i&gt;\notin E \\<br>\end{cases}$<br>$f_{i,j}=h_{i,j-1}+1$(还有不用前面的,从$a_i,b_j$开始的情况,贡献为1)</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>显然是DP,设$f_{i,j}$为以$A$序列第$i$个元素$B$序列第$j$个元素结尾的方案数($a_i\neq b_j$时$f_{i,j}=0$)<br>令$g_{i,j}=\sum^i_{k=1}f_{k,j}$<br>如图(上方为$B$下方为$A$)<img src="/2019/fzoj-3827/1.png"><br>很明显$g$可以用前缀和维护<br>现在开始考虑相邻元素的限制,对于$b_j$考虑其到$a_i$是否有边,如果有,其对$f_{i,k}(k&gt;j,a_i=b_k)$有$g_{i-1,j}$的贡献($\forall l\in[1,i-1]:a_l=b_j很明显f_{l,j}$可以转移到$f_{i,k}(k&gt;j,a_i=b_k$)<br>$h_{i,j}=\sum_{k\in[1,j-1],&lt;b_k,a_i&gt;\in E}g_{i,k}$<br>如图(上方为$A$下方为$B$)<img src="/2019/fzoj-3827/2.png"><br>由于枚举$j$时$i$是固定的,所以我们可以用前缀和统计<br>$h_{i,j}=<br>\begin{cases}<br>h_{i,j-1}+g_{i,j} &amp; &lt;b_j,a_i&gt;\in E \<br>h_{i,j-1} &amp; &lt;b_j,a_i&gt;\notin E \<br>\end{cases}$<br>$f_{i,j}=h_{i,j-1}+1$(还有不用前面的,从$a_i,b_j$开始的情况,贡献为1)</p>
 <p>$f$不参加转移,只计入答案<br>$g$可以用滚动数组<br>$h_{i-1}$与$h_{i}$无关,用临时变量记录即可<br>维护时,先用$h$算得$f$,再用$g$更新$h$,最后用$f$更新$g$</p>
 <p>原数组要离散化一下</p>
 <p>时间复杂度$O(n\cdot m)$<br>空间复杂度$O(n\cdot m)$</p>
@@ -531,63 +532,63 @@ bool ok[N][N];
 std::map&lt;int, int&gt; mp;
 int g[2][N];
 
-int main () {
+int main () &#123;
   int n, m, k;
   read(n), read(m), read(k);
   int cnt = 0;
-  for (int i = 1; i &lt;= n; ++i) {
+  for (int i = 1; i &lt;= n; ++i) &#123;
     read(a[i]);
-    if (!mp[a[i]]) {
+    if (!mp[a[i]]) &#123;
       mp[a[i]] = ++cnt;
-    }
+    &#125;
     a[i] = mp[a[i]];
-  }
-  for (int i = 1; i &lt;= m; ++i) {
+  &#125;
+  for (int i = 1; i &lt;= m; ++i) &#123;
     read(b[i]);
-    if (!mp[b[i]]) {
+    if (!mp[b[i]]) &#123;
       mp[b[i]] = ++cnt;
-    }
+    &#125;
     b[i] = mp[b[i]];
-  }
-  for (int i = 1; i &lt;= k; ++i) {
+  &#125;
+  for (int i = 1; i &lt;= k; ++i) &#123;
     int u, v;
     read(u), read(v);
     u = mp[u], v = mp[v];
-    if (!u || !v) {
+    if (!u || !v) &#123;
       continue;
-    }
+    &#125;
     ok[u][v] = true;
-  }
+  &#125;
   int ans = 0;
-  for (int i = 1; i &lt;= n; ++i) {
+  for (int i = 1; i &lt;= n; ++i) &#123;
     int h = 0;
-    for (int j = 1; j &lt;= m; ++j) {
+    for (int j = 1; j &lt;= m; ++j) &#123;
       g[i &amp; 1][j] = g[(i &amp; 1) ^ 1][j];
       int f = 0;
-      if (a[i] == b[j]) {
+      if (a[i] == b[j]) &#123;
         f = h + 1;
         add(ans, f);
-      }
-      if (ok[b[j]][a[i]]) {
+      &#125;
+      if (ok[b[j]][a[i]]) &#123;
         add(h, g[i &amp; 1][j]);
-      }
+      &#125;
       add(g[i &amp; 1][j], f);
-    }
-  }
+    &#125;
+  &#125;
   write(ans), EL;
   return 0;
-}
+&#125;
 
-inline void add(int &amp;i, int j) {
+inline void add(int &amp;i, int j) &#123;
   i = (i + j) % Mod;
-}
+&#125;
 </code></pre>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
                     <p><strong>
                          
-                            本博客采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
+                            本博客采用<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
                         </strong>
                         <br>
                         <strong>本文链接：</strong><a href="https://blog.seniorious.cc/2019/fzoj-3827/">https://blog.seniorious.cc/2019/fzoj-3827/</a>
@@ -751,7 +752,7 @@ inline void add(int &amp;i, int j) {
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2021/06/">六月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/05/">五月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/03/">三月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/12/">十二月 2020<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/11/">十一月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/10/">十月 2020<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/09/">九月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/07/">七月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/06/">六月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -768,8 +769,8 @@ inline void add(int &amp;i, int j) {
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">23</span></a></li><li><a class="sidebar_archives-link" href="/categories/总结/">总结<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/游记/">游记<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">23</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%80%BB%E7%BB%93/">总结<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%B8%B8%E8%AE%B0/">游记<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -840,7 +841,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -960,7 +961,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;Seniorious' blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Seniorious' blog
             
         </div>
 
@@ -1036,7 +1037,9 @@ It will not impact the appearance and can give developers a lot of support :)
 <script>
 	var agent = navigator.userAgent.toLowerCase();
 	if(agent.indexOf('ucbrowser')>0) {
-		document.write('<link rel="stylesheet" href="/css/uc.css">');
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
 	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
 	}
 </script>

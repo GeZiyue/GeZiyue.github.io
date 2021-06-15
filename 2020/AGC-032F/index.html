@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -29,11 +29,11 @@
 
 
 
-    <link rel="dns-prefetch" href="https://hm.baidu.com">
+    <link rel="dns-prefetch" href="https://hm.baidu.com"/>
 
 
 
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
 
 
@@ -57,14 +57,14 @@
     <link rel="icon shortcut" type="image/ico" href="/img/avatar.jpg">
     <link rel="icon" href="/img/avatar.jpg">
 
-    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="题目">
     <meta name="keywords" content=",数学,概率与期望,微积分">
     <meta name="theme-color" content="#7A68E8">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -257,7 +257,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.seniorious.cc/2020/AGC-032F/index.html">
+        <link rel="canonical" href="https://blog.seniorious.cc/2020/AGC-032F/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -312,10 +312,10 @@
     
     
 
-    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- Custom Head -->
     
 
-</head>
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
     
@@ -359,12 +359,13 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">2.</span> <span class="post-toc-text">代码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%88%86%E6%9E%90"><span class="post-toc-number">1.</span> <span class="post-toc-text">分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="post-toc-number">2.</span> <span class="post-toc-text">代码</span></a></li></ol>
     </ul>
     
 
@@ -410,7 +411,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/avatar.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/avatar.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -439,8 +440,8 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/微积分/">微积分</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/数学/">数学</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/概率与期望/">概率与期望</a>
-    </li></ul>
+        <a class="post_tag-none-link" href="/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" rel="tag">微积分</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/%E6%A6%82%E7%8E%87%E4%B8%8E%E6%9C%9F%E6%9C%9B/" rel="tag">概率与期望</a>
+    </ul>
     
 
     <!-- Share -->
@@ -514,10 +515,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><a href="https://atcoder.jp/contests/agc032/tasks/agc032_f" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p>
+        <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/agc032/tasks/agc032_f">题目</a></p>
+<span id="more"></span>
+
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>考虑转化，可以转化为在 $\left[0,\frac{1}{3}\right]$ 上等概率随机分成 $n$ 份，并从 $1,2,3$ 中等概率随机赋上一种颜色，$0$ 初始颜色已为 $1$，$\frac{1}{3}$ 初始颜色已为 $2$，求最短的两端点颜色不同的线段的期望长度</p>
 <p>先从没有限制的长度为 $1$ 的线段开始考虑，不妨设其互补累积分布函数 $F_{L_1}(x)=P(L&gt;x)=(1-nx)^{n-1}$ 可得其期望：</p>
-<p>$$\begin{aligned}\operatorname{E}[L_1] &amp; =\int_0^\frac{1}{n}x\times\left[-(F_{L_1}(x))^\prime\right]dx\\<br>&amp; =\int_0^\frac{1}{n}F_{L_1}(x)dx \text{ (分部积分) }     \\<br>&amp; =\int_0^\frac{1}{n}(1-nx)^{n-1}dx                       \\<br>&amp; =\frac{1}{n}\int_0^1\left(\frac{n-nx}{n}\right)^{n-1}dx \\<br>&amp; =\frac{1}{n}\int_0^1\left(1-x\right)^{n-1}dx            \\<br>&amp; =\frac{1}{n}\int_0^1x^{n-1}dx \text{ (换元) }           \\<br>&amp; =\frac{1}{n^2}\end{aligned}$$</p>
+<p>$$\begin{aligned}\operatorname{E}[L_1] &amp; =\int_0^\frac{1}{n}x\times\left[-(F_{L_1}(x))^\prime\right]dx\<br>&amp; =\int_0^\frac{1}{n}F_{L_1}(x)dx \text{ (分部积分) }     \<br>&amp; =\int_0^\frac{1}{n}(1-nx)^{n-1}dx                       \<br>&amp; =\frac{1}{n}\int_0^1\left(\frac{n-nx}{n}\right)^{n-1}dx \<br>&amp; =\frac{1}{n}\int_0^1\left(1-x\right)^{n-1}dx            \<br>&amp; =\frac{1}{n}\int_0^1x^{n-1}dx \text{ (换元) }           \<br>&amp; =\frac{1}{n^2}\end{aligned}$$</p>
 <p>考虑次小值，削除 $n$ 段最小值后的最小值再加上最小值：$\operatorname{E}[L_2]=\frac{1-n\operatorname{E}[L_1]}{(n-1)^2}+\operatorname{E}[L_1]$<br>变形得 $\operatorname{E}[L_2]-\operatorname{E}[L_1]=\frac{1}{n(n-1)}$，归纳得 $\operatorname{E}[L_{k+1}]-\operatorname{E}[L_k]=\frac{1}{n(n-k)}$<br>考虑乘上至少前 $i$ 条线段都不满足条件的概率 $\frac{1}{3^i}$ 答案即为 $\frac{1}{n}\sum\limits_{i=1}^n\frac{1}{3^i(n-i+1)}$</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">constexpr int N = 1000005;
 constexpr int Mod = 1000000007;
@@ -527,40 +530,40 @@ int pow(int a, int b, int m);
 int inv[N];
 int n;
 
-int main() {
+int main() &#123;
   read(n);
   inv[1] = 1;
-  for (int i = 2; i &lt;= n; ++i) {
+  for (int i = 2; i &lt;= n; ++i) &#123;
     inv[i] = (Mod - Mod / i) * 1ll * inv[Mod % i] % Mod;
-  }
+  &#125;
   int ans = 0;
   int iv3 = pow(3, Mod - 2, Mod);
-  for (int i = 1, p3 = inv[n]; i &lt;= n; ++i) {
+  for (int i = 1, p3 = inv[n]; i &lt;= n; ++i) &#123;
     p3 = p3 * 1ll * iv3 % Mod;
     ans = (ans + p3 * 1ll * inv[n - i + 1] % Mod) % Mod;
-  }
+  &#125;
   write(ans), EL;
   return 0;
-}
+&#125;
 
-int pow(int a, int b, int m) {
+int pow(int a, int b, int m) &#123;
   int ans = 1, now = a;
-  while (b) {
-    if (b &amp; 1) {
+  while (b) &#123;
+    if (b &amp; 1) &#123;
       ans = ans * 1ll * now % m;
-    }
+    &#125;
     now = now * 1ll * now % m;
     b &gt;&gt;= 1;
-  }
+  &#125;
   return ans;
-}
+&#125;
 </code></pre>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
                     <p><strong>
                          
-                            本博客采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
+                            本博客采用<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
                         </strong>
                         <br>
                         <strong>本文链接：</strong><a href="https://blog.seniorious.cc/2020/AGC-032F/">https://blog.seniorious.cc/2020/AGC-032F/</a>
@@ -724,7 +727,7 @@ int pow(int a, int b, int m) {
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2021/06/">六月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/05/">五月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/03/">三月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/12/">十二月 2020<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/11/">十一月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/10/">十月 2020<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/09/">九月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/07/">七月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/06/">六月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -741,8 +744,8 @@ int pow(int a, int b, int m) {
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">23</span></a></li><li><a class="sidebar_archives-link" href="/categories/总结/">总结<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/游记/">游记<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">23</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%80%BB%E7%BB%93/">总结<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%B8%B8%E8%AE%B0/">游记<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -813,7 +816,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -933,7 +936,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;Seniorious' blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Seniorious' blog
             
         </div>
 
@@ -1009,7 +1012,9 @@ It will not impact the appearance and can give developers a lot of support :)
 <script>
 	var agent = navigator.userAgent.toLowerCase();
 	if(agent.indexOf('ucbrowser')>0) {
-		document.write('<link rel="stylesheet" href="/css/uc.css">');
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
 	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
 	}
 </script>

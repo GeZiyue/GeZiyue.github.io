@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="display: none;" lang="zh">
-    <head><meta name="generator" content="Hexo 3.8.0">
+    <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <!--
         © Material Theme
@@ -29,11 +29,11 @@
 
 
 
-    <link rel="dns-prefetch" href="https://hm.baidu.com">
+    <link rel="dns-prefetch" href="https://hm.baidu.com"/>
 
 
 
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 
 
 
@@ -57,14 +57,14 @@
     <link rel="icon shortcut" type="image/ico" href="/img/avatar.jpg">
     <link rel="icon" href="/img/avatar.jpg">
 
-    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="题目">
     <meta name="keywords" content=",洛谷,博弈论,sg函数与Nim游戏,点分治">
     <meta name="theme-color" content="#7A68E8">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -257,7 +257,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://blog.seniorious.cc/2020/luogu-3727/index.html">
+        <link rel="canonical" href="https://blog.seniorious.cc/2020/luogu-3727/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -312,10 +312,10 @@
     
     
 
-    <!-- Custom Head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- Custom Head -->
     
 
-</head>
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
     
@@ -359,12 +359,13 @@
     <!-- Left aligned menu below button -->
     
     
-    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">format_list_numbered</i>
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SG-函数"><span class="post-toc-number">2.</span> <span class="post-toc-text">SG 函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%88%86%E6%9E%90"><span class="post-toc-number">1.</span> <span class="post-toc-text">分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SG-%E5%87%BD%E6%95%B0"><span class="post-toc-number">2.</span> <span class="post-toc-text">SG 函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码</span></a></li></ol>
     </ul>
     
 
@@ -410,7 +411,7 @@
 
     <!-- Author Avatar -->
     <div id="author-avatar">
-        <img src="/img/avatar.jpg" width="44px" height="44px" alt="Author Avatar">
+        <img src="/img/avatar.jpg" width="44px" height="44px" alt="Author Avatar"/>
     </div>
     <!-- Author Name & Date -->
     <div>
@@ -439,8 +440,8 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/sg函数与Nim游戏/">sg函数与Nim游戏</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/博弈论/">博弈论</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/洛谷/">洛谷</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/点分治/">点分治</a>
-    </li></ul>
+        <a class="post_tag-none-link" href="/tags/sg%E5%87%BD%E6%95%B0%E4%B8%8ENim%E6%B8%B8%E6%88%8F/" rel="tag">sg函数与Nim游戏</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag">博弈论</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/%E6%B4%9B%E8%B0%B7/" rel="tag">洛谷</a></li><li class="mdl-menu__item"><a class="post_tag-none-link" href="/tags/%E7%82%B9%E5%88%86%E6%B2%BB/" rel="tag">点分治</a>
+    </ul>
     
 
     <!-- Share -->
@@ -514,13 +515,15 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><a href="https://www.luogu.com.cn/problem/P3727" target="_blank" rel="noopener">题目</a><br><a id="more"></a></p>
+        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3727">题目</a></p>
+<span id="more"></span>
+
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>发现实质上是把树上一段链拉下来玩 Nim 游戏，若链上 $sg$ 函数的异或和为 $0$ 则先手必败，于是可以考虑点分治找出树上异或和为 $0$ 的链，用自己喜欢的 Hash 方式即可</p>
 <h2 id="SG-函数"><a href="#SG-函数" class="headerlink" title="SG 函数"></a>SG 函数</h2><ol>
 <li>$k=1$：原始的 Nim 游戏 $sg(x)=x$</li>
 <li>$k=2$：分两种情况，(1) $s$ 为奇数，显然 $s^k$ 均为奇数，故简单归纳可得 $sg(x)=x\bmod 2$；(2) $s$ 为偶数，找规律得有长为 $(s+1)$ 的循环节，大概长这样 $\overbrace{0101\cdots01}^{s}2$，有 $1=(s+1)\times0+1,s=(s+1)\times1-1,s^2=(s+1)\times(s-1)+1,s^3=(s+1)\times(s^2-s+1)-1\cdots$ 于是对循环节施加归纳，每个点可看做前后两个点的 $\operatorname{mex}$ 即可得证</li>
 <li>$k=3$：$sg(x)=\lfloor\frac{x}{s}\rfloor$ 证明大概是对循环节施加归纳，每个循环节可以到达所有之前的循环节，即可得证</li>
-<li>$k=4$：$sg(x)=\begin{cases}0&amp;(x=0)\\x&amp;(x\equiv1,2\pmod4)\\x+1&amp;(x\equiv3\pmod4)\\x-1&amp;(x\equiv4\pmod4)\end{cases}$ 证明大概是先 $4$ 个分一块并对块施加归纳，再对每一种单独证明<br>首先对于一个完整的块 $x=4k+1\sim 4k+4$ 它的 $sg(x)$ 取遍了 $4k+1\sim4k+4$，所以直接取的 $sg$ 值可以取遍 $0\sim 4k$<br>以下 $1,2,3,4$ 均为 $\bmod 4$ 意义下的<br>考虑 $1$ 分成 $1+0$ 时异或值为 $1\oplus3=2\neq1$，$2+3$ 时异或值为 $2\oplus0=2\neq1$ 故无法将 $1$ 分解得到自身，又因为能直接取到 $0\sim4k$ 故 $sg(4k+1)=4k+1$<br>$2$ 也无法分解，证明是类似的，又因为能直接取到 $0\sim4k+1$ 故 $sg(4k+2)=4k+2$<br>$3$ 可以直接取到 $0\sim4k+2$，又可以分解为 $4k+2$ 和 $1$，即 $(4k+2)\oplus1=4k+3$，故 $sg(4k+3)=4k+4$<br>$4$ 可以直接取到 $0\sim4k+2$ 和 $4k+4$，类似 $1,2$ 的情况 $4$ 无法分解为 $4k+3$ 故 $sg(4k+4)=4k+3$</li>
+<li>$k=4$：$sg(x)=\begin{cases}0&amp;(x=0)\x&amp;(x\equiv1,2\pmod4)\x+1&amp;(x\equiv3\pmod4)\x-1&amp;(x\equiv4\pmod4)\end{cases}$ 证明大概是先 $4$ 个分一块并对块施加归纳，再对每一种单独证明<br>首先对于一个完整的块 $x=4k+1\sim 4k+4$ 它的 $sg(x)$ 取遍了 $4k+1\sim4k+4$，所以直接取的 $sg$ 值可以取遍 $0\sim 4k$<br>以下 $1,2,3,4$ 均为 $\bmod\ 4$ 意义下的<br>考虑 $1$ 分成 $1+0$ 时异或值为 $1\oplus3=2\neq1$，$2+3$ 时异或值为 $2\oplus0=2\neq1$ 故无法将 $1$ 分解得到自身，又因为能直接取到 $0\sim4k$ 故 $sg(4k+1)=4k+1$<br>$2$ 也无法分解，证明是类似的，又因为能直接取到 $0\sim4k+1$ 故 $sg(4k+2)=4k+2$<br>$3$ 可以直接取到 $0\sim4k+2$，又可以分解为 $4k+2$ 和 $1$，即 $(4k+2)\oplus1=4k+3$，故 $sg(4k+3)=4k+4$<br>$4$ 可以直接取到 $0\sim4k+2$ 和 $4k+4$，类似 $1,2$ 的情况 $4$ 无法分解为 $4k+3$ 故 $sg(4k+4)=4k+3$</li>
 </ol>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">constexpr int N = 30005;
 constexpr int M = 60005;
@@ -541,168 +544,168 @@ int val[N], sg[N];
 bool ans;
 int n;
 
-int main() {
+int main() &#123;
   int T;
   read(T);
-  while (T--) {
+  while (T--) &#123;
     memset(hed, 0, sizeof(hed));
     id = 0;
     ans = false;
     memset(vis, false, sizeof(vis));
     read(n);
-    for (int i = 1; i &lt; n; ++i) {
+    for (int i = 1; i &lt; n; ++i) &#123;
       int u, v;
       read(u), read(v);
       add(u, v), add(v, u);
-    }
-    for (int i = 1; i &lt;= n; ++i) {
+    &#125;
+    for (int i = 1; i &lt;= n; ++i) &#123;
       read(val[i]);
-    }
+    &#125;
     int k;
     read(k);
-    if (k == 1) {
-      for (int i = 1; i &lt;= n; ++i) {
+    if (k == 1) &#123;
+      for (int i = 1; i &lt;= n; ++i) &#123;
         sg[i] = val[i];
-      }
-    }
-    if (k == 2) {
+      &#125;
+    &#125;
+    if (k == 2) &#123;
       int s;
       read(s);
-      for (int i = 1; i &lt;= n; ++i) {
-        if (val[i] % (s + 1) == s) {
+      for (int i = 1; i &lt;= n; ++i) &#123;
+        if (val[i] % (s + 1) == s) &#123;
           sg[i] = 2;
-        } else {
+        &#125; else &#123;
           sg[i] = val[i] % (s + 1) % 2;
-        }
-      }
-    }
-    if (k == 3) {
+        &#125;
+      &#125;
+    &#125;
+    if (k == 3) &#123;
       int s;
       read(s);
-      for (int i = 1; i &lt;= n; ++i) {
+      for (int i = 1; i &lt;= n; ++i) &#123;
         sg[i] = val[i] / s;
-      }
-    }
-    if (k == 4) {
-      for (int i = 1; i &lt;= n; ++i) {
-        if (!val[i]) {
+      &#125;
+    &#125;
+    if (k == 4) &#123;
+      for (int i = 1; i &lt;= n; ++i) &#123;
+        if (!val[i]) &#123;
           sg[i] = 0;
-        } else {
-          if (val[i] % 4 == 0) {
+        &#125; else &#123;
+          if (val[i] % 4 == 0) &#123;
             sg[i] = val[i] - 1;
-          } else {
-            if (val[i] % 4 == 3) {
+          &#125; else &#123;
+            if (val[i] % 4 == 3) &#123;
               sg[i] = val[i] + 1;
-            } else {
+            &#125; else &#123;
               sg[i] = val[i];
-            }
-          }
-        }
-      }
-    }
+            &#125;
+          &#125;
+        &#125;
+      &#125;
+    &#125;
     getsiz(1, 0);
     asz = siz[1];
     nsz = iinf;
     rot = 0;
     getrot(1, 0);
     dfs(rot);
-    if (ans) {
+    if (ans) &#123;
       puts(&quot;Mutalisk ride face how to lose?&quot;);
-    } else {
+    &#125; else &#123;
       puts(&quot;The commentary cannot go on!&quot;);
-    }
-  }
+    &#125;
+  &#125;
   return 0;
-}
+&#125;
 
-void add(int u, int v) {
+void add(int u, int v) &#123;
   nxt[++id] = hed[u];
   hed[u] = id;
   to[id] = v;
-}
-void getsiz(int u, int fa) {
+&#125;
+void getsiz(int u, int fa) &#123;
   siz[u] = 1;
-  for (int i = hed[u]; i; i = nxt[i]) {
+  for (int i = hed[u]; i; i = nxt[i]) &#123;
     int v = to[i];
-    if (v != fa &amp;&amp; !vis[v]) {
+    if (v != fa &amp;&amp; !vis[v]) &#123;
       getsiz(v, u);
       siz[u] += siz[v];
-    }
-  }
-}
-void getrot(int u, int fa) {
+    &#125;
+  &#125;
+&#125;
+void getrot(int u, int fa) &#123;
   int maxi = 0;
-  for (int i = hed[u]; i; i = nxt[i]) {
+  for (int i = hed[u]; i; i = nxt[i]) &#123;
     int v = to[i];
-    if (v != fa &amp;&amp; !vis[v]) {
+    if (v != fa &amp;&amp; !vis[v]) &#123;
       getrot(v, u);
       maxi = max(maxi, siz[v]);
-    }
-  }
+    &#125;
+  &#125;
   maxi = max(maxi, asz - siz[u]);
-  if (maxi &lt; nsz) {
+  if (maxi &lt; nsz) &#123;
     nsz = maxi;
     rot = u;
-  }
-}
-void getp(int u, int fa, int len) {
+  &#125;
+&#125;
+void getp(int u, int fa, int len) &#123;
   len ^= sg[u];
   dis[++tot] = len;
-  for (int i = hed[u]; i; i = nxt[i]) {
+  for (int i = hed[u]; i; i = nxt[i]) &#123;
     int v = to[i];
-    if (v != fa &amp;&amp; !vis[v]) {
+    if (v != fa &amp;&amp; !vis[v]) &#123;
       getp(v, u, len);
-    }
-  }
-}
-void solve(int u) {
-  if (!sg[u]) {
+    &#125;
+  &#125;
+&#125;
+void solve(int u) &#123;
+  if (!sg[u]) &#123;
     ans = true;
-  }
-  if (ans) {
+  &#125;
+  if (ans) &#123;
     return;
-  }
+  &#125;
   std::unordered_set&lt;int&gt; S;
   S.insert(sg[u]);
-  for (int i = hed[u]; i; i = nxt[i]) {
+  for (int i = hed[u]; i; i = nxt[i]) &#123;
     int v = to[i];
-    if (!vis[v]) {
+    if (!vis[v]) &#123;
       tot = 0;
       getp(v, u, 0);
-      for (int j = 1; j &lt;= tot; ++j) {
-        if (S.count(dis[j])) {
+      for (int j = 1; j &lt;= tot; ++j) &#123;
+        if (S.count(dis[j])) &#123;
           ans = true;
           return;
-        }
-      }
-      for (int j = 1; j &lt;= tot; ++j) {
+        &#125;
+      &#125;
+      for (int j = 1; j &lt;= tot; ++j) &#123;
         S.insert(dis[j] ^ sg[u]);
-      }
-    }
-  }
-}
-void dfs(int u) {
+      &#125;
+    &#125;
+  &#125;
+&#125;
+void dfs(int u) &#123;
   vis[u] = true;
   solve(u);
-  for (int i = hed[u]; i; i = nxt[i]) {
+  for (int i = hed[u]; i; i = nxt[i]) &#123;
     int v = to[i];
-    if (!vis[v]) {
+    if (!vis[v]) &#123;
       getsiz(v, u);
       asz = siz[v];
       nsz = iinf;
       rot = 0;
       getrot(v, u);
       dfs(rot);
-    }
-  }
-}
+    &#125;
+  &#125;
+&#125;
 </code></pre>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
                     <p><strong>
                          
-                            本博客采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
+                            本博客采用<a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可
                         </strong>
                         <br>
                         <strong>本文链接：</strong><a href="https://blog.seniorious.cc/2020/luogu-3727/">https://blog.seniorious.cc/2020/luogu-3727/</a>
@@ -866,7 +869,7 @@ void dfs(int u) {
             <ul class="dropdown-menu">
             <li>
                 <a class="sidebar_archives-link" href="/archives/2021/06/">六月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/05/">五月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/04/">四月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2021/03/">三月 2021<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/12/">十二月 2020<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/11/">十一月 2020<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/10/">十月 2020<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/09/">九月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/07/">七月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/06/">六月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/03/">三月 2020<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a>
-            </li></ul>
+            </ul>
         </li>
         
     
@@ -883,8 +886,8 @@ void dfs(int u) {
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">23</span></a></li><li><a class="sidebar_archives-link" href="/categories/总结/">总结<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/游记/">游记<span class="sidebar_archives-count">3</span></a>
-            </li></ul>
+                <a class="sidebar_archives-link" href="/categories/Diary/">Diary<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Note/">Note<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/categories/Others/">Others<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Solution/">Solution<span class="sidebar_archives-count">23</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%80%BB%E7%BB%93/">总结<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/%E6%B8%B8%E8%AE%B0/">游记<span class="sidebar_archives-count">3</span></a>
+            </ul>
         </li>
         
     
@@ -955,7 +958,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
 <!-- Theme Material -->
 
-    <a href="https://github.com/viosey/hexo-theme-material" class="sidebar-footer-text-a" target="_blank">
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
             主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
@@ -1075,7 +1078,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©&nbsp;<span year=""></span>&nbsp;Seniorious' blog
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Seniorious' blog
             
         </div>
 
@@ -1151,7 +1154,9 @@ It will not impact the appearance and can give developers a lot of support :)
 <script>
 	var agent = navigator.userAgent.toLowerCase();
 	if(agent.indexOf('ucbrowser')>0) {
-		document.write('<link rel="stylesheet" href="/css/uc.css">');
+		document.write('
+<link rel="stylesheet" href="/css/uc.css">
+');
 	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
 	}
 </script>

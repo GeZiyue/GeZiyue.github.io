@@ -249,7 +249,7 @@
 
     
         <meta property="article:published_time" content="Fri Dec 25 2020 21:47:27 GMT+0800">
-        <meta property="article:modified_time" content="Fri Mar 12 2021 23:52:22 GMT+0800">
+        <meta property="article:modified_time" content="Wed Jun 23 2021 22:00:44 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -272,7 +272,7 @@
     "mainEntityOfPage": "https://blog.seniorious.cc/2020/gem-island-2/index.html",
     "headline": "IOI2021 集训队自选题 Gem Island 2",
     "datePublished": "Fri Dec 25 2020 21:47:27 GMT+0800",
-    "dateModified": "Fri Mar 12 2021 23:52:22 GMT+0800",
+    "dateModified": "Wed Jun 23 2021 22:00:44 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Seniorious",
@@ -515,14 +515,14 @@
 <p>$$\sum\limits_{i\ge0}\sum\limits_{k\ge0}\binom{n}{k}\left([x^d]\left(\frac{1-x^{i+1}}{1-x}\right)^{n-k}\left(\frac{x^{i+1}}{1-x}\right)^k\right)\min(k,r)$$</p>
 <p>首先可以把 $\frac{1}{1-x}$ 都提出来并拆开 $\min$ 分为两种情况</p>
 <p>考虑求出了 $i=0$ 时的多项式 $F(x)$ 答案即为 $[x^d]\frac{\sum_{i\ge0}F(x^{i+1})}{(1-x)^n}$ 求出了 $F(x)$ 就可以用高位前缀和（狄利克雷前缀和）把每一次的系数贡献到它所有倍数的答案，就求出了分子，由于 $[x^i] (1+x+x^2+\cdots)^n=\binom{n+i-1}{n-1}$ 不难直接求出答案，于是只考虑 $F(x)$</p>
-<p>$$\begin{aligned}<br>F(x)=&amp;r\sum\limits_{k\ge r}\binom{n}{k}(1-x)^{n-k}x^k+\sum\limits_{k\le r}k\binom{n}{k}(1-x)^{n-k}x^k\<br>=&amp;r\left(\sum\limits_{k\ge 0}\binom{n}{k}(1-x)^{n-k}x^k-\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k\right)+nx\sum\limits_{k\le r}\binom{n-1}{k-1}(1-x)^{(n-1)-(k-1)}x^{k-1}\<br>=&amp;r-r\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k+nx\sum\limits_{k\le r-1}\binom{n-1}{k}(1-x)^{n-1-k}x^k<br>\end{aligned}$$</p>
+<p>$$\begin{aligned}<br>F(x)=&amp;r\sum\limits_{k\ge r}\binom{n}{k}(1-x)^{n-k}x^k+\sum\limits_{k\le r}k\binom{n}{k}(1-x)^{n-k}x^k\\<br>=&amp;r\left(\sum\limits_{k\ge 0}\binom{n}{k}(1-x)^{n-k}x^k-\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k\right)+nx\sum\limits_{k\le r}\binom{n-1}{k-1}(1-x)^{(n-1)-(k-1)}x^{k-1}\\<br>=&amp;r-r\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k+nx\sum\limits_{k\le r-1}\binom{n-1}{k}(1-x)^{n-1-k}x^k<br>\end{aligned}$$</p>
 <p>不难发现化为了同一种问题，另外，其中常数项 $r$ 可以直接去掉，因为常数项都是不贡献到答案的，于是答案为</p>
 <p>$$-r\sum\limits_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k+nx\sum\limits_{k\le r-1}\binom{n-1}{k}(1-x)^{n-1-k}x^k\tag{1}\label{1}$$</p>
 <p>考虑重新定义 $F(x)=\sum_{k\le r}\binom{n}{k}(1-x)^{n-k}x^k$，并定义 $f(x)=\sum_{k\le r}\binom{n}{k}x^k$</p>
 <p>发现</p>
-<p>$$\begin{aligned}<br>f^\prime(x)=&amp;\sum\limits_{k\le r}k\binom{n}{k}x^{k-1}\<br>=&amp;n\sum\limits_{k\le r}\binom{n-1}{k-1}x^{k-1}<br>\end{aligned}$$</p>
+<p>$$\begin{aligned}<br>f^\prime(x)=&amp;\sum\limits_{k\le r}k\binom{n}{k}x^{k-1}\\<br>=&amp;n\sum\limits_{k\le r}\binom{n-1}{k-1}x^{k-1}<br>\end{aligned}$$</p>
 <p>这个形式看起来很能裂项相消，于是有：</p>
-<p>$$\begin{aligned}<br>nf(x)-xf^\prime(x)=&amp;n\sum_{k\le r}\binom{n}{k}x^k-n\sum_{k\le r}\binom{n-1}{k-1}x^k\<br>=&amp;n\sum_{k\le r}\binom{n-1}{k}x^k\<br>=&amp;f^\prime(x)+n\binom{n-1}{r}x^r<br>\end{aligned}$$</p>
+<p>$$\begin{aligned}<br>nf(x)-xf^\prime(x)=&amp;n\sum_{k\le r}\binom{n}{k}x^k-n\sum_{k\le r}\binom{n-1}{k-1}x^k\\<br>=&amp;n\sum_{k\le r}\binom{n-1}{k}x^k\\<br>=&amp;f^\prime(x)+n\binom{n-1}{r}x^r<br>\end{aligned}$$</p>
 <p>得到：</p>
 <p>$$(1+x)f^\prime(x)=n\left(f(x)-\binom{n-1}{r}x^r\right)\tag{2}\label{2}$$</p>
 <p>将 $f(x)$ 带回 $F(x)$：$F(x)=(1-x)^nf\left(\frac{x}{1-x}\right)$</p>
@@ -533,7 +533,7 @@
 <p>乘上 $(1-x)^{n-1}$ 得到：</p>
 <p>$$(1-x)^{n-2}f^\prime\left(\frac{x}{1-x}\right)=n(1-x)^{n-1}\left(f\left(\frac{x}{1-x}\right)-\binom{n-1}{r}\left(\frac{x}{1-x}\right)^r\right)$$</p>
 <p>再带回原式我们得到了 $F^\prime(x)=-n\binom{n-1}{r}x^r(1-x)^{n-r-1}$</p>
-<p>最后再求导即可，注意这么做之后常数项会丢失，观察 $\eqref{1}$ 式发现，对于前面一部分，常数项不会贡献到答案，但后一部分因为乘上了 $nx$ 会导致一次项丢失，通过手算发现一次项系数为 $n$，直接手动加上即可</p>
+<p>最后再积分即可，注意这么做之后常数项会丢失，观察 $\eqref{1}$ 式发现，对于前面一部分，常数项不会贡献到答案，但后一部分因为乘上了 $nx$ 会贡献到答案到一次项，通过手算发现一次项系数为 $n$，直接手动加上即可</p>
 <p>时间复杂度 $\Theta(n\log\log n)$</p>
 
         

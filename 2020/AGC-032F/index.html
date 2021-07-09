@@ -515,49 +515,54 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/agc032/tasks/agc032_f">题目</a></p>
-<span id="more"></span>
-
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>考虑转化，可以转化为在 $\left[0,\frac{1}{3}\right]$ 上等概率随机分成 $n$ 份，并从 $1,2,3$ 中等概率随机赋上一种颜色，$0$ 初始颜色已为 $1$，$\frac{1}{3}$ 初始颜色已为 $2$，求最短的两端点颜色不同的线段的期望长度</p>
-<p>先从没有限制的长度为 $1$ 的线段开始考虑，不妨设其互补累积分布函数 $F_{L_1}(x)=P(L&gt;x)=(1-nx)^{n-1}$ 可得其期望：</p>
-<p>$$\begin{aligned}\operatorname{E}[L_1] &amp; =\int_0^\frac{1}{n}x\times\left[-(F_{L_1}(x))^\prime\right]dx\<br>&amp; =\int_0^\frac{1}{n}F_{L_1}(x)dx \text{ (分部积分) }     \<br>&amp; =\int_0^\frac{1}{n}(1-nx)^{n-1}dx                       \<br>&amp; =\frac{1}{n}\int_0^1\left(\frac{n-nx}{n}\right)^{n-1}dx \<br>&amp; =\frac{1}{n}\int_0^1\left(1-x\right)^{n-1}dx            \<br>&amp; =\frac{1}{n}\int_0^1x^{n-1}dx \text{ (换元) }           \<br>&amp; =\frac{1}{n^2}\end{aligned}$$</p>
-<p>考虑次小值，削除 $n$ 段最小值后的最小值再加上最小值：$\operatorname{E}[L_2]=\frac{1-n\operatorname{E}[L_1]}{(n-1)^2}+\operatorname{E}[L_1]$<br>变形得 $\operatorname{E}[L_2]-\operatorname{E}[L_1]=\frac{1}{n(n-1)}$，归纳得 $\operatorname{E}[L_{k+1}]-\operatorname{E}[L_k]=\frac{1}{n(n-k)}$<br>考虑乘上至少前 $i$ 条线段都不满足条件的概率 $\frac{1}{3^i}$ 答案即为 $\frac{1}{n}\sum\limits_{i=1}^n\frac{1}{3^i(n-i+1)}$</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">constexpr int N = 1000005;
-constexpr int Mod = 1000000007;
-
-int pow(int a, int b, int m);
-
-int inv[N];
-int n;
-
-int main() &#123;
-  read(n);
-  inv[1] = 1;
-  for (int i = 2; i &lt;= n; ++i) &#123;
-    inv[i] = (Mod - Mod / i) * 1ll * inv[Mod % i] % Mod;
-  &#125;
-  int ans = 0;
-  int iv3 = pow(3, Mod - 2, Mod);
-  for (int i = 1, p3 = inv[n]; i &lt;= n; ++i) &#123;
-    p3 = p3 * 1ll * iv3 % Mod;
-    ans = (ans + p3 * 1ll * inv[n - i + 1] % Mod) % Mod;
-  &#125;
-  write(ans), EL;
-  return 0;
-&#125;
-
-int pow(int a, int b, int m) &#123;
-  int ans = 1, now = a;
-  while (b) &#123;
-    if (b &amp; 1) &#123;
-      ans = ans * 1ll * now % m;
-    &#125;
-    now = now * 1ll * now % m;
-    b &gt;&gt;= 1;
-  &#125;
-  return ans;
-&#125;
-</code></pre>
+        <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/agc032/tasks/agc032_f">题目</a> <span id="more"></span></p>
+<h2 id="分析">分析</h2>
+<p>考虑转化，可以转化为在 <span class="math inline">\(\left[0,\frac{1}{3}\right]\)</span> 上等概率随机分成 <span class="math inline">\(n\)</span> 份，并从 <span class="math inline">\(1,2,3\)</span> 中等概率随机赋上一种颜色，<span class="math inline">\(0\)</span> 初始颜色已为 <span class="math inline">\(1\)</span>，<span class="math inline">\(\frac{1}{3}\)</span> 初始颜色已为 <span class="math inline">\(2\)</span>，求最短的两端点颜色不同的线段的期望长度</p>
+<p>先从没有限制的长度为 <span class="math inline">\(1\)</span> 的线段开始考虑，不妨设其互补累积分布函数 <span class="math inline">\(F_{L_1}(x)=P(L&gt;x)=(1-nx)^{n-1}\)</span> 可得其期望：</p>
+<p><span class="math display">\[\begin{aligned}\operatorname{E}[L_1] &amp; =\int_0^\frac{1}{n}x\times\left[-(F_{L_1}(x))^\prime\right]dx\\
+&amp; =\int_0^\frac{1}{n}F_{L_1}(x)dx \text{ (分部积分) }     \\
+&amp; =\int_0^\frac{1}{n}(1-nx)^{n-1}dx                       \\
+&amp; =\frac{1}{n}\int_0^1\left(\frac{n-nx}{n}\right)^{n-1}dx \\
+&amp; =\frac{1}{n}\int_0^1\left(1-x\right)^{n-1}dx            \\
+&amp; =\frac{1}{n}\int_0^1x^{n-1}dx \text{ (换元) }           \\
+&amp; =\frac{1}{n^2}\end{aligned}\]</span></p>
+<p>考虑次小值，削除 <span class="math inline">\(n\)</span> 段最小值后的最小值再加上最小值：<span class="math inline">\(\operatorname{E}[L_2]=\frac{1-n\operatorname{E}[L_1]}{(n-1)^2}+\operatorname{E}[L_1]\)</span> 变形得 <span class="math inline">\(\operatorname{E}[L_2]-\operatorname{E}[L_1]=\frac{1}{n(n-1)}\)</span>，归纳得 <span class="math inline">\(\operatorname{E}[L_{k+1}]-\operatorname{E}[L_k]=\frac{1}{n(n-k)}\)</span> 考虑乘上至少前 <span class="math inline">\(i\)</span> 条线段都不满足条件的概率 <span class="math inline">\(\frac{1}{3^i}\)</span> 答案即为 <span class="math inline">\(\frac{1}{n}\sum\limits_{i=1}^n\frac{1}{3^i(n-i+1)}\)</span></p>
+<h2 id="代码">代码</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> N <span class="op">=</span> <span class="dv">1000005</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">constexpr</span> <span class="dt">int</span> Mod <span class="op">=</span> <span class="dv">1000000007</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> pow<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">,</span> <span class="dt">int</span> m<span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> inv<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">&#123;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  read<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  inv<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    inv<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>Mod <span class="op">-</span> Mod <span class="op">/</span> i<span class="op">)</span> <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> inv<span class="op">[</span>Mod <span class="op">%</span> i<span class="op">]</span> <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> iv3 <span class="op">=</span> pow<span class="op">(</span><span class="dv">3</span><span class="op">,</span> Mod <span class="op">-</span> <span class="dv">2</span><span class="op">,</span> Mod<span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> p3 <span class="op">=</span> inv<span class="op">[</span>n<span class="op">];</span> i <span class="op">&lt;=</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    p3 <span class="op">=</span> p3 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> iv3 <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    ans <span class="op">=</span> <span class="op">(</span>ans <span class="op">+</span> p3 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> inv<span class="op">[</span>n <span class="op">-</span> i <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">%</span> Mod<span class="op">)</span> <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  write<span class="op">(</span>ans<span class="op">),</span> EL<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> pow<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">,</span> <span class="dt">int</span> m<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ans <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> now <span class="op">=</span> a<span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>b<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>b <span class="op">&amp;</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>      ans <span class="op">=</span> ans <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> now <span class="op">%</span> m<span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    now <span class="op">=</span> now <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> now <span class="op">%</span> m<span class="op">;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    b <span class="op">&gt;&gt;=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> ans<span class="op">;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">

@@ -515,43 +515,43 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/568/B">题目</a></p>
-<span id="more"></span>
-
-<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>计数$n$个元素的满足对称性、传递性，但不满足自反性的二元关系种数，$n\le4000$</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>发现若$a\sim b$则有$b\sim a,a\sim a,b\sim b$，所以一定存在不和其他所有元素相连的，不妨设有$n-k$个单独点，剩下的$k$个点可以分为几个集合（注意大小为$1$的集合不等于单独点，大小为$1$的集合有自身连自身），此时对答案的贡献为$\binom{n}{k}B_{k}$（$n$个里选$k$个分成若干集合，其他都是单独的），其中$B_i$为第$i$个贝尔数，等于$\sum_{j=1}^i\left{\begin{matrix}i\j\end{matrix}\right}$，于是答案就为$\sum_{k=0}^{n-1}\binom{n}{k}B_k$</p>
-<p>由于$n$很小，$\operatorname{O}(n^2)$搞出第二类 Stirling 数即可</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">int fac[N], ifac[N];
-int S[N][N];
-int Bell[N];
-int n;
-
-int main () &#123;
-  read(n);
-  fac[0] = 1;
-  for (int i = 1; i &lt;= n; ++i) &#123;
-    fac[i] = fac[i - 1] * 1ll * i % Mod;
-  &#125;
-  ifac[n] = pow(fac[n], Mod - 2, Mod);
-  for (int i = n - 1; i &gt;= 0; --i) &#123;
-    ifac[i] = ifac[i + 1] * 1ll * (i + 1) % Mod;
-  &#125;
-  S[0][0] = 1;
-  Bell[0] = 1;
-  for (int i = 1; i &lt;= n; ++i) &#123;
-    for (int j = 1; j &lt;= i; ++j) &#123;
-      S[i][j] = (S[i - 1][j - 1] + S[i - 1][j] * 1ll * j % Mod) % Mod;
-      Bell[i] = (Bell[i] + S[i][j]) % Mod;
-    &#125;
-  &#125;
-  int ans = 0;
-  for (int i = 0; i &lt; n; ++i) &#123;
-    ans = (ans + C(n, i) * 1ll * Bell[i] % Mod) % Mod;
-  &#125;
-  write(ans), EL;
-  return 0;
-&#125;
-</code></pre>
+        <p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/568/B">题目</a> <span id="more"></span></p>
+<h2 id="题意">题意</h2>
+<p>计数<span class="math inline">\(n\)</span>个元素的满足对称性、传递性，但不满足自反性的二元关系种数，<span class="math inline">\(n\le4000\)</span></p>
+<h2 id="思路">思路</h2>
+<p>发现若<span class="math inline">\(a\sim b\)</span>则有<span class="math inline">\(b\sim a,a\sim a,b\sim b\)</span>，所以一定存在不和其他所有元素相连的，不妨设有<span class="math inline">\(n-k\)</span>个单独点，剩下的<span class="math inline">\(k\)</span>个点可以分为几个集合（注意大小为<span class="math inline">\(1\)</span>的集合不等于单独点，大小为<span class="math inline">\(1\)</span>的集合有自身连自身），此时对答案的贡献为<span class="math inline">\(\binom{n}{k}B_{k}\)</span>（<span class="math inline">\(n\)</span>个里选<span class="math inline">\(k\)</span>个分成若干集合，其他都是单独的），其中<span class="math inline">\(B_i\)</span>为第<span class="math inline">\(i\)</span>个贝尔数，等于<span class="math inline">\(\sum_{j=1}^i\left\{\begin{matrix}i\\j\end{matrix}\right\}\)</span>，于是答案就为<span class="math inline">\(\sum_{k=0}^{n-1}\binom{n}{k}B_k\)</span></p>
+<p>由于<span class="math inline">\(n\)</span>很小，<span class="math inline">\(\operatorname{O}(n^2)\)</span>搞出第二类 Stirling 数即可</p>
+<h2 id="代码">代码</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> fac<span class="op">[</span>N<span class="op">],</span> ifac<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> S<span class="op">[</span>N<span class="op">][</span>N<span class="op">];</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> Bell<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main <span class="op">()</span> <span class="op">&#123;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  read<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  fac<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    fac<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> fac<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> i <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  ifac<span class="op">[</span>n<span class="op">]</span> <span class="op">=</span> pow<span class="op">(</span>fac<span class="op">[</span>n<span class="op">],</span> Mod <span class="op">-</span> <span class="dv">2</span><span class="op">,</span> Mod<span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">;</span> <span class="op">--</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    ifac<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> ifac<span class="op">[</span>i <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> <span class="op">(</span>i <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  S<span class="op">[</span><span class="dv">0</span><span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  Bell<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;=</span> i<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      S<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>S<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">][</span>j <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">+</span> S<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">][</span>j<span class="op">]</span> <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> j <span class="op">%</span> Mod<span class="op">)</span> <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      Bell<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>Bell<span class="op">[</span>i<span class="op">]</span> <span class="op">+</span> S<span class="op">[</span>i<span class="op">][</span>j<span class="op">])</span> <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    ans <span class="op">=</span> <span class="op">(</span>ans <span class="op">+</span> C<span class="op">(</span>n<span class="op">,</span> i<span class="op">)</span> <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> Bell<span class="op">[</span>i<span class="op">]</span> <span class="op">%</span> Mod<span class="op">)</span> <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  write<span class="op">(</span>ans<span class="op">),</span> EL<span class="op">;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">

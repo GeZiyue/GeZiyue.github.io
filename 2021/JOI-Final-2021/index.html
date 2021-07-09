@@ -365,7 +365,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%9B%86%E5%90%88%E5%86%99%E7%9C%9F-Group-Photo"><span class="post-toc-number">1.</span> <span class="post-toc-text">集合写真 &#x2F; Group Photo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E3%83%AD%E3%83%9C%E3%83%83%E3%83%88-Robot"><span class="post-toc-number">2.</span> <span class="post-toc-text">ロボット &#x2F; Robot</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E3%83%80%E3%83%B3%E3%82%B8%E3%83%A7%E3%83%B3-3-Dungeon-3"><span class="post-toc-number">3.</span> <span class="post-toc-text">ダンジョン 3 &#x2F; Dungeon 3</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%9B%86%E5%90%88%E5%86%99%E7%9C%9F-group-photo"><span class="post-toc-number">1.</span> <span class="post-toc-text">集合写真 &#x2F; Group Photo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E3%83%AD%E3%83%9C%E3%83%83%E3%83%88-robot"><span class="post-toc-number">2.</span> <span class="post-toc-text">ロボット &#x2F; Robot</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E3%83%80%E3%83%B3%E3%82%B8%E3%83%A7%E3%83%B3-3-dungeon-3"><span class="post-toc-number">3.</span> <span class="post-toc-text">ダンジョン 3 &#x2F; Dungeon 3</span></a></li></ol>
     </ul>
     
 
@@ -517,33 +517,37 @@
     
         <p>JOI Final 2021 C-E 题的题解</p>
 <!-- more --->
-
-<h2 id="集合写真-Group-Photo"><a href="#集合写真-Group-Photo" class="headerlink" title="集合写真 / Group Photo"></a>集合写真 / Group Photo</h2><p>考察符合条件的序列的性质，一定可以被分割成为 $m$ 个降序连续段：$(r_1\sim l_1);(r_2\sim l_2);(r_3\sim l_3);\cdots;(r_m\sim l_m)$ 其中 $l_1=1,l_2=r_1+1,r_3=l_2+1,\cdots,r_m=l_{m-1}+1$ 不难证明不满足以上结构的排列都是非法的。</p>
+<h2 id="集合写真-group-photo">集合写真 / Group Photo</h2>
+<p>考察符合条件的序列的性质，一定可以被分割成为 <span class="math inline">\(m\)</span> 个降序连续段：<span class="math inline">\((r_1\sim l_1);(r_2\sim l_2);(r_3\sim l_3);\cdots;(r_m\sim l_m)\)</span> 其中 <span class="math inline">\(l_1=1,l_2=r_1+1,r_3=l_2+1,\cdots,r_m=l_{m-1}+1\)</span> 不难证明不满足以上结构的排列都是非法的。</p>
 <p>考虑调整次数即前后相对顺序改变的无序对个数，于是就可以 dp 了。</p>
-<p>设 $f_i$ 表示 $1\sim i$ 调整成若干连续段的最小代价，考虑若最后一段是 $(i\sim j),j\le i$ 那么对于一个 $j\le k\le i$ 和它产生贡献的有：(1) $1\sim j-1$ 中位置在它后面的数，(2) $j\sim k-1$ 中位置在它前面的数，(3) $k+1\sim i$ 中位置在它后面的数。</p>
-<p>(1) 和 (3) 都可以用树状数组简单处理，考虑将 (2) 转化为找在 $j$ 后面的 $k$，于是用一个树状数组维护 $1\sim i$ 的位置，对每个 $k$ 加上位置在它后面的数的个数，这样会算多 $j\sim k-1$ 中位置在它后面的数，可以在 $j$ 向左移动时减掉，于是再用一个树状数组维护即可。</p>
-<p>时间复杂度 $\operatorname{O}(n^2\log n)$。</p>
-<p><a target="_blank" rel="noopener" href="https://loj.ac/s/1079250">code</a></p>
-<h2 id="ロボット-Robot"><a href="#ロボット-Robot" class="headerlink" title="ロボット / Robot"></a>ロボット / Robot</h2><p>考虑从 $u$ 到 $v$ 的一条颜色为 $c$ 长度为 $w$ 的边，设 $S_{u,c}$ 为以 $u$ 为端点所有颜色为 $c$ 的边的长度之和，要经过该边有两种策略：</p>
-<ol>
-<li>将该边改为一种不冲突的颜色，费用 $w$。</li>
-<li>将所有相同颜色的其他边改掉，费用 $S_{u,c}-w$。</li>
+<p>设 <span class="math inline">\(f_i\)</span> 表示 <span class="math inline">\(1\sim i\)</span> 调整成若干连续段的最小代价，考虑若最后一段是 <span class="math inline">\((i\sim j),j\le i\)</span> 那么对于一个 <span class="math inline">\(j\le k\le i\)</span> 和它产生贡献的有：(1) <span class="math inline">\(1\sim j-1\)</span> 中位置在它后面的数，(2) <span class="math inline">\(j\sim k-1\)</span> 中位置在它前面的数，(3) <span class="math inline">\(k+1\sim i\)</span> 中位置在它后面的数。</p>
+<ol type="1">
+<li>和 (3) 都可以用树状数组简单处理，考虑将 (2) 转化为找在 <span class="math inline">\(j\)</span> 后面的 <span class="math inline">\(k\)</span>，于是用一个树状数组维护 <span class="math inline">\(1\sim i\)</span> 的位置，对每个 <span class="math inline">\(k\)</span> 加上位置在它后面的数的个数，这样会算多 <span class="math inline">\(j\sim k-1\)</span> 中位置在它后面的数，可以在 <span class="math inline">\(j\)</span> 向左移动时减掉，于是再用一个树状数组维护即可。</li>
 </ol>
-<p>发现 $u$ 是菊花的中心且每条边的颜色两两不同的情况下 1 策略是不合法的，但是此时 2 策略费用为 $0$ 故可以不考虑。</p>
-<p>发现若有 $u\to v$，$v\to x$ 两条边颜色都为 $c$ 在 $u\to v$ 选择 1 策略，$v\to x$ 选择 2 策略那么改变 $u\to v$ 边的颜色的代价会计算两边，考虑减去。</p>
-<p>考虑建立虚点 $v_c$ 由 $u$ 向 $v_c$ 连边权为 $0$ 的边，$v_c$ 向 $x$ 连边权为 $S_{v,c}-w$ 的边，发现这样 $u\to v_c\to x$ 就是先 $1$ 策略再 $2$ 策略的代价。</p>
+<p>时间复杂度 <span class="math inline">\(\operatorname{O}(n^2\log n)\)</span>。</p>
+<p><a target="_blank" rel="noopener" href="https://loj.ac/s/1079250">code</a></p>
+<h2 id="ロボット-robot">ロボット / Robot</h2>
+<p>考虑从 <span class="math inline">\(u\)</span> 到 <span class="math inline">\(v\)</span> 的一条颜色为 <span class="math inline">\(c\)</span> 长度为 <span class="math inline">\(w\)</span> 的边，设 <span class="math inline">\(S_{u,c}\)</span> 为以 <span class="math inline">\(u\)</span> 为端点所有颜色为 <span class="math inline">\(c\)</span> 的边的长度之和，要经过该边有两种策略：</p>
+<ol type="1">
+<li>将该边改为一种不冲突的颜色，费用 <span class="math inline">\(w\)</span>。</li>
+<li>将所有相同颜色的其他边改掉，费用 <span class="math inline">\(S_{u,c}-w\)</span>。</li>
+</ol>
+<p>发现 <span class="math inline">\(u\)</span> 是菊花的中心且每条边的颜色两两不同的情况下 1 策略是不合法的，但是此时 2 策略费用为 <span class="math inline">\(0\)</span> 故可以不考虑。</p>
+<p>发现若有 <span class="math inline">\(u\to v\)</span>，<span class="math inline">\(v\to x\)</span> 两条边颜色都为 <span class="math inline">\(c\)</span> 在 <span class="math inline">\(u\to v\)</span> 选择 1 策略，<span class="math inline">\(v\to x\)</span> 选择 2 策略那么改变 <span class="math inline">\(u\to v\)</span> 边的颜色的代价会计算两边，考虑减去。</p>
+<p>考虑建立虚点 <span class="math inline">\(v_c\)</span> 由 <span class="math inline">\(u\)</span> 向 <span class="math inline">\(v_c\)</span> 连边权为 <span class="math inline">\(0\)</span> 的边，<span class="math inline">\(v_c\)</span> 向 <span class="math inline">\(x\)</span> 连边权为 <span class="math inline">\(S_{v,c}-w\)</span> 的边，发现这样 <span class="math inline">\(u\to v_c\to x\)</span> 就是先 <span class="math inline">\(1\)</span> 策略再 <span class="math inline">\(2\)</span> 策略的代价。</p>
 <p>于是跑 Dijkstra 即可。</p>
-<p>最多每条边都建一个虚点，故点数是 $\operatorname{O}(n+m)$ 的，边数还是 $\operatorname{O}(m)$ 的，时间复杂度 $\operatorname{O}((n+m)\log m)$。</p>
+<p>最多每条边都建一个虚点，故点数是 <span class="math inline">\(\operatorname{O}(n+m)\)</span> 的，边数还是 <span class="math inline">\(\operatorname{O}(m)\)</span> 的，时间复杂度 <span class="math inline">\(\operatorname{O}((n+m)\log m)\)</span>。</p>
 <p>注意：以下参考代码大量使用 STL 和 C++17 特性，常数巨大且需要注意编译选项。</p>
 <p><a target="_blank" rel="noopener" href="https://loj.ac/s/1079854">code</a></p>
-<h2 id="ダンジョン-3-Dungeon-3"><a href="#ダンジョン-3-Dungeon-3" class="headerlink" title="ダンジョン 3 / Dungeon 3"></a>ダンジョン 3 / Dungeon 3</h2><p>JOI 总是有很多考思维的数据结构题</p>
-<p>首先有显然的贪心：对于一个位置 $i$ 找到他后面第一个价格小于它的位置 $j$，二者距离为 $L$，如果 $L\le U$，那就将能量填到 $L$，否则填满。</p>
-<p>考虑 Subtask3 ($T=N+1$) 每次找后面小于它的位置可以联想到离线询问然后倒着扫用单调栈维护价格，每次退栈（当前的价格优于之前的价格）就考虑是否能在当前位置买能量，替代后面的，当前要购买的能量是已知的，考虑要删去多少：</p>
-<p>设当前位置到栈顶的距离为 $L$，到栈顶下一个元素的距离为 $L^\prime$，如果 $L^\prime\le U$ 删去全部 $L^\prime-L$，否则 $L^\prime-U$ 是必须的，只能删去 $L^\prime-L-(L^\prime-U)=U-L$ 于是即为 $\min(L^\prime,U)-L$。</p>
-<p>最后栈顶还要加上 $\min(L,U)$。</p>
-<p>考虑用数据结构维护所有 $U$ 的值，我们发现我们要加的都是一条折线（一条斜线段在加上一条平行与 $x$ 轴的线段），我们发现这是可以用树状数组简单维护的，具体来说，设 $l$ 到 $r$ 是斜线段，斜率为 $k$，截距为 $b$，平行段的 $y$ 为 $c$，我们用一个树状数组维护斜率，另一个树状数组维护截距，用差分的思想给 $l$ 斜率加上 $k$，$r+1$ 斜率减去 $k$，$l$ 截距加上 $b$，$r+1$ 截距加上 $(r+1-l)\times k$。</p>
-<p>然后考虑满分做法：设 $f(S,T)$ 为 $S$ 到 $T$ 的答案，我们找到距离 $T$ 小于等于 $U$ 的最小价格处 $m$ 发现只要经过 $m$ 就一定会在 $m$ 处买能量的，于是 $f(S,T)=f(S,N+1)-f(m,N+1)+dis(m,T)\times b_m$ 不用担心在 $m$ 之前买的能量没有用完的问题，这笔钱在 $f(m,N+1)$ 被减去又在后面被加上，但 $f(S,N+1)$ 中在 $m$ 前买的能量是一直有贡献的，用 ST 表找一下 $m$ 即可。</p>
-<p>时间复杂度 $\operatorname{O}(n\log n)$。</p>
+<h2 id="ダンジョン-3-dungeon-3">ダンジョン 3 / Dungeon 3</h2>
+<p>JOI 总是有很多考思维的数据结构题</p>
+<p>首先有显然的贪心：对于一个位置 <span class="math inline">\(i\)</span> 找到他后面第一个价格小于它的位置 <span class="math inline">\(j\)</span>，二者距离为 <span class="math inline">\(L\)</span>，如果 <span class="math inline">\(L\le U\)</span>，那就将能量填到 <span class="math inline">\(L\)</span>，否则填满。</p>
+<p>考虑 Subtask3 (<span class="math inline">\(T=N+1\)</span>) 每次找后面小于它的位置可以联想到离线询问然后倒着扫用单调栈维护价格，每次退栈（当前的价格优于之前的价格）就考虑是否能在当前位置买能量，替代后面的，当前要购买的能量是已知的，考虑要删去多少：</p>
+<p>设当前位置到栈顶的距离为 <span class="math inline">\(L\)</span>，到栈顶下一个元素的距离为 <span class="math inline">\(L^\prime\)</span>，如果 <span class="math inline">\(L^\prime\le U\)</span> 删去全部 <span class="math inline">\(L^\prime-L\)</span>，否则 <span class="math inline">\(L^\prime-U\)</span> 是必须的，只能删去 <span class="math inline">\(L^\prime-L-(L^\prime-U)=U-L\)</span> 于是即为 <span class="math inline">\(\min(L^\prime,U)-L\)</span>。</p>
+<p>最后栈顶还要加上 <span class="math inline">\(\min(L,U)\)</span>。</p>
+<p>考虑用数据结构维护所有 <span class="math inline">\(U\)</span> 的值，我们发现我们要加的都是一条折线（一条斜线段在加上一条平行与 <span class="math inline">\(x\)</span> 轴的线段），我们发现这是可以用树状数组简单维护的，具体来说，设 <span class="math inline">\(l\)</span> 到 <span class="math inline">\(r\)</span> 是斜线段，斜率为 <span class="math inline">\(k\)</span>，截距为 <span class="math inline">\(b\)</span>，平行段的 <span class="math inline">\(y\)</span> 为 <span class="math inline">\(c\)</span>，我们用一个树状数组维护斜率，另一个树状数组维护截距，用差分的思想给 <span class="math inline">\(l\)</span> 斜率加上 <span class="math inline">\(k\)</span>，<span class="math inline">\(r+1\)</span> 斜率减去 <span class="math inline">\(k\)</span>，<span class="math inline">\(l\)</span> 截距加上 <span class="math inline">\(b\)</span>，<span class="math inline">\(r+1\)</span> 截距加上 <span class="math inline">\((r+1-l)\times k\)</span>。</p>
+<p>然后考虑满分做法：设 <span class="math inline">\(f(S,T)\)</span> 为 <span class="math inline">\(S\)</span> 到 <span class="math inline">\(T\)</span> 的答案，我们找到距离 <span class="math inline">\(T\)</span> 小于等于 <span class="math inline">\(U\)</span> 的最小价格处 <span class="math inline">\(m\)</span> 发现只要经过 <span class="math inline">\(m\)</span> 就一定会在 <span class="math inline">\(m\)</span> 处买能量的，于是 <span class="math inline">\(f(S,T)=f(S,N+1)-f(m,N+1)+dis(m,T)\times b_m\)</span> 不用担心在 <span class="math inline">\(m\)</span> 之前买的能量没有用完的问题，这笔钱在 <span class="math inline">\(f(m,N+1)\)</span> 被减去又在后面被加上，但 <span class="math inline">\(f(S,N+1)\)</span> 中在 <span class="math inline">\(m\)</span> 前买的能量是一直有贡献的，用 ST 表找一下 <span class="math inline">\(m\)</span> 即可。</p>
+<p>时间复杂度 <span class="math inline">\(\operatorname{O}(n\log n)\)</span>。</p>
 <p><a target="_blank" rel="noopener" href="https://loj.ac/s/1080357">code</a></p>
 
         

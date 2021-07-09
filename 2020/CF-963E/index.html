@@ -515,121 +515,120 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/963/E">题目</a></p>
-<span id="more"></span>
-
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>设 $f_{i,j}$ 为 $\left(i,j\right)$ 移动到外面的期望步数</p>
-<p>$f_{i,j}=\begin{cases}<br>  0                                                     &amp; ,i^2+j^2&gt;R^2    \<br>  p_1f_{i-1,j}+p_2f_{i,j-1}+p_3f_{i+1,j}+p_4f_{i,j+1}+1 &amp; ,i^2+j^2\le R^2<br>\end{cases}$</p>
-<p>直接消元是 $\operatorname{O}(R^6)$ 的，不太行</p>
-<p>考虑用每行第一个非零数这 $2R+1$ 个数表达出所有数，从左到右从上到下枚举 $f_{i+1,j}=\frac{f_{i,j}-p_1f_{i-1,j}-p_2f_{i,j-1}-p_4f_{i,j+1}-1}{p_3}$ 将每一个元的系数都按该式转移，对每行右侧第一个超出范围的有 $f_{i+1,j}=0$，于是可以得到 $2R+1$ 个关于这 $2R+1$ 个主元的方程，直接消元即可</p>
-<p>时间复杂度 $\operatorname{O}(R^3)$</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">const int N = 120;
-const int M = 4005;
-const int Mod = 1000000007;
-
-int add(int a, int b) &#123; a += b; if (a &gt;= Mod) &#123; a -= Mod; &#125; return a; &#125;
-int sub(int a, int b) &#123; a -= b; if (a &lt; 0) &#123; a += Mod; &#125; return a; &#125;
-int pow(int a, int b, int m);
-void work(int n);
-
-int k[N][N][N];
-int C[N][N];
-int equ[N][N];
-int lim[N];
-int p1, p2, p3, p4;
-int R, P;
-
-int main () &#123;
-  read(R);
-  P = R + 5;
-  &#123;
-    read(p1), read(p2), read(p3), read(p4);
-    int s = (p1 * 1ll + p2 + p3 + p4) % Mod;
-    s = pow(s, Mod - 2, Mod);
-    p1 = p1 * 1ll * s % Mod;
-    p2 = p2 * 1ll * s % Mod;
-    p3 = p3 * 1ll * s % Mod;
-    p4 = p4 * 1ll * s % Mod;
-  &#125;
-  for (int i = -R; i &lt;= R; ++i) &#123;
-    lim[i + P] = int(sqrt(R * R - abs(i) * abs(i)) + 1);
-    k[P - lim[i + P] + 1][i + P][i + R] = 1;
-  &#125;
-  int ip3 = pow(p3, Mod - 2, Mod);
-  for (int i = -R + 1; i &lt;= R + 1; ++i) &#123;
-    for (int j = -R; j &lt;= R; ++j) &#123;
-      if (i &gt; -lim[j + P] + 1 &amp;&amp; i &lt;= lim[j + P]) &#123;
-        for (int l = 0; l &lt;= 2 * R; ++l) &#123;
-          k[i + P][j + P][l] = sub(k[i - 1 + P][j + P][l], add(
-            add(p1 * 1ll * k[i - 2 + P][j + P][l] % Mod, p2 * 1ll * k[i - 1 + P][j - 1 + P][l] % Mod),
-            p4 * 1ll * k[i - 1 + P][j + 1 + P][l] % Mod
-          )) * 1ll * ip3 % Mod;
-        &#125;
-        C[i + P][j + P] = sub(C[i - 1 + P][j + P], add(
-          add(p1 * 1ll * C[i - 2 + P][j + P] % Mod, p2 * 1ll * C[i - 1 + P][j - 1 + P] % Mod),
-          add(p4 * 1ll * C[i - 1 + P][j + 1 + P] % Mod, 1)
-        )) * 1ll * ip3 % Mod;
-      &#125;
-    &#125;
-  &#125;
-  for (int i = -R; i &lt;= R; ++i) &#123;
-    for (int l = 0; l &lt;= 2 * R; ++l) &#123;
-      equ[i + R + 1][l + 1] = k[P + lim[i + P]][i + P][l];
-    &#125;
-    equ[i + R + 1][2 * R + 2] = sub(0, C[P + lim[i + P]][i + P]);
-  &#125;
-  work(2 * R + 1);
-  int ans = 0;
-  for (int l = 0; l &lt;= 2 * R; ++l) &#123;
-    ans = add(ans, k[P][P][l] * 1ll * equ[l + 1][2 * R + 2] % Mod);
-  &#125;
-  ans = add(ans, C[P][P]);
-  write(ans), EL;
-  return 0;
-&#125;
-
-int pow(int a, int b, int m) &#123;
-  int ans = 1, now = a;
-  while (b) &#123;
-    if (b &amp; 1) &#123;
-      ans = ans * 1ll * now % m;
-    &#125;
-    now = now * 1ll * now % m;
-    b &gt;&gt;= 1;
-  &#125;
-  return ans;
-&#125;
-void work(int n) &#123;
-  for (int i = 1; i &lt;= n; ++i) &#123;
-    int tmp = 0;
-    for (int j = i; j &lt;= n; ++j) &#123;
-      if (equ[j][i]) &#123;
-        tmp = j;
-        break;
-      &#125;
-    &#125;
-    if (tmp != i) &#123;
-      for (int j = i; j &lt;= n + 1; ++j) &#123;
-        std::swap(equ[i][j], equ[tmp][j]);
-      &#125;
-    &#125;
-    int iv = pow(equ[i][i], Mod - 2, Mod);
-    for (int j = i; j &lt;= n + 1; ++j) &#123;
-      equ[i][j] = equ[i][j] * 1ll * iv % Mod;
-    &#125;
-    for (int j = i + 1; j &lt;= n; ++j) &#123;
-      for (int k = n + 1; k &gt;= i; --k) &#123;
-        equ[j][k] = sub(equ[j][k], equ[i][k] * 1ll * equ[j][i] % Mod);
-      &#125;
-    &#125;
-  &#125;
-  for (int i = n - 1; i &gt;= 1; --i) &#123;
-    for (int j = i + 1; j &lt;= n; ++j) &#123;
-      equ[i][n + 1] = sub(equ[i][n + 1], equ[i][j] * 1ll * equ[j][n + 1] % Mod);
-    &#125;
-  &#125;
-&#125;
-</code></pre>
+        <p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/963/E">题目</a> <span id="more"></span></p>
+<h2 id="思路">思路</h2>
+<p>设 <span class="math inline">\(f_{i,j}\)</span> 为 <span class="math inline">\(\left(i,j\right)\)</span> 移动到外面的期望步数</p>
+<p><span class="math inline">\(f_{i,j}=\begin{cases}  0 &amp; ,i^2+j^2&gt;R^2 \\  p_1f_{i-1,j}+p_2f_{i,j-1}+p_3f_{i+1,j}+p_4f_{i,j+1}+1 &amp; ,i^2+j^2\le R^2 \end{cases}\)</span></p>
+<p>直接消元是 <span class="math inline">\(\operatorname{O}(R^6)\)</span> 的，不太行</p>
+<p>考虑用每行第一个非零数这 <span class="math inline">\(2R+1\)</span> 个数表达出所有数，从左到右从上到下枚举 <span class="math inline">\(f_{i+1,j}=\frac{f_{i,j}-p_1f_{i-1,j}-p_2f_{i,j-1}-p_4f_{i,j+1}-1}{p_3}\)</span> 将每一个元的系数都按该式转移，对每行右侧第一个超出范围的有 <span class="math inline">\(f_{i+1,j}=0\)</span>，于是可以得到 <span class="math inline">\(2R+1\)</span> 个关于这 <span class="math inline">\(2R+1\)</span> 个主元的方程，直接消元即可</p>
+<p>时间复杂度 <span class="math inline">\(\operatorname{O}(R^3)\)</span></p>
+<h2 id="代码">代码</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> N <span class="op">=</span> <span class="dv">120</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> M <span class="op">=</span> <span class="dv">4005</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> Mod <span class="op">=</span> <span class="dv">1000000007</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> add<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">&#123;</span> a <span class="op">+=</span> b<span class="op">;</span> <span class="cf">if</span> <span class="op">(</span>a <span class="op">&gt;=</span> Mod<span class="op">)</span> <span class="op">&#123;</span> a <span class="op">-=</span> Mod<span class="op">;</span> <span class="op">&#125;</span> <span class="cf">return</span> a<span class="op">;</span> <span class="op">&#125;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> sub<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">)</span> <span class="op">&#123;</span> a <span class="op">-=</span> b<span class="op">;</span> <span class="cf">if</span> <span class="op">(</span>a <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">&#123;</span> a <span class="op">+=</span> Mod<span class="op">;</span> <span class="op">&#125;</span> <span class="cf">return</span> a<span class="op">;</span> <span class="op">&#125;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> pow<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">,</span> <span class="dt">int</span> m<span class="op">);</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> work<span class="op">(</span><span class="dt">int</span> n<span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> k<span class="op">[</span>N<span class="op">][</span>N<span class="op">][</span>N<span class="op">];</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> C<span class="op">[</span>N<span class="op">][</span>N<span class="op">];</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> equ<span class="op">[</span>N<span class="op">][</span>N<span class="op">];</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lim<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> p1<span class="op">,</span> p2<span class="op">,</span> p3<span class="op">,</span> p4<span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> R<span class="op">,</span> P<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main <span class="op">()</span> <span class="op">&#123;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  read<span class="op">(</span>R<span class="op">);</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  P <span class="op">=</span> R <span class="op">+</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#123;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    read<span class="op">(</span>p1<span class="op">),</span> read<span class="op">(</span>p2<span class="op">),</span> read<span class="op">(</span>p3<span class="op">),</span> read<span class="op">(</span>p4<span class="op">);</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> s <span class="op">=</span> <span class="op">(</span>p1 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">+</span> p2 <span class="op">+</span> p3 <span class="op">+</span> p4<span class="op">)</span> <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> pow<span class="op">(</span>s<span class="op">,</span> Mod <span class="op">-</span> <span class="dv">2</span><span class="op">,</span> Mod<span class="op">);</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> p1 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> s <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    p2 <span class="op">=</span> p2 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> s <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    p3 <span class="op">=</span> p3 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> s <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    p4 <span class="op">=</span> p4 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> s <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="op">-</span>R<span class="op">;</span> i <span class="op">&lt;=</span> R<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    lim<span class="op">[</span>i <span class="op">+</span> P<span class="op">]</span> <span class="op">=</span> <span class="dt">int</span><span class="op">(</span>sqrt<span class="op">(</span>R <span class="op">*</span> R <span class="op">-</span> abs<span class="op">(</span>i<span class="op">)</span> <span class="op">*</span> abs<span class="op">(</span>i<span class="op">))</span> <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    k<span class="op">[</span>P <span class="op">-</span> lim<span class="op">[</span>i <span class="op">+</span> P<span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="op">][</span>i <span class="op">+</span> P<span class="op">][</span>i <span class="op">+</span> R<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ip3 <span class="op">=</span> pow<span class="op">(</span>p3<span class="op">,</span> Mod <span class="op">-</span> <span class="dv">2</span><span class="op">,</span> Mod<span class="op">);</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="op">-</span>R <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> R <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="op">-</span>R<span class="op">;</span> j <span class="op">&lt;=</span> R<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>i <span class="op">&gt;</span> <span class="op">-</span>lim<span class="op">[</span>j <span class="op">+</span> P<span class="op">]</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> i <span class="op">&lt;=</span> lim<span class="op">[</span>j <span class="op">+</span> P<span class="op">])</span> <span class="op">&#123;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> l <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> l <span class="op">&lt;=</span> <span class="dv">2</span> <span class="op">*</span> R<span class="op">;</span> <span class="op">++</span>l<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>          k<span class="op">[</span>i <span class="op">+</span> P<span class="op">][</span>j <span class="op">+</span> P<span class="op">][</span>l<span class="op">]</span> <span class="op">=</span> sub<span class="op">(</span>k<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> P<span class="op">][</span>j <span class="op">+</span> P<span class="op">][</span>l<span class="op">],</span> add<span class="op">(</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            add<span class="op">(</span>p1 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> k<span class="op">[</span>i <span class="op">-</span> <span class="dv">2</span> <span class="op">+</span> P<span class="op">][</span>j <span class="op">+</span> P<span class="op">][</span>l<span class="op">]</span> <span class="op">%</span> Mod<span class="op">,</span> p2 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> k<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> P<span class="op">][</span>j <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> P<span class="op">][</span>l<span class="op">]</span> <span class="op">%</span> Mod<span class="op">),</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            p4 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> k<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> P<span class="op">][</span>j <span class="op">+</span> <span class="dv">1</span> <span class="op">+</span> P<span class="op">][</span>l<span class="op">]</span> <span class="op">%</span> Mod</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>          <span class="op">))</span> <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> ip3 <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        <span class="op">&#125;</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        C<span class="op">[</span>i <span class="op">+</span> P<span class="op">][</span>j <span class="op">+</span> P<span class="op">]</span> <span class="op">=</span> sub<span class="op">(</span>C<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> P<span class="op">][</span>j <span class="op">+</span> P<span class="op">],</span> add<span class="op">(</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>          add<span class="op">(</span>p1 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> C<span class="op">[</span>i <span class="op">-</span> <span class="dv">2</span> <span class="op">+</span> P<span class="op">][</span>j <span class="op">+</span> P<span class="op">]</span> <span class="op">%</span> Mod<span class="op">,</span> p2 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> C<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> P<span class="op">][</span>j <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> P<span class="op">]</span> <span class="op">%</span> Mod<span class="op">),</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>          add<span class="op">(</span>p4 <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> C<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> P<span class="op">][</span>j <span class="op">+</span> <span class="dv">1</span> <span class="op">+</span> P<span class="op">]</span> <span class="op">%</span> Mod<span class="op">,</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="op">))</span> <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> ip3 <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>      <span class="op">&#125;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="op">-</span>R<span class="op">;</span> i <span class="op">&lt;=</span> R<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> l <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> l <span class="op">&lt;=</span> <span class="dv">2</span> <span class="op">*</span> R<span class="op">;</span> <span class="op">++</span>l<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>      equ<span class="op">[</span>i <span class="op">+</span> R <span class="op">+</span> <span class="dv">1</span><span class="op">][</span>l <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">=</span> k<span class="op">[</span>P <span class="op">+</span> lim<span class="op">[</span>i <span class="op">+</span> P<span class="op">]][</span>i <span class="op">+</span> P<span class="op">][</span>l<span class="op">];</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    equ<span class="op">[</span>i <span class="op">+</span> R <span class="op">+</span> <span class="dv">1</span><span class="op">][</span><span class="dv">2</span> <span class="op">*</span> R <span class="op">+</span> <span class="dv">2</span><span class="op">]</span> <span class="op">=</span> sub<span class="op">(</span><span class="dv">0</span><span class="op">,</span> C<span class="op">[</span>P <span class="op">+</span> lim<span class="op">[</span>i <span class="op">+</span> P<span class="op">]][</span>i <span class="op">+</span> P<span class="op">]);</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  work<span class="op">(</span><span class="dv">2</span> <span class="op">*</span> R <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> l <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> l <span class="op">&lt;=</span> <span class="dv">2</span> <span class="op">*</span> R<span class="op">;</span> <span class="op">++</span>l<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    ans <span class="op">=</span> add<span class="op">(</span>ans<span class="op">,</span> k<span class="op">[</span>P<span class="op">][</span>P<span class="op">][</span>l<span class="op">]</span> <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> equ<span class="op">[</span>l <span class="op">+</span> <span class="dv">1</span><span class="op">][</span><span class="dv">2</span> <span class="op">*</span> R <span class="op">+</span> <span class="dv">2</span><span class="op">]</span> <span class="op">%</span> Mod<span class="op">);</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>  ans <span class="op">=</span> add<span class="op">(</span>ans<span class="op">,</span> C<span class="op">[</span>P<span class="op">][</span>P<span class="op">]);</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>  write<span class="op">(</span>ans<span class="op">),</span> EL<span class="op">;</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> pow<span class="op">(</span><span class="dt">int</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">,</span> <span class="dt">int</span> m<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ans <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> now <span class="op">=</span> a<span class="op">;</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>b<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>b <span class="op">&amp;</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>      ans <span class="op">=</span> ans <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> now <span class="op">%</span> m<span class="op">;</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    now <span class="op">=</span> now <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> now <span class="op">%</span> m<span class="op">;</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>    b <span class="op">&gt;&gt;=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> ans<span class="op">;</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> work<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> tmp <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> i<span class="op">;</span> j <span class="op">&lt;=</span> n<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>equ<span class="op">[</span>j<span class="op">][</span>i<span class="op">])</span> <span class="op">&#123;</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>        tmp <span class="op">=</span> j<span class="op">;</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>      <span class="op">&#125;</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>tmp <span class="op">!=</span> i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> i<span class="op">;</span> j <span class="op">&lt;=</span> n <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>swap<span class="op">(</span>equ<span class="op">[</span>i<span class="op">][</span>j<span class="op">],</span> equ<span class="op">[</span>tmp<span class="op">][</span>j<span class="op">]);</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>      <span class="op">&#125;</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> iv <span class="op">=</span> pow<span class="op">(</span>equ<span class="op">[</span>i<span class="op">][</span>i<span class="op">],</span> Mod <span class="op">-</span> <span class="dv">2</span><span class="op">,</span> Mod<span class="op">);</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> i<span class="op">;</span> j <span class="op">&lt;=</span> n <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>      equ<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">=</span> equ<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> iv <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;=</span> n<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> n <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">&gt;=</span> i<span class="op">;</span> <span class="op">--</span>k<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>        equ<span class="op">[</span>j<span class="op">][</span>k<span class="op">]</span> <span class="op">=</span> sub<span class="op">(</span>equ<span class="op">[</span>j<span class="op">][</span>k<span class="op">],</span> equ<span class="op">[</span>i<span class="op">][</span>k<span class="op">]</span> <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> equ<span class="op">[</span>j<span class="op">][</span>i<span class="op">]</span> <span class="op">%</span> Mod<span class="op">);</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>      <span class="op">&#125;</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&gt;=</span> <span class="dv">1</span><span class="op">;</span> <span class="op">--</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;=</span> n<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>      equ<span class="op">[</span>i<span class="op">][</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">=</span> sub<span class="op">(</span>equ<span class="op">[</span>i<span class="op">][</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">],</span> equ<span class="op">[</span>i<span class="op">][</span>j<span class="op">]</span> <span class="op">*</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> equ<span class="op">[</span>j<span class="op">][</span>n <span class="op">+</span> <span class="dv">1</span><span class="op">]</span> <span class="op">%</span> Mod<span class="op">);</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">

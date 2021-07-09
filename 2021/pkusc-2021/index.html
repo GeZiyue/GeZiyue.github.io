@@ -365,7 +365,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Day-0"><span class="post-toc-number">1.</span> <span class="post-toc-text">Day 0</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Day-1"><span class="post-toc-number">2.</span> <span class="post-toc-text">Day 1</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Day-2"><span class="post-toc-number">3.</span> <span class="post-toc-text">Day 2</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Day-3"><span class="post-toc-number">4.</span> <span class="post-toc-text">Day 3</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#day-0"><span class="post-toc-number">1.</span> <span class="post-toc-text">Day 0</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#day-1"><span class="post-toc-number">2.</span> <span class="post-toc-text">Day 1</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#day-2"><span class="post-toc-number">3.</span> <span class="post-toc-text">Day 2</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#day-3"><span class="post-toc-number">4.</span> <span class="post-toc-text">Day 3</span></a></li></ol>
     </ul>
     
 
@@ -508,37 +508,40 @@
     
         <p>我这种模拟赛日常垫底的傻逼竟然能去 PKUSC！!1</p>
 <span id="more"></span>
-
-<h1 id="Day-0"><a href="#Day-0" class="headerlink" title="Day 0"></a>Day 0</h1><p>9:21 的火车，11:21 到余姚，由于余姚的同学正好从 asdfz 回余姚，余姚中学的教练安排了一辆车接我们，好评。</p>
+<h1 id="day-0">Day 0</h1>
+<p>9:21 的火车，11:21 到余姚，由于余姚的同学正好从 asdfz 回余姚，余姚中学的教练安排了一辆车接我们，好评。</p>
 <p>听说卷怪在宾馆卷疯了，只有我在摸鱼<img src="https://啧.tk/kk" alt="/kk"></p>
 <p>感觉一趟下来要胖三斤！</p>
-<h1 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h1><p>报到不写了，试机一题不会，感觉要凉</p>
+<h1 id="day-1">Day 1</h1>
+<p>报到不写了，试机一题不会，感觉要凉</p>
 <p>下午开题，想了一下发现 T1 傻逼矩乘，T2 感觉是 nb 数据结构，T3 看完了题感觉是爆搜+大模拟。</p>
 <p>13:00 左右过了 T1（题意有个地方不清楚卡了好久）</p>
-<p>想了一下感觉 T2 不太可做，去想 sub2，完全没有想到楼房重建，感觉找到前面的第一个比它大的，后面第一个比它大的和目前全局修改次数就可以三维数点，然后对一维离线就是二维数点，空间是 $\operatorname{O}(n\log^2n)$ 的，但数据水动态开点线段树数组开小也过了。</p>
+<p>想了一下感觉 T2 不太可做，去想 sub2，完全没有想到楼房重建，感觉找到前面的第一个比它大的，后面第一个比它大的和目前全局修改次数就可以三维数点，然后对一维离线就是二维数点，空间是 <span class="math inline">\(\operatorname{O}(n\log^2n)\)</span> 的，但数据水动态开点线段树数组开小也过了。</p>
 <p>然后是码码码，最后 17:20 过了 T3 的 sub1，sub2 来不及了，弃了。</p>
-<p>$100+46+38=184$，出来感觉是大众分，很慌。</p>
+<p><span class="math inline">\(100+46+38=184\)</span>，出来感觉是大众分，很慌。</p>
 <p>发现 yxy 切了 T2，wd T3 sub12，真的膜拜。</p>
 <p>wc 和 mwr 好像是 146，zjf 切了 T2 但到最后都没调出来，只有 107，真的惨。</p>
 <p>赛后发现坐我右边的老哥好像就是 Fee_cle6418，Orz</p>
 <p>晚上听说大众分 146，感觉还行。</p>
-<h1 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h1><p>上午参观了 NOI 考场，但这和根本进不了 NOI 的我有啥关系！<img src="https://啧.tk/kk" alt="/kk"></p>
+<h1 id="day-2">Day 2</h1>
+<p>上午参观了 NOI 考场，但这和根本进不了 NOI 的我有啥关系！<img src="https://啧.tk/kk" alt="/kk"></p>
 <p>下午开题，发现 T1 好像是简单化式子。</p>
-<p>然后我就整了个枚举断边，统计 $siz(n-siz)$ 的所有变化的诡异东西。</p>
-<p>要维护一车信息，包括子树 $siz$ 的和，平方和，立方和之类的毒瘤玩意，统计答案有一车细节，必须在草稿纸上搞清楚。</p>
+<p>然后我就整了个枚举断边，统计 <span class="math inline">\(siz(n-siz)\)</span> 的所有变化的诡异东西。</p>
+<p>要维护一车信息，包括子树 <span class="math inline">\(siz\)</span> 的和，平方和，立方和之类的毒瘤玩意，统计答案有一车细节，必须在草稿纸上搞清楚。</p>
 <p>貌似 14:00 才过 T1 心态爆炸。</p>
 <p>发现左边的老哥文件夹名是 <code>dblark</code>，感觉这名字水群时见过（</p>
-<p>T2 感觉有 nb 贪心，先写了个假的 $n^2$ 贪心，发现前三个包数据水的怕人，直接过了，sub4 WA 了，想了一下感觉不会就溜了。貌似有 23 分？</p>
-<p>T3 先手推积分算出了 $n=3$，后面的时间一直在手推 $n=4$ 但是一直 WA 样例，非常自闭。最后只有 15（有一个测试点答案为 0）</p>
+<p>T2 感觉有 nb 贪心，先写了个假的 <span class="math inline">\(n^2\)</span> 贪心，发现前三个包数据水的怕人，直接过了，sub4 WA 了，想了一下感觉不会就溜了。貌似有 23 分？</p>
+<p>T3 先手推积分算出了 <span class="math inline">\(n=3\)</span>，后面的时间一直在手推 <span class="math inline">\(n=4\)</span> 但是一直 WA 样例，非常自闭。最后只有 15（有一个测试点答案为 0）</p>
 <p>感觉垫底了。</p>
 <p>出来一问 zjf 和 wd 都秒了 T2，非常自闭。</p>
 <p>后来发现 yxy wc mwr 都没过，感觉还行。</p>
-<p>$100+23+15=138$，可能只是大众分滚粗了。</p>
+<p><span class="math inline">\(100+23+15=138\)</span>，可能只是大众分滚粗了。</p>
 <p>听说 wd 虐场了，听说我和 zjf 总分一个分。</p>
-<p>后来发现填 $a_i\bmod c$ 是对的，但我根本没有想到最后一定是用完一个后缀，sb 型选手石锤了。</p>
+<p>后来发现填 <span class="math inline">\(a_i\bmod c\)</span> 是对的，但我根本没有想到最后一定是用完一个后缀，sb 型选手石锤了。</p>
 <p>晚上听说真的是大众分滚粗。</p>
 <p>晚上还在和 wd 打 Google Code Jam，发现 ABC 三个傻逼题，然后就 T-shirt 了，wd 竟然没切 C，痛失 T-shirt？</p>
-<h1 id="Day-3"><a href="#Day-3" class="headerlink" title="Day 3"></a>Day 3</h1><p>一大早发现 wd 免面试，只有我没准备面试还在 Google Code Jam，小丑竟是我自己。</p>
+<h1 id="day-3">Day 3</h1>
+<p>一大早发现 wd 免面试，只有我没准备面试还在 Google Code Jam，小丑竟是我自己。</p>
 <p>听说 wc 没进面试，惨。</p>
 <p>听说有人两天都严格低于 wc 也进面试了，惨。</p>
 <p>听教练说我和 zjf 都是没有免面试中比较高的，感觉还行。</p>
@@ -546,7 +549,7 @@
 <p>我第一个面试是蒋婷婷教授，她好像前几天才来过我们学校。</p>
 <p>先自我介绍，然后问了些正常问题，比如这次考的怎么样，文化课怎么样，为什么来 pku（还问了我前几天她来 asdfz 时我在不在）。</p>
 <p>听 zjf 说我第二个面的问了些比较奇怪的问题。</p>
-<p>等了非常久，中间面了 @yijan 神仙。</p>
+<p>等了非常久，中间面了 <span class="citation" data-cites="yijan">@yijan</span> 神仙。</p>
 <p>最后问了我的优缺点，喜欢什么理工类的书，还问什么如何看待钻研一个问题不一定能获得和精力成正比的回报，将来如果高端 IT 人才饱和了你会怎么选择之类的问题。</p>
 <p>感觉很凉。</p>
 <p>下午 zyy 讲题。(题不全是我出的.jpg)</p>

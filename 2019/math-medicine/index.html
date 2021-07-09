@@ -515,11 +515,21 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>其实只要概率和等比数列的基础知识就能做出这道压轴题QwQ</p>
-<span id="more"></span>
-<p>试卷随便在哪都能找到,就不放链接了QwQ</p>
-<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>$$P(A有用)=\alpha$$<br>$$P(A无用)=1-\alpha$$<br>$$P(B有用)=\beta$$<br>$$P(B无用)=1-\beta$$<br>$$a=P(X=-1)=P(A无用\cap B有用)=(1-\alpha)\cdot\beta$$<br>$$b=P(X=0)=P((A无用\cap B无用)\cup(A有用\cap B有用))=\alpha\cdot\beta+(1-\alpha)\cdot(1-\beta)$$<br>$$c=P(X=1)=P(A有用\cap B无用)=\alpha\cdot(1-\beta)$$<br>$$进行n次试验,第i次获胜的概率p_i满足p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1}$$<br>$$已知p_0=0,p_{2n}=1求p_n$$</p>
-<h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><p>$$\because p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1}$$<br>$$\therefore (1-b)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1}$$<br>$$\because a+b+c=1$$<br>$$\therefore 1-b=a+c$$<br>$$\therefore (a+c)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1}$$<br>$$变形得c\cdot(p_{i+1}-p_i)=a\cdot(p_i-p_{i-1})$$<br>$$令x_i=p_i-p_{i-1}$$<br>$$x数列等比,公比为k=\frac{a}{c}$$<br>$$\begin{aligned}<br>x_1+x_2+\dots+x_{2n}&amp;=p_{2n}-p_0\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{2n-1})\<br>&amp;=x_1\cdot\frac{k^{2n}-1}{k-1}=1<br>\end{aligned}$$<br>$$\therefore x_1=\frac{k-1}{k^{2n}-1}$$<br>$$\begin{aligned}<br>p_n&amp;=p_n-p_0\<br>&amp;=x_1+x_2+\dots+x_n\<br>&amp;=x_1\cdot(1+k+k^2+\dots+k^{n-1})\<br>&amp;=\frac{k-1}{k^{2n}-1}\cdot\frac{k^n-1}{k-1}\<br>&amp;=\frac{k^n-1}{k^{2n}-1}<br>\end{aligned}$$</p>
+        <p>其实只要概率和等比数列的基础知识就能做出这道压轴题QwQ <span id="more"></span> 试卷随便在哪都能找到,就不放链接了QwQ</p>
+<h2 id="题意">题意</h2>
+<p><span class="math display">\[P(A有用)=\alpha\]</span> <span class="math display">\[P(A无用)=1-\alpha\]</span> <span class="math display">\[P(B有用)=\beta\]</span> <span class="math display">\[P(B无用)=1-\beta\]</span> <span class="math display">\[a=P(X=-1)=P(A无用\cap B有用)=(1-\alpha)\cdot\beta\]</span> <span class="math display">\[b=P(X=0)=P((A无用\cap B无用)\cup(A有用\cap B有用))=\alpha\cdot\beta+(1-\alpha)\cdot(1-\beta)\]</span> <span class="math display">\[c=P(X=1)=P(A有用\cap B无用)=\alpha\cdot(1-\beta)\]</span> <span class="math display">\[进行n次试验,第i次获胜的概率p_i满足p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1}\]</span> <span class="math display">\[已知p_0=0,p_{2n}=1求p_n\]</span></p>
+<h2 id="推导">推导</h2>
+<p><span class="math display">\[\because p_i=a\cdot p_{i-1}+b\cdot p_i+c\cdot p_{i+1}\]</span> <span class="math display">\[\therefore (1-b)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1}\]</span> <span class="math display">\[\because a+b+c=1\]</span> <span class="math display">\[\therefore 1-b=a+c\]</span> <span class="math display">\[\therefore (a+c)\cdot p_i=a\cdot p_{i-1}+c\cdot p_{i+1}\]</span> <span class="math display">\[变形得c\cdot(p_{i+1}-p_i)=a\cdot(p_i-p_{i-1})\]</span> <span class="math display">\[令x_i=p_i-p_{i-1}\]</span> <span class="math display">\[x数列等比,公比为k=\frac{a}{c}\]</span> <span class="math display">\[\begin{aligned}
+x_1+x_2+\dots+x_{2n}&amp;=p_{2n}-p_0\\
+&amp;=x_1\cdot(1+k+k^2+\dots+k^{2n-1})\\
+&amp;=x_1\cdot\frac{k^{2n}-1}{k-1}=1
+\end{aligned}\]</span> <span class="math display">\[\therefore x_1=\frac{k-1}{k^{2n}-1}\]</span> <span class="math display">\[\begin{aligned}
+p_n&amp;=p_n-p_0\\
+&amp;=x_1+x_2+\dots+x_n\\
+&amp;=x_1\cdot(1+k+k^2+\dots+k^{n-1})\\
+&amp;=\frac{k-1}{k^{2n}-1}\cdot\frac{k^n-1}{k-1}\\
+&amp;=\frac{k^n-1}{k^{2n}-1}
+\end{aligned}\]</span></p>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">

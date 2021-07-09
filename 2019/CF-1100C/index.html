@@ -365,7 +365,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%A2%98%E6%84%8F"><span class="post-toc-number">1.</span> <span class="post-toc-text">题意</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="post-toc-number">2.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="post-toc-number">3.</span> <span class="post-toc-text">注意事项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%A4%87%E6%B3%A8"><span class="post-toc-number">4.</span> <span class="post-toc-text">备注</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BB%A3%E7%A0%81-C"><span class="post-toc-number">5.</span> <span class="post-toc-text">代码(C++)</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E9%A2%98%E6%84%8F"><span class="post-toc-number">1.</span> <span class="post-toc-text">题意</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="post-toc-number">2.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="post-toc-number">3.</span> <span class="post-toc-text">注意事项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%A4%87%E6%B3%A8"><span class="post-toc-number">4.</span> <span class="post-toc-text">备注</span></a></li></ol>
     </ul>
     
 
@@ -515,40 +515,31 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1100/problem/C">题目</a></p>
-<span id="more"></span>
-
-<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><ul>
-<li>一个半径为$r$的圆，与$n$个半径为$R$的圆相切且这$n$个圆分别和左右的两个圆相切</li>
-<li>已知$n, r$,求$R$</li>
-</ul>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>将外圈圆的圆心相连, 围成一个正$n$边形<br><img src="/2019/CF-1100C/1.png"></p>
+        <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1100/problem/C">题目</a> <span id="more"></span></p>
+<h2 id="题意">题意</h2>
 <ul>
-<li>从多边形截出一个$\triangle BGA$<br><img src="/2019/CF-1100C/2.png"></li>
-<li>$\angle BGA=\frac{\angle BGF}{2}=\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2}$</li>
-<li>做$\triangle BGA \space BG$边上的高$AH$</li>
-<li>得到$Rt\triangle GHA,GH=R,GA=R+r$</li>
-<li>$\frac{GA}{GH}=\frac{R+r}{R}=\sec\angle BGA$</li>
-<li>$R\cdot \sec\angle BGA=R+r$</li>
-<li>$R\cdot(\sec\angle BGA-1)=r$</li>
-<li>$R=\frac{r}{\sec\angle BGA-1}=\frac{r}{\sec(\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2})-1}$</li>
+<li>一个半径为<span class="math inline">\(r\)</span>的圆，与<span class="math inline">\(n\)</span>个半径为<span class="math inline">\(R\)</span>的圆相切且这<span class="math inline">\(n\)</span>个圆分别和左右的两个圆相切</li>
+<li>已知<span class="math inline">\(n, r\)</span>,求<span class="math inline">\(R\)</span></li>
 </ul>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
-<li>cmath里没有$\sec$，可以用$\cos$的倒数嘛</li>
-<li>cmath里面的所有三角函数都是弧度制，要将角度$\times\pi\div180$</li>
+<h2 id="思路">思路</h2>
+<p>将外圈圆的圆心相连, 围成一个正<span class="math inline">\(n\)</span>边形 <img src="/2019/CF-1100C/1.png"> - 从多边形截出一个<span class="math inline">\(\triangle BGA\)</span> <img src="/2019/CF-1100C/2.png"> - <span class="math inline">\(\angle BGA=\frac{\angle BGF}{2}=\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2}\)</span> - 做<span class="math inline">\(\triangle BGA \space BG\)</span>边上的高<span class="math inline">\(AH\)</span> - 得到<span class="math inline">\(Rt\triangle GHA,GH=R,GA=R+r\)</span> - <span class="math inline">\(\frac{GA}{GH}=\frac{R+r}{R}=\sec\angle BGA\)</span> - <span class="math inline">\(R\cdot \sec\angle BGA=R+r\)</span> - <span class="math inline">\(R\cdot(\sec\angle BGA-1)=r\)</span> - <span class="math inline">\(R=\frac{r}{\sec\angle BGA-1}=\frac{r}{\sec(\frac{180^{\circ}-\frac{360^{\circ}}{n}}{2})-1}\)</span></p>
+<h2 id="注意事项">注意事项</h2>
+<ol type="1">
+<li>cmath里没有<span class="math inline">\(\sec\)</span>，可以用<span class="math inline">\(\cos\)</span>的倒数嘛</li>
+<li>cmath里面的所有三角函数都是弧度制，要将角度<span class="math inline">\(\times\pi\div180\)</span></li>
 </ol>
-<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>绘图工具:GeoGebra Geometry</p>
-<h2 id="代码-C"><a href="#代码-C" class="headerlink" title="代码(C++)"></a>代码(C++)</h2><pre><code class="cpp">int n;
-double r;
-read(n);
-std::cin &gt;&gt; r;
-double degree = 180 - (360.0 / n);
-degree /= 2;
-degree = degree / 180 * PI;
-double ans=r / (1 / cos(degree) - 1);
-std::cout.precision(7);
-std::cout &lt;&lt; std::fixed &lt;&lt; ans &lt;&lt; std::endl;
-</code></pre>
+<h2 id="备注">备注</h2>
+<p>绘图工具:GeoGebra Geometry ## 代码(C++)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> n<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> r<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>read<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cin<span class="op"> &gt;&gt;</span> r<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> degree <span class="op">=</span> <span class="dv">180</span> <span class="op">-</span> <span class="op">(</span><span class="fl">360.0</span> <span class="op">/</span> n<span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>degree <span class="op">/=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>degree <span class="op">=</span> degree <span class="op">/</span> <span class="dv">180</span> <span class="op">*</span> PI<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> ans<span class="op">=</span>r <span class="op">/</span> <span class="op">(</span><span class="dv">1</span> <span class="op">/</span> cos<span class="op">(</span>degree<span class="op">)</span> <span class="op">-</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cout<span class="op">.</span>precision<span class="op">(</span><span class="dv">7</span><span class="op">);</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cout<span class="op"> &lt;&lt;</span> <span class="bu">std::</span>fixed<span class="op"> &lt;&lt;</span> ans <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span></code></pre></div>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">

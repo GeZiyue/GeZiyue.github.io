@@ -365,7 +365,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="post-toc-number">1.</span> <span class="post-toc-text">思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="post-toc-number">2.</span> <span class="post-toc-text">代码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="post-toc-number">1.</span> <span class="post-toc-text">代码</span></a></li></ol>
     </ul>
     
 
@@ -515,77 +515,69 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2948">题目</a></p>
-<span id="more"></span>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
-<li>首先将所有课程按结束时间排序</li>
-<li>将相同滑坡能力值的分为一类, 对于能力为$i$的取其中所需时间最短的$lastmin_i$</li>
-<li>$f(i, j)$表示对于第$i$个时刻, 能力值为$j$或$j$以上时最大的滑雪次数</li>
-<li>若第$j$个课程开始于$begin$结束于$i$, 若参加这个课程, 枚举开始时的能力值$k, f(i, abi_j)=max{f(begin, k) | k&lt;=100}$ ($abi_j$是第$j$次获得的滑雪能力), 再枚举$abi_j$以下的能力$k, f(i, k)=max{f(i, k), f(i, j)}$</li>
-<li>对于每一个时刻$i$, 若滑雪, 枚举滑雪时的能力值$k, f(i, k)=max{f(i-lastmin_k, k)|k&lt;=100, i-lastmin_k&gt;=0}$</li>
-</ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>注: 以下代码已省略头文件、read和write</p>
-<pre><code class="cpp">class Class &#123;
-public:
-  int begin, end, abi;
-&#125;c[M];
-// 课程类型, 可以视作struct
-int dp[N][M];
-int lastmin[M];
-int main () &#123;
-  int n, m, t;
-  read(t);
-  read(n);
-  read(m);
-  for (int i = 1; i &lt;= n; i++) &#123;
-    int begin, last, abi;
-    read(begin);
-    read(last);
-    read(abi);
-    c[i].begin = begin;
-    c[i].end = begin + last;
-    c[i].abi = abi;
-  &#125;
-  std::sort(c + 1, c + n + 1, [](Class i, Class j) &#123;
-    return i.end &lt; j.end;
-  &#125;);// 给课程按结束时间排序, 用到了匿名(lambda)函数, 需要开C++11
-  for (int i = 1; i &lt;= 100; i++) &#123;
-    lastmin[i] = inf;
-  &#125;
-  for (int i = 1; i &lt;= m; i++) &#123;
-    int need, last;
-    read(need);
-    read(last);
-    lastmin[need] = std::min(lastmin[need], last);
-  &#125;
-  memset(dp, -1, sizeof(dp));
-  for (int i = 0; i &lt;= t; i++) &#123;
-    dp[i][1] = 0;
-  &#125;
-  int ans = 0;
-  for (int i = 1, j = 1; i &lt;= t; i++) &#123;// j表示下一个课程的编号
-    if (c[j].end == i) &#123;
-      for (int k = 1; k &lt;= 100; k++) &#123;
-        dp[i][c[j].abi] = std::max(dp[i][c[j].abi], dp[c[j].begin][k]);
-      &#125;
-      for (int k = 1; k &lt; c[j].abi; k++) &#123;
-        dp[i][k] = std::max(dp[i][k], dp[i][c[j].abi]);
-      &#125;
-      j++;
-    &#125;// 上课
-    for (int k = 1; k &lt;= 100; k++) &#123;
-      if (i - lastmin[k] &gt;= 0) &#123;
-        if (dp[i - lastmin[k]][k] != -1) &#123;
-          dp[i][k] = std::max(dp[i][k], dp[i - lastmin[k]][k] + 1);
-          ans = std::max(ans, dp[i][k]);
-        &#125;
-      &#125;
-    &#125;// 滑雪
-  &#125;
-  write(ans), putchar(&#39;\n&#39;);
-  return 0;
-&#125;
-</code></pre>
+        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2948">题目</a> <span id="more"></span> ## 思路 1. 首先将所有课程按结束时间排序 2. 将相同滑坡能力值的分为一类, 对于能力为<span class="math inline">\(i\)</span>的取其中所需时间最短的<span class="math inline">\(lastmin_i\)</span> 3. <span class="math inline">\(f(i, j)\)</span>表示对于第<span class="math inline">\(i\)</span>个时刻, 能力值为<span class="math inline">\(j\)</span>或<span class="math inline">\(j\)</span>以上时最大的滑雪次数 4. 若第<span class="math inline">\(j\)</span>个课程开始于<span class="math inline">\(begin\)</span>结束于<span class="math inline">\(i\)</span>, 若参加这个课程, 枚举开始时的能力值<span class="math inline">\(k, f(i, abi_j)=max\{f(begin, k) | k&lt;=100\}\)</span> (<span class="math inline">\(abi_j\)</span>是第<span class="math inline">\(j\)</span>次获得的滑雪能力), 再枚举<span class="math inline">\(abi_j\)</span>以下的能力<span class="math inline">\(k, f(i, k)=max\{f(i, k), f(i, j)\}\)</span> 5. 对于每一个时刻<span class="math inline">\(i\)</span>, 若滑雪, 枚举滑雪时的能力值<span class="math inline">\(k, f(i, k)=max\{f(i-lastmin_k, k)|k&lt;=100, i-lastmin_k&gt;=0\}\)</span></p>
+<h2 id="代码">代码</h2>
+<p>注: 以下代码已省略头文件、read和write</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Class <span class="op">&#123;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> begin<span class="op">,</span> end<span class="op">,</span> abi<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span>c<span class="op">[</span>M<span class="op">];</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">// 课程类型, 可以视作struct</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dp<span class="op">[</span>N<span class="op">][</span>M<span class="op">];</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lastmin<span class="op">[</span>M<span class="op">];</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main <span class="op">()</span> <span class="op">&#123;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> n<span class="op">,</span> m<span class="op">,</span> t<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  read<span class="op">(</span>t<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  read<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  read<span class="op">(</span>m<span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">&#123;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> begin<span class="op">,</span> last<span class="op">,</span> abi<span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    read<span class="op">(</span>begin<span class="op">);</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    read<span class="op">(</span>last<span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    read<span class="op">(</span>abi<span class="op">);</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    c<span class="op">[</span>i<span class="op">].</span>begin <span class="op">=</span> begin<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    c<span class="op">[</span>i<span class="op">].</span>end <span class="op">=</span> begin <span class="op">+</span> last<span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    c<span class="op">[</span>i<span class="op">].</span>abi <span class="op">=</span> abi<span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>sort<span class="op">(</span>c <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> c <span class="op">+</span> n <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> <span class="op">[](</span>Class i<span class="op">,</span> Class j<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> i<span class="op">.</span>end <span class="op">&lt;</span> j<span class="op">.</span>end<span class="op">;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;);</span><span class="co">// 给课程按结束时间排序, 用到了匿名(lambda)函数, 需要开C++11</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">100</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">&#123;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    lastmin<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> inf<span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> m<span class="op">;</span> i<span class="op">++)</span> <span class="op">&#123;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> need<span class="op">,</span> last<span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    read<span class="op">(</span>need<span class="op">);</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    read<span class="op">(</span>last<span class="op">);</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    lastmin<span class="op">[</span>need<span class="op">]</span> <span class="op">=</span> <span class="bu">std::</span>min<span class="op">(</span>lastmin<span class="op">[</span>need<span class="op">],</span> last<span class="op">);</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  memset<span class="op">(</span>dp<span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="kw">sizeof</span><span class="op">(</span>dp<span class="op">));</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> t<span class="op">;</span> i<span class="op">++)</span> <span class="op">&#123;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    dp<span class="op">[</span>i<span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> ans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> t<span class="op">;</span> i<span class="op">++)</span> <span class="op">&#123;</span><span class="co">// j表示下一个课程的编号</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>c<span class="op">[</span>j<span class="op">].</span>end <span class="op">==</span> i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">&lt;=</span> <span class="dv">100</span><span class="op">;</span> k<span class="op">++)</span> <span class="op">&#123;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        dp<span class="op">[</span>i<span class="op">][</span>c<span class="op">[</span>j<span class="op">].</span>abi<span class="op">]</span> <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>dp<span class="op">[</span>i<span class="op">][</span>c<span class="op">[</span>j<span class="op">].</span>abi<span class="op">],</span> dp<span class="op">[</span>c<span class="op">[</span>j<span class="op">].</span>begin<span class="op">][</span>k<span class="op">]);</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>      <span class="op">&#125;</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">&lt;</span> c<span class="op">[</span>j<span class="op">].</span>abi<span class="op">;</span> k<span class="op">++)</span> <span class="op">&#123;</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        dp<span class="op">[</span>i<span class="op">][</span>k<span class="op">]</span> <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>dp<span class="op">[</span>i<span class="op">][</span>k<span class="op">],</span> dp<span class="op">[</span>i<span class="op">][</span>c<span class="op">[</span>j<span class="op">].</span>abi<span class="op">]);</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>      <span class="op">&#125;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>      j<span class="op">++;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span><span class="co">// 上课</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">&lt;=</span> <span class="dv">100</span><span class="op">;</span> k<span class="op">++)</span> <span class="op">&#123;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> <span class="op">(</span>i <span class="op">-</span> lastmin<span class="op">[</span>k<span class="op">]</span> <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>dp<span class="op">[</span>i <span class="op">-</span> lastmin<span class="op">[</span>k<span class="op">]][</span>k<span class="op">]</span> <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>          dp<span class="op">[</span>i<span class="op">][</span>k<span class="op">]</span> <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>dp<span class="op">[</span>i<span class="op">][</span>k<span class="op">],</span> dp<span class="op">[</span>i <span class="op">-</span> lastmin<span class="op">[</span>k<span class="op">]][</span>k<span class="op">]</span> <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>          ans <span class="op">=</span> <span class="bu">std::</span>max<span class="op">(</span>ans<span class="op">,</span> dp<span class="op">[</span>i<span class="op">][</span>k<span class="op">]);</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="op">&#125;</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>      <span class="op">&#125;</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span><span class="co">// 滑雪</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  write<span class="op">(</span>ans<span class="op">),</span> putchar<span class="op">(</span><span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">);</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">

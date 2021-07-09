@@ -508,117 +508,113 @@
     
         <p>这是 yhx-12243 的 NTT</p>
 <span id="more"></span>
-
-<pre><code class="cpp">inline int &amp; reduce(int &amp;x) &#123;return x += x &gt;&gt; 31 &amp; mod;&#125;
-inline int &amp; neg(int &amp;x) &#123;return x = (!x - 1) &amp; (mod - x);&#125;
-u64 PowerMod(u64 a, int n, u64 c = 1) &#123;for (; n; n &gt;&gt;= 1, a = a * a % mod) if (n &amp; 1) c = c * a % mod; return c;&#125;
-namespace poly_base &#123;
-    int l, n; u64 iv; vec w2;
-    void init(int n = N, bool dont_calc_factorials = true) &#123;
-        int i, t;
-        for (inv[1] = 1, i = 2; i &lt; n; ++i) inv[i] = u64(mod - mod / i) * inv[mod % i] % mod;
-        if (!dont_calc_factorials) for (*finv = *fact = i = 1; i &lt; n; ++i) fact[i] = (u64)fact[i - 1] * i % mod, finv[i] = (u64)finv[i - 1] * inv[i] % mod;
-        t = min(n &gt; 1 ? lg2(n - 1) : 0, 21),
-        *w2 = 1, w2[1 &lt;&lt; t] = PowerMod(31, 1 &lt;&lt; (21 - t));
-        for (i = t; i; --i) w2[1 &lt;&lt; (i - 1)] = (u64)w2[1 &lt;&lt; i] * w2[1 &lt;&lt; i] % mod;
-        for (i = 1; i &lt; n; ++i) w2[i] = (u64)w2[i &amp; (i - 1)] * w2[i &amp; -i] % mod;
-    &#125;
-    inline void NTT_init(int len) &#123;n = 1 &lt;&lt; (l = len), iv = mod - (mod - 1) / n;&#125;
-    void DIF(int *a) &#123;
-        int i, *j, *k, len = n &gt;&gt; 1, R, *o;
-        for (i = 0; i &lt; l; ++i, len &gt;&gt;= 1)
-            for (j = a, o = w2; j != a + n; j += len &lt;&lt; 1, ++o)
-                for (k = j; k != j + len; ++k)
-                    R = (u64)*o * k[len] % mod, reduce(k[len] = *k - R), reduce(*k += R - mod);
-    &#125;
-    void DIT(int *a) &#123;
-        int i, *j, *k, len = 1, R, *o;
-        for (i = 0; i &lt; l; ++i, len &lt;&lt;= 1)
-            for (j = a, o = w2; j != a + n; j += len &lt;&lt; 1, ++o)
-                for (k = j; k != j + len; ++k)
-                    reduce(R = *k + k[len] - mod), k[len] = u64(*k - k[len] + mod) * *o % mod, *k = R;
-    &#125;
-    inline void DNTT(int *a) &#123;DIF(a);&#125;
-    inline void IDNTT(int *a) &#123;
-        DIT(a), std::reverse(a + 1, a + n);
-        for (int i = 0; i &lt; n; ++i) a[i] = a[i] * iv % mod;
-    &#125;
-&#125;
-</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">int</span> <span class="op">&amp;</span> reduce<span class="op">(</span><span class="dt">int</span> <span class="op">&amp;</span>x<span class="op">)</span> <span class="op">&#123;</span><span class="cf">return</span> x <span class="op">+=</span> x <span class="op">&gt;&gt;</span> <span class="dv">31</span> <span class="op">&amp;</span> mod<span class="op">;&#125;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="dt">int</span> <span class="op">&amp;</span> neg<span class="op">(</span><span class="dt">int</span> <span class="op">&amp;</span>x<span class="op">)</span> <span class="op">&#123;</span><span class="cf">return</span> x <span class="op">=</span> <span class="op">(!</span>x <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span>mod <span class="op">-</span> x<span class="op">);&#125;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>u64 PowerMod<span class="op">(</span>u64 a<span class="op">,</span> <span class="dt">int</span> n<span class="op">,</span> u64 c <span class="op">=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&#123;</span><span class="cf">for</span> <span class="op">(;</span> n<span class="op">;</span> n <span class="op">&gt;&gt;=</span> <span class="dv">1</span><span class="op">,</span> a <span class="op">=</span> a <span class="op">*</span> a <span class="op">%</span> mod<span class="op">)</span> <span class="cf">if</span> <span class="op">(</span>n <span class="op">&amp;</span> <span class="dv">1</span><span class="op">)</span> c <span class="op">=</span> c <span class="op">*</span> a <span class="op">%</span> mod<span class="op">;</span> <span class="cf">return</span> c<span class="op">;&#125;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> poly_base <span class="op">&#123;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> l<span class="op">,</span> n<span class="op">;</span> u64 iv<span class="op">;</span> vec w2<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> init<span class="op">(</span><span class="dt">int</span> n <span class="op">=</span> N<span class="op">,</span> <span class="dt">bool</span> dont_calc_factorials <span class="op">=</span> <span class="kw">true</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> i<span class="op">,</span> t<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span>inv<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> i <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> inv<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> u64<span class="op">(</span>mod <span class="op">-</span> mod <span class="op">/</span> i<span class="op">)</span> <span class="op">*</span> inv<span class="op">[</span>mod <span class="op">%</span> i<span class="op">]</span> <span class="op">%</span> mod<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(!</span>dont_calc_factorials<span class="op">)</span> <span class="cf">for</span> <span class="op">(*</span>finv <span class="op">=</span> <span class="op">*</span>fact <span class="op">=</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> fact<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>u64<span class="op">)</span>fact<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">*</span> i <span class="op">%</span> mod<span class="op">,</span> finv<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>u64<span class="op">)</span>finv<span class="op">[</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">]</span> <span class="op">*</span> inv<span class="op">[</span>i<span class="op">]</span> <span class="op">%</span> mod<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> min<span class="op">(</span>n <span class="op">&gt;</span> <span class="dv">1</span> <span class="op">?</span> lg2<span class="op">(</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">21</span><span class="op">),</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span>w2 <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> w2<span class="op">[</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> t<span class="op">]</span> <span class="op">=</span> PowerMod<span class="op">(</span><span class="dv">31</span><span class="op">,</span> <span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="op">(</span><span class="dv">21</span> <span class="op">-</span> t<span class="op">));</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> t<span class="op">;</span> i<span class="op">;</span> <span class="op">--</span>i<span class="op">)</span> w2<span class="op">[</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="op">(</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">)]</span> <span class="op">=</span> <span class="op">(</span>u64<span class="op">)</span>w2<span class="op">[</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> i<span class="op">]</span> <span class="op">*</span> w2<span class="op">[</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> i<span class="op">]</span> <span class="op">%</span> mod<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> w2<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>u64<span class="op">)</span>w2<span class="op">[</span>i <span class="op">&amp;</span> <span class="op">(</span>i <span class="op">-</span> <span class="dv">1</span><span class="op">)]</span> <span class="op">*</span> w2<span class="op">[</span>i <span class="op">&amp;</span> <span class="op">-</span>i<span class="op">]</span> <span class="op">%</span> mod<span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">inline</span> <span class="dt">void</span> NTT_init<span class="op">(</span><span class="dt">int</span> len<span class="op">)</span> <span class="op">&#123;</span>n <span class="op">=</span> <span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="op">(</span>l <span class="op">=</span> len<span class="op">),</span> iv <span class="op">=</span> mod <span class="op">-</span> <span class="op">(</span>mod <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">/</span> n<span class="op">;&#125;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> DIF<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>a<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> i<span class="op">,</span> <span class="op">*</span>j<span class="op">,</span> <span class="op">*</span>k<span class="op">,</span> len <span class="op">=</span> n <span class="op">&gt;&gt;</span> <span class="dv">1</span><span class="op">,</span> R<span class="op">,</span> <span class="op">*</span>o<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> l<span class="op">;</span> <span class="op">++</span>i<span class="op">,</span> len <span class="op">&gt;&gt;=</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span>j <span class="op">=</span> a<span class="op">,</span> o <span class="op">=</span> w2<span class="op">;</span> j <span class="op">!=</span> a <span class="op">+</span> n<span class="op">;</span> j <span class="op">+=</span> len <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">,</span> <span class="op">++</span>o<span class="op">)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> <span class="op">(</span>k <span class="op">=</span> j<span class="op">;</span> k <span class="op">!=</span> j <span class="op">+</span> len<span class="op">;</span> <span class="op">++</span>k<span class="op">)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                    R <span class="op">=</span> <span class="op">(</span>u64<span class="op">)*</span>o <span class="op">*</span> k<span class="op">[</span>len<span class="op">]</span> <span class="op">%</span> mod<span class="op">,</span> reduce<span class="op">(</span>k<span class="op">[</span>len<span class="op">]</span> <span class="op">=</span> <span class="op">*</span>k <span class="op">-</span> R<span class="op">),</span> reduce<span class="op">(*</span>k <span class="op">+=</span> R <span class="op">-</span> mod<span class="op">);</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> DIT<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>a<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> i<span class="op">,</span> <span class="op">*</span>j<span class="op">,</span> <span class="op">*</span>k<span class="op">,</span> len <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> R<span class="op">,</span> <span class="op">*</span>o<span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> l<span class="op">;</span> <span class="op">++</span>i<span class="op">,</span> len <span class="op">&lt;&lt;=</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span>j <span class="op">=</span> a<span class="op">,</span> o <span class="op">=</span> w2<span class="op">;</span> j <span class="op">!=</span> a <span class="op">+</span> n<span class="op">;</span> j <span class="op">+=</span> len <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">,</span> <span class="op">++</span>o<span class="op">)</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> <span class="op">(</span>k <span class="op">=</span> j<span class="op">;</span> k <span class="op">!=</span> j <span class="op">+</span> len<span class="op">;</span> <span class="op">++</span>k<span class="op">)</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                    reduce<span class="op">(</span>R <span class="op">=</span> <span class="op">*</span>k <span class="op">+</span> k<span class="op">[</span>len<span class="op">]</span> <span class="op">-</span> mod<span class="op">),</span> k<span class="op">[</span>len<span class="op">]</span> <span class="op">=</span> u64<span class="op">(*</span>k <span class="op">-</span> k<span class="op">[</span>len<span class="op">]</span> <span class="op">+</span> mod<span class="op">)</span> <span class="op">*</span> <span class="op">*</span>o <span class="op">%</span> mod<span class="op">,</span> <span class="op">*</span>k <span class="op">=</span> R<span class="op">;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">inline</span> <span class="dt">void</span> DNTT<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>a<span class="op">)</span> <span class="op">&#123;</span>DIF<span class="op">(</span>a<span class="op">);&#125;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="kw">inline</span> <span class="dt">void</span> IDNTT<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>a<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        DIT<span class="op">(</span>a<span class="op">),</span> <span class="bu">std::</span>reverse<span class="op">(</span>a <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> a <span class="op">+</span> n<span class="op">);</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> iv <span class="op">%</span> mod<span class="op">;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
 <p>它为什么跑这么快？DIT 和 DIF 在干啥？预处理的原根为何和大多数人的不一样？这篇文章将为你解开这一奥秘（</p>
-<p>先来看 init 函数 <code>w2[1 &lt;&lt; t] = PowerMod(31, 1 &lt;&lt; (21 - t));</code> 为什么是 $31$？</p>
-<p>我们发现 $31^{2^{23}}=1$ 同时它模 $998244353$ 的阶是 $2^{23}$ 的倍数，也就是说它在进行 NTT 时和 $3^{119}$ 具有相似的性质，事实上，这里的确可以换为 $3^{119}$。</p>
-<p>平时我的写法都要预处理 $21$ 种原根的次幂，为什么这里只用处理一种原根呢？我们将 $31$ 改为 $3^{119}$ 输出一下这段代码预处理的原根前 $8$ 项，发现结果如下：</p>
-<pre><code>1 911660635 372528824 488723995 929031873 373294451 628914303 661054123
-</code></pre>
+<p>先来看 init 函数 <code>w2[1 &lt;&lt; t] = PowerMod(31, 1 &lt;&lt; (21 - t));</code> 为什么是 <span class="math inline">\(31\)</span>？</p>
+<p>我们发现 <span class="math inline">\(31^{2^{23}}=1\)</span> 同时它模 <span class="math inline">\(998244353\)</span> 的阶是 <span class="math inline">\(2^{23}\)</span> 的倍数，也就是说它在进行 NTT 时和 <span class="math inline">\(3^{119}\)</span> 具有相似的性质，事实上，这里的确可以换为 <span class="math inline">\(3^{119}\)</span>。</p>
+<p>平时我的写法都要预处理 <span class="math inline">\(21\)</span> 种原根的次幂，为什么这里只用处理一种原根呢？我们将 <span class="math inline">\(31\)</span> 改为 <span class="math inline">\(3^{119}\)</span> 输出一下这段代码预处理的原根前 <span class="math inline">\(8\)</span> 项，发现结果如下：</p>
+<pre><code>1 911660635 372528824 488723995 929031873 373294451 628914303 661054123</code></pre>
 <p>再来看平常写法预处理的原根：</p>
 <pre><code>1: 1
 2: 1 911660635
 4: 1 372528824 911660635 488723995
-8: 1 929031873 372528824 628914303 911660635 373294451 488723995 661054123
-</code></pre>
+8: 1 929031873 372528824 628914303 911660635 373294451 488723995 661054123</code></pre>
 <p>我们发现对这一结果蝴蝶变换（二进制翻转）可以得到如下结果：</p>
 <pre><code>1: 1
 2: 1 911660635
 4: 1 911660635 372528824 488723995
-8: 1 911660635 372528824 488723995 929031873 373294451 628914303 661054123
-</code></pre>
-<p>我们发现 $1$ 是 $2$ 的前缀，$2$ 是 $4$ 的前缀……</p>
-<p>经过冷静思考，我们发现这是显然的，蝴蝶变换是 $0$ 不动，偶数放左边，奇数放右边，分别进行少一位的蝴蝶变换，而根据 $\omega_{2n}^{2i}=\omega_n^i$ 所以它前一半就是对 $\frac{n}{2}$ 范围的原根做蝴蝶变换的结果。</p>
-<p>代码在做什么也很好懂了，预处理出 $g^{2^k}$ 放在 $2^{21-k}$ 处（即蝴蝶变换后的结果），再递推得到其他结果（$g^{2^j+2^k}=g^{2^j}\times g^{2^k}$，二进制翻转后也可以这样找每个为 $1$ 的位乘上）。</p>
+8: 1 911660635 372528824 488723995 929031873 373294451 628914303 661054123</code></pre>
+<p>我们发现 <span class="math inline">\(1\)</span> 是 <span class="math inline">\(2\)</span> 的前缀，<span class="math inline">\(2\)</span> 是 <span class="math inline">\(4\)</span> 的前缀……</p>
+<p>经过冷静思考，我们发现这是显然的，蝴蝶变换是 <span class="math inline">\(0\)</span> 不动，偶数放左边，奇数放右边，分别进行少一位的蝴蝶变换，而根据 <span class="math inline">\(\omega_{2n}^{2i}=\omega_n^i\)</span> 所以它前一半就是对 <span class="math inline">\(\frac{n}{2}\)</span> 范围的原根做蝴蝶变换的结果。</p>
+<p>代码在做什么也很好懂了，预处理出 <span class="math inline">\(g^{2^k}\)</span> 放在 <span class="math inline">\(2^{21-k}\)</span> 处（即蝴蝶变换后的结果），再递推得到其他结果（<span class="math inline">\(g^{2^j+2^k}=g^{2^j}\times g^{2^k}\)</span>，二进制翻转后也可以这样找每个为 <span class="math inline">\(1\)</span> 的位乘上）。</p>
 <p>这样预处理原根有什么用？等下就知道了。</p>
 <p>我们还要知道它的基本原理：DIT/DIF。在 rushcheyo 学长《转置原理及其应用》中我们了解到 DIT（decimation in time，按时域抽取）-FFT 可以将蝴蝶变换后的系数向量转化为点值向量； DIF（decimation in frequency，按频域抽取）-FFT 可以将系数向量转化为蝴蝶变换后的点值向量，二者互为置换。</p>
 <p>我们发现可以用 DIF 实现 DFT，用 DIT 实现 IDFT 于是我们就不用进行蝴蝶变换了。</p>
 <p>这是我写的一份朴素的 DIT/DIF-NTT：</p>
-<pre><code class="cpp">void init_Poly() &#123;
-  for (int l = 1; l &lt; (1 &lt;&lt; 21); l &lt;&lt;= 1) &#123;
-    gw[l] = 1;
-    int gn = pow(g, (Mod - 1) / (l &lt;&lt; 1), Mod);
-    for (int j = 1; j &lt; l; ++j) &#123;
-      gw[l | j] = 1ll * gw[l | (j - 1)] * gn % Mod;
-    &#125;
-  &#125;
-&#125;
-void DIT(int *A, int lim, bool flag) &#123;
-  for (int l = 1; l &lt; lim; l &lt;&lt;= 1) &#123;
-    int *k = A;
-    for (int i = 0; i &lt; lim; i += (l &lt;&lt; 1), k += (l &lt;&lt; 1)) &#123;
-      int *x = k;
-      for (int j = 0, *g = gw + l; j &lt; l; ++j, ++x, ++g) &#123;
-        int o = 1ll * x[l] * *g % Mod;
-        x[l] = (*x + Mod - o) % Mod, *x = (*x + o) % Mod;
-      &#125;
-    &#125;
-  &#125;
-  int iv = pow(lim, Mod - 2, Mod);
-  for (int i = 0; i &lt; lim; ++i) A[i] = 1ll * A[i] * iv % Mod;
-  std::reverse(A + 1, A + lim);
-&#125;
-void DIF(int *A, int lim, bool flag) &#123;
-  for (int l = lim / 2; l &gt;= 1; l &gt;&gt;= 1) &#123;
-    int *k = A;
-    for (int i = 0; i &lt; lim; i += (l &lt;&lt; 1), k += (l &lt;&lt; 1)) &#123;
-      int *x = k;
-      for (int j = 0, *g = gw + l; j &lt; l; ++j, ++x, ++g) &#123;
-        int o = x[l];
-        x[l] = 1ll * (*x + Mod - o) * *g % Mod, *x = (*x + o) % Mod;
-      &#125;
-    &#125;
-  &#125;
-&#125;
-</code></pre>
-<p>这里的原根是最朴素的处理方式，而在进行 DIT/DIF 的时候，我们需要移动 $\operatorname{O}(n\log n)$ 次原根，而 yhx-12243 的 DIT/DIF 只需要移动 $\operatorname{O}(n)$ 次。</p>
-<p>我们还发现一件神奇的事：yhx-12243 的 DIT 除了最外层 $len$ 的枚举顺序，似乎都在做 DIF，而 DIF 除了最外层 $len$ 的枚举顺序，似乎都在做 DIT！</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> init_Poly<span class="op">()</span> <span class="op">&#123;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> l <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> l <span class="op">&lt;</span> <span class="op">(</span><span class="dv">1</span> <span class="op">&lt;&lt;</span> <span class="dv">21</span><span class="op">);</span> l <span class="op">&lt;&lt;=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    gw<span class="op">[</span>l<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> gn <span class="op">=</span> pow<span class="op">(</span>g<span class="op">,</span> <span class="op">(</span>Mod <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span>l <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">),</span> Mod<span class="op">);</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;</span> l<span class="op">;</span> <span class="op">++</span>j<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      gw<span class="op">[</span>l <span class="op">|</span> j<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> gw<span class="op">[</span>l <span class="op">|</span> <span class="op">(</span>j <span class="op">-</span> <span class="dv">1</span><span class="op">)]</span> <span class="op">*</span> gn <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> DIT<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>A<span class="op">,</span> <span class="dt">int</span> lim<span class="op">,</span> <span class="dt">bool</span> flag<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> l <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> l <span class="op">&lt;</span> lim<span class="op">;</span> l <span class="op">&lt;&lt;=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>k <span class="op">=</span> A<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> lim<span class="op">;</span> i <span class="op">+=</span> <span class="op">(</span>l <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">),</span> k <span class="op">+=</span> <span class="op">(</span>l <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">))</span> <span class="op">&#123;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">int</span> <span class="op">*</span>x <span class="op">=</span> k<span class="op">;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> <span class="op">*</span>g <span class="op">=</span> gw <span class="op">+</span> l<span class="op">;</span> j <span class="op">&lt;</span> l<span class="op">;</span> <span class="op">++</span>j<span class="op">,</span> <span class="op">++</span>x<span class="op">,</span> <span class="op">++</span>g<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> o <span class="op">=</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> x<span class="op">[</span>l<span class="op">]</span> <span class="op">*</span> <span class="op">*</span>g <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        x<span class="op">[</span>l<span class="op">]</span> <span class="op">=</span> <span class="op">(*</span>x <span class="op">+</span> Mod <span class="op">-</span> o<span class="op">)</span> <span class="op">%</span> Mod<span class="op">,</span> <span class="op">*</span>x <span class="op">=</span> <span class="op">(*</span>x <span class="op">+</span> o<span class="op">)</span> <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      <span class="op">&#125;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> iv <span class="op">=</span> pow<span class="op">(</span>lim<span class="op">,</span> Mod <span class="op">-</span> <span class="dv">2</span><span class="op">,</span> Mod<span class="op">);</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> lim<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> A<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> A<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> iv <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="bu">std::</span>reverse<span class="op">(</span>A <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> A <span class="op">+</span> lim<span class="op">);</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> DIF<span class="op">(</span><span class="dt">int</span> <span class="op">*</span>A<span class="op">,</span> <span class="dt">int</span> lim<span class="op">,</span> <span class="dt">bool</span> flag<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> l <span class="op">=</span> lim <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> l <span class="op">&gt;=</span> <span class="dv">1</span><span class="op">;</span> l <span class="op">&gt;&gt;=</span> <span class="dv">1</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> <span class="op">*</span>k <span class="op">=</span> A<span class="op">;</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> lim<span class="op">;</span> i <span class="op">+=</span> <span class="op">(</span>l <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">),</span> k <span class="op">+=</span> <span class="op">(</span>l <span class="op">&lt;&lt;</span> <span class="dv">1</span><span class="op">))</span> <span class="op">&#123;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>      <span class="dt">int</span> <span class="op">*</span>x <span class="op">=</span> k<span class="op">;</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> <span class="op">*</span>g <span class="op">=</span> gw <span class="op">+</span> l<span class="op">;</span> j <span class="op">&lt;</span> l<span class="op">;</span> <span class="op">++</span>j<span class="op">,</span> <span class="op">++</span>x<span class="op">,</span> <span class="op">++</span>g<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> o <span class="op">=</span> x<span class="op">[</span>l<span class="op">];</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        x<span class="op">[</span>l<span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="bu">ll</span> <span class="op">*</span> <span class="op">(*</span>x <span class="op">+</span> Mod <span class="op">-</span> o<span class="op">)</span> <span class="op">*</span> <span class="op">*</span>g <span class="op">%</span> Mod<span class="op">,</span> <span class="op">*</span>x <span class="op">=</span> <span class="op">(*</span>x <span class="op">+</span> o<span class="op">)</span> <span class="op">%</span> Mod<span class="op">;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>      <span class="op">&#125;</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
+<p>这里的原根是最朴素的处理方式，而在进行 DIT/DIF 的时候，我们需要移动 <span class="math inline">\(\operatorname{O}(n\log n)\)</span> 次原根，而 yhx-12243 的 DIT/DIF 只需要移动 <span class="math inline">\(\operatorname{O}(n)\)</span> 次。</p>
+<p>我们还发现一件神奇的事：yhx-12243 的 DIT 除了最外层 <span class="math inline">\(len\)</span> 的枚举顺序，似乎都在做 DIF，而 DIF 除了最外层 <span class="math inline">\(len\)</span> 的枚举顺序，似乎都在做 DIT！</p>
 <p>这是一张 DIT-FFT 和 DIF-FFT 的示意图：</p>
-<p><img src="/2021/yhx-12243-NTT/1.png" alt="DIT-FFT 和 DIF-FFT 的示意图"></p>
-<p>我们观察到 DIT-FFT 时如果对系数向量进行了蝴蝶变换，对 $(0,4)$ 操作变为了对 $(0,1)$ 操作，对 $(4,6)$ 操作变为了对 $(1,3)$ 操作，如果不对系数向量做蝴蝶变换并保持原先的操作呢（即仍然是对 $(0,4)$ 操作，对 $(4,6)$ 操作）？好像这样仍然会得到一个点值数组，这个点值数组正是蝴蝶变换后的点值数组！</p>
-<p>原因是简单的：观察到蝴蝶变换的置换 $A$ 有：$A^{-1}=A$ 对于输入的系数数组做这一置换，运算过程不变，那么答案也应当也被做了该置换，于是 $A\circ A=I$（输入），$I\circ A=A$（答案）。</p>
+<figure>
+<img src="/2021/yhx-12243-NTT/1.png" alt="DIT-FFT 和 DIF-FFT 的示意图"><figcaption aria-hidden="true">DIT-FFT 和 DIF-FFT 的示意图</figcaption>
+</figure>
+<p>我们观察到 DIT-FFT 时如果对系数向量进行了蝴蝶变换，对 <span class="math inline">\((0,4)\)</span> 操作变为了对 <span class="math inline">\((0,1)\)</span> 操作，对 <span class="math inline">\((4,6)\)</span> 操作变为了对 <span class="math inline">\((1,3)\)</span> 操作，如果不对系数向量做蝴蝶变换并保持原先的操作呢（即仍然是对 <span class="math inline">\((0,4)\)</span> 操作，对 <span class="math inline">\((4,6)\)</span> 操作）？好像这样仍然会得到一个点值数组，这个点值数组正是蝴蝶变换后的点值数组！</p>
+<p>原因是简单的：观察到蝴蝶变换的置换 <span class="math inline">\(A\)</span> 有：<span class="math inline">\(A^{-1}=A\)</span> 对于输入的系数数组做这一置换，运算过程不变，那么答案也应当也被做了该置换，于是 <span class="math inline">\(A\circ A=I\)</span>（输入），<span class="math inline">\(I\circ A=A\)</span>（答案）。</p>
 <p>而原先要找的原根，也要对应的蝴蝶变换一下，这时候预处理蝴蝶变换后的原根的作用就体现出来了！</p>
-<p>更为重要的是，对于一个 $len$ 覆盖到的范围，所用的原根次幂是相同的（例如第一层变换中的 $(0,4),(1,5),(2,6),(3,7)$，第二层变换中的 $(0,2),(1,3)$ 和 $(4,6),(5,7)$）</p>
-<p>以上内容可以手画一下长为 $16$ 的 DIT-FFT 来加深理解。</p>
-<p>于是按从大到小枚举 $len$ 的顺序做 DIT，干的就是 DIF 的事，同理我们也可以得到按从小到大枚举 $len$ 的顺序做 DIF，干的就是 DIT 的事，而这种做法因为只需要移动 $T(n+\frac{n}{2}+\frac{n}{4}+\cdots)=\operatorname{O}(n)$ 次原根所以会比原先快一些。</p>
+<p>更为重要的是，对于一个 <span class="math inline">\(len\)</span> 覆盖到的范围，所用的原根次幂是相同的（例如第一层变换中的 <span class="math inline">\((0,4),(1,5),(2,6),(3,7)\)</span>，第二层变换中的 <span class="math inline">\((0,2),(1,3)\)</span> 和 <span class="math inline">\((4,6),(5,7)\)</span>）</p>
+<p>以上内容可以手画一下长为 <span class="math inline">\(16\)</span> 的 DIT-FFT 来加深理解。</p>
+<p>于是按从大到小枚举 <span class="math inline">\(len\)</span> 的顺序做 DIT，干的就是 DIF 的事，同理我们也可以得到按从小到大枚举 <span class="math inline">\(len\)</span> 的顺序做 DIF，干的就是 DIT 的事，而这种做法因为只需要移动 <span class="math inline">\(T(n+\frac{n}{2}+\frac{n}{4}+\cdots)=\operatorname{O}(n)\)</span> 次原根所以会比原先快一些。</p>
 <p>下面进行一些<del>可能并不靠谱的</del>效率差异比较（以下三份代码都使用 <code>unsigned long long</code> 优化，即用 ull 存储中间结果减少取模）：</p>
-<ol>
+<ol type="1">
 <li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/48841739">朴素 FFT</a> 总共 1.13s，最慢 414ms，代码 3.31KB</li>
 <li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/48841766">DIT-DIF FFT</a> 总共 887ms，最慢 303ms，代码 3.50KB</li>
 <li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/48841783">优化 DIT-DIF FFT</a> 总共 789ms，最慢 287ms，代码 3.62KB</li>

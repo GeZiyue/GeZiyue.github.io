@@ -365,7 +365,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="post-toc-number">1.</span> <span class="post-toc-text">思路</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%AE%97%E6%B3%951"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">算法1</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">复杂度分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%AE%97%E6%B3%952"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">算法2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90-1"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">复杂度分析</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81"><span class="post-toc-number">2.</span> <span class="post-toc-text">参考代码</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%AE%97%E6%B3%951"><span class="post-toc-number">1.</span> <span class="post-toc-text">算法1</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">复杂度分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%AE%97%E6%B3%952"><span class="post-toc-number">2.</span> <span class="post-toc-text">算法2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">复杂度分析</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81"><span class="post-toc-number"></span> <span class="post-toc-text">参考代码</span></a>
     </ul>
     
 
@@ -515,73 +515,75 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2948">题目</a></p>
-<span id="more"></span>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>显而易见，后入队的结点如果比前面的大，那么前面的一定对答案没有贡献(如果查询的区间包括前面的，则一定包括后面的)</p>
+        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2948">题目</a> <span id="more"></span> ## 思路 显而易见，后入队的结点如果比前面的大，那么前面的一定对答案没有贡献(如果查询的区间包括前面的，则一定包括后面的)</p>
 <p>可以考虑维护单调性</p>
-<h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><p>维护一个递增的单调栈，每次询问二分查找第一个在询问范围内的</p>
-<h4 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><ol>
+<h3 id="算法1">算法1</h3>
+<p>维护一个递增的单调栈，每次询问二分查找第一个在询问范围内的</p>
+<h4 id="复杂度分析">复杂度分析</h4>
+<ol type="1">
 <li>每个元素只会入栈一次</li>
-<li>每次查询的复杂度是$O(\log_2n)$的</li>
-<li>总复杂度$O(n+q\log_2n)$</li>
+<li>每次查询的复杂度是<span class="math inline">\(O(\log_2n)\)</span>的</li>
+<li>总复杂度<span class="math inline">\(O(n+q\log_2n)\)</span></li>
 </ol>
 <p>期望得分100分</p>
-<h3 id="算法2"><a href="#算法2" class="headerlink" title="算法2"></a>算法2</h3><p>考虑对算法1进行优化</p>
-<p>我们发现算法1的查询较慢，考虑是否能$O(1)$查询，考虑不将对答案无贡献的点删去，而是维护比他大的点中最新插入进序列的</p>
+<h3 id="算法2">算法2</h3>
+<p>考虑对算法1进行优化</p>
+<p>我们发现算法1的查询较慢，考虑是否能<span class="math inline">\(O(1)\)</span>查询，考虑不将对答案无贡献的点删去，而是维护比他大的点中最新插入进序列的</p>
 <p>发现可以用并查集维护，每次插入将和它相邻并比它小的合并</p>
-<p>每个集合的集合代表设为最左边的，集合权值为最右边的值，这样下次维护时对于一个集合可以直接跳到它的左边，而查询末尾$k$个数的值就是从右往左第$k$个数所属集合代表的权值</p>
-<h4 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><ol>
-<li>每个元素作为右端点只会被合并一次，所以一次插入的复杂度均摊为$O(\alpha(n))$</li>
-<li>查询操作只需查询它所对应的集合的权值，所以一次查询的复杂度为$O(\alpha(n))$</li>
-<li>总复杂度$O(\alpha(n)\cdot(n+q))$</li>
+<p>每个集合的集合代表设为最左边的，集合权值为最右边的值，这样下次维护时对于一个集合可以直接跳到它的左边，而查询末尾<span class="math inline">\(k\)</span>个数的值就是从右往左第<span class="math inline">\(k\)</span>个数所属集合代表的权值</p>
+<h4 id="复杂度分析-1">复杂度分析</h4>
+<ol type="1">
+<li>每个元素作为右端点只会被合并一次，所以一次插入的复杂度均摊为<span class="math inline">\(O(\alpha(n))\)</span></li>
+<li>查询操作只需查询它所对应的集合的权值，所以一次查询的复杂度为<span class="math inline">\(O(\alpha(n))\)</span></li>
+<li>总复杂度<span class="math inline">\(O(\alpha(n)\cdot(n+q))\)</span></li>
 </ol>
 <p>期望得分100分</p>
-<h2 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h2><p>此处只提供算法2的代码(省略预处理和快读快输)</p>
-<pre><code class="cpp">const int N = 200005;
-
-int find(int);
-void uni(int, int);
-
-int fa[N], maxi[N]; // 集合代表和权值
-int id; // 数列的大小
-
-int main () &#123;
-    int n, m;
-    read(n), read(m);
-  int lastans = 0;
-  for (int i = 1; i &lt;= n; ++i) &#123;
-    char ch = getchar();
-    if (ch != &#39;A&#39; &amp;&amp; ch != &#39;Q&#39;) &#123;
-      ch = getchar();
-    &#125;
-    ll a;
-    read(a);
-    if (ch == &#39;A&#39;) &#123;
-      ++id;
-      fa[id] = id;
-      maxi[id] = (a + lastans) % m;
-      int fi = id; // 目前集合的最左端，fi - 1就是下次考虑是否合并的集合的最右端
-      while (fi &gt; 1 &amp;&amp; maxi[fi] &gt; maxi[find(fi - 1)]) &#123;
-        uni(fi - 1, fi);
-        fi = find(id);
-      &#125;
-    &#125; else &#123;
-      lastans = maxi[find(id - a + 1)];
-      write(lastans), EL;
-    &#125;
-  &#125;
-  return 0;
-&#125;
-
-int find(int x) &#123;
-    return fa[x] == x ? x : fa[x] = find(fa[x]);
-&#125;
-void uni(int x, int y) &#123;
-    int fx = find(x), fy = find(y);
-    fa[fy] = fx; // 将集合代表设为左边的
-    maxi[fx] = maxi[fy]; // 将集合权值设为右边的值
-&#125;
-</code></pre>
+<h2 id="参考代码">参考代码</h2>
+<p>此处只提供算法2的代码(省略预处理和快读快输)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> N <span class="op">=</span> <span class="dv">200005</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> find<span class="op">(</span><span class="dt">int</span><span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> uni<span class="op">(</span><span class="dt">int</span><span class="op">,</span> <span class="dt">int</span><span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> fa<span class="op">[</span>N<span class="op">],</span> maxi<span class="op">[</span>N<span class="op">];</span> <span class="co">// 集合代表和权值</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> id<span class="op">;</span> <span class="co">// 数列的大小</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main <span class="op">()</span> <span class="op">&#123;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> n<span class="op">,</span> m<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    read<span class="op">(</span>n<span class="op">),</span> read<span class="op">(</span>m<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> lastans <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> ch <span class="op">=</span> getchar<span class="op">();</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ch <span class="op">!=</span> <span class="ch">&#39;A&#39;</span> <span class="op">&amp;&amp;</span> ch <span class="op">!=</span> <span class="ch">&#39;Q&#39;</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      ch <span class="op">=</span> getchar<span class="op">();</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    ll a<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    read<span class="op">(</span>a<span class="op">);</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>ch <span class="op">==</span> <span class="ch">&#39;A&#39;</span><span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">++</span>id<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>      fa<span class="op">[</span>id<span class="op">]</span> <span class="op">=</span> id<span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      maxi<span class="op">[</span>id<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>a <span class="op">+</span> lastans<span class="op">)</span> <span class="op">%</span> m<span class="op">;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>      <span class="dt">int</span> fi <span class="op">=</span> id<span class="op">;</span> <span class="co">// 目前集合的最左端，fi - 1就是下次考虑是否合并的集合的最右端</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="cf">while</span> <span class="op">(</span>fi <span class="op">&gt;</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> maxi<span class="op">[</span>fi<span class="op">]</span> <span class="op">&gt;</span> maxi<span class="op">[</span>find<span class="op">(</span>fi <span class="op">-</span> <span class="dv">1</span><span class="op">)])</span> <span class="op">&#123;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        uni<span class="op">(</span>fi <span class="op">-</span> <span class="dv">1</span><span class="op">,</span> fi<span class="op">);</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        fi <span class="op">=</span> find<span class="op">(</span>id<span class="op">);</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="op">&#125;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span> <span class="cf">else</span> <span class="op">&#123;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>      lastans <span class="op">=</span> maxi<span class="op">[</span>find<span class="op">(</span>id <span class="op">-</span> a <span class="op">+</span> <span class="dv">1</span><span class="op">)];</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      write<span class="op">(</span>lastans<span class="op">),</span> EL<span class="op">;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">&#125;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="op">&#125;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> find<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fa<span class="op">[</span>x<span class="op">]</span> <span class="op">==</span> x <span class="op">?</span> x <span class="op">:</span> fa<span class="op">[</span>x<span class="op">]</span> <span class="op">=</span> find<span class="op">(</span>fa<span class="op">[</span>x<span class="op">]);</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> uni<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y<span class="op">)</span> <span class="op">&#123;</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> fx <span class="op">=</span> find<span class="op">(</span>x<span class="op">),</span> fy <span class="op">=</span> find<span class="op">(</span>y<span class="op">);</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    fa<span class="op">[</span>fy<span class="op">]</span> <span class="op">=</span> fx<span class="op">;</span> <span class="co">// 将集合代表设为左边的</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    maxi<span class="op">[</span>fx<span class="op">]</span> <span class="op">=</span> maxi<span class="op">[</span>fy<span class="op">];</span> <span class="co">// 将集合权值设为右边的值</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="op">&#125;</span></span></code></pre></div>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">

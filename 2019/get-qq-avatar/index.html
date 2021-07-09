@@ -365,7 +365,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E4%B8%A4%E4%B8%AA%E5%9C%B0%E5%9D%80"><span class="post-toc-number">1.</span> <span class="post-toc-text">两个地址</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E8%BD%AC%E6%8D%A2"><span class="post-toc-number">2.</span> <span class="post-toc-text">转换</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%A4%B4%E5%83%8F%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="post-toc-number">3.</span> <span class="post-toc-text">头像的大小</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%A4%B4%E5%83%8F%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="post-toc-number">1.</span> <span class="post-toc-text">头像的大小</span></a></li></ol>
     </ul>
     
 
@@ -506,70 +506,68 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>用QQ号码找到对应的QQ头像地址(且不暴露用户的QQ号码)</p>
-<span id="more"></span>
-<h1 id="两个地址"><a href="#两个地址" class="headerlink" title="两个地址"></a>两个地址</h1><p>通过一番F12-Network的奇技淫巧，可以找到如下两种获取我的QQ头像的方法</p>
-<p><a target="_blank" rel="noopener" href="https://q.qlogo.cn/g?b=qq&nk=2775632269&s=100">https://q.qlogo.cn/g?b=qq&amp;nk=2775632269&amp;s=100</a></p>
-<p><a target="_blank" rel="noopener" href="https://q.qlogo.cn/g?b=qq&k=H2TQU1t17HiapSplCIBmkog&s=100">https://q.qlogo.cn/g?b=qq&amp;k=H2TQU1t17HiapSplCIBmkog&amp;s=100</a></p>
+        <p>用QQ号码找到对应的QQ头像地址(且不暴露用户的QQ号码) <span id="more"></span> # 两个地址 通过一番F12-Network的奇技淫巧，可以找到如下两种获取我的QQ头像的方法</p>
+<p><a target="_blank" rel="noopener" href="https://q.qlogo.cn/g?b=qq&amp;nk=2775632269&amp;s=100">https://q.qlogo.cn/g?b=qq&amp;nk=2775632269&amp;s=100</a></p>
+<p><a target="_blank" rel="noopener" href="https://q.qlogo.cn/g?b=qq&amp;k=H2TQU1t17HiapSplCIBmkog&amp;s=100">https://q.qlogo.cn/g?b=qq&amp;k=H2TQU1t17HiapSplCIBmkog&amp;s=100</a></p>
 <p>可以发现，前者用nk会暴露QQ号码，而后者用k应该是一个加密后的值，不会暴露QQ号码</p>
-<p>如何得到QQ号码对应的k值呢，Bing了一下，找到了一种解决方案</p>
-<h1 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h1><p>通过以下网址，我们能得到一堆东西(貌似是jsp)</p>
-<p><a target="_blank" rel="noopener" href="https://ptlogin2.qq.com/getface?&imgtype=1&uin=2775632269">https://ptlogin2.qq.com/getface?&amp;imgtype=1&amp;uin=2775632269</a></p>
-<pre><code class="jsp">pt.setHeader(&#123;&quot;2775632269&quot;:&quot;https://thirdqq.qlogo.cn/g?b=sdk&amp;k=H2TQU1t17HiapSplCIBmkog&amp;s=40&amp;t=1555595532&quot;&#125;)
-</code></pre>
+<p>如何得到QQ号码对应的k值呢，Bing了一下，找到了一种解决方案 # 转换 通过以下网址，我们能得到一堆东西(貌似是jsp)</p>
+<p><a target="_blank" rel="noopener" href="https://ptlogin2.qq.com/getface?&amp;imgtype=1&amp;uin=2775632269">https://ptlogin2.qq.com/getface?&amp;imgtype=1&amp;uin=2775632269</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode jsp"><code class="sourceCode jsp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pt.setHeader(&#123;&quot;2775632269&quot;:&quot;https://thirdqq.qlogo.cn/g?b=sdk&amp;k=H2TQU1t17HiapSplCIBmkog&amp;s=40&amp;t=1555595532&quot;&#125;)</span></code></pre></div>
 <p>我们可以惊喜的看到我们要的k就在这里，于是我们就知道肿么处理了</p>
-<pre><code class="plain">先通过
+<pre class="plain"><code>先通过
 https://ptlogin2.qq.com/getface?&amp;imgtype=1&amp;uin=QQ号
 得到k值，然后可以访问
 https://q.qlogo.cn/g?b=qq&amp;k=对应的k值&amp;s=100
-得到QQ头像
-</code></pre>
-<h1 id="头像的大小"><a href="#头像的大小" class="headerlink" title="头像的大小"></a>头像的大小</h1><p>我们会发现刚才那个网址得到的头像是100px*100px的头像，如果我们想得到更大或更小的头像，该肿么办呢？</p>
+得到QQ头像</code></pre>
+<h1 id="头像的大小">头像的大小</h1>
+<p>我们会发现刚才那个网址得到的头像是100px*100px的头像，如果我们想得到更大或更小的头像，该肿么办呢？</p>
 <p>我们会发现网址中的s值对应的就是size(大小)，一番摸索尝试后，得到了s和大小的关系，如下表:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>s值</th>
 <th>大小</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>1</td>
 <td>40*40</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>40*40</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>100*100</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>140*140</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>640*640</td>
 </tr>
-<tr>
+<tr class="even">
 <td>40</td>
 <td>40*40</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>100</td>
 <td>100*100</td>
 </tr>
-<tr>
+<tr class="even">
 <td>140</td>
 <td>140*140</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>640</td>
 <td>640*640</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>不过，如果头像的大小比s对应值的大小还小,就会返回原始头像(如某人的头像,是579px的,s=5或640时会返回一个579px的头像)</p>
 
         

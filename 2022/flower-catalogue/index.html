@@ -18,24 +18,22 @@
   <meta name="author" content="Seniorious">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目">
+    <meta name="description" content="也许鲜花和人生一样会逐渐褪色，但我们在上面倾注的心血可能并不是为了保存他们的颜色，而是为了保存自己的热爱。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「洛谷P6667」[清华集训2016]如何优雅地求和 题解">
-<meta property="og:url" content="https://blog.seniorious.cc/2020/luogu-6667/index.html">
+<meta property="og:title" content="闲话目录">
+<meta property="og:url" content="https://blog.seniorious.cc/2022/flower-catalogue/index.html">
 <meta property="og:site_name" content="Seniorious&#39; blog">
-<meta property="og:description" content="题目">
+<meta property="og:description" content="也许鲜花和人生一样会逐渐褪色，但我们在上面倾注的心血可能并不是为了保存他们的颜色，而是为了保存自己的热爱。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-10-13T16:14:12.000Z">
-<meta property="article:modified_time" content="2022-02-14T12:00:38.000Z">
+<meta property="article:published_time" content="2022-10-27T14:42:15.000Z">
+<meta property="article:modified_time" content="2022-10-27T15:40:43.461Z">
 <meta property="article:author" content="Seniorious">
-<meta property="article:tag" content="概率与期望">
-<meta property="article:tag" content="生成函数">
-<meta property="article:tag" content="洛谷">
+<meta property="article:tag" content="闲话">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>「洛谷P6667」[清华集训2016]如何优雅地求和 题解 - Seniorious&#39; blog</title>
+  <title>闲话目录 - Seniorious&#39; blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -240,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="「洛谷P6667」[清华集训2016]如何优雅地求和 题解"></span>
+            <span id="subtitle" data-typed-text="闲话目录"></span>
           
         </div>
 
@@ -251,8 +249,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2020-10-14 00:14" pubdate>
-          2020年10月14日 凌晨
+        <time datetime="2022-10-27 22:42" pubdate>
+          2022年10月27日 晚上
         </time>
       </span>
     
@@ -264,7 +262,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.7k 字
+          300 字
         
       </span>
     
@@ -276,7 +274,7 @@
         
         
           <!-- compatible with older versions-->
-          9 分钟
+          1 分钟
         
       </span>
     
@@ -314,29 +312,16 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">「洛谷P6667」[清华集训2016]如何优雅地求和 题解</h1>
+            <h1 style="display: none">闲话目录</h1>
             
             
               <div class="markdown-body">
                 
-                <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6667">题目</a></p>
+                <p>也许鲜花和人生一样会逐渐褪色，但我们在上面倾注的心血可能并不是为了保存他们的颜色，而是为了保存自己的热爱。</p>
 <span id="more"></span>
-<p>提供一种概率生成函数的做法</p>
-<p>首先简单介绍一下概率生成函数：</p>
-<p>概率生成函数是一类用于解决、分析在自然数域上的离散随机变量相关问题的普通生成函数，其形式为 <span class="math inline">\(F(x)=\sum\limits_{i=0}^\infty\operatorname{P}(X=i)x^i\)</span></p>
-<p>有如下公式：</p>
-<p><span class="math inline">\(\operatorname{E}(X)=F^\prime(1)\)</span></p>
-<p><span class="math inline">\(\operatorname{E}(X^{\underline{n}})=F^{(n)}(1)\)</span></p>
-<p>对于成功概率为 <span class="math inline">\(p\)</span>，重复试验 <span class="math inline">\(n\)</span> 次的二项分布，概率生成函数为 <span class="math inline">\((1-p+px)^n\)</span></p>
-<p>下面是这题的做法</p>
-<h2 id="思路">思路</h2>
-<p>发现这个式子很像二项分布，事实上，这道题就是对于成功概率 <span class="math inline">\(p\)</span>，重复试验 <span class="math inline">\(n\)</span> 次的二项分布成功次数 <span class="math inline">\(X\)</span>，求 <span class="math inline">\(\operatorname{E}[f(X)]\)</span></p>
-<p>根据期望的线性性，可以拆开，又有 <span class="math inline">\(\operatorname{E}(X^{\underline{k}})=F^{(k)}(1)=p^kn^{\underline{k}}\)</span>（手动求导可得），其中 <span class="math inline">\(F(x)\)</span> 是该二项分布的概率生成函数</p>
-<p>考虑将 <span class="math inline">\(f(x)\)</span> 转为下降幂多项式 <span class="math inline">\(g(x)=\sum_{i=0}^mg_ix^{\underline{i}}\)</span>，答案即为 <span class="math inline">\(\sum_{i=0}^mg_ip^in^{\underline{i}}\)</span></p>
-<p>由于已经给出了 <span class="math inline">\(0\sim m\)</span> 处的点值，直接将 <span class="math inline">\(\sum\frac{f(i)}{i!}\)</span> 和 <span class="math inline">\(\sum\frac{(-1)^i}{i!}\)</span> 卷积的 <span class="math inline">\(i\)</span> 次项即为 <span class="math inline">\(g_i\)</span>（不会的可以先看<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5383">这道模板题</a>）</p>
-<p>时间复杂度 <span class="math inline">\(\operatorname{O}(m\log m)\)</span></p>
-<h2 id="代码">代码</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">20005</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> M = <span class="hljs-number">100005</span>;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> Mod = <span class="hljs-number">998244353</span>, g = <span class="hljs-number">3</span>;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Poly</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-type">int</span> *a;<br>  <span class="hljs-built_in">Poly</span>() &#123;<br>    a = <span class="hljs-keyword">new</span> <span class="hljs-type">int</span>[M];<br>    <span class="hljs-built_in">memset</span>(a, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>) * M);<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">NTT</span><span class="hljs-params">(<span class="hljs-type">int</span> lim, <span class="hljs-type">bool</span> opt)</span></span>;<br>&#125;;<br><span class="hljs-type">int</span> r[M];<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pow</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> m)</span></span>;<br><br><span class="hljs-type">int</span> pw[N], dw[N], fac[N], ifac[N];<br><span class="hljs-type">int</span> f[N];<br><span class="hljs-type">int</span> n, m, p;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-built_in">read</span>(n), <span class="hljs-built_in">read</span>(m), <span class="hljs-built_in">read</span>(p);<br>  <span class="hljs-type">int</span> lim = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">while</span> (lim &lt;= (m &lt;&lt; <span class="hljs-number">1</span>)) &#123;<br>    lim &lt;&lt;= <span class="hljs-number">1</span>;<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; lim; ++i) &#123;<br>    r[i] = (r[i &gt;&gt; <span class="hljs-number">1</span>] &gt;&gt; <span class="hljs-number">1</span>) | ((i &amp; <span class="hljs-number">1</span>) * (lim &gt;&gt; <span class="hljs-number">1</span>));<br>  &#125;<br>  pw[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>  dw[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>  fac[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) &#123;<br>    pw[i] = pw[i - <span class="hljs-number">1</span>] * <span class="hljs-number">1ll</span> * p % Mod;<br>    dw[i] = dw[i - <span class="hljs-number">1</span>] * <span class="hljs-number">1ll</span> * (n - i + <span class="hljs-number">1</span>) % Mod;<br>    fac[i] = fac[i - <span class="hljs-number">1</span>] * <span class="hljs-number">1ll</span> * i % Mod;<br>  &#125;<br>  ifac[m] = <span class="hljs-built_in">pow</span>(fac[m], Mod - <span class="hljs-number">2</span>, Mod);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = m - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i) &#123;<br>    ifac[i] = ifac[i + <span class="hljs-number">1</span>] * <span class="hljs-number">1ll</span> * (i + <span class="hljs-number">1</span>) % Mod;<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= m; ++i) &#123;<br>    <span class="hljs-built_in">read</span>(f[i]);<br>  &#125;<br>  Poly F, G;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= m; ++i) &#123;<br>    F.a[i] = f[i] * <span class="hljs-number">1ll</span> * ifac[i] % Mod;<br>    G.a[i] = ((i &amp; <span class="hljs-number">1</span>) ? (Mod - ifac[i]) : ifac[i]);<br>  &#125;<br>  F.<span class="hljs-built_in">NTT</span>(lim, <span class="hljs-literal">false</span>), G.<span class="hljs-built_in">NTT</span>(lim, <span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; lim; ++i) &#123;<br>    F.a[i] = F.a[i] * <span class="hljs-number">1ll</span> * G.a[i] % Mod;<br>  &#125;<br>  F.<span class="hljs-built_in">NTT</span>(lim, <span class="hljs-literal">true</span>);<br>  <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= m; ++i) &#123;<br>    ans = (ans + F.a[i] * <span class="hljs-number">1ll</span> * pw[i] % Mod * dw[i] % Mod) % Mod;<br>  &#125;<br>  <span class="hljs-built_in">write</span>(ans), EL;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pow</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> m)</span> </span>&#123;<br>  <span class="hljs-type">int</span> ans = <span class="hljs-number">1</span>, now = a;<br>  <span class="hljs-keyword">while</span> (b) &#123;<br>    <span class="hljs-keyword">if</span> (b &amp; <span class="hljs-number">1</span>) &#123;<br>      ans = ans * <span class="hljs-number">1ll</span> * now % m;<br>    &#125;<br>    now = now * <span class="hljs-number">1ll</span> * now % m;<br>    b &gt;&gt;= <span class="hljs-number">1</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> ans;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Poly::NTT</span><span class="hljs-params">(<span class="hljs-type">int</span> lim, <span class="hljs-type">bool</span> opt)</span> </span>&#123;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; lim; ++i) &#123;<br>    <span class="hljs-keyword">if</span> (i &lt; r[i]) &#123;<br>      std::<span class="hljs-built_in">swap</span>(a[i], a[r[i]]);<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> l = <span class="hljs-number">1</span>; l &lt; lim; l &lt;&lt;= <span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-type">int</span> gn = <span class="hljs-built_in">pow</span>(g, (Mod - <span class="hljs-number">1</span>) / (l &lt;&lt; <span class="hljs-number">1</span>), Mod);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; lim; i += (l &lt;&lt; <span class="hljs-number">1</span>)) &#123;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>, gw = <span class="hljs-number">1</span>; j &lt; l; ++j, gw = gw * <span class="hljs-number">1ll</span> * gn % Mod) &#123;<br>        <span class="hljs-type">int</span> x = a[i + j], y = a[i + j + l] * <span class="hljs-number">1ll</span> * gw % Mod;<br>        a[i + j] = (x + y) % Mod;<br>        a[i + j + l] = (x - y + Mod) % Mod;<br>      &#125;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">if</span> (opt) &#123;<br>    std::<span class="hljs-built_in">reverse</span>(a + <span class="hljs-number">1</span>, a + lim);<br>    <span class="hljs-type">int</span> iv = <span class="hljs-built_in">pow</span>(lim, Mod - <span class="hljs-number">2</span>, Mod);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; lim; ++i) &#123;<br>      a[i] = a[i] * <span class="hljs-number">1ll</span> * iv % Mod;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>感觉鲜花的开创者多头是一位很能享受生活，很浪漫，很有生活艺术的人。正如我在群里讲的那样是一种“白月光”的存在。相比之下我写的东西实在是比较垃圾，没有新颖的想法，没有趣味的文字，显得过于单调与笨重，但还是觉得有些写点东西的必要。总之坚持写点什么也许已经是一件足够美好的事情。</p>
+<p>原先在洛谷博客上写的东西，也不再搬运到这里了，就当是黑历史。这个博客里的东西也不会在洛谷同步，我只想在这个相对自由的平台说些我想说的话。如果你查看 GitHub Pages 很困难，很抱歉爱莫能助。</p>
+<p>就这样吧，祝我们都能享受生活。</p>
 
                 
               </div>
@@ -345,36 +330,11 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%A2%98%E8%A7%A3/" class="category-chain-item">题解</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%A6%82%E7%8E%87%E4%B8%8E%E6%9C%9F%E6%9C%9B/">#概率与期望</a>
-      
-        <a href="/tags/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/">#生成函数</a>
-      
-        <a href="/tags/%E6%B4%9B%E8%B0%B7/">#洛谷</a>
+        <a href="/tags/%E9%97%B2%E8%AF%9D/">#闲话</a>
       
     </div>
   
@@ -386,8 +346,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>「洛谷P6667」[清华集训2016]如何优雅地求和 题解</div>
-      <div>https://blog.seniorious.cc/2020/luogu-6667/</div>
+      <div>闲话目录</div>
+      <div>https://blog.seniorious.cc/2022/flower-catalogue/</div>
     </div>
     <div class="license-meta">
       
@@ -399,7 +359,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2020年10月14日</div>
+          <div>2022年10月27日</div>
         </div>
       
       
@@ -431,9 +391,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/Common-Error/" title="每天一个爆零小技巧">
+                      <a href="/2022/flower-10-27/" title="10 月 27 日闲话">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">每天一个爆零小技巧</span>
+                        <span class="hidden-mobile">10 月 27 日闲话</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -441,8 +401,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/CF-1286D/" title="「Codeforces 1286D」LCC 题解">
-                        <span class="hidden-mobile">「Codeforces 1286D」LCC 题解</span>
+                      <a href="/2022/NOI-2022/" title="NOI 2022 游记">
+                        <span class="hidden-mobile">NOI 2022 游记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -463,7 +423,7 @@
         var options = Object.assign(
           {"clientID":"b351bc4d7fc254097ca6","clientSecret":"d762a44a8a3496491f695e96ad76bef8d184bbd7","repo":"GeZiyue.github.io","owner":"GeZiyue","admin":["GeZiyue","Senioriousg"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://lingering-poetry-44bc.seniorious.workers.dev/?https://github.com/login/oauth/access_token"},
           {
-            id: 'd12d97f41f422d477684dbd534ea3f74'
+            id: 'eeb6f3bc9e1037be7da783909fd810e5'
           }
         )
         var gitalk = new Gitalk(options);

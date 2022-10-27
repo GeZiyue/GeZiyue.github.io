@@ -1,0 +1,890 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Seniorious">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="笔者能力有限，如有误，请在评论区指正~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「学习笔记」数论基础（一）：一些基础定义和定理">
+<meta property="og:url" content="https://blog.seniorious.cc/2019/bnt-1/index.html">
+<meta property="og:site_name" content="Seniorious&#39; blog">
+<meta property="og:description" content="笔者能力有限，如有误，请在评论区指正~">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-22T06:34:13.000Z">
+<meta property="article:modified_time" content="2022-02-14T12:00:38.000Z">
+<meta property="article:author" content="Seniorious">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="数论">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>「学习笔记」数论基础（一）：一些基础定义和定理 - Seniorious&#39; blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.seniorious.cc","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"6fb505b118059dd9807954e6b3a1a47e","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?6fb505b118059dd9807954e6b3a1a47e";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Seniorious&#39; blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg2.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="「学习笔记」数论基础（一）：一些基础定义和定理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-04-22 14:34" pubdate>
+          2019年4月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          7.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">「学习笔记」数论基础（一）：一些基础定义和定理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>笔者能力有限，如有误，请在评论区指正~ <span id="more"></span> 注：以下定理证明较为简单，证明过程可以略过</p>
+<h1 id="定义">定义</h1>
+<h2 id="整除">整除</h2>
+<p><span class="math display">\[a,b\in\mathbb{Z},a\mathbb{N}eq0\]</span> <span class="math display">\[若\exists c\in\mathbb{Z}:a \times c=b\]</span> <span class="math display">\[则称a整除b,记为a\mid b\]</span></p>
+<h2 id="最大公约数">最大公约数</h2>
+<p><span class="math display">\[a,b\in\mathbb{Z}且a,b不同时为0\]</span> <span class="math display">\[将a,b的公约数中最大的称为最大公约数,记作(a,b)或\gcd(a,b)\]</span> <span class="math display">\[以下是最大公约数的基本性质\]</span> <span class="math display">\[\begin{aligned}
+(a,b) &amp;=(b,a)\\
+(a,b) &amp;=(-a,b)\\
+(a,b) &amp;=(|a|,|b|)\\
+(a,0) &amp;=|a|\\
+(a,ka) &amp;=|a|(k\in \mathbb{Z})
+\end{aligned}\]</span></p>
+<h2 id="线性组合">线性组合</h2>
+<p><span class="math display">\[a,b,m,n\in\mathbb{Z}\]</span> <span class="math display">\[称形如ma+nb的整数为a,b的线性组合\]</span></p>
+<h2 id="带余除法">带余除法</h2>
+<p><span class="math display">\[a\in\mathbb{Z},n\in\mathbb{N^+}\]</span> <span class="math display">\[\exists!q,r\in\mathbb{Z}:0\le r&lt;n且a=qn+r\]</span> <span class="math display">\[称q=\lfloor \frac{a}{n}\rfloor为除法的商,r=a\mod{n}为除法的余数\]</span></p>
+<h2 id="同余">同余</h2>
+<p><span class="math display">\[m\in\mathbb{N^+},a,b\in\mathbb{Z}且m\mid a-b\]</span> <span class="math display">\[则称a和b模m同余,记为a\equiv b\pmod{m}\]</span></p>
+<h2 id="完全剩余系">完全剩余系</h2>
+<p><span class="math display">\[若一个整数集合A使得\forall a\in\mathbb{Z},\exists! b\in A:b\equiv a\pmod{m}\space(m\in\mathbb{N^+})\]</span> <span class="math display">\[则称A是一个模m的完全剩余系\]</span></p>
+<h1 id="定理">定理</h1>
+<h2 id="定理1">定理1</h2>
+<h3 id="内容">内容</h3>
+<p><span class="math display">\[若a,b,m,n\in\mathbb{Z}, 且c\mid a, c\mid b\]</span> <span class="math display">\[则c\mid ma+nb\]</span></p>
+<h3 id="证明">证明</h3>
+<p><span class="math display">\[令cp=a, cq=b\]</span> <span class="math display">\[ma+nb=cmp+cnq=c(mp+nq)\]</span> <span class="math display">\[\therefore c\mid ma+nb\]</span></p>
+<h2 id="定理2">定理2</h2>
+<h3 id="内容-1">内容</h3>
+<p><span class="math display">\[若a,b,c\in  \\mathbb{Z}\]</span> <span class="math display">\[则(a,b)=(a+cb,b)\]</span> ### 证明 <span class="math display">\[令集合A为a与b的所有公因子,集合B为a+cb与b的所有公因子\]</span> <span class="math display">\[\forall m\in A\]</span> <span class="math display">\[\because m\mid a,m\mid b\]</span> <span class="math display">\[\therefore m|1\times a+c\times b(定理1)\]</span> <span class="math display">\[\therefore m\in B\]</span> <span class="math display">\[\therefore A\subseteq B\]</span> <span class="math display">\[\forall n\in B\]</span> <span class="math display">\[\because n\mid a+cb,m\mid b\]</span> <span class="math display">\[\therefore n|1\times(a+cb)+(-c)\times b(定理1)\]</span> <span class="math display">\[\therefore n\in A\]</span> <span class="math display">\[\therefore B\subseteq A\]</span> <span class="math display">\[\therefore A=B\]</span> <span class="math display">\[\therefore (a,b)=(a+cb,b)\]</span></p>
+<h2 id="定理3">定理3</h2>
+<h3 id="内容-2">内容</h3>
+<p><span class="math display">\[a,b\in  \mathbb{Z}且a\mathbb{Z}不全为0\]</span> <span class="math display">\[(a,b)是a,b的线性组合中最小的正整数\]</span> ### 证明 <span class="math display">\[令d=ma+nb为a,b的线性组合中最小的正整数(m,n\in  \mathbb{Z})\]</span> <span class="math display">\[将a表示为带余除法的形式a=dq+r(q,r\in  \mathbb{Z},0\le r&lt;d)\]</span> <span class="math display">\[r=a-dq=a-(ma+nb)q=(a-mq)a-nqb\]</span> <span class="math display">\[\therefore r是a,b的线性组合\]</span> <span class="math display">\[又\because 0\le r&lt;d且d是a,b的线性组合中最小的正整数\]</span> <span class="math display">\[\therefore r=0\]</span> <span class="math display">\[\therefore a=dq\]</span> <span class="math display">\[\therefore d\mid a\]</span> <span class="math display">\[同理可得d\mid b\]</span> <span class="math display">\[\forall c\in\mathbb{N^+}:c\mid a,c\mid b\]</span> <span class="math display">\[c\mid d(定理1)\]</span> <span class="math display">\[若d\mathbb{N}eq(a,b),则存在e=(a,b)&gt;d\]</span> <span class="math display">\[\because e\mid a,e\mid b\]</span> <span class="math display">\[\therefore e\mid d\]</span> <span class="math display">\[而e&gt;d且e,d\in\mathbb{N^+}\]</span> <span class="math display">\[\therefore e\mathbb{N}mid d,自相矛盾\]</span> <span class="math display">\[\therefore d=(a,b)\]</span></p>
+<h3 id="推论">推论</h3>
+<p><span class="math display">\[a,b\in  \mathbb{Z}且a,b不全为0\]</span> <span class="math display">\[\forall c\in\mathbb{N^+}:c\mid a, c\mid b有c\mid (a,b)\]</span></p>
+<h2 id="定理4">定理4</h2>
+<h3 id="内容-3">内容</h3>
+<p><span class="math display">\[a,b,e\in \mathbb{Z}且(a,b)=d\]</span> <span class="math display">\[那么(ae,be)=de\]</span> ### 证明 <span class="math display">\[\begin{aligned}
+(ae,be)&amp;=\min\{mae+nbe:m,n\in \mathbb{Z}\}(定理3)\\
+&amp;=\min\{e(ma+nb):m,n\in \mathbb{Z}\}\\
+&amp;=e\cdot \min\{ma+nb:m,n\in \mathbb{Z}\}\\
+&amp;=e\cdot (a,b)(定理3)
+\end{aligned}\]</span></p>
+<h2 id="定理5">定理5</h2>
+<h3 id="内容-4">内容</h3>
+<p><span class="math display">\[a,b\in \mathbb{Z}且(a,b)=d\]</span> <span class="math display">\[那么(\frac{a}{d},\frac{b}{d})=1\]</span></p>
+<h3 id="证明-1">证明</h3>
+<p><span class="math display">\[令(\frac{a}{d},\frac{b}{d})=e\]</span> <span class="math display">\[(a,b)=de(定理4)\]</span> <span class="math display">\[\because (a,b)=d\]</span> <span class="math display">\[\therefore e=1\]</span> <span class="math display">\[\therefore (\frac{a}{d},\frac{b}{d})=1\]</span></p>
+<h2 id="定理6">定理6</h2>
+<h3 id="内容-5">内容</h3>
+<p><span class="math display">\[a,b,c\in\mathbb{N^+}\]</span> <span class="math display">\[(a,b)=1,a\mid bc\]</span> <span class="math display">\[则a\mid c\]</span></p>
+<h3 id="证明-2">证明</h3>
+<p><span class="math display">\[\because (a,b)=1\]</span> <span class="math display">\[\therefore \exists d,e\in \mathbb{Z}:da+eb=1\]</span> <span class="math display">\[\therefore dac+eac=c\]</span> <span class="math display">\[\because a\mid a,a\mid bc\]</span> <span class="math display">\[\therefore a\mid ec\times a+f\times bc\]</span> <span class="math display">\[\therefore a\mid c\]</span></p>
+<h2 id="定理7裴蜀定理">定理7(裴蜀定理)</h2>
+<h3 id="内容-6">内容</h3>
+<p><span class="math display">\[a,b,c\in \mathbb{Z},(a,b)=d\]</span> <span class="math display">\[\begin{cases}
+若d\mathbb{N}mid c,那么方程ax+by=c无整数解\\
+若d\mid c,那么方程ax+by=c有无穷个整数解\\
+若方程有解,所有的解可以表示为
+\begin{cases}
+x=x_0+\frac{b}{d}\cdot n\\
+y=y_0-\frac{a}{d}\cdot n
+\end{cases}
+(n\in \mathbb{Z},x_0,y_0是方程的一组特解)
+\end{cases}\]</span> ### 证明 1. <span class="math inline">\(d\mathbb{N}mid c\)</span>的情况</p>
+<p><span class="math display">\[\because d\mid a,d\mid b\]</span> <span class="math display">\[\therefore d\mid ax+by\]</span> <span class="math display">\[而d\mathbb{N}mid c\]</span> <span class="math display">\[\therefore 原方程无解\]</span> 2. <span class="math inline">\(d\mid c的情况\)</span></p>
+<p><span class="math display">\[由定理3得\exists s,t\in \mathbb{Z}:as+bt=d\]</span> <span class="math display">\[\frac{asc}{d}+\frac{btc}{d}=c\]</span> <span class="math display">\[\because d|c\]</span> <span class="math display">\[\therefore \frac{c}{d}\in \mathbb{Z}\]</span> <span class="math display">\[可得特解\begin{cases}x_0=\frac{sc}{d}\\y_0=\frac{tc}{d}\end{cases}\]</span> <span class="math display">\[设x&#39;,y&#39;是任意一组整数解\]</span> <span class="math display">\[\begin{cases}
+ax&#39;+by&#39;&amp;=&amp;c\\
+ax_0+by_0&amp;=&amp;c
+\end{cases}\]</span> <span class="math display">\[两式相减得a(x&#39;-x_0)+b(y&#39;-y_0)=0\]</span> <span class="math display">\[a(x&#39;-x_0)=b(y_0-y&#39;)\]</span> <span class="math display">\[\frac{a}{d}(x&#39;-x_0)=\frac{b}{d}(y_0-y&#39;)\]</span> <span class="math display">\[\therefore \frac{b}{d}\mid\frac{a}{d}(x&#39;-x_0)\]</span> <span class="math display">\[又\because (\frac{a}{d},\frac{b}{d})=1(定理5)\]</span> <span class="math display">\[\therefore \frac{b}{d}\mid(x&#39;-x_0)(定理6)\]</span> <span class="math display">\[\therefore\exists n\in \mathbb{Z}:\frac{b}{d}\cdot n=x&#39;-x_0\]</span> <span class="math display">\[\begin{aligned}
+\therefore x&#39;&amp;=x_0+\frac{b}{d}\cdot n\\
+同理y&#39;&amp;=y_0-\frac{a}{d}\cdot n
+\end{aligned}\]</span> <span class="math display">\[\therefore原方程的解满足
+\begin{cases}
+x=x_0+\frac{b}{d}\cdot n\\
+y=y_0-\frac{a}{d}\cdot n
+\end{cases}\]</span> ### 说明 原方程(即形如<span class="math inline">\(ax+by=c(a,b,c\in \mathbb{Z})\)</span>)叫做二元线性丢番图方程</p>
+<h2 id="定理8">定理8</h2>
+<h3 id="内容-7">内容</h3>
+<p><span class="math display">\[a,b\in \mathbb{Z}\]</span> <span class="math display">\[a\equiv b\pmod{m}当且仅当\exists m\in \mathbb{Z}:a=b+km\]</span> ### 证明 1. 充分性</p>
+<p><span class="math display">\[\because a\equiv b\pmod{m}\]</span> <span class="math display">\[\therefore m\mid a-b\]</span> <span class="math display">\[\therefore\exists k\in \mathbb{Z}:a-b=km\]</span> <span class="math display">\[\therefore a=b+km\]</span> 2. 必要性</p>
+<p><span class="math display">\[\because a=b+km(k\in \mathbb{Z})\]</span> <span class="math display">\[\therefore a-b=km\]</span> <span class="math display">\[\therefore m\mid a-b\]</span> <span class="math display">\[\therefore a\equiv b\pmod{m}\]</span></p>
+<h2 id="定理9">定理9</h2>
+<h3 id="内容-8">内容</h3>
+<p><span class="math display">\[m\in\mathbb{N^+},模m的同余满足以下性质:\]</span> <span class="math display">\[1.自反性:若a\in \mathbb{Z},则a\equiv a\pmod{m}\]</span> <span class="math display">\[2.对称性:若a,b\in \mathbb{Z}且a\equiv b\pmod{m},则b\equiv a\pmod{m}\]</span> <span class="math display">\[3.传递性:若a,b,c\in \mathbb{Z}且a\equiv b\pmod{m}, b\equiv c\pmod{m},则a\equiv c\pmod{m}\]</span></p>
+<h3 id="证明-3">证明</h3>
+<ol type="1">
+<li>自反性</li>
+</ol>
+<p><span class="math display">\[\because m\mid0\]</span> <span class="math display">\[\therefore m\mid a-a\]</span> <span class="math display">\[\therefore a\equiv a\pmod{m}\]</span> 2. 对称性</p>
+<p><span class="math display">\[\because a\equiv b\pmod{m}\]</span> <span class="math display">\[\therefore \exists k\in \mathbb{Z}:a=b+km\]</span> <span class="math display">\[\therefore a-b=km\]</span> <span class="math display">\[\therefore b-a=-km\]</span> <span class="math display">\[\therefore m\mid b-a\]</span> <span class="math display">\[b\equiv a\pmod{m}\]</span> 3. 传递性</p>
+<p><span class="math display">\[\because a\equiv b\pmod{m}\]</span> <span class="math display">\[\therefore m\mid a-b\]</span> <span class="math display">\[\therefore \exists p\in \mathbb{Z}:a-b=pm\]</span> <span class="math display">\[同理\exists q\in \mathbb{Z}:b-c=qm\]</span> <span class="math display">\[两式相加得a-c=(p+q)m\]</span> <span class="math display">\[\therefore m|a-c\]</span> <span class="math display">\[\therefore a\equiv c\pmod{m}\]</span></p>
+<h2 id="定理10">定理10</h2>
+<h3 id="内容-9">内容</h3>
+<p><span class="math display">\[若a,b,c\in \mathbb{Z},m&gt;0,a\equiv b\pmod{m}\]</span> <span class="math display">\[则\begin{cases}
+a+c\equiv b+c\pmod{m}\\
+a-c\equiv b-c\pmod{m}\\
+ac\equiv bc\pmod{m}
+\end{cases}\]</span> ### 证明 1. <span class="math inline">\(a+c\equiv b+c\pmod{m}\)</span></p>
+<p><span class="math display">\[\because a\equiv b\pmod{m}\]</span> <span class="math display">\[\therefore m\mid a-b\]</span> <span class="math display">\[\therefore m\mid (a+c)-(b+c)\]</span> <span class="math display">\[\therefore a+c\equiv b+c\pmod{m}\]</span> 2. <span class="math inline">\(a-c\equiv b-c\pmod{m}\)</span></p>
+<p><span class="math display">\[\because a\equiv b\pmod{m}\]</span> <span class="math display">\[\therefore m\mid a-b\]</span> <span class="math display">\[\therefore m\mid (a-c)-(b-c)\]</span> <span class="math display">\[\therefore a-c\equiv b-c\pmod{m}\]</span> 3. <span class="math inline">\(ac\equiv bc\pmod{m}\)</span></p>
+<p><span class="math display">\[\because a\equiv b\pmod{m}\]</span> <span class="math display">\[\therefore m\mid a-b\]</span> <span class="math display">\[\therefore m\mid c(a-b)\]</span> <span class="math display">\[\therefore m\mid ac-bc\]</span> <span class="math display">\[\therefore ac\equiv bc\pmod{m}\]</span></p>
+<h2 id="定理11">定理11</h2>
+<h3 id="内容-10">内容</h3>
+<p><span class="math display">\[a,b,c,d,m\in \mathbb{Z},m&gt;0\]</span> <span class="math display">\[若a\equiv b\pmod{m},c\equiv d\pmod{m}\]</span> <span class="math display">\[则\begin{cases}
+a+c\equiv b+d\pmod{m}\\
+a-c\equiv b-d\pmod{m}\\
+ac\equiv bd\pmod{m}
+\end{cases}\]</span> ### 证明 1. <span class="math inline">\(a+c\equiv b+d\pmod{m}\)</span></p>
+<p><span class="math display">\[\because a\equiv b\pmod{m}\]</span> <span class="math display">\[\therefore\exists p\in \mathbb{Z}:a-b=pm\]</span> <span class="math display">\[同理\exists q\in \mathbb{Z}:c-d=qm\]</span> <span class="math display">\[两式相加得(a+c)-(b+d)=(p+q)m\]</span> <span class="math display">\[\therefore a+c\equiv b+d\pmod{m}\]</span> 2. <span class="math inline">\(a-c\equiv b-d\pmod{m}\)</span></p>
+<p><span class="math display">\[\because a\equiv b\pmod{m}\]</span> <span class="math display">\[\therefore\exists p\in \mathbb{Z}:a-b=pm\]</span> <span class="math display">\[同理\exists q\in \mathbb{Z}:c-d=qm\]</span> <span class="math display">\[两式相减得(a-c)-(b-d)=(p-q)m\]</span> <span class="math display">\[\therefore a-c\equiv b-d\pmod{m}\]</span> 3. <span class="math inline">\(ac\equiv bd\pmod{m}\)</span></p>
+<p><span class="math display">\[\because a\equiv b\pmod{m}\]</span> <span class="math display">\[\therefore\exists p\in \mathbb{Z}:a-b=pm\]</span> <span class="math display">\[同理\exists q\in \mathbb{Z}:c-d=qm\]</span> <span class="math display">\[\begin{aligned}
+ac-bd&amp;=ac-bc-bd+bc\\
+&amp;=(a-b)c-(b-d)c\\
+&amp;=pmc-qmc\\
+&amp;=(pc-qc)m
+\end{aligned}\]</span> <span class="math display">\[\therefore m\mid ac-bd\]</span> <span class="math display">\[\therefore ac\equiv bd\pmod{m}\]</span></p>
+<h2 id="定理12">定理12</h2>
+<h3 id="内容-11">内容</h3>
+<p><span class="math display">\[a,b,c,d\in \mathbb{Z},m&gt;0,d=(c,m)\]</span> <span class="math display">\[若ac\equiv bc\pmod{m}\]</span> <span class="math display">\[则a\equiv b\pmod{\frac{m}{d}}\]</span></p>
+<h3 id="证明-4">证明</h3>
+<p><span class="math display">\[\because ac\equiv bc\pmod{m}\]</span> <span class="math display">\[\therefore m\mid(a-b)c\]</span> <span class="math display">\[\therefore\exists k\in \mathbb{Z}:c(a-b)=km\]</span> <span class="math display">\[\therefore\frac{c}{d}(a-b)=k\frac{m}{d}\]</span> <span class="math display">\[\therefore(\frac{c}{d},\frac{m}{d})=1(定理5),\frac{m}{d}\mid\frac{c}{d}(a-b)\]</span> <span class="math display">\[\therefore\frac{m}{d}\mid(a-b)(定理6)\]</span> <span class="math display">\[\therefore a\equiv b\pmod{\frac{m}{d}}\]</span></p>
+<h3 id="推论-1">推论</h3>
+<p><span class="math display">\[a,b,c,m\in \mathbb{Z},(c,m)=1\]</span> <span class="math display">\[若ac\equiv bc\pmod{m}\]</span> <span class="math display">\[则a\equiv b\pmod{m}\]</span></p>
+<h2 id="定理13">定理13</h2>
+<h3 id="内容-12">内容</h3>
+<p><span class="math display">\[若\{r_1,r_2,\dots,r_m\}是一个模m的完全剩余系,且正整数a使得(a,m)=1\]</span> <span class="math display">\[则\forall b\in \mathbb{Z}有\{a\cdot r_1+b,a\cdot r_2+b\dots,a\cdot r_m+b\}是一个模m完全剩余系\]</span></p>
+<h3 id="证明-5">证明</h3>
+<p><span class="math display">\[设i,j\in([1,m]\cup\mathbb{N})且a\cdot r_i+b\equiv a\cdot r_j+b\pmod{m}\]</span> <span class="math display">\[\therefore a\cdot r_i\equiv a\cdot r_j\pmod{m}\space(定理10.2)\]</span> <span class="math display">\[\because (a,m)=1\]</span> <span class="math display">\[\therefore r_i\equiv r_j\pmod{m}\space(定理12.推论)\]</span> <span class="math display">\[又\because一个完全剩余系中的数两两不同余(完全剩余系的定义)\]</span> <span class="math display">\[\therefore i=j\]</span> <span class="math display">\[\therefore\{a\cdot r_1+b,a\cdot r_2+b\dots,a\cdot r_m+b\}中的数模m两两不同余\]</span> <span class="math display">\[\therefore\{a\cdot r_1+b,a\cdot r_2+b\dots,a\cdot r_m+b\}是一个模m完全剩余系\]</span></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/">#数学</a>
+      
+        <a href="/tags/%E6%95%B0%E8%AE%BA/">#数论</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>「学习笔记」数论基础（一）：一些基础定义和定理</div>
+      <div>https://blog.seniorious.cc/2019/bnt-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Seniorious</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年4月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/get-qq-avatar/" title="不暴露QQ号码的前提下得到QQ头像">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">不暴露QQ号码的前提下得到QQ头像</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/CF-1100C/" title="「Codeforces 1100C」NN and the Optical Illusion 题解">
+                        <span class="hidden-mobile">「Codeforces 1100C」NN and the Optical Illusion 题解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"b351bc4d7fc254097ca6","clientSecret":"d762a44a8a3496491f695e96ad76bef8d184bbd7","repo":"GeZiyue.github.io","owner":"GeZiyue","admin":["GeZiyue","Senioriousg"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://lingering-poetry-44bc.seniorious.workers.dev/?https://github.com/login/oauth/access_token"},
+          {
+            id: 'a05b80f513c28b6a58e88197c098f422'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

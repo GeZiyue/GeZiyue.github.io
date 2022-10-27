@@ -1,0 +1,840 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Seniorious">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="AFO 了 &#x2F;ll。 这次运气真的很好！！！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NOI 2022 游记">
+<meta property="og:url" content="https://blog.seniorious.cc/2022/NOI-2022/index.html">
+<meta property="og:site_name" content="Seniorious&#39; blog">
+<meta property="og:description" content="AFO 了 &#x2F;ll。 这次运气真的很好！！！">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-30T01:46:34.000Z">
+<meta property="article:modified_time" content="2022-09-13T09:06:59.000Z">
+<meta property="article:author" content="Seniorious">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>NOI 2022 游记 - Seniorious&#39; blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.seniorious.cc","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"6fb505b118059dd9807954e6b3a1a47e","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?6fb505b118059dd9807954e6b3a1a47e";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Seniorious&#39; blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg2.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="NOI 2022 游记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-30 09:46" pubdate>
+          2022年8月30日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">NOI 2022 游记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>AFO 了 /ll。</p>
+<p><strong>这次运气真的很好！！！</strong></p>
+<span id="more"></span>
+<h2 id="day--2">Day -2</h2>
+<p>来的很早，校园很大气漂亮！不愧是贵族学校！</p>
+<p>因为来的很早，而且 ASDFZ 校队人不少，一路上都有志愿者拿着相机对着我拍。（后来知道我在宣传片里出现了不少次，我真的有那么上镜吗？？？）</p>
+<p>先去了宿舍，发现床的条件没有想象中的那么好。至少我更喜欢软一点的床。</p>
+<p>然后听说有签名，跑下去签了个 Seniorious（然后又被放进宣传片了）。</p>
+<p>明明字又丑，人又挫，怎么整天把我放进宣传片啊。</p>
+<p>和我同宿舍的是 mwr xst rsy。</p>
+<p>感觉要打 Ag 了，开摆！</p>
+<p>于是先开了个 MC 服务器，一开始 wd xst rsy wc 都在，后来我头晕不想玩辣，再后来大家一个个都不想玩辣！</p>
+<p>BJ 老哥还有带象棋的，于是 AH 又去团建了，集体帮助弱势方下棋。</p>
+<p>食堂的确很高端！菜也很好！</p>
+<p>然后发现自己谁都不认识，很自闭很社恐。</p>
+<p>晚上拉了可爱 Cirno_9，在宿舍逛了一圈，聊了会天。然后去看文艺汇演！</p>
+<p>来的时间刚刚好，所以有椅子坐，于是就和 C9 一起坐在最后自闭。</p>
+<p>唱歌很有趣，staff 的伪音很震撼。第一时间以为是女声。</p>
+<p>谁是卧底也很搞，具体可以见别人博客。</p>
+<p>dottle 的演讲很有趣。</p>
+<p><span class="citation" data-cites="1kri">@1kri</span> bot。</p>
+<p>最后的开心往前飞气氛很好！</p>
+<h2 id="day--1">Day -1</h2>
+<p>AH 是第一个去拿物资的。我是 AH 第一个去的。</p>
+<p>然后 CCF 那边的人迟到了，我们在交学籍的地方等了一会。</p>
+<p>拿到了 koishi 徽章。koishi 可爱/tyt。</p>
+<p>然后回宿舍，mwr 说他的没了，还有几个人少了一点。</p>
+<p>我的 15 个也就换了一半，感觉自己好自闭啊。</p>
+<p>linshey 非常社牛！来换了个 AH 校队。</p>
+<p>MoRansky 来了一趟 3F，然后我也去换了一个。</p>
+<p>还有 yspm 和一个 NM 老哥来了一趟。</p>
+<p>中途 ntf 在发徽章，我也去换了一个。</p>
+<p>晚上又去找了趟 C9。</p>
+<p>结果就换了这些，自闭。</p>
+<h2 id="day-0">Day 0</h2>
+<p>继续摆。</p>
+<p>下午试机写 NTT 没调出来，我现在还不知道为什么挂了！</p>
+<p>笔试还是那些题，凭借依稀的记忆，想起来不能碰鼠标键盘。</p>
+<p>于是就 100 了。当场不出成绩差评。</p>
+<p>左边是 IrisT，左边的左边是 dottle。但是我谁都不认识。</p>
+<p>摆。</p>
+<h2 id="day-1">Day 1</h2>
+<p>晚上睡得还行。</p>
+<p>听说有人两点多还睡不着。</p>
+<p>上考场！</p>
+<p>看到题目有点自闭。</p>
+<p>T1 应该是摩尔投票+数据结构。T2 T3 好像很恐怖。</p>
+<p>发现监考没有 lxl，但是有抽象数据结构题。</p>
+<p>发现 T1 不要多少数据结构，离线建树就行，发现很好写，很快就码完了。</p>
+<p>然后就是自闭，看了很久 T2。</p>
+<p>感觉可能今年偏难，T2 应该不会切多少。</p>
+<p>先写 T3 25 的猫树+换根。</p>
+<p>继续盯着 T2 的判定想了一万年。</p>
+<p>最后写 15 暴力跑路。</p>
+<p>出来一问大家分都不高，只有 mwr 和 wc 会判定，感觉还行。</p>
+<p>查分发现没挂 <span class="math inline">\(100 + 15 + 25\)</span>。wd yxy T1 挂了/ll。</p>
+<p>两个高一老哥因为 deque 挂了 100，很惨。</p>
+<p>幸亏是高一，要是高二就寄了。</p>
+<p>晚上讲题大受震撼。</p>
+<h2 id="day-1.5">Day 1.5</h2>
+<p>解密没玩。上午无聊，开始 florr.io。</p>
+<p>中午 ygp 来讲话，大概说队线不高，都有希望。</p>
+<p>下午开幕式感觉还行。朗诵挺阴间，无人机表演很有意思。</p>
+<p>晚上继续摆。晚上我妈说昆山有疫情了（flag）。</p>
+<h2 id="day-2">Day 2</h2>
+<p>有点头疼，幸好带了风油精。左边是 srz，很强大。</p>
+<p>开考发现 T1 题面明示树 Hash，想了一下感觉暴力复杂度不高。</p>
+<p>T2 挺神秘的，一个包一个包的想，感觉已经猜出正解了。</p>
+<p>T3 也很神秘，只会 <span class="math inline">\(k = 3\)</span>。</p>
+<p>先写了 T1 样例不是很大，但感觉树 Hash 没问题。</p>
+<p>然后写 T3 <span class="math inline">\(k = 3\)</span> 的贪心+暴搜，在翻纸质题面的时候发现了 <span class="math inline">\(p_i=q_i\)</span> 的问题，以为能过就没管（flag）。</p>
+<p>先写 T2 的 Subtask A。很快过了样例，也过了拍。</p>
+<p>Subtask B 发现填的数是单调的，简单证明了一下。然后写了个线段树上去。</p>
+<p>Subtask C 大胆猜想就是左端点放上然后类似 B 查线段树后缀。结果写挂了以为是做法假了。</p>
+<p>然后就晕了一会，想不出 C，跑路。</p>
+<p>出考场很晕。zjf 说不会 T1 很震撼，差点以为自己做法假了，吃不下饭。wd 说他 200+，T1 做法和我一样，他说是对的，感觉还行。</p>
+<p>回宿舍才知道 NOI 结束了，疫情/fn。</p>
+<p>查分提前了 30min，去了发现 T1 只挂了 4pts 应该是树 Hash 的问题，T2 64 拿满了。T3 暴搜写挂了？？？至少 <span class="math inline">\(k = 3\)</span> 的 10pts 还在。</p>
+<p><span class="math inline">\(96 + 64 + 10 = 170\)</span>，问了一圈听说 300+ 挺稳的。感觉还行，在场馆里晃了几圈。</p>
+<p>回宿舍发现 RSY 非常稳！zjf 和 FJ-yc 有点危。又晃了一会我妈打电话问我是去 P 还是 T，震撼。</p>
+<p>加了集训队群结果发现 yyl 得到的分数是错的，又要重新统计。</p>
+<p>然后就收拾东西回家了。路上饿得要死，在阳澄湖服务区买了汉堡和冰淇淋。路上 zjf 一直很慌。据不完全统计 zjf 在金牌线上面 1 分。</p>
+<h2 id="day-3">Day 3</h2>
+<p>早上 7 点就被 T 的电话搞醒了，然后就睡不着了。听说 T 现在先进叉院大二再分班。但是 P 的老师很急加上今年去 P 的人不少，最后还是去 P 了。</p>
+<p>中午出榜，发现 ygp 消息很灵通，zjf 确实比队线高 1 分。</p>
+<h2 id="总结">总结</h2>
+<p>感觉今年 NOI 就是比拼心态、稳健和策略。如果很会猜，过某个 T2 就大概率进队。不挂大分，多打点暴力也能进。</p>
+<p>最后还是靠着暴力进队了，感觉自己水平并不是很配得上集训队。</p>
+<p>总之高三一年有大把的自由时间了，希望能学点东西，提高一下科技水平。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B8%B8%E8%AE%B0/" class="category-chain-item">游记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>NOI 2022 游记</div>
+      <div>https://blog.seniorious.cc/2022/NOI-2022/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Seniorious</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/flower-10-27/" title="10 月 27 日闲话">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">10 月 27 日闲话</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/FZOJ-4987/" title="「FZOJ 4987」普通高中生 题解">
+                        <span class="hidden-mobile">「FZOJ 4987」普通高中生 题解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"b351bc4d7fc254097ca6","clientSecret":"d762a44a8a3496491f695e96ad76bef8d184bbd7","repo":"GeZiyue.github.io","owner":"GeZiyue","admin":["GeZiyue","Senioriousg"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://lingering-poetry-44bc.seniorious.workers.dev/?https://github.com/login/oauth/access_token"},
+          {
+            id: '1fc2a306e0744938738fc22ce1f42fba'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,796 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Seniorious">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这篇文章被加密了 QwQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「FZOJ 4987」普通高中生 题解">
+<meta property="og:url" content="https://blog.seniorious.cc/2022/FZOJ-4987/index.html">
+<meta property="og:site_name" content="Seniorious&#39; blog">
+<meta property="og:description" content="这篇文章被加密了 QwQ">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-08T00:50:09.000Z">
+<meta property="article:modified_time" content="2022-02-14T12:00:38.000Z">
+<meta property="article:author" content="Seniorious">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="多项式">
+<meta property="article:tag" content="下降幂多项式">
+<meta property="article:tag" content="FZOJ">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>「FZOJ 4987」普通高中生 题解 - Seniorious&#39; blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.seniorious.cc","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"6fb505b118059dd9807954e6b3a1a47e","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?6fb505b118059dd9807954e6b3a1a47e";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Seniorious&#39; blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg2.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="「FZOJ 4987」普通高中生 题解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-08 08:50" pubdate>
+          2022年1月8日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          4.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">「FZOJ 4987」普通高中生 题解</h1>
+            
+            
+              
+              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="7acff604297de3490d672705cdd35505bec4bd015d4f6a9633ec078abaf7a50a">20cdaaa87119678bbce07275f7924a6e4d191c057c8e5170e66ce41a0eb35b3c2e7083b240d02f553c910b984b8e428392bf0f6a3825de5efb38b21d9d24757c9bb760437bcc9a712a6c81c3bb787db0eef9c6419e665ec3c341fb7978af7500fe835fc3921f562c5fce4ead51f4f0b8ce4df72c649f31cd40f9398ed4e9d87eda0b3ddc95f16547e80fa818646d19feac2c1329bbb6d1d6db766b73b9103dc150177a3a76c7e7527b466e35d489b4ff3356b38bd1a1589045d91e7cec73453511dfa8e7d5bbe5b9f281b24d699e7a0cb096d0084f61a4f6444480e52c888c16d7063cc5af9643d6177d81d6288328359a94cf9cdaba89dfed651ec4cd40d36cf18ff654e2fa463ef45c568085e193557625565dc618273d3c3786237576f2e32e6eb8881d697fd5cd9f8789bb2c6a33f47b6f495ba72c9d216a585ab129ca1c3c2a6ddaa5145e5c0588b7c34cbd416071ef90fa837b52808a795321e68c1034119e376b4f1f6db9b839c03b18d233bc7b730a6bb112802b43ed70cc5255c08a7656caf40eebb9162c11225fef686b01bbd448161357e3bd1477a8cc6e9b081e15d090cef42eeffa9b66465041d9d169eaf472da8bc496d7013cdaa5127a175f116c22f291691d0c0668496a17d95bf012b7d103181f6a3698cc6401d8ac810eb14d8c9af9829ab169387ae5d7b403e119ac57cf8a3ea94b6cb3346aa161398945a75a518306b34745665a059ee8c2ebf4695aad1de4a8d9b7f5e603ffedaec1252714bde1cf8d779c4ba3509cccd3c766afd0ea783cb5489b289c6291ffc9e6f8d214bc131e509bd7a2611a54847af130cf9f1d2a464e242dbc53d39cd02b4af44b251ed019cbca2b453ddd0314291b91b81982b6f0090537382c78b77013d926787e3db4bebe25f41bd28f7e7eca3a49ce93d43417ad7b8c3f83edb96a1c35af32c4d968c505cd9eead0164c7858b8930fb5328511b03d8d4be2d7eabf9158447b2f929ac641c814a52e8d0585c94aea2f299dbf7d7c6e3fc98a2dd441c32a33ecce7d4cdc3dad6b13723f153605da6f38f5ac58567d99d89cda2a46bd460bafbb2b69c42fbd13a5b67c4a00fd8dc88ac7c359abc9b6fdddb296054f8702d09ee4a62fcdd43b7301ff110cc6d1bcd13620fcc607ff1277c9f66f17d098312c7e17a68486401678a3f266ab4e4fbbc615faa06d9a5e40b19c51b3025f9744196b3b9cb96461ceb5644405484328ca22e831935b981dd27ae232aba6a9a2a3171e0a9ac7216f89fb88fb75c07b5c7bc4a913e1ba387b4e8d0d8d9feac84c2bf205bfb9e2336b8fb310a00824966c5f96178acfc4841782f2f93643e0d68ea557c3e04c4d89889495438f700eecd267f77e4e65a9ebeac3a5183193eb631426478caae62ec4c3750c33763376c43809664a20b9bdfd755cf582c4ba8ab2dc0c218345f9d01dcc7dc4761f99852204ae2281a3af8346654b9fceb2ae2ee96794036d46e2e11f6b902b0e9d64281fe21aff9974001b8a61cf1f5ad84bfbd1ce7ac771d3d7b045124182738049c7c483c2fb4e10a7e24d13c9abe1693106b0df51c9794be3841155eb33d7ddad5419fc7e8b881c94a3696d0241c7372f3b34a56460294d1fff147d25b6a2e324600cfa9b2e18e988cae625a214c3df26fb2266ad942094f8057c758e06584d5d3bb04176286a0b3546ede470fe99ad1ccee79cbdb5cc3e8652bb90478dddf0c0a8a63be3cb6c00a762dfad4125b7daea0df0801966b3cd37436bd7404839dd08e48a73291c45728816e6c9a7dd4aa303be12b8895d8968bea426090e4548457ed3b2b5d1d5ce1e0c2b494b033033fc43a393014f64a09bfc917f3f3ed4eae67e4b34079f0d6425e62c02497eb4d9fc2ae071bd68848e3f4dc168a5d8c342ba7726314f6bb67b6cbb32b9df61e3adab8633e4ad25de4df0821be8d6ec74a275187203a7d49e77c173c2429b87ed7dde97cf3c85cd292d6ef933faf7eee7b9823c3ba846a24414a2381641655d8b3a30e8e910c8091d45e4e199b3ba342b9d6649187e439190160d9e8d2fd10b583331e2d665afb2b129b4b3143bd41ecada816ce931efda26c82995240eb8f7958d522aa15cab66ec94aec5087f3cc9a6339c2ec17ff08240eca4a43693c7cac862feb4eed6afb3a5c5f54b4949cc5a00dca86f0d27cac3160c086c50327949a0e8e240ef38dd20f4b03152d174234ab12656025759acf644ad31236994df7e20c02f519716fbcaaf0bbc760004a82d5abc713dfc8e8e06c263fabe683452b630b03611da4f2fa90e3c3be6f0c5a4712e6ea0d5219e1dc516dcc7223667d52d996482a8bc1a19b2685d0a2faf0e576327e615921e97f4067e3c14794a925b987c4a07edf943b1833abc64cde0d33df2705d27694048b144af575c3a459ce9110f009a0d7619656bff353e98b028e3be6c36963db02aa3cf4dd678ed97282c6dfcbe95730f82bf65d91d3b9463e83829714a1298b94023b31a01fbc3d89ef6991c12b2961df748e980ff98f195eb73fe5eac660a5f3b5519c064447aa624d4e4bab16e54ad3453df1a3360179a0089ebb81ab4f72e35db9fec063b905ca7c76e6b984312c0662eddfb2fe723c6fbe74ef0729f7a5ec5bf1e8a5a40ca282f1aedd489bdf31eb51a89514b7acc02683b6716d78223e24af681ba59ef4f321b3da491daeed92cdbd00db1a178809245c7cc39beffe1ca27458b3d44e6eae7b110f7aad348fde3cd09aed782574076f53f204aab2b8da8c3d6ca4a861db056f21d5676fd3d63147a2a2f1afcc30cd26a78d8ff6d35b15213ec2be6ab8e68642c92484bfa709b31e2f17cb5312d1db60f29c1fffea6288e5b41205b6bed7b237e4579ed32d8a044c51a744b236749f295c7512ebd9f857347c865f738a842efc6634da090d7966ca845b0b59773e99a30efa01103bec0f4fa1ede71396d250907d2c8470fa38bdafec60bebe3d7aa18ac8848f35bfdfa2936a6f11cfd2dcd53f621c251a65e9dbdc09750077443e7292ac44db3be69953a6c76b9a6fe641bd0021e4d456f0cfc83ae6a234bc2c29c2d129c224e4fc0c7c712cf9b7848f6da8248ee6aeac6de026645b5d045d241e09ad755170ed73885087f5bbf35d67750d1c7b5465930f329c66dd2eb475f9eff7f3f861e70e7a7104a5fc09f94d0b85913919e80f18f4d4d80806707820ad71bc6dbd1009f5cfab7035b7441745ffdd835dc61125f4eefbeb58be34b87bf050e5d26d3baa2a307d44ad61f2cf14bfae8ca68dc9c6e301e4f8973dc604bbeae3ba6d3836a87f560ed1832439403d174377c026e937338fca49e3fe57468c77c41bf4e10c2c68aeffcf6c4667c23</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-up">
+      <input class="hbe hbe-input-field hbe-input-field-up" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-up" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-up">密码是我的 FZOJ 注册日期</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              
+
+              
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%A2%98%E8%A7%A3/" class="category-chain-item">题解</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E5%AD%A6/">#数学</a>
+      
+        <a href="/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/">#多项式</a>
+      
+        <a href="/tags/%E4%B8%8B%E9%99%8D%E5%B9%82%E5%A4%9A%E9%A1%B9%E5%BC%8F/">#下降幂多项式</a>
+      
+        <a href="/tags/FZOJ/">#FZOJ</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>「FZOJ 4987」普通高中生 题解</div>
+      <div>https://blog.seniorious.cc/2022/FZOJ-4987/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Seniorious</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/NOI-2022/" title="NOI 2022 游记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">NOI 2022 游记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/NOIP-2021/" title="NOIP 2021 游记">
+                        <span class="hidden-mobile">NOIP 2021 游记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"b351bc4d7fc254097ca6","clientSecret":"d762a44a8a3496491f695e96ad76bef8d184bbd7","repo":"GeZiyue.github.io","owner":"GeZiyue","admin":["GeZiyue","Senioriousg"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://lingering-poetry-44bc.seniorious.workers.dev/?https://github.com/login/oauth/access_token"},
+          {
+            id: '2a6d10e1185befb2450dcf00bdf8c66d'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+  <script defer>
+    if (document.getElementById('hbePass')) {
+      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
+        var hbePrefix = document.querySelector('hbe-prefix');
+        hbePrefix.parentElement.classList.add('markdown-body');
+        Fluid.utils.retry(function() {
+          if (Fluid.boot && Fluid.boot.refresh) {
+            Fluid.boot.refresh();
+            return true;
+          }
+        }, 100, 10);
+      })
+    }
+  </script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

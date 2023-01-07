@@ -26,7 +26,7 @@
 <meta property="og:description" content="没啥用的东西。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-07T02:46:26.000Z">
-<meta property="article:modified_time" content="2023-01-07T16:33:28.132Z">
+<meta property="article:modified_time" content="2023-01-07T17:00:49.645Z">
 <meta property="article:author" content="Seniorious">
 <meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary_large_image">
@@ -263,7 +263,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          846 字
+          1.1k 字
         
       </span>
     
@@ -275,7 +275,7 @@
         
         
           <!-- compatible with older versions-->
-          3 分钟
+          4 分钟
         
       </span>
     
@@ -325,7 +325,7 @@
 <p><span class="math display">\[\begin{aligned}
 h_k = \sum_{i + j \equiv k \pmod N} f_i \cdot g_j
 \end{aligned}\]</span></p>
-<p><span class="math inline">\(\operatorname{DFT}(g)_k = \sum_{t = 0}^{N - 1} g_t \cdot \omega_N^{tk}\)</span></p>
+<p><span class="math display">\[\operatorname{DFT}(g)_k = \sum_{t = 0}^{N - 1} g_t \cdot \omega_N^{tk}\]</span></p>
 <h2 id="convolution-theorem">convolution theorem</h2>
 <p><span class="math display">\[\begin{aligned}
 \operatorname{DFT}[g * h] = \operatorname{DFT}[g] \cdot \operatorname{DFT}[h]
@@ -338,13 +338,21 @@ h_k = \sum_{i + j \equiv k \pmod N} f_i \cdot g_j
 \omega_N^{(N - 1) \times 0} &amp; \omega_N^{(N - 1) \times 1} &amp; \cdots &amp; \omega_N^{(N - 1) \times (N - 1)}\\
 \end{bmatrix}\]</span></p>
 <h2 id="fft">FFT</h2>
-<p>欲求 <span class="math inline">\(\sum_{i = 0}^{N - 1}\frac{g_i}{1 - \omega_N^ix}\)</span>。</p>
-<p><span class="math inline">\(\sum_{i = 0}^{N - 1}(1 - \omega_N^ix) = 1 - x^N\)</span>。</p>
-<p><span class="math inline">\(\frac{F(x)}{1 - x^N} = \frac{F(x\omega_{2N})}{1 + x^N}\)</span>。分治 FFT。</p>
+<p><span class="math display">\[\sum_{i = 0}^{N - 1}\frac{g_i}{1 - \omega_N^ix}\]</span></p>
+<p><span class="math display">\[\sum_{i = 0}^{N - 1}(1 - \omega_N^ix) = 1 - x^N\]</span></p>
+<p><span class="math display">\[\frac{F(x)}{1 - x^N} = \frac{F(x\omega_{2N})}{1 + x^N}\]</span></p>
+<p>蝴蝶变换后类似分治 FFT。</p>
 <h2 id="dif-dit">DIF DIT</h2>
 <p><a href="../../2021/yhx-12243-NTT/">我之前的博客</a></p>
+<h2 id="高维前后缀和">高维前后缀和</h2>
+<p>太简单。</p>
+<h2 id="二项式反演">二项式反演</h2>
+<p>太简单。</p>
 <h2 id="fwt">FWT</h2>
-<p>$$</p>
+<p>对每一维做大小为 <span class="math inline">\(2\)</span> 的单位根反演。</p>
+<p><span class="math display">\[\operatorname{sgn}(i, j) = \operatorname{popcount}(i \operatorname{and} j)\]</span></p>
+<p><span class="math display">\[\operatorname{sgn}(i, k) \cdot \operatorname{sgn}(j, k) = \operatorname{sgn}(i \oplus j, k)\]</span></p>
+<p><span class="math display">\[\mathcal{F}_i = \operatorname{FWT}(F)_i = \sum F_j (-1)^{}\]</span></p>
 
                 
               </div>

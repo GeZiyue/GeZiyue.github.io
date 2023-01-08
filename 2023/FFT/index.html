@@ -26,7 +26,7 @@
 <meta property="og:description" content="没啥用的东西。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-07T02:46:26.000Z">
-<meta property="article:modified_time" content="2023-01-08T02:18:24.713Z">
+<meta property="article:modified_time" content="2023-01-08T05:30:07.111Z">
 <meta property="article:author" content="Seniorious">
 <meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary_large_image">
@@ -263,7 +263,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.1k 字
+          1.5k 字
         
       </span>
     
@@ -275,7 +275,7 @@
         
         
           <!-- compatible with older versions-->
-          4 分钟
+          5 分钟
         
       </span>
     
@@ -321,15 +321,23 @@
                 <p>没啥用的东西。</p>
 <span id="more"></span>
 <p>最近要给学弟讲课，稍微打点草稿，防止自己身败名裂。</p>
+<h2 id="complex-number-and-eulers-formula">complex number and Euler's formula</h2>
+<p>太简单。</p>
+<h2 id="root-of-unity">root of unity</h2>
+<p><span class="math display">\[\exp\left(\frac{2k\pi i}{n}\right), k = 0, 1, \dots, n - 1\]</span></p>
 <h2 id="discrete-fourier-transform">discrete Fourier transform</h2>
-<p><span class="math display">\[\operatorname{DFT}(g)_k = \sum_{t = 0}^{N - 1} g_t \cdot \omega_N^{tk}\]</span></p>
+<p><span class="math display">\[\operatorname{DFT}[g]_k = \sum_{t = 0}^{N - 1} g_t \cdot \omega_N^{tk}\]</span></p>
 <h2 id="convolution-theorem">convolution theorem</h2>
 <p><span class="math display">\[\begin{aligned}
 h_k = \sum_{i + j \equiv k \pmod N} f_i \cdot g_j
 \end{aligned}\]</span></p>
 <p><span class="math display">\[\begin{aligned}
-\operatorname{DFT}[g * h] = \operatorname{DFT}[g] \cdot \operatorname{DFT}[h]
+N \cdot h_k &amp;= \sum_i \sum_j f_i \cdot g_j \cdot [N \mid {i+j-k}] \cdot N\\
+&amp;=\sum_i \sum_j f_i \cdot g_j \sum_{t = 0}^{N - 1}\omega_N^{(i + j - k)t}\\
+&amp;=\sum_{t = 0}^{N - 1}\omega_N^{-tk}\left(\sum_i f_i\omega_N^{ti}\right)\cdot \left(\sum_j g_j\omega_N^{tj}\right)\\
+&amp;=\sum_{t = 0}^{N - 1}\omega_N^{-tk}\operatorname{DFT}[h]_t
 \end{aligned}\]</span></p>
+<p><span class="math display">\[\operatorname{DFT}[h] = \operatorname{DFT}[f] \cdot \operatorname{DFT}[h]\]</span></p>
 <h2 id="vandermonde-matrix">Vandermonde matrix</h2>
 <p><span class="math display">\[\mathbf{F}=\begin{bmatrix}
 \omega_N^{0 \times 0} &amp; \omega_N^{0 \times 1} &amp; \cdots &amp; \omega_N^{0 \times (N - 1)}\\

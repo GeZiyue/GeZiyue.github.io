@@ -26,7 +26,7 @@
 <meta property="og:description" content="没啥用的东西。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-07T02:46:26.000Z">
-<meta property="article:modified_time" content="2023-01-08T12:38:44.483Z">
+<meta property="article:modified_time" content="2023-01-08T14:24:01.651Z">
 <meta property="article:author" content="Seniorious">
 <meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary_large_image">
@@ -263,7 +263,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.7k 字
+          2.8k 字
         
       </span>
     
@@ -321,8 +321,6 @@
                 <p>没啥用的东西。</p>
 <span id="more"></span>
 <p>最近要给学弟讲课，稍微打点草稿，防止自己身败名裂。</p>
-<h2 id="complex-number-and-eulers-formula">complex number and Euler's formula</h2>
-<p>太简单。</p>
 <h2 id="root-of-unity">root of unity</h2>
 <p><span class="math display">\[\exp\left(\frac{2k\pi i}{n}\right), k = 0, 1, \dots, n - 1\]</span></p>
 <h2 id="discrete-fourier-transform">discrete Fourier transform</h2>
@@ -345,19 +343,17 @@ N \cdot h_k &amp;= \sum_i \sum_j f_i \cdot g_j \cdot [N \mid {i+j-k}] \cdot N\\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
 \omega_N^{(N - 1) \times 0} &amp; \omega_N^{(N - 1) \times 1} &amp; \cdots &amp; \omega_N^{(N - 1) \times (N - 1)}\\
 \end{bmatrix}\]</span></p>
-<h2 id="fft">FFT</h2>
+<h2 id="fast-fourier-transform">fast Fourier transform</h2>
 <p><span class="math display">\[\sum_{i = 0}^{N - 1}\frac{g_i}{1 - \omega_N^ix}\]</span></p>
 <p><span class="math display">\[\sum_{i = 0}^{N - 1}(1 - \omega_N^ix) = 1 - x^N\]</span></p>
 <p>考虑类似分治 FFT 的过程。</p>
 <p>对于分治右边调整奇偶：</p>
 <p><span class="math display">\[\frac{F(x)}{1 - x^N} \Rightarrow \frac{F(x\omega_{2N})}{1 + x^N}\]</span></p>
-<h2 id="dif-dit">DIF DIT</h2>
+<h2 id="decimation-in-time-and-decimation-in-frequency">decimation in time and decimation in frequency</h2>
 <p><a href="../../2021/yhx-12243-NTT/">我之前的博客</a></p>
-<h2 id="高维前后缀和">高维前后缀和</h2>
-<p>太简单。</p>
-<h2 id="二项式反演">二项式反演</h2>
-<p>太简单。</p>
-<h2 id="fwt">FWT</h2>
+<h2 id="binomial-inversion">binomial inversion</h2>
+<p><span class="math display">\[\sum_{i=0}^n\binom{n}{i}(-1)^i=[n=0]\]</span></p>
+<h2 id="fast-walshhadamard-transform">fast Walsh–Hadamard transform</h2>
 <p>对每一维做大小为 <span class="math inline">\(2\)</span> 的单位根反演。</p>
 <p><span class="math display">\[\operatorname{sgn}(i, j) = (-1)^{\operatorname{popcount}(i \operatorname{and} j)}\]</span></p>
 <p><span class="math display">\[\mathcal{F}_i = \operatorname{FWT}(F)_i = \sum F_j \cdot \operatorname{sgn}(i, j)\]</span></p>

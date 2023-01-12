@@ -18,22 +18,22 @@
   <meta name="author" content="Seniorious">
   <meta name="keywords" content="">
   
-    <meta name="description" content="没啥用的东西。">
+    <meta name="description" content="新年好，尽管此时已经接近农历新年了。 最近的精神状态不是很正常，用 P 出来的一张图来说，就是“我觉得你活不明白了”。各种意义上都活不明白：搞不懂自己的过去，到现在也没理清过去的情感但仍在逼迫自己淡忘；搞不懂自己的未来，一片迷茫如何是好。 最近的生活状态确实不是很好，阳了之后睡了好几天，之后每天都提不起劲，每天 12 点醒来，在床上看半个小时的手机，起来吃饭，然后是轮流打几个游戏，吃晚饭，然后刷着">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【讲课笔记】FFT">
-<meta property="og:url" content="https://blog.seniorious.cc/2023/FFT/index.html">
+<meta property="og:title" content="2023 年 01 月 12 日闲话">
+<meta property="og:url" content="https://blog.seniorious.cc/2023/flower-23-01-12/index.html">
 <meta property="og:site_name" content="Seniorious&#39; blog">
-<meta property="og:description" content="没啥用的东西。">
+<meta property="og:description" content="新年好，尽管此时已经接近农历新年了。 最近的精神状态不是很正常，用 P 出来的一张图来说，就是“我觉得你活不明白了”。各种意义上都活不明白：搞不懂自己的过去，到现在也没理清过去的情感但仍在逼迫自己淡忘；搞不懂自己的未来，一片迷茫如何是好。 最近的生活状态确实不是很好，阳了之后睡了好几天，之后每天都提不起劲，每天 12 点醒来，在床上看半个小时的手机，起来吃饭，然后是轮流打几个游戏，吃晚饭，然后刷着">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-01-07T02:46:26.000Z">
-<meta property="article:modified_time" content="2023-01-09T04:50:00.792Z">
+<meta property="article:published_time" content="2023-01-12T15:43:33.000Z">
+<meta property="article:modified_time" content="2023-01-12T16:34:15.641Z">
 <meta property="article:author" content="Seniorious">
-<meta property="article:tag" content="数学">
+<meta property="article:tag" content="闲话">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>【讲课笔记】FFT - Seniorious&#39; blog</title>
+  <title>2023 年 01 月 12 日闲话 - Seniorious&#39; blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -239,7 +239,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="【讲课笔记】FFT"></span>
+            <span id="subtitle" data-typed-text="2023 年 01 月 12 日闲话"></span>
           
         </div>
 
@@ -250,8 +250,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-07 10:46" pubdate>
-          2023年1月7日 上午
+        <time datetime="2023-01-12 23:43" pubdate>
+          2023年1月12日 晚上
         </time>
       </span>
     
@@ -263,7 +263,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.8k 字
+          1k 字
         
       </span>
     
@@ -275,7 +275,7 @@
         
         
           <!-- compatible with older versions-->
-          9 分钟
+          4 分钟
         
       </span>
     
@@ -313,66 +313,22 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【讲课笔记】FFT</h1>
+            <h1 style="display: none">2023 年 01 月 12 日闲话</h1>
             
             
               <div class="markdown-body">
                 
-                <p>没啥用的东西。</p>
-<span id="more"></span>
-<p>最近要给学弟讲课，稍微打点草稿，防止自己身败名裂。</p>
-<h2 id="root-of-unity">root of unity</h2>
-<p><span class="math display">\[\exp\left(\frac{2k\pi i}{n}\right), k = 0, 1, \dots, n - 1\]</span></p>
-<h2 id="discrete-fourier-transform">discrete Fourier transform</h2>
-<p><span class="math display">\[\operatorname{DFT}[g]_k = \sum_{t = 0}^{N - 1} g_t \cdot \omega_N^{tk}\]</span></p>
-<h2 id="convolution-theorem">convolution theorem</h2>
-<p><span class="math display">\[\begin{aligned}
-h_k = \sum_{i + j \equiv k \pmod N} f_i \cdot g_j
-\end{aligned}\]</span></p>
-<p><span class="math display">\[\begin{aligned}
-N \cdot h_k &amp;= \sum_i \sum_j f_i \cdot g_j \cdot [N \mid {i+j-k}] \cdot N\\
-&amp;=\sum_i \sum_j f_i \cdot g_j \sum_{t = 0}^{N - 1}\omega_N^{(i + j - k)t}\\
-&amp;=\sum_{t = 0}^{N - 1}\omega_N^{-tk}\left(\sum_i f_i\omega_N^{ti}\right)\cdot \left(\sum_j g_j\omega_N^{tj}\right)\\
-&amp;=\sum_{t = 0}^{N - 1}\omega_N^{-tk}\operatorname{DFT}[h]_t
-\end{aligned}\]</span></p>
-<p><span class="math display">\[\operatorname{DFT}[h] = \operatorname{DFT}[f] \cdot \operatorname{DFT}[g]\]</span></p>
-<h2 id="vandermonde-matrix">Vandermonde matrix</h2>
-<p><span class="math display">\[\mathbf{F}=\begin{bmatrix}
-\omega_N^{0 \times 0} &amp; \omega_N^{0 \times 1} &amp; \cdots &amp; \omega_N^{0 \times (N - 1)}\\
-\omega_N^{1 \times 0} &amp; \omega_N^{1 \times 1} &amp; \cdots &amp; \omega_N^{1 \times (N - 1)}\\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
-\omega_N^{(N - 1) \times 0} &amp; \omega_N^{(N - 1) \times 1} &amp; \cdots &amp; \omega_N^{(N - 1) \times (N - 1)}\\
-\end{bmatrix}\]</span></p>
-<h2 id="fast-fourier-transform">fast Fourier transform</h2>
-<p><span class="math display">\[\sum_{i = 0}^{N - 1}\frac{f_i}{1 - \omega_N^ix}\]</span></p>
-<p><span class="math display">\[\sum_{i = 0}^{N - 1}(1 - \omega_N^ix) = 1 - x^N\]</span></p>
-<p>考虑类似分治 FFT 的过程。</p>
-<p>对于分治右边调整奇偶：</p>
-<p><span class="math display">\[\frac{F(x)}{1 - x^N} \Rightarrow \frac{F(x\omega_{2N})}{1 + x^N}\]</span></p>
-<h2 id="decimation-in-time-and-decimation-in-frequency">decimation in time and decimation in frequency</h2>
-<p><a href="../../2021/yhx-12243-NTT/">我之前的博客</a></p>
-<h2 id="binomial-inversion">binomial inversion</h2>
-<p><span class="math display">\[\sum_{i=0}^n\binom{n}{i}(-1)^i=[n=0]\]</span></p>
-<h2 id="fast-walshhadamard-transform">fast Walsh–Hadamard transform</h2>
-<p>对每一维做大小为 <span class="math inline">\(2\)</span> 的单位根反演。</p>
-<p><span class="math display">\[\operatorname{sgn}(i, j) = (-1)^{\operatorname{popcount}(i \operatorname{and} j)}\]</span></p>
-<p><span class="math display">\[\mathcal{F}_i = \operatorname{FWT}(F)_i = \sum F_j \cdot \operatorname{sgn}(i, j)\]</span></p>
-<p><span class="math display">\[\begin{aligned}
-\mathcal{H}_b &amp;= \sum_i \sum_j f_i \cdot g_j \cdot \operatorname{sgn}(i \oplus j, b)\\
-&amp;= \sum_i \sum_j f_i \cdot g_j \cdot \operatorname{sgn}(i, b) \cdot \operatorname{sgn}(j, b)\\
-&amp;= \left(\sum_i f_i \cdot \operatorname{sgn}(i, b)\right) \left(\sum_j g_j \cdot \operatorname{sgn}(j, b)\right)\\
-&amp;= \mathcal{F}_b \cdot \mathcal{G}_b
-\end{aligned}\]</span></p>
-<p><span class="math display">\[\begin{aligned}
-h_k &amp;= \sum_{i \oplus j = k}f_i \cdot g_j\\
-&amp;= \sum_i \sum_j f_i \cdot g_j \cdot [2 \mid {i_0 + j_0 - k_0}] \cdot [2 \mid {i_1 + j_1 - k_1}] \cdots\\
-&amp;= \frac{1}{2^w}\sum_i \sum_j f_i \cdot g_j \cdot (1 + (-1)^{i_0 + j_0 - k_0}) \cdot (1 + (-1)^{i_1 + j_1 - k_1})\\
-&amp;= \frac{1}{2^w}\sum_i \sum_j f_i \cdot g_j \cdot \sum_b (-1)^{i_0 \operatorname{and} b_0} \cdot (-1)^{j_0 \operatorname{and} b_0} \cdot (-1)^{k_0 \operatorname{and} b_0} \cdot (-1)^{i_1 \operatorname{and} b_1} \cdot (-1)^{j_1 \operatorname{and} b_1} \cdot (-1)^{k_1 \operatorname{and} b_1} \cdots\\
-&amp;= \frac{1}{2^w}\sum_b \operatorname{sgn}(k, b) \cdot (\sum_i f_i \cdot \operatorname{sgn}(i, b)) \cdot (\sum_j g_j \cdot \operatorname{sgn}(j, b))\\
-&amp;= \frac{1}{2^w}\sum_b \operatorname{sgn}(k, b) \cdot \mathcal{F}_b \cdot \mathcal{G}_b\\
-&amp;= \frac{1}{2^w}\sum_b \operatorname{sgn}(k, b) \cdot \mathcal{H}_b\\
-&amp;= \frac{1}{2^w}\operatorname{FWT}(\mathcal{H})_k
-\end{aligned}\]</span></p>
+                <p>新年好，尽管此时已经接近农历新年了。</p>
+<p>最近的精神状态不是很正常，用 P 出来的一张图来说，就是“我觉得你活不明白了”。各种意义上都活不明白：搞不懂自己的过去，到现在也没理清过去的情感但仍在逼迫自己淡忘；搞不懂自己的未来，一片迷茫如何是好。</p>
+<p>最近的生活状态确实不是很好，阳了之后睡了好几天，之后每天都提不起劲，每天 12 点醒来，在床上看半个小时的手机，起来吃饭，然后是轮流打几个游戏，吃晚饭，然后刷着 B 站刷到很晚。其实也不知道有啥好刷的，B 站也挺无聊，但是明明无聊却要把时间耗在上面……</p>
+<p>NOI 前做白日梦，说自己假如能 Au，就要看书，打 galgame，补好多好多的番，学点自己喜欢的东西。然而，很可悲啥都没完成。有时候打算做一个事，很快就又三分钟热度了。</p>
+<p>目前我还在打单机游戏/鸭鹅杀/io 游戏，不得不说我已经难以从竞技类游戏中获得快乐了，我一点也不想在手机里下游戏，我不知道这是好是坏。最近发现 puzzle 也挺有趣。</p>
+<p>闲话也好久没写，因为一直在“忙碌”的假象中消磨时间。</p>
+<p>不过前几天都去学校自习，感觉还是很不一样——现在我有了新打算，要学习 Node.js 并搭一个简单的校内 chatting board。之前几天看了不少 documentation，也看了点之前好几天没看了的书。有时候觉得还是这种氛围更能推动我前进。</p>
+<p>前两天和学长、学姐吃了餐饭，感慨大家变化都好大。虽然讨论的内容对我还略显陌生，但是从聆听中可以判断出俨然那些比我高个两三届的学长和学姐很多都有了不小的成就了。</p>
+<p>今天读到了一位竞赛保送生在树洞反思自己看似分数高实则根本没有扎实学习。浮躁、缺乏自律、没有方向、缺少意义……这些词汇似乎对于我也适用。也不要和学长同学对比，还是和梦里相比吧。你到底成为了梦里的样子吗？每天想这么多，你究竟在怎么做？买来的书读了吗？学习清单是不是又像洛谷任务计划一样一股脑往里加东西，最后也没清掉几个？……或许我不过还是那个啥都不会，在 OI 课上打游戏的顽童。</p>
+<p>另外，今天回顾了「最好的中学，最后的改革」，一边读一边绕着学校走，读到难过处总有些触动，感慨万千。一边为这样的失败而唏嘘不已，一边羡慕享受到如此教育理念和资源的孩子们。今天再读，还有意外收获，看到那个从衡水到北大附中读高中的孩子，反问自己，从强压的氛围中出来，你是不是也会像他一样无所适从。</p>
+<p>不知道该怎样结束这篇闲话，还是继续做个白日梦吧：希望在四年之后，我能说出北大这所学府究竟对我意味着什么，我又改变了什么。</p>
 
                 
               </div>
@@ -381,32 +337,11 @@ h_k &amp;= \sum_{i \oplus j = k}f_i \cdot g_j\\
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E8%AE%B2%E8%AF%BE%E7%AC%94%E8%AE%B0/" class="category-chain-item">讲课笔记</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%95%B0%E5%AD%A6/">#数学</a>
+        <a href="/tags/%E9%97%B2%E8%AF%9D/">#闲话</a>
       
     </div>
   
@@ -418,8 +353,8 @@ h_k &amp;= \sum_{i \oplus j = k}f_i \cdot g_j\\
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【讲课笔记】FFT</div>
-      <div>https://blog.seniorious.cc/2023/FFT/</div>
+      <div>2023 年 01 月 12 日闲话</div>
+      <div>https://blog.seniorious.cc/2023/flower-23-01-12/</div>
     </div>
     <div class="license-meta">
       
@@ -431,7 +366,7 @@ h_k &amp;= \sum_{i \oplus j = k}f_i \cdot g_j\\
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年1月7日</div>
+          <div>2023年1月12日</div>
         </div>
       
       
@@ -463,18 +398,12 @@ h_k &amp;= \sum_{i \oplus j = k}f_i \cdot g_j\\
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/flower-23-01-12/" title="2023 年 01 月 12 日闲话">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2023 年 01 月 12 日闲话</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/flower-22-11-08/" title="2022 年 11 月 08 日闲话">
-                        <span class="hidden-mobile">2022 年 11 月 08 日闲话</span>
+                      <a href="/2023/FFT/" title="【讲课笔记】FFT">
+                        <span class="hidden-mobile">【讲课笔记】FFT</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -497,7 +426,7 @@ h_k &amp;= \sum_{i \oplus j = k}f_i \cdot g_j\\
         var options = Object.assign(
           {"clientID":"b351bc4d7fc254097ca6","clientSecret":"d762a44a8a3496491f695e96ad76bef8d184bbd7","repo":"GeZiyue.github.io","owner":"GeZiyue","admin":["GeZiyue","Senioriousg"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://lingering-poetry-44bc.seniorious.workers.dev/?https://github.com/login/oauth/access_token"},
           {
-            id: '213c684605aaa3033aab152138064b03'
+            id: 'a8088d678106d64fd3849ad30bd643af'
           }
         )
         var gitalk = new Gitalk(options);

@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>relearn-FFT</title>
+    <link href="/2023/relearn-FFT/"/>
+    <url>/2023/relearn-FFT/</url>
+    
+    <content type="html"><![CDATA[<p>最近重新理解了一下 FFT，想写一点不容易解释清楚的东西。</p><span id="more"></span><p>首先，与传统的求点值不同的是，我将 <span class="math inline">\(\operatorname{DFT}\)</span> 理解为另一种等价的形式：<span class="math inline">\(\sum\frac{f_i}{1-\omega_n^ix}\)</span>。</p><p>这是一个分治 FFT 的形式，下面我将分别提出两种求这个和的方式，分别对应了 DIT 和 DIF 两种算法。</p><h2 id="dit">DIT</h2><p>我们观察到一个事实，<span class="math inline">\(\prod\limits_{i=0}^{n - 1}(1 - \omega_n^i x)=1 - x^n\)</span>。</p><p>我们试图分治，于是考虑按照 <span class="math inline">\(i\)</span> 的奇偶分成两半，先对两部分运行该算法于是能得到 <span class="math inline">\(\frac{F(x)}{1-x^{n/2}}\)</span> 以及 <span class="math inline">\(\frac{G(x)}{1-x^{n/2}}\)</span>。</p><p>由于右半边应当是奇数但我们当作偶数做了，所以应当把 <span class="math inline">\(x\)</span> 还原成 <span class="math inline">\(\omega_nx\)</span>，于是就是 <span class="math inline">\(\frac{G(\omega_nx)}{1-\omega_n^{n/2}x^{n/2}}=\frac{G(\omega_nx)}{1+x^{n/2}}\)</span>。于是 <span class="math inline">\(F(x)\)</span> 和 <span class="math inline">\(G(\omega_nx)\)</span> 就可以通分合并成当前的答案。</p><p>这样的分治结构的底层就是蝴蝶变换的顺序，如果每个分治节点都存储一个多项式，自下而上观察整个过程，每次乘单位根对应换元，加减法就是通分求和的过程。</p><h2 id="dif">DIF</h2><p>让我们换个视角，我们考虑自上而下做维护每一处的贡献。</p><p>考虑把这些数按照大小分成两部分，对于大的一部分，把它们写成 <span class="math inline">\(n / 2 + i\)</span> 的形式。考虑到 <span class="math inline">\(\omega_n^{n/2} = -1, (\omega_n^{n/2})^2 = 1\)</span> 那么大的一部分在所有的奇数次项会全部有 <span class="math inline">\(-1\)</span> 的系数，对于偶数位置和小的部分系数一致。所以考虑把两部分相加得到的数组分治下去，就能获得偶数次项的系数。用小的部分剪去大的部分后乘上 <span class="math inline">\(x\)</span> 次幂带来的系数（就是 <span class="math inline">\(\frac{1}{1-\omega_n^ix}\)</span> 里的 <span class="math inline">\(\omega_n^i\)</span>），分治下去就能获得奇数次项的系数。</p><h2 id="关于-yhx-12243-的写法">关于 yhx-12243 的写法</h2><p>其实我上一篇博客只讨论了这一部分，我这里来重复一遍之前的结论，那种写法是将 DIT 和 DIF 再额外蝴蝶变换一次来减少指针移动的次数，是一种常数优化。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>数学</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2023 年 01 月 12 日闲话</title>
     <link href="/2023/flower-23-01-12/"/>
     <url>/2023/flower-23-01-12/</url>

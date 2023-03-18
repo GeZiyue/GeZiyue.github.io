@@ -178,9 +178,9 @@
     
     <tags>
       
-      <tag>数学</tag>
-      
       <tag>FZOJ</tag>
+      
+      <tag>数学</tag>
       
       <tag>多项式</tag>
       
@@ -532,9 +532,9 @@
       
       <tag>计数</tag>
       
-      <tag>高斯消元</tag>
-      
       <tag>线性代数</tag>
+      
+      <tag>高斯消元</tag>
       
     </tags>
     
@@ -650,9 +650,9 @@
       
       <tag>线段树</tag>
       
-      <tag>Codeforces</tag>
-      
       <tag>概率与期望</tag>
+      
+      <tag>Codeforces</tag>
       
       <tag>矩阵乘法</tag>
       
@@ -679,9 +679,9 @@
     
     <tags>
       
-      <tag>Codeforces</tag>
-      
       <tag>概率与期望</tag>
+      
+      <tag>Codeforces</tag>
       
       <tag>高斯消元</tag>
       
@@ -1049,11 +1049,11 @@
     
     <tags>
       
+      <tag>洛谷</tag>
+      
       <tag>并查集</tag>
       
       <tag>单调性</tag>
-      
-      <tag>洛谷</tag>
       
     </tags>
     
@@ -1153,9 +1153,9 @@
       
       <tag>动态规划</tag>
       
-      <tag>洛谷</tag>
-      
       <tag>USACO</tag>
+      
+      <tag>洛谷</tag>
       
     </tags>
     

@@ -178,9 +178,9 @@
       
         <tags>
             
-            <tag> 数学 </tag>
-            
             <tag> FZOJ </tag>
+            
+            <tag> 数学 </tag>
             
             <tag> 多项式 </tag>
             
@@ -532,9 +532,9 @@
             
             <tag> 计数 </tag>
             
-            <tag> 高斯消元 </tag>
-            
             <tag> 线性代数 </tag>
+            
+            <tag> 高斯消元 </tag>
             
         </tags>
       
@@ -650,9 +650,9 @@
             
             <tag> 线段树 </tag>
             
-            <tag> Codeforces </tag>
-            
             <tag> 概率与期望 </tag>
+            
+            <tag> Codeforces </tag>
             
             <tag> 矩阵乘法 </tag>
             
@@ -679,9 +679,9 @@
       
         <tags>
             
-            <tag> Codeforces </tag>
-            
             <tag> 概率与期望 </tag>
+            
+            <tag> Codeforces </tag>
             
             <tag> 高斯消元 </tag>
             
@@ -1049,11 +1049,11 @@
       
         <tags>
             
+            <tag> 洛谷 </tag>
+            
             <tag> 并查集 </tag>
             
             <tag> 单调性 </tag>
-            
-            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -1153,9 +1153,9 @@
             
             <tag> 动态规划 </tag>
             
-            <tag> 洛谷 </tag>
-            
             <tag> USACO </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -1171,7 +1171,7 @@
       <link href="/about/index.html"/>
       <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[<p>来自 AH 的菜鸡退役OIer / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious">Atcoder</a> / <a href="https://www.luogu.com.cn/user/25251">洛谷</a> / <a href="https://loj.ac/u/Seniorious">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious">UOJ</a></p><p>QQ: 2775632269</p><p>博客上 FZOJ 的题目密码都是我 FZOJ 注册日期（8 位数字）。</p><p>现就读于安徽师范大学附属中学。</p>]]></content>
+        <content type="html"><![CDATA[<p>PKU / 菜鸡退役 OIer / 可爱的<del>女</del>男孩子</p><p><a href="https://codeforces.com/profile/ChthollyNotaSeniorious">Codeforces</a> / <a href="https://atcoder.jp/users/Seniorious">Atcoder</a> / <a href="https://www.luogu.com.cn/user/25251">洛谷</a> / <a href="https://loj.ac/u/Seniorious">LOJ</a> / <a href="http://uoj.ac/user/profile/Seniorious">UOJ</a></p><p>QQ: 2775632269</p><p>博客上 FZOJ 的题目密码都是我 FZOJ 注册日期（8 位数字）。</p>]]></content>
       
     </entry>
     

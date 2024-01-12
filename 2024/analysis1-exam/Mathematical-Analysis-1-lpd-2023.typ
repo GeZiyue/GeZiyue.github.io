@@ -5,7 +5,7 @@
 #show raw: set text(font: "New Computer Modern Mono")
 #show heading: set block(above: 1.4em, below: 1em)
 
-= Problem 1: Integrals (24)
+= Problem 1: Integral (24)
 
 == 1.1 (8)
 

@@ -57,4 +57,4 @@ $f(x) in C^infinity [a, b]$, prove that: $exists M : f^((n))(x) <= (M r^n)/(n!)$
 
 = Problem 6 (20)
 
-Find all possible function $f(x)$ such that: $f in D[0, +infinity), f(0) = 0, |f(x) + sqrt(x)f'(x)| <= M sqrt(x) |f(x)|$
+Find all possible function $f(x)$ such that: $f in D[0, +infinity), f(0) = 0, |f(x) + sqrt(x)f'(x)| <= M sqrt(x) |f(x)|$, where $M > 0$

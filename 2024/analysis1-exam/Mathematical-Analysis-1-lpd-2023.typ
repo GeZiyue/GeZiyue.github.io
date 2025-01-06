@@ -53,7 +53,7 @@ where $p(t), q(t)$ are given function, and $forall t in (a, b), q(t) < 0$
 
 = Problem 5 (10)
 
-$f(x) in C^infinity [a, b]$, prove that: $exists M : f^((n))(x) <= (M r^n)/(n!)$ for any $n >= 1$, where $x in (a, b), r > 0, x + r in (a, b)$
+$f(x) in C^infinity [a, b]$, and $f^((n))(x) >= 0$ for any $n$ and $x$, prove that: $exists M : f^((n))(x) <= (M n!)/(r^n)$ for any $n >= 1$, where $x in (a, b), r > 0, x + r in (a, b)$
 
 = Problem 6 (20)
 

@@ -155,11 +155,11 @@
             
             <tag> 数学 </tag>
             
-            <tag> FZOJ </tag>
-            
             <tag> 多项式 </tag>
             
             <tag> 下降幂多项式 </tag>
+            
+            <tag> FZOJ </tag>
             
         </tags>
       
@@ -407,9 +407,9 @@
       
         <tags>
             
-            <tag> 结论 </tag>
-            
             <tag> 生成函数 </tag>
+            
+            <tag> 结论 </tag>
             
         </tags>
       
@@ -563,13 +563,13 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 博弈论 </tag>
             
             <tag> sg函数与Nim游戏 </tag>
             
             <tag> 点分治 </tag>
+            
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -594,11 +594,11 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
+            <tag> 生成函数 </tag>
             
             <tag> 概率与期望 </tag>
             
-            <tag> 生成函数 </tag>
+            <tag> 洛谷 </tag>
             
         </tags>
       
@@ -625,11 +625,11 @@
             
             <tag> Codeforces </tag>
             
-            <tag> 线段树 </tag>
-            
             <tag> 概率与期望 </tag>
             
             <tag> 矩阵乘法 </tag>
+            
+            <tag> 线段树 </tag>
             
         </tags>
       
@@ -656,9 +656,9 @@
             
             <tag> Codeforces </tag>
             
-            <tag> 概率与期望 </tag>
-            
             <tag> 高斯消元 </tag>
+            
+            <tag> 概率与期望 </tag>
             
         </tags>
       
@@ -783,9 +783,9 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 多项式 </tag>
+            
+            <tag> 洛谷 </tag>
             
             <tag> 第二类斯特林数 </tag>
             
@@ -812,9 +812,9 @@
       
         <tags>
             
-            <tag> 洛谷 </tag>
-            
             <tag> 多项式 </tag>
+            
+            <tag> 洛谷 </tag>
             
             <tag> 第一类斯特林数 </tag>
             
@@ -887,11 +887,11 @@
       
         <tags>
             
+            <tag> 线段树 </tag>
+            
             <tag> 洛谷 </tag>
             
             <tag> 树链剖分 </tag>
-            
-            <tag> 线段树 </tag>
             
         </tags>
       
@@ -968,9 +968,9 @@
       
         <tags>
             
-            <tag> 数学 </tag>
-            
             <tag> 结论 </tag>
+            
+            <tag> 数学 </tag>
             
         </tags>
       
@@ -1126,11 +1126,11 @@
       
         <tags>
             
+            <tag> 洛谷 </tag>
+            
             <tag> 动态规划 </tag>
             
             <tag> USACO </tag>
-            
-            <tag> 洛谷 </tag>
             
         </tags>
       
